@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- TODO: 실제 도메인 확정 후 example.com 교체 -->
-  <url><loc>https://example.com/</loc></url>
-  <url><loc>https://example.com/stock-average/</loc></url>
-  <url><loc>https://example.com/loan/</loc></url>
-  <url><loc>https://example.com/chungyak/</loc></url>
-  <url><loc>https://example.com/year-end-tax/</loc></url>
-  <url><loc>https://example.com/savings/</loc></url>
-  <url><loc>https://example.com/dsr/</loc></url>
-  <url><loc>https://example.com/jeonse-vs-monthly/</loc></url>
-  <url><loc>https://example.com/dividend/</loc></url>
-  <url><loc>https://example.com/lotto-tax/</loc></url>
-  <url><loc>https://example.com/goal-saving/</loc></url>
-  <url><loc>https://example.com/fx-fee/</loc></url>
-  <url><loc>https://example.com/about.html</loc></url>
-  <url><loc>https://example.com/privacy.html</loc></url>
+  <url><loc>https://money.jwapplab.com/</loc></url>
+  <url><loc>https://money.jwapplab.com/stock-average/</loc></url>
+  <url><loc>https://money.jwapplab.com/loan/</loc></url>
+  <url><loc>https://money.jwapplab.com/chungyak/</loc></url>
+  <url><loc>https://money.jwapplab.com/year-end-tax/</loc></url>
+  <url><loc>https://money.jwapplab.com/savings/</loc></url>
+  <url><loc>https://money.jwapplab.com/dsr/</loc></url>
+  <url><loc>https://money.jwapplab.com/jeonse-vs-monthly/</loc></url>
+  <url><loc>https://money.jwapplab.com/dividend/</loc></url>
+  <url><loc>https://money.jwapplab.com/lotto-tax/</loc></url>
+  <url><loc>https://money.jwapplab.com/goal-saving/</loc></url>
+  <url><loc>https://money.jwapplab.com/fx-fee/</loc></url>
+  <url><loc>https://money.jwapplab.com/about.html</loc></url>
+  <url><loc>https://money.jwapplab.com/privacy.html</loc></url>
 </urlset>
