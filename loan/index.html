@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>대출이자 계산기·대환 비교 | 머니데스크</title>
+  <meta name="description" content="원리금균등·원금균등·만기일시 대출의 월 납입액과 전체 상환 스케줄을 계산하고, 대환 시 이득 또는 손해를 비교합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="대출이자 계산기·대환 비교 | 머니데스크">
+  <meta property="og:description" content="상환 방식별 납입 스케줄과 대출 갈아타기 비용을 한 번에 비교하세요.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "원리금균등과 원금균등 중 뭐가 유리한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "총 이자만 보면 원금균등이 항상 적습니다. 다만 초기 월 납입액이 커서 현금 흐름 부담이 있습니다. 매달 지출을 일정하게 유지하고 싶다면 원리금균등, 총 비용을 줄이고 초기 부담을 감당할 수 있다면 원금균등이 일반적인 선택입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "중도상환수수료는 어떻게 계산되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "통상 \"상환금액 × 수수료율 × (남은 부과기간 ÷ 전체 부과기간)\"의 일할 방식입니다. 부과기간은 대부분 3년이며, 3년이 지나면 면제되는 경우가 많습니다. 정확한 요율과 부과기간은 대출 약정서 또는 해당 금융사에서 확인하세요."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "금리가 0.5%p 낮은 대출이 있으면 무조건 갈아타는 게 좋나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "아닙니다. 중도상환수수료와 새 대출의 인지세·설정 비용을 빼고도 이득인지 확인해야 하며, 남은 상환 기간이 짧을수록 갈아타는 이득이 줄어듭니다. 대환 비교 탭이 이 총비용 기준으로 결론을 계산해줍니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "이 계산 결과와 은행 안내 금액이 조금 다릅니다.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "은행은 실제 일수 기준(365일/윤년)과 상품별 세부 조건으로 계산하므로 월 단위 계산과 소액의 차이가 날 수 있습니다. 정확한 금액은 해당 금융사 안내가 우선입니다."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">내 돈의 숫자를 간단하게</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../stock-average/index.html">물타기</a>
+        <a href="index.html" aria-current="page">대출이자</a>
+        <a href="../chungyak/index.html">청약가점</a>
+        <a href="../year-end-tax/index.html">연말정산</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">LOAN CALCULATOR</p>
+      <h1>대출이자 계산기</h1>
+      <p class="lead">상환 방식별 월 납입액과 전체 스케줄을 확인하고, 지금 대출을 갈아타는 편이 유리한지도 비교해 보세요.</p>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="대출 계산 종류">
+      <button id="repayment-tab" type="button" role="tab" aria-selected="true" aria-controls="repayment-panel" data-tab="repayment">상환 계산</button>
+      <button id="refinance-tab" type="button" role="tab" aria-selected="false" aria-controls="refinance-panel" data-tab="refinance" tabindex="-1">대환 비교</button>
+    </div>
+
+    <section id="repayment-panel" role="tabpanel" aria-labelledby="repayment-tab" data-panel="repayment">
+      <form id="repayment-form" class="panel" novalidate>
+        <div class="panel-title-row">
+          <div>
+            <h2>상환 조건</h2>
+            <p class="microcopy">값을 바꾸면 결과가 바로 계산됩니다.</p>
+          </div>
+        </div>
+
+        <div class="field-grid two">
+          <div class="field">
+            <label for="principal">대출 원금</label>
+            <div class="input-wrap">
+              <input id="principal" name="principal" type="text" value="100,000,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0" aria-describedby="principal-hint">
+              <span class="unit">원</span>
+            </div>
+            <p id="principal-hint" class="hint">현재 빌리려는 전체 원금</p>
+          </div>
+
+          <div class="field">
+            <label for="annual-rate">연 이자율</label>
+            <div class="input-wrap">
+              <input id="annual-rate" name="annualRate" type="text" value="5" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <span class="unit">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="term-months">전체 대출 기간</label>
+            <div class="input-wrap">
+              <input id="term-months" name="termMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">개월</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="grace-months">거치기간</label>
+            <div class="input-wrap">
+              <input id="grace-months" name="graceMonths" type="text" value="0" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">개월</span>
+            </div>
+            <p class="hint">전체 기간에 포함되며, 거치 중에는 이자만 냅니다.</p>
+          </div>
+
+          <div class="field">
+            <label for="repayment-method">상환 방식</label>
+            <div class="input-wrap">
+              <select id="repayment-method" name="method">
+                <option value="annuity">원리금균등</option>
+                <option value="equal-principal">원금균등</option>
+                <option value="bullet">만기일시</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <p id="method-hint" class="tip-line">원리금균등은 거치 후 매달 같은 원리금을 납부합니다.</p>
+      </form>
+
+      <section class="result-card" aria-live="polite" aria-atomic="false">
+        <div class="result-title-row">
+          <div>
+            <p id="repayment-result-label" class="result-label">예상 월 납입액</p>
+            <p id="repayment-main-result" class="result-value">0원</p>
+          </div>
+          <button id="copy-repayment-link" class="copy-button" type="button">결과 링크 복사</button>
+        </div>
+        <p id="repayment-summary" class="result-summary"></p>
+        <dl class="result-grid">
+          <div class="result-row"><dt>상환 원금</dt><dd id="repayment-total-principal">0원</dd></div>
+          <div class="result-row"><dt>총 이자</dt><dd id="repayment-total-interest">0원</dd></div>
+          <div class="result-row"><dt>총 납입액</dt><dd id="repayment-total-payment">0원</dd></div>
+          <div class="result-row"><dt>첫 회 납입액</dt><dd id="repayment-first-payment">0원</dd></div>
+          <div class="result-row"><dt>마지막 회 납입액</dt><dd id="repayment-last-payment">0원</dd></div>
+        </dl>
+      </section>
+
+      <details class="panel" id="schedule-details">
+        <summary><strong>회차별 상환 스케줄 전체 보기 (<span id="schedule-count">0</span>회)</strong></summary>
+        <div class="schedule-wrap">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th scope="col">회차</th>
+                <th scope="col">구분</th>
+                <th scope="col">납입액</th>
+                <th scope="col">원금</th>
+                <th scope="col">이자</th>
+                <th scope="col">잔액</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-body"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section id="refinance-panel" role="tabpanel" aria-labelledby="refinance-tab" data-panel="refinance" hidden>
+      <form id="refinance-form" class="panel" novalidate>
+        <h2>기존 대출</h2>
+        <div class="field-grid two">
+          <div class="field">
+            <label for="ref-balance">현재 남은 원금</label>
+            <div class="input-wrap">
+              <input id="ref-balance" name="refBalance" type="text" value="100,000,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">원</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ref-old-rate">기존 연 이자율</label>
+            <div class="input-wrap">
+              <input id="ref-old-rate" name="refOldRate" type="text" value="5" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ref-old-months">기존 대출 잔여기간</label>
+            <div class="input-wrap">
+              <input id="ref-old-months" name="refOldMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">개월</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ref-fee-rate">중도상환수수료율</label>
+            <div class="input-wrap">
+              <input id="ref-fee-rate" name="refFeeRate" type="text" value="1.2" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ref-waiver-months">수수료 면제까지 남은 기간</label>
+            <div class="input-wrap">
+              <input id="ref-waiver-months" name="refWaiverMonths" type="text" value="12" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">개월</span>
+            </div>
+            <p class="hint">부과기간보다 길게 입력하면 전체 부과기간으로 제한합니다.</p>
+          </div>
+        </div>
+
+        <h2>새 대출</h2>
+        <div class="field-grid two">
+          <div class="field">
+            <label for="ref-new-rate">새 연 이자율</label>
+            <div class="input-wrap">
+              <input id="ref-new-rate" name="refNewRate" type="text" value="3.5" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ref-new-months">새 대출 기간</label>
+            <div class="input-wrap">
+              <input id="ref-new-months" name="refNewMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">개월</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ref-setup-cost">인지대·설정비 등</label>
+            <div class="input-wrap">
+              <input id="ref-setup-cost" name="refSetupCost" type="text" value="300,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">원</span>
+            </div>
+          </div>
+        </div>
+        <p class="tip-line">비교를 위해 기존·새 대출 모두 원리금균등 상환으로 가정합니다.</p>
+      </form>
+
+      <section class="result-card" aria-live="polite" aria-atomic="false">
+        <div class="result-title-row">
+          <div>
+            <p class="result-label">대환 비교 결론</p>
+            <p id="refinance-main-result" class="result-value">지금 갈아타면 0원 이득</p>
+          </div>
+          <button id="copy-refinance-link" class="copy-button" type="button">결과 링크 복사</button>
+        </div>
+        <p class="result-summary">남은 원금은 어느 쪽에서도 동일하므로, 앞으로 낼 이자와 대환 비용만 비교합니다.</p>
+        <dl class="breakdown-list">
+          <div class="breakdown-row"><dt>기존 대출 남은 이자</dt><dd id="ref-old-interest">0원</dd></div>
+          <div class="breakdown-row"><dt>새 대출 예상 이자</dt><dd id="ref-new-interest">0원</dd></div>
+          <div class="breakdown-row"><dt>중도상환수수료</dt><dd id="ref-prepayment-fee">0원</dd></div>
+          <div class="breakdown-row"><dt>새 대출 설정비</dt><dd id="ref-setup-cost-result">0원</dd></div>
+          <div class="breakdown-row"><dt>대환 후 총비용</dt><dd id="ref-new-total-cost">0원</dd></div>
+        </dl>
+        <p id="ref-fee-note" class="status-message"></p>
+      </section>
+    </section>
+
+    <div class="ad-slot" aria-hidden="true">
+      <!-- AD SLOT -->
+    </div>
+
+    <section class="content-placeholder" aria-labelledby="loan-guide-title">
+      <h2 id="loan-guide-title">대출이자 계산 가이드</h2>
+      <div class="placeholder-box">
+        <p>같은 금액을 빌려도 상환 방식에 따라 매달 내는 돈과 총 이자가 달라집니다. 원리금균등은 매달 같은 금액을 내는 방식으로 초반엔 이자 비중이 크고 갈수록 원금 비중이 커집니다. 원금균등은 매달 같은 원금에 남은 잔액의 이자를 더해 내는 방식이라 첫 달 부담이 가장 크지만 총 이자는 가장 적습니다. 만기일시는 매달 이자만 내다 만기에 원금을 한 번에 갚는 방식으로 총 이자가 가장 많습니다. 이 계산기는 세 방식의 월 납입액과 회차별 상환 스케줄, 총 이자를 보여줍니다.</p>
+        <p>대환(갈아타기) 비교 탭은 "지금 더 낮은 금리로 갈아타면 실제로 이득인가"를 계산합니다. 갈아탈 때는 금리 차이만 볼 것이 아니라 기존 대출의 중도상환수수료와 새 대출의 설정 비용까지 합쳐 총비용을 비교해야 합니다. 중도상환수수료는 통상 대출 실행일부터 3년간 부과되며 남은 기간에 비례해 줄어듭니다. 참고로 2025년 1월 13일 이후 새로 받은 대출은 제도 개편으로 수수료율이 크게 낮아졌기 때문에(주택담보대출 평균 약 1.2~1.4% → 0.6~0.7%), 언제 받은 대출인지에 따라 계산 결과가 달라집니다.</p>
+      </div>
+
+      <div class="ad-slot" aria-hidden="true">
+        <!-- AD SLOT -->
+      </div>
+
+      <section class="related-calculators" aria-labelledby="loan-related-title">
+        <h2 id="loan-related-title">관련 계산기</h2>
+        <div class="related-grid">
+          <a class="related-card" href="../dsr/index.html"><strong>DSR 계산기</strong><span>연소득 대비 원리금과 남은 한도 여력을 확인해요.</span></a>
+          <a class="related-card" href="../jeonse-vs-monthly/index.html"><strong>전세 vs 월세 비교</strong><span>대출이자와 기회비용을 월 비용으로 비교해요.</span></a>
+        </div>
+      </section>
+
+      <section aria-labelledby="loan-faq-title">
+        <h2 id="loan-faq-title">자주 묻는 질문</h2>
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>원리금균등과 원금균등 중 뭐가 유리한가요?</h3>
+            <p>총 이자만 보면 원금균등이 항상 적습니다. 다만 초기 월 납입액이 커서 현금 흐름 부담이 있습니다. 매달 지출을 일정하게 유지하고 싶다면 원리금균등, 총 비용을 줄이고 초기 부담을 감당할 수 있다면 원금균등이 일반적인 선택입니다.</p>
+          </article>
+          <article class="faq-item">
+            <h3>중도상환수수료는 어떻게 계산되나요?</h3>
+            <p>통상 "상환금액 × 수수료율 × (남은 부과기간 ÷ 전체 부과기간)"의 일할 방식입니다. 부과기간은 대부분 3년이며, 3년이 지나면 면제되는 경우가 많습니다. 정확한 요율과 부과기간은 대출 약정서 또는 해당 금융사에서 확인하세요.</p>
+          </article>
+          <article class="faq-item">
+            <h3>금리가 0.5%p 낮은 대출이 있으면 무조건 갈아타는 게 좋나요?</h3>
+            <p>아닙니다. 중도상환수수료와 새 대출의 인지세·설정 비용을 빼고도 이득인지 확인해야 하며, 남은 상환 기간이 짧을수록 갈아타는 이득이 줄어듭니다. 대환 비교 탭이 이 총비용 기준으로 결론을 계산해줍니다.</p>
+          </article>
+          <article class="faq-item">
+            <h3>이 계산 결과와 은행 안내 금액이 조금 다릅니다.</h3>
+            <p>은행은 실제 일수 기준(365일/윤년)과 상품별 세부 조건으로 계산하므로 월 단위 계산과 소액의 차이가 날 수 있습니다. 정확한 금액은 해당 금융사 안내가 우선입니다.</p>
+          </article>
+        </div>
+      </section>
+      <p class="content-basis">기준일: 2026-07-27, 2026년 제도 기준</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="../about.html">소개</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+      </nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/loan.js"></script>
+</body>
+</html>

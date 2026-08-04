@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>전세 vs 월세 비교 계산기 | 월 환산 주거비 | 머니데스크</title>
+  <meta name="description" content="전세대출 이자와 보증금·자기자본의 기회비용을 반영해 전세와 월세의 월 환산 비용을 비교합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="전세 vs 월세 비교 계산기 | 머니데스크">
+  <meta property="og:description" content="대출이자와 예금 기회비용을 반영해 어떤 주거 방식이 월 비용상 유리한지 확인하세요.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "[전세 월세 FAQ 질문 placeholder 1]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[전세 월세 FAQ 답변 placeholder 1 — 실제 문구는 추후 작성됩니다.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "[전세 월세 FAQ 질문 placeholder 2]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[전세 월세 FAQ 답변 placeholder 2 — 실제 문구는 추후 작성됩니다.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "[전세 월세 FAQ 질문 placeholder 3]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[전세 월세 FAQ 답변 placeholder 3 — 실제 문구는 추후 작성됩니다.]" }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">생활 속 돈 계산을 빠르게</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../index.html">홈</a>
+        <a href="../loan/index.html">대출이자</a>
+        <a href="../dsr/index.html">DSR</a>
+        <a href="index.html" aria-current="page">전세·월세</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">대출 · 부동산</p>
+      <h1>전세 vs 월세 비교</h1>
+      <p class="lead">대출이자와 보증금에 묶이는 돈의 기회비용을 월 단위로 바꿔 비교해 보세요.</p>
+    </header>
+
+    <div class="inline-note" role="note">관리비·보증료·세금·이사비·보증금 반환 위험은 반영하지 않는 단순 월 비용 비교입니다.</div>
+
+    <form id="housing-cost-form" novalidate>
+      <section class="panel" aria-labelledby="jeonse-input-title">
+        <h2 id="jeonse-input-title">전세 조건</h2>
+        <div class="field-grid two">
+          <div class="field">
+            <label for="jeonse-deposit">전세보증금</label>
+            <div class="input-wrap">
+              <input id="jeonse-deposit" name="jeonseDeposit" type="text" value="300,000,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">원</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="jeonse-loan-ratio">전세대출 비율</label>
+            <div class="input-wrap">
+              <input id="jeonse-loan-ratio" name="jeonseLoanRatio" type="text" value="80" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <span class="unit">%</span>
+            </div>
+            <p class="hint">보증금 중 대출로 마련할 비율입니다.</p>
+          </div>
+          <div class="field">
+            <label for="jeonse-loan">전세대출금</label>
+            <div class="input-wrap">
+              <input id="jeonse-loan" name="jeonseLoan" type="text" value="240,000,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">원</span>
+            </div>
+            <p class="hint">비율을 바꾸면 자동 계산되며, 금액을 직접 수정해도 비율이 다시 맞춰집니다.</p>
+          </div>
+          <div class="field">
+            <label for="jeonse-loan-rate">전세대출 연 이자율</label>
+            <div class="input-wrap">
+              <input id="jeonse-loan-rate" name="jeonseLoanRate" type="text" value="4" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <span class="unit">%</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="jeonse-equity">내 자기자본 <span class="microcopy">(자동)</span></label>
+            <div class="input-wrap">
+              <input id="jeonse-equity" type="text" value="60,000,000" inputmode="numeric" data-number data-decimals="0" readonly aria-readonly="true" tabindex="-1">
+              <span class="unit">원</span>
+            </div>
+            <p class="hint">전세보증금에서 전세대출금을 뺀 금액입니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="monthly-input-title">
+        <h2 id="monthly-input-title">월세 조건</h2>
+        <div class="field-grid two">
+          <div class="field">
+            <label for="monthly-deposit">월세보증금</label>
+            <div class="input-wrap">
+              <input id="monthly-deposit" name="monthlyDeposit" type="text" value="50,000,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">원</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="monthly-rent">월세</label>
+            <div class="input-wrap">
+              <input id="monthly-rent" name="monthlyRent" type="text" value="1,000,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <span class="unit">원</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="opportunity-input-title">
+        <h2 id="opportunity-input-title">기회비용 가정</h2>
+        <div class="field">
+          <label for="opportunity-rate">예금 연 이자율</label>
+          <div class="input-wrap">
+            <input id="opportunity-rate" name="opportunityRate" type="text" value="3" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+            <span class="unit">%</span>
+          </div>
+          <p class="hint">보증금이나 자기자본을 예금에 넣었다면 얻을 수 있었던 이자를 기회비용으로 봅니다.</p>
+        </div>
+      </section>
+    </form>
+
+    <section class="result-card" aria-live="polite" aria-atomic="false">
+      <div class="result-title-row">
+        <div>
+          <p class="result-label">월 환산 비용 비교</p>
+          <p id="housing-result-value" class="result-value">전세가 월 0원 유리</p>
+        </div>
+        <button id="copy-housing-link" class="copy-button" type="button">결과 링크 복사</button>
+      </div>
+      <p id="housing-result-summary" class="result-summary"></p>
+      <dl class="result-grid">
+        <div class="result-row"><dt>전세 월 환산 비용</dt><dd id="jeonse-monthly-cost-result">0원</dd></div>
+        <div class="result-row"><dt>전세대출 비율</dt><dd id="jeonse-loan-ratio-result">0%</dd></div>
+        <div class="result-row"><dt>└ 월 대출이자</dt><dd id="jeonse-interest-result">0원</dd></div>
+        <div class="result-row"><dt>└ 자기자본 기회비용</dt><dd id="jeonse-opportunity-result">0원</dd></div>
+        <div class="result-row"><dt>월세 월 환산 비용</dt><dd id="monthly-total-cost-result">0원</dd></div>
+        <div class="result-row"><dt>└ 월세</dt><dd id="monthly-rent-result">0원</dd></div>
+        <div class="result-row"><dt>└ 보증금 기회비용</dt><dd id="monthly-opportunity-result">0원</dd></div>
+        <div class="result-row"><dt>전세 자기자본</dt><dd id="jeonse-equity-result">0원</dd></div>
+      </dl>
+      <p id="housing-status" class="status-message"></p>
+    </section>
+
+    <div class="ad-slot" aria-hidden="true">
+      <!-- AD SLOT -->
+    </div>
+
+    <section class="content-placeholder" aria-labelledby="housing-guide-title">
+      <h2 id="housing-guide-title">전세·월세 비교 안내</h2>
+      <div class="placeholder-box">
+        <p><strong>[전세·월세 설명 콘텐츠 placeholder]</strong></p>
+        <p>[계산 원리 placeholder] 전세대출 이자, 자기자본 기회비용, 월세와 월세보증금 기회비용을 월 환산하는 방식을 설명할 자리입니다.</p>
+        <p>[주의사항 placeholder] 보증료·관리비·세금·대출 원금상환 및 계약 위험처럼 이 간이 비교에서 제외한 항목을 안내할 자리입니다.</p>
+        <p>[입력 예시 placeholder] 전세보증금 중 대출 비율을 입력하면 대출금과 자기자본이 어떻게 나뉘는지, 대출금을 직접 수정할 때 비율이 다시 계산되는 흐름을 예시로 안내할 예정입니다. 예금금리는 두 선택지에서 묶이는 자기자본과 월세보증금의 기회비용에 동일하게 적용한다는 가정과 각 월 환산 금액을 비교하는 순서를 설명할 자리입니다.</p>
+        <p>[비교 범위 placeholder] 실제 의사결정에서는 관리비 차이, 보증보험료, 중개비와 이사비, 대출의 원금상환 방식, 세금, 계약기간, 보증금 반환 위험처럼 월 비용 하나로 환산하기 어려운 요소도 함께 살펴야 한다는 안내가 들어갈 예정입니다. 현재 문구는 최종 주거 조언이 아니라 후속 콘텐츠의 구조와 충분한 표시 영역을 확보하기 위한 placeholder입니다.</p>
+      </div>
+
+      <div class="ad-slot" aria-hidden="true">
+        <!-- AD SLOT -->
+      </div>
+
+      <section class="panel" aria-labelledby="housing-related-title">
+        <h2 id="housing-related-title">관련 계산기</h2>
+        <div class="card-grid">
+          <a class="calculator-card" href="../loan/index.html"><span class="card-kicker">대출</span><h3>대출이자 계산기</h3><p>전세대출의 상환 방식별 월 납입액과 이자를 계산합니다.</p><span class="card-action">계산하러 가기 →</span></a>
+          <a class="calculator-card" href="../dsr/index.html"><span class="card-kicker">대출 한도</span><h3>DSR 계산기</h3><p>기존·신규 대출의 연 원리금 비율과 여력을 확인합니다.</p><span class="card-action">계산하러 가기 →</span></a>
+        </div>
+      </section>
+
+      <section aria-labelledby="housing-faq-title">
+        <h2 id="housing-faq-title">자주 묻는 질문</h2>
+        <div class="faq-list">
+          <article class="faq-item"><h3>[전세 월세 FAQ 질문 placeholder 1]</h3><p>[전세 월세 FAQ 답변 placeholder 1 — 실제 문구는 추후 작성됩니다.]</p></article>
+          <article class="faq-item"><h3>[전세 월세 FAQ 질문 placeholder 2]</h3><p>[전세 월세 FAQ 답변 placeholder 2 — 실제 문구는 추후 작성됩니다.]</p></article>
+          <article class="faq-item"><h3>[전세 월세 FAQ 질문 placeholder 3]</h3><p>[전세 월세 FAQ 답변 placeholder 3 — 실제 문구는 추후 작성됩니다.]</p></article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보"><a href="../about.html">소개</a><a href="../privacy.html">개인정보처리방침</a></nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/jeonse-vs-monthly.js"></script>
+</body>
+</html>

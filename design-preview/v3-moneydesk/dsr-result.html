@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>DSR 결과 디자인 미리보기 | 머니데스크</title>
+  <meta name="description" content="큰 세리프 숫자와 기준선 진행바를 적용한 DSR 결과 화면 디자인 목업입니다.">
+  <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+  <div class="review-banner" role="status">디자인 검토용 목업 — 실제 서비스 아님</div>
+
+  <header class="site-masthead simple-masthead">
+    <div class="masthead-inner">
+      <div class="masthead-top">
+        <a class="brand-lockup" href="index.html">머니데스크</a>
+        <a class="simple-link" href="index.html">목업 목록</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="calculator-frame">
+    <header class="page-heading">
+      <p class="eyebrow">대출 · 부담 관리</p>
+      <h1 class="page-title">DSR 계산 결과</h1>
+      <p class="page-lead">결론을 먼저 읽고, 그 아래에서 기준선과 계산 근거를 확인하는 결과 중심 구성입니다.</p>
+    </header>
+
+    <section class="result-sheet" aria-labelledby="dsr-result-title">
+      <div class="result-sheet-top">
+        <div>
+          <p class="result-label" id="dsr-result-title">예상 총부채원리금상환비율</p>
+          <span class="status-badge">기준 이내</span>
+        </div>
+        <p class="section-index">Result / 01</p>
+      </div>
+
+      <p class="result-number">40.0<span class="unit-small">%</span></p>
+      <p class="result-caption">일반 DSR 40% 기준선에 정확히 닿아 있습니다. 추가 대출 전에는 금융사의 실제 심사 기준을 함께 확인하세요.</p>
+
+      <div class="dsr-meter" role="img" aria-label="현재 DSR 40.0%, 일반 기준선 40%">
+        <div class="meter-track">
+          <div class="meter-fill"></div>
+          <span class="meter-current" aria-hidden="true"></span>
+          <span class="meter-limit" aria-hidden="true"></span>
+        </div>
+        <span class="meter-zero">0%</span>
+        <span class="meter-end">50%+</span>
+      </div>
+
+      <dl class="result-facts">
+        <div class="fact-row">
+          <dt>연소득</dt>
+          <dd>60,000,000원</dd>
+        </div>
+        <div class="fact-row">
+          <dt>연간 원리금 상환액</dt>
+          <dd>24,000,000원</dd>
+        </div>
+        <div class="fact-row">
+          <dt>남은 연 상환여력</dt>
+          <dd>0원</dd>
+        </div>
+      </dl>
+
+      <p class="result-note">기준선과 같다는 표시는 추가 대출 가능 여부를 확정하는 판정이 아닙니다. 이 화면의 수치는 디자인 확인을 위한 정적 예시입니다.</p>
+    </section>
+
+    <section class="input-snapshot" aria-labelledby="snapshot-title">
+      <div class="snapshot-heading">
+        <h2 id="snapshot-title">적용한 조건</h2>
+        <span>입력 요약</span>
+      </div>
+      <div class="snapshot-grid">
+        <div class="snapshot-item"><span>연소득</span><strong>6,000만원</strong></div>
+        <div class="snapshot-item"><span>기존 연 상환액</span><strong>1,200만원</strong></div>
+        <div class="snapshot-item"><span>신규 대출 연 상환액</span><strong>1,200만원</strong></div>
+        <div class="snapshot-item"><span>스트레스 DSR</span><strong>미적용</strong></div>
+      </div>
+    </section>
+
+    <footer class="editorial-footer">
+      <span>정적 결과 화면 목업</span>
+      <span>계산 기능 없음</span>
+    </footer>
+  </main>
+</body>
+</html>

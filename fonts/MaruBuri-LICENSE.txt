@@ -1,0 +1,19 @@
+Maru Buri font license notice
+
+Copyright holder: NAVER and NAVER Culture Foundation
+
+The Maru Buri font is distributed as an open-license font. It may be used
+free of charge by individuals and organizations, including for commercial
+purposes. Modification and redistribution are permitted. Selling the font
+file itself as a standalone product is prohibited. When the font is bundled
+or redistributed with software, this copyright notice and the applicable
+license terms must be included.
+
+Official font page:
+https://hangeul.naver.com/maruproject_11
+
+Distribution and webfont reference supplied for this project:
+https://noonnu.cc/en/font_page/487
+
+This notice is stored beside the self-hosted font files so the copyright and
+redistribution conditions travel with the preview artifact.

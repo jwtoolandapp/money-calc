@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>예적금 입력 디자인 미리보기 | 머니데스크</title>
+  <meta name="description" content="세그먼트 토글과 기간 스테퍼를 적용한 머니데스크 예적금 입력 화면 목업입니다.">
+  <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+  <div class="review-banner" role="status">디자인 검토용 목업 — 실제 서비스 아님</div>
+
+  <header class="site-masthead simple-masthead">
+    <div class="masthead-inner">
+      <div class="masthead-top">
+        <a class="brand-lockup" href="index.html">머니데스크</a>
+        <a class="simple-link" href="index.html">목업 목록</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="calculator-frame">
+    <header class="page-heading">
+      <p class="eyebrow">모으기 · 이자 보기</p>
+      <h1 class="page-title">예적금 이자</h1>
+      <p class="page-lead">큰 선택은 세그먼트로, 기간은 한 칸씩 조절하는 스테퍼로 구성한 입력→결과 흐름입니다.</p>
+    </header>
+
+    <section class="form-panel" aria-labelledby="savings-form-title">
+      <p class="section-index" id="savings-form-title">Input / preview</p>
+
+      <fieldset class="form-section">
+        <legend class="form-legend">상품 종류</legend>
+        <div class="segment-group" role="group" aria-label="상품 종류 선택">
+          <button class="segment-button" type="button" data-group="product" data-value="saving" aria-pressed="true">적금</button>
+          <button class="segment-button" type="button" data-group="product" data-value="deposit" aria-pressed="false">예금</button>
+        </div>
+      </fieldset>
+
+      <div class="form-section">
+        <span class="field-label">저축 기간</span>
+        <div class="stepper" aria-label="저축 기간 조절">
+          <button class="stepper-button" id="duration-minus" type="button" aria-label="저축 기간 6개월 줄이기">−</button>
+          <output id="duration-output" aria-live="polite">24개월</output>
+          <button class="stepper-button" id="duration-plus" type="button" aria-label="저축 기간 6개월 늘리기">+</button>
+        </div>
+      </div>
+
+      <fieldset class="form-section">
+        <legend class="form-legend">이자 계산 방식</legend>
+        <div class="segment-group" role="group" aria-label="이자 계산 방식 선택">
+          <button class="segment-button" type="button" data-group="method" data-value="simple" aria-pressed="true">단리</button>
+          <button class="segment-button" type="button" data-group="method" data-value="compound" aria-pressed="false">복리</button>
+        </div>
+      </fieldset>
+
+      <div class="form-section field-grid">
+        <label>
+          <span class="field-label" id="amount-label">월 납입액</span>
+          <span class="input-wrap">
+            <input class="text-input" id="amount-input" type="text" value="1,000,000" inputmode="numeric" aria-labelledby="amount-label">
+            <span class="input-unit">원</span>
+          </span>
+        </label>
+        <label>
+          <span class="field-label">연 이자율</span>
+          <span class="input-wrap">
+            <input class="text-input" type="text" value="4.0" inputmode="decimal">
+            <span class="input-unit">%</span>
+          </span>
+        </label>
+      </div>
+
+      <button class="primary-action" id="preview-calculate" type="button">계산하기</button>
+    </section>
+
+    <section class="savings-result" aria-labelledby="savings-result-title" aria-live="polite">
+      <p class="result-label" id="savings-result-title">예상 세후 이자</p>
+      <p class="savings-result-value" id="after-tax-interest">705,000원</p>
+      <p class="savings-result-copy" id="result-copy">적금 · 24개월 · 단리 더미 프리셋 결과입니다.</p>
+      <dl class="savings-summary">
+        <div class="fact-row">
+          <dt>예상 만기 수령액</dt>
+          <dd id="maturity-amount">24,705,000원</dd>
+        </div>
+        <div class="fact-row">
+          <dt>적용 세율</dt>
+          <dd>15.4%</dd>
+        </div>
+      </dl>
+    </section>
+
+    <footer class="editorial-footer">
+      <span>머니데스크 · 입력 컴포넌트 목업</span>
+      <span>더미 프리셋 전환만 동작</span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+      const segmentButtons = Array.from(document.querySelectorAll('.segment-button'));
+      const durationOutput = document.getElementById('duration-output');
+      const amountLabel = document.getElementById('amount-label');
+      const amountInput = document.getElementById('amount-input');
+      const interestOutput = document.getElementById('after-tax-interest');
+      const maturityOutput = document.getElementById('maturity-amount');
+      const resultCopy = document.getElementById('result-copy');
+      const calculateButton = document.getElementById('preview-calculate');
+      let months = 24;
+
+      function selectedValue(group) {
+        const selected = document.querySelector('[data-group="' + group + '"][aria-pressed="true"]');
+        return selected ? selected.dataset.value : '';
+      }
+
+      function formatWon(value) {
+        return new Intl.NumberFormat('ko-KR', { maximumFractionDigits: 0 }).format(Math.round(value)) + '원';
+      }
+
+      function renderPreview() {
+        const product = selectedValue('product');
+        const method = selectedValue('method');
+        const durationFactor = months / 24;
+        const isSaving = product === 'saving';
+        const baseInterest = isSaving
+          ? (method === 'compound' ? 740000 : 705000)
+          : (method === 'compound' ? 2110000 : 2030400);
+        const principal = isSaving ? 1000000 * months : 30000000;
+        const afterTaxInterest = baseInterest * durationFactor;
+
+        durationOutput.textContent = months + '개월';
+        amountLabel.textContent = isSaving ? '월 납입액' : '예치금';
+        amountInput.value = isSaving ? '1,000,000' : '30,000,000';
+        interestOutput.textContent = formatWon(afterTaxInterest);
+        maturityOutput.textContent = formatWon(principal + afterTaxInterest);
+        resultCopy.textContent = (isSaving ? '적금' : '예금') + ' · ' + months + '개월 · ' + (method === 'compound' ? '복리' : '단리') + ' 더미 프리셋 결과입니다.';
+      }
+
+      segmentButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          segmentButtons
+            .filter(function (item) { return item.dataset.group === button.dataset.group; })
+            .forEach(function (item) { item.setAttribute('aria-pressed', String(item === button)); });
+          renderPreview();
+        });
+      });
+
+      document.getElementById('duration-minus').addEventListener('click', function () {
+        months = Math.max(6, months - 6);
+        renderPreview();
+      });
+
+      document.getElementById('duration-plus').addEventListener('click', function () {
+        months = Math.min(60, months + 6);
+        renderPreview();
+      });
+
+      calculateButton.addEventListener('click', function () {
+        renderPreview();
+        calculateButton.textContent = '미리보기 갱신 완료';
+      });
+    })();
+  </script>
+</body>
+</html>

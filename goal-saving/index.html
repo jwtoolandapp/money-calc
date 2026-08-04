@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1억 모으기 계산기 - 목표 저축 월 납입액 | 머니데스크</title>
+  <meta name="description" content="목표 금액과 기간으로 필요한 월 저축액을 계산하거나, 매월 저축액으로 목표 도달시점을 확인하는 목표 저축 계산기입니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="1억 모으기 목표 저축 계산기 | 머니데스크">
+  <meta property="og:description" content="금리와 물가상승률을 반영해 월 저축액과 목표 도달시점을 양방향으로 계산하세요.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "[목표 저축 FAQ 질문 placeholder 1]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[답변 placeholder] 목표액과 기간 입력에 관한 실제 FAQ 문구가 들어갈 자리입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "[목표 저축 FAQ 질문 placeholder 2]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[답변 placeholder] 금리와 월복리 가정에 관한 실제 FAQ 문구가 들어갈 자리입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "[목표 저축 FAQ 질문 placeholder 3]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[답변 placeholder] 물가상승률과 현재가치 해석에 관한 실제 FAQ 문구가 들어갈 자리입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "[목표 저축 FAQ 질문 placeholder 4]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[답변 placeholder] 목표 도달시점과 실제 상품 차이에 관한 문구가 들어갈 자리입니다." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">생활 속 돈 계산을 빠르게</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../stock-average/index.html">물타기</a>
+        <a href="../loan/index.html">대출</a>
+        <a href="../chungyak/index.html">청약</a>
+        <a href="../year-end-tax/index.html">연말정산</a>
+        <a href="index.html" aria-current="page">1억 모으기</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">저축 · 목표</p>
+      <h1>1억 모으기<br>목표 저축 계산기</h1>
+      <p class="lead">목표에서 월 저축액을 역산하거나, 지금의 월 저축액으로 언제 목표에 닿는지 확인하세요.</p>
+    </header>
+
+    <form id="goal-saving-form" class="panel" novalidate>
+      <div class="panel-title-row">
+        <div><p class="eyebrow">양방향 계산</p><h2>저축 계획 입력</h2></div>
+      </div>
+
+      <div class="segmented" role="group" aria-label="목표 저축 계산 모드">
+        <button type="button" data-mode="target" aria-pressed="true">필요 월 저축액</button>
+        <button type="button" data-mode="monthly" aria-pressed="false">목표 도달시점</button>
+      </div>
+
+      <div class="field-grid two">
+        <div class="field">
+          <label for="goal-target-amount">목표 금액</label>
+          <div class="input-wrap">
+            <input id="goal-target-amount" name="targetAmount" type="text" value="100,000,000" inputmode="numeric" data-number data-decimals="0" autocomplete="off">
+            <span class="unit">원</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="goal-annual-rate">예상 연 이자율</label>
+          <div class="input-wrap">
+            <input id="goal-annual-rate" name="annualRate" type="text" value="0" inputmode="decimal" data-number data-decimals="2" autocomplete="off">
+            <span class="unit">%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field" id="target-mode-field" style="margin-top: 16px;">
+        <label for="goal-duration-years">목표 기간</label>
+        <div class="input-wrap">
+          <input id="goal-duration-years" name="durationYears" type="text" value="5" inputmode="numeric" data-number data-decimals="0" autocomplete="off">
+          <span class="unit">년</span>
+        </div>
+      </div>
+
+      <div id="monthly-mode-field" hidden>
+        <div class="field-grid two" style="margin-top: 16px;">
+          <div class="field">
+            <label for="goal-monthly-saving">매월 저축액</label>
+            <div class="input-wrap">
+              <input id="goal-monthly-saving" name="monthlySaving" type="text" value="1,000,000" inputmode="numeric" data-number data-decimals="0" autocomplete="off">
+              <span class="unit">원</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="goal-start-date">저축 시작일</label>
+            <input class="control" id="goal-start-date" name="startDate" type="date">
+          </div>
+        </div>
+      </div>
+
+      <label class="choice-card" for="goal-inflation-enabled" style="margin-top: 18px;">
+        <input id="goal-inflation-enabled" name="inflationEnabled" type="checkbox" value="1">
+        <span class="choice-copy">
+          <strong>물가상승률로 미래 목표액의 현재가치 보기</strong>
+          <small>필요 저축액은 바꾸지 않고 구매력 비교값을 결과에 추가합니다.</small>
+        </span>
+      </label>
+      <div class="field" id="inflation-rate-field" style="margin-top: 16px;" hidden>
+        <label for="goal-inflation-rate">예상 연 물가상승률</label>
+        <div class="input-wrap">
+          <input id="goal-inflation-rate" name="inflationRate" type="text" value="2.5" inputmode="decimal" data-number data-decimals="2" autocomplete="off">
+          <span class="unit">%</span>
+        </div>
+      </div>
+    </form>
+
+    <section class="result-card" aria-live="polite" aria-atomic="false">
+      <p class="result-label" id="goal-result-label">목표 달성에 필요한 월 저축액</p>
+      <p class="result-value" id="goal-result-value">0원</p>
+      <p class="result-summary" id="goal-result-summary"></p>
+      <dl class="result-grid" id="goal-result-details"></dl>
+      <p class="status-message" id="goal-result-status"></p>
+      <div class="button-row">
+        <button class="copy-button" id="copy-goal-link" type="button">결과 링크 복사</button>
+      </div>
+    </section>
+
+    <div class="inline-note" role="note">예상 금리는 매달 같은 비율로 복리 적용되고 저축액은 매월 말 납입된다고 가정한 간이 결과입니다.</div>
+    <!-- AD SLOT -->
+    <div class="ad-slot" aria-hidden="true"></div>
+
+    <section class="content-placeholder" aria-labelledby="goal-guide-title">
+      <h2 id="goal-guide-title">목표 저축 계산 안내</h2>
+      <div class="placeholder-box">
+        <p>[설명 콘텐츠 placeholder 1] 이 영역에는 목표 금액을 정한 뒤 기간과 예상 수익률을 이용해 월 저축액을 역산하는 방법을 설명하는 본문이 들어갈 예정입니다. 월말 납입 방식과 월복리 가정이 결과에 어떤 영향을 주는지, 금리를 0으로 두었을 때 단순히 목표액을 개월 수로 나누는 과정과 금리가 있을 때 적립식 미래가치 공식을 사용하는 과정을 쉬운 예시로 정리할 자리입니다. 지금 문구는 최종 금융 정보가 아니라 콘텐츠 길이와 모바일 문단 흐름을 확인하기 위한 placeholder입니다.</p>
+        <p>[설명 콘텐츠 placeholder 2] 반대 방향 계산에서는 매월 저축할 수 있는 금액과 목표액을 기준으로 필요한 개월 수를 찾고, 시작일에 그 개월 수를 더해 예상 도달시점을 표시한다는 내용을 담을 예정입니다. 실제 적금의 납입일, 우대금리 조건, 세금, 중도해지, 금리 변동, 납입 누락은 결과를 바꿀 수 있으므로 어떤 항목을 별도로 확인해야 하는지 안내하는 문단이 추가될 자리입니다. 현재는 문장 구조와 정보 영역의 높이를 검수하기 위한 placeholder입니다.</p>
+      </div>
+
+      <!-- AD SLOT -->
+      <div class="ad-slot" aria-hidden="true"></div>
+
+      <div class="placeholder-box">
+        <p>[용어·해석 placeholder 3] 목표 금액, 월 저축액, 납입 원금, 이자 기여분, 명목금액, 현재가치 같은 용어를 구분해 설명할 예정입니다. 물가상승률 옵션은 미래의 목표 금액을 오늘의 구매력으로 환산하는 참고값이며 월 저축액 자체를 자동으로 증액하는 기능은 아니라는 점, 생활비 예비자금과 투자 변동성을 목표 저축 계획과 분리해 보는 방법, 지나치게 긴 기간이 표시될 때 목표액이나 월 납입액을 다시 조정하는 방법을 다룰 공간입니다.</p>
+        <p>[사용 예시 placeholder 4] 1억 모으기, 주택자금 마련, 교육비 준비, 여행자금 적립처럼 목적이 다른 사례별 입력 순서와 결과 읽는 법을 배치할 예정입니다. 계산 결과를 실제 금융상품의 확정 수익으로 오해하지 않도록 예금자보호, 세후 수익률, 상품별 납입 한도, 수수료와 위험도를 추가로 확인해야 한다는 주의 문구도 이 위치에 들어갑니다. 실제 콘텐츠는 후속 검증 라운드에서 작성하며 지금은 800자 이상 정보 블록의 자리와 광고 간격을 확보하는 스캐폴딩입니다.</p>
+      </div>
+
+      <section class="panel" aria-labelledby="goal-related-title" style="margin-top: 28px;">
+        <h2 id="goal-related-title">관련 계산기</h2>
+        <div class="card-grid">
+          <a class="calculator-card" href="../chungyak/index.html"><span class="card-kicker">주거 목표</span><h3>청약 가점 계산기</h3><p>청약 준비에 필요한 가점 항목을 확인합니다.</p><span class="card-action">계산하기 →</span></a>
+          <a class="calculator-card" href="../year-end-tax/index.html"><span class="card-kicker">세금 관리</span><h3>연말정산 미리보기</h3><p>예상 환급 또는 추가 납부 방향을 확인합니다.</p><span class="card-action">계산하기 →</span></a>
+          <a class="calculator-card" href="../savings/index.html"><span class="card-kicker">저축 비교</span><h3>예적금 이자 계산기</h3><p>예금과 적금의 세후 이자를 비교합니다.</p><span class="card-action">계산하기 →</span></a>
+        </div>
+      </section>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>[목표 저축 FAQ 질문 placeholder 1]</h3><p>[답변 placeholder] 목표액과 기간 입력에 관한 실제 FAQ 문구가 들어갈 자리입니다.</p></article>
+        <article class="faq-item"><h3>[목표 저축 FAQ 질문 placeholder 2]</h3><p>[답변 placeholder] 금리와 월복리 가정에 관한 실제 FAQ 문구가 들어갈 자리입니다.</p></article>
+        <article class="faq-item"><h3>[목표 저축 FAQ 질문 placeholder 3]</h3><p>[답변 placeholder] 물가상승률과 현재가치 해석에 관한 실제 FAQ 문구가 들어갈 자리입니다.</p></article>
+        <article class="faq-item"><h3>[목표 저축 FAQ 질문 placeholder 4]</h3><p>[답변 placeholder] 목표 도달시점과 실제 상품 차이에 관한 문구가 들어갈 자리입니다.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보"><a href="../about.html">소개</a><a href="../privacy.html">개인정보처리방침</a></nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/goal-saving.js"></script>
+</body>
+</html>

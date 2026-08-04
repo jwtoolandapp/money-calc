@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>청약 가점 계산기 - 무주택·부양가족·통장 점수 | 머니데스크</title>
+  <meta name="description" content="무주택기간, 부양가족 수, 청약통장 가입기간을 단계별로 입력해 민영주택 청약 가점을 미리 계산하세요.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="청약 가점 계산기 | 머니데스크">
+  <meta property="og:description" content="무주택기간, 부양가족, 청약통장 가입기간 점수를 단계별로 계산합니다.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "무주택기간은 언제부터 계산하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "만 30세가 된 날부터입니다. 다만 만 30세 이전에 혼인했다면 혼인신고일부터 계산합니다. 과거 주택 소유 이력이 있다면, 만 30세(또는 혼인신고일)와 무주택자가 된 날 중 늦은 날부터입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "부모님과 같이 살면 부양가족으로 인정되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "직계존속은 3년 이상 계속해서 같은 주민등록등본에 등재되어 있어야 인정됩니다. 최근에 전입했다면 아직 인정되지 않을 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "몇 점이면 당첨되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "지역과 단지에 따라 당첨선이 크게 다릅니다. 인기 지역은 60점대 후반 이상이 필요한 경우도 있고, 경쟁이 낮은 단지는 훨씬 낮은 점수로도 당첨됩니다. 이 계산기는 점수 산정까지만 다룹니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "점수를 잘못 넣고 청약하면 어떻게 되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "서류 검증 단계에서 부적격 판정되면 당첨이 취소되고 최대 1년간 다른 청약 신청이 제한됩니다. 반드시 청약홈에서 정확한 본인 정보로 재확인 후 신청하세요."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">생활 속 돈 계산을 한곳에서</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../stock-average/index.html">물타기</a>
+        <a href="../loan/index.html">대출이자</a>
+        <a href="index.html" aria-current="page">청약가점</a>
+        <a href="../year-end-tax/index.html">연말정산</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">청약 · 부동산</p>
+      <h1>청약 가점 계산기</h1>
+      <p class="lead">세 가지 항목을 차례로 확인하고 민영주택 청약 가점 <span id="intro-total-max"></span>점 중 내 점수를 계산해 보세요.</p>
+    </header>
+
+    <aside class="warning-banner" role="alert">
+      가점을 잘못 입력해 당첨되면 부적격 취소 및 청약 제한을 받을 수 있습니다. 실제 청약 전 청약홈에서 반드시 확인하세요.
+    </aside>
+
+    <section class="panel" aria-labelledby="wizard-title">
+      <div class="panel-title-row">
+        <div>
+          <p class="eyebrow">단계별 입력</p>
+          <h2 id="wizard-title">내 청약 조건 확인</h2>
+        </div>
+        <p class="microcopy" id="step-label" aria-live="polite">1 / 4</p>
+      </div>
+
+      <div class="wizard-progress" aria-label="진행 단계">
+        <span data-progress="1" class="active"></span>
+        <span data-progress="2"></span>
+        <span data-progress="3"></span>
+        <span data-progress="4"></span>
+      </div>
+
+      <form id="chungyak-form" novalidate>
+        <section class="wizard-step" data-step="1" aria-labelledby="step-one-title">
+          <h3 id="step-one-title" tabindex="-1">1. 무주택기간</h3>
+          <p class="microcopy">현재 주택 보유 여부와 무주택기간의 기산일을 확인합니다.</p>
+
+          <div class="field" style="margin-top: 18px;">
+            <span class="field-label">현재 주택을 보유하고 있나요?</span>
+            <label class="choice-card">
+              <input type="radio" name="currentHomeowner" value="no" checked>
+              <span class="choice-copy">
+                <strong>아니요, 현재 무주택입니다</strong>
+                <small>무주택기간을 계산해 점수에 반영합니다.</small>
+              </span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="currentHomeowner" value="yes">
+              <span class="choice-copy">
+                <strong>예, 현재 주택을 보유 중입니다</strong>
+                <small>이 계산기에서는 무주택기간 점수를 0점으로 처리합니다.</small>
+              </span>
+            </label>
+          </div>
+
+          <div class="field-grid two" style="margin-top: 18px;">
+            <div class="field">
+              <label for="birth-date">생년월일</label>
+              <input class="control" id="birth-date" name="birthDate" type="date" required>
+              <p class="hint">원칙적으로 만 <span id="homeless-start-age"></span>세가 된 날부터 계산합니다.</p>
+            </div>
+            <div class="field">
+              <label for="as-of-date">계산 기준일</label>
+              <input class="control" id="as-of-date" name="asOfDate" type="date" required>
+              <p class="hint">입주자모집공고일 기준으로 다시 확인하세요.</p>
+            </div>
+          </div>
+
+          <div class="field" style="margin-top: 18px;">
+            <span class="field-label">혼인신고를 했나요?</span>
+            <label class="choice-card">
+              <input type="radio" name="married" value="no" checked>
+              <span class="choice-copy"><strong>미혼 또는 혼인신고 전</strong></span>
+            </label>
+            <label class="choice-card">
+              <input type="radio" name="married" value="yes">
+              <span class="choice-copy"><strong>혼인신고 완료</strong></span>
+            </label>
+          </div>
+
+          <div class="field" id="marriage-date-field" style="margin-top: 18px;" hidden>
+            <label for="marriage-date">혼인신고일</label>
+            <input class="control" id="marriage-date" name="marriageDate" type="date">
+            <p class="hint">만 <span id="marriage-start-age"></span>세 전에 혼인한 경우 혼인신고일부터 기산합니다.</p>
+          </div>
+
+          <div id="ownership-history-fields" style="margin-top: 18px;">
+            <div class="field">
+              <span class="field-label">과거에 주택을 보유한 이력이 있나요?</span>
+              <label class="choice-card">
+                <input type="radio" name="everOwned" value="no" checked>
+                <span class="choice-copy"><strong>아니요, 보유 이력이 없습니다</strong></span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="everOwned" value="yes">
+                <span class="choice-copy"><strong>예, 과거 보유 이력이 있습니다</strong></span>
+              </label>
+            </div>
+            <div class="field" id="homeless-since-field" style="margin-top: 18px;" hidden>
+              <label for="homeless-since">다시 무주택자가 된 날</label>
+              <input class="control" id="homeless-since" name="homelessSince" type="date">
+              <p class="hint">주택 처분 등으로 무주택자가 된 날짜를 입력하세요.</p>
+            </div>
+          </div>
+
+          <p class="status-message" id="homeowner-message" hidden>현재 유주택자는 무주택기간 점수를 0점으로 계산합니다.</p>
+
+          <div class="button-row">
+            <button class="primary-button" type="button" data-next>다음: 부양가족</button>
+          </div>
+        </section>
+
+        <section class="wizard-step" data-step="2" aria-labelledby="step-two-title" hidden>
+          <h3 id="step-two-title" tabindex="-1">2. 부양가족</h3>
+          <p class="microcopy">배우자와 인정요건을 충족하는 직계존속·자녀만 포함하세요.</p>
+
+          <div class="field" style="margin-top: 18px;">
+            <label class="choice-card">
+              <input type="checkbox" name="spouse" value="1">
+              <span class="choice-copy">
+                <strong>배우자를 부양가족에 포함</strong>
+                <small>배우자의 인정 여부를 실제 청약 기준과 함께 확인하세요.</small>
+              </span>
+            </label>
+          </div>
+
+          <div class="field-grid two" style="margin-top: 18px;">
+            <div class="field">
+              <label for="ancestor-count">인정되는 직계존속</label>
+              <div class="input-wrap">
+                <input id="ancestor-count" name="ancestorCount" type="text" inputmode="numeric" data-number min="0" value="0" aria-describedby="ancestor-hint">
+                <span class="unit">명</span>
+              </div>
+              <p class="hint" id="ancestor-hint"><span id="ancestor-registry-years"></span>년 이상 같은 주민등록표에 등재되고 세부 인정요건을 충족한 직계존속만 입력하세요.</p>
+            </div>
+            <div class="field">
+              <label for="child-count">인정되는 자녀</label>
+              <div class="input-wrap">
+                <input id="child-count" name="childCount" type="text" inputmode="numeric" data-number min="0" value="0" aria-describedby="child-hint">
+                <span class="unit">명</span>
+              </div>
+              <p class="hint" id="child-hint">만 <span id="child-max-age"></span>세 미만의 미혼 자녀 중 세부 인정요건을 충족한 인원만 입력하세요.</p>
+            </div>
+          </div>
+
+          <p class="tip-line">부양가족은 최대 <span id="dependent-max-people"></span>명까지만 점수에 반영되며, 0명 <span id="dependent-base-points"></span>점에서 1명당 <span id="dependent-points-per-person"></span>점씩 올라갑니다.</p>
+
+          <div class="button-row">
+            <button class="secondary-button" type="button" data-back>이전</button>
+            <button class="primary-button" type="button" data-next>다음: 청약통장</button>
+          </div>
+        </section>
+
+        <section class="wizard-step" data-step="3" aria-labelledby="step-three-title" hidden>
+          <h3 id="step-three-title" tabindex="-1">3. 청약통장 가입기간</h3>
+          <p class="microcopy">입주자저축 가입일과 계산 기준일 사이의 기간을 계산합니다.</p>
+
+          <div class="field-grid two" style="margin-top: 18px;">
+            <div class="field">
+              <label for="account-date">청약통장 가입일</label>
+              <input class="control" id="account-date" name="accountDate" type="date" required>
+            </div>
+            <div class="field">
+              <label for="account-as-of-date">계산 기준일</label>
+              <input class="control" id="account-as-of-date" name="accountAsOfDate" type="date" required>
+              <p class="hint">1단계의 기준일과 자동으로 맞춰집니다.</p>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button class="secondary-button" type="button" data-back>이전</button>
+            <button class="primary-button" type="button" data-next>결과 보기</button>
+          </div>
+        </section>
+
+        <section class="wizard-step" data-step="4" aria-labelledby="step-four-title" hidden>
+          <h3 id="step-four-title" tabindex="-1">4. 계산 결과</h3>
+          <p class="microcopy">입력한 조건을 바꾸면 점수가 즉시 다시 계산됩니다.</p>
+
+          <article class="result-card" aria-live="polite" aria-atomic="true">
+            <div class="result-title-row">
+              <div>
+                <p class="result-label">예상 청약 가점</p>
+                <p class="result-value"><span id="total-score">-</span><small> / <span id="total-max-score"></span>점</small></p>
+              </div>
+            </div>
+            <p class="result-summary" id="score-summary">세 항목의 점수를 합산한 결과입니다.</p>
+            <dl class="result-grid">
+              <div class="result-row">
+                <dt>무주택기간</dt>
+                <dd><span id="homeless-score">-</span> / <span id="homeless-max-score"></span>점</dd>
+              </div>
+              <div class="result-row">
+                <dt>부양가족</dt>
+                <dd><span id="dependent-score">-</span> / <span id="dependent-max-score"></span>점</dd>
+              </div>
+              <div class="result-row">
+                <dt>청약통장 가입기간</dt>
+                <dd><span id="account-score">-</span> / <span id="account-max-score"></span>점</dd>
+              </div>
+            </dl>
+            <p class="status-message" id="result-detail"></p>
+            <div class="button-row">
+              <button class="copy-button" id="copy-result-link" type="button">결과 링크 복사</button>
+            </div>
+          </article>
+
+          <div class="ad-slot" aria-hidden="true"><!-- AD SLOT --></div>
+
+          <div class="button-row">
+            <button class="secondary-button" type="button" data-back>이전 입력 수정</button>
+          </div>
+        </section>
+      </form>
+    </section>
+
+    <section class="content-placeholder" aria-labelledby="guide-title">
+      <h2 id="guide-title">청약 가점 계산 안내</h2>
+      <div class="placeholder-box">
+        <p>민영주택 일반공급 가점제는 84점 만점으로, 무주택기간(최대 32점)·부양가족 수(최대 35점)·청약통장 가입기간(최대 17점) 세 항목을 더해 산정합니다. 무주택기간은 1년 미만 2점에서 시작해 1년마다 2점씩 올라 15년 이상이면 32점이고, 기산일은 만 30세가 된 날(그 전에 혼인했다면 혼인신고일)입니다. 부양가족은 본인을 제외하고 1명당 5점씩(0명 5점, 6명 이상 35점), 통장 가입기간은 6개월 미만 1점에서 15년 이상 17점까지 올라갑니다.</p>
+        <p>항목별 인정 요건이 생각보다 까다롭습니다. 직계존속(부모·조부모)은 3년 이상 같은 주민등록등본에 있어야 부양가족으로 인정되고, 자녀는 만 30세 미만 미혼이어야 합니다. 과거에 주택을 소유한 적이 있다면 무주택기간은 그 집을 처분해 무주택자가 된 날부터 다시 계산합니다.</p>
+        <p>특히 주의할 점은, 가점을 잘못 계산해 입력한 상태로 당첨되면 부적격 처리되어 당첨이 취소되고 일정 기간 청약이 제한된다는 것입니다. 이 계산기는 예상 점수를 가늠하는 참고용이며, 실제 청약 신청 전에는 반드시 청약홈에서 본인 정보를 기준으로 확인하시기 바랍니다.</p>
+      </div>
+
+      <div class="ad-slot" aria-hidden="true"><!-- AD SLOT --></div>
+
+      <section class="related-calculators" aria-labelledby="chungyak-related-title">
+        <h2 id="chungyak-related-title">관련 계산기</h2>
+        <div class="related-grid">
+          <a class="related-card" href="../dsr/index.html"><strong>DSR 계산기</strong><span>연소득 대비 대출 상환 부담과 남은 여력을 확인해요.</span></a>
+          <a class="related-card" href="../goal-saving/index.html"><strong>1억 모으기 계산기</strong><span>목표 금액에 필요한 월 저축액을 계산해요.</span></a>
+        </div>
+      </section>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>무주택기간은 언제부터 계산하나요?</h3>
+          <p>만 30세가 된 날부터입니다. 다만 만 30세 이전에 혼인했다면 혼인신고일부터 계산합니다. 과거 주택 소유 이력이 있다면, 만 30세(또는 혼인신고일)와 무주택자가 된 날 중 늦은 날부터입니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>부모님과 같이 살면 부양가족으로 인정되나요?</h3>
+          <p>직계존속은 3년 이상 계속해서 같은 주민등록등본에 등재되어 있어야 인정됩니다. 최근에 전입했다면 아직 인정되지 않을 수 있습니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>몇 점이면 당첨되나요?</h3>
+          <p>지역과 단지에 따라 당첨선이 크게 다릅니다. 인기 지역은 60점대 후반 이상이 필요한 경우도 있고, 경쟁이 낮은 단지는 훨씬 낮은 점수로도 당첨됩니다. 이 계산기는 점수 산정까지만 다룹니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>점수를 잘못 넣고 청약하면 어떻게 되나요?</h3>
+          <p>서류 검증 단계에서 부적격 판정되면 당첨이 취소되고 최대 1년간 다른 청약 신청이 제한됩니다. 반드시 청약홈에서 정확한 본인 정보로 재확인 후 신청하세요.</p>
+        </article>
+      </div>
+      <p class="content-basis">기준일: 2026-07-27, 2026년 제도 기준</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 안내">
+        <a href="../about.html">소개</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+      </nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/chungyak.js"></script>
+</body>
+</html>

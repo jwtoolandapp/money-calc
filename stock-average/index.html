@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>주식 물타기 계산기 | 평단·목표 평단 역산 | 머니데스크</title>
+  <meta name="description" content="보유 주식과 추가 매수 내역으로 새 평단을 계산하고, 원하는 목표 평단에 필요한 매수 수량과 금액을 역산하는 주식 물타기 계산기입니다.">
+  <meta name="keywords" content="주식 물타기 계산기, 평단 계산기, 목표 평단 계산기, 코인 평단 계산기">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="주식 물타기 계산기 | 머니데스크">
+  <meta property="og:description" content="여러 차례 추가 매수한 새 평단과 목표 평단에 필요한 수량을 바로 계산하세요.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "평단가는 어떻게 계산되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "전체 매수 금액을 전체 수량으로 나눈 값입니다. (기존 수량×기존 평단 + 추가 수량×추가 매수가) ÷ (기존 수량+추가 수량)으로 계산하며, 매수 횟수가 늘어나도 같은 원리로 누적 계산합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "목표 평단가를 입력했는데 \"도달 불가\"라고 나옵니다.",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "목표 평단가는 추가 매수 가격보다 높고 현재 평단가보다 낮아야 합니다. 예를 들어 추가 매수가가 5,000원이라면 아무리 많이 사도 평단가가 5,000원 밑으로 내려갈 수 없기 때문에, 그보다 낮은 목표는 수학적으로 도달할 수 없습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "수수료와 세금도 반영되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "반영되지 않습니다. 이 계산기는 순수 매수 단가 기준이며, 증권사 수수료·거래세·환전 수수료는 별도입니다. 실제 손익분기점은 계산된 평단가보다 약간 높다고 보시면 됩니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "물타기를 하면 항상 유리한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "아닙니다. 평단가가 낮아지는 대신 투자 원금과 종목 비중이 커지므로, 추가 하락 시 손실도 커집니다. 하락 원인에 대한 판단이 먼저이고, 이 계산기는 그 판단 이후의 산술 확인 도구입니다."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">재테크 계산기 모음</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../index.html">홈</a>
+        <a href="../stock-average/index.html" aria-current="page">물타기</a>
+        <a href="../loan/index.html">대출이자</a>
+        <a href="../chungyak/index.html">청약가점</a>
+        <a href="../year-end-tax/index.html">연말정산</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">주식·투자</p>
+      <h1>주식 물타기 계산기</h1>
+      <p class="lead">여러 번 추가 매수한 새 평단을 계산하거나, 원하는 목표 평단에 필요한 수량을 역산해 보세요.</p>
+    </header>
+
+    <form id="stock-average-form" autocomplete="off" novalidate>
+      <section class="panel" aria-labelledby="calculator-settings-title">
+        <h2 id="calculator-settings-title">계산 조건</h2>
+
+        <div class="field">
+          <span class="field-label" id="mode-label">계산 방식</span>
+          <div class="segmented" role="group" aria-labelledby="mode-label">
+            <button type="button" data-mode="average" aria-pressed="true">새 평단 계산</button>
+            <button type="button" data-mode="target" aria-pressed="false">목표 평단 역산</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="field-label" id="asset-label">자산 단위</span>
+          <div class="segmented" role="group" aria-labelledby="asset-label">
+            <button type="button" data-asset="krw" aria-pressed="true">원화</button>
+            <button type="button" data-asset="usd" aria-pressed="false">달러</button>
+            <button type="button" data-asset="coin" aria-pressed="false">코인</button>
+          </div>
+        </div>
+
+        <h3>현재 보유분</h3>
+        <div class="field-grid two">
+          <div class="field">
+            <label for="initial-quantity">보유 수량</label>
+            <div class="input-wrap">
+              <input id="initial-quantity" name="q1" type="text" value="100" inputmode="numeric" data-number data-quantity-input data-decimals="0" aria-describedby="quantity-hint">
+              <span class="unit" data-quantity-unit>주</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="initial-price">현재 평단</label>
+            <div class="input-wrap">
+              <input id="initial-price" name="p1" type="text" value="10000" inputmode="numeric" data-number data-price-input data-decimals="0">
+              <span class="unit" data-money-unit>원</span>
+            </div>
+          </div>
+        </div>
+        <p class="hint" id="quantity-hint">음수가 아닌 숫자로 입력하세요. 코인 수량은 소수점 아래 8자리까지 입력할 수 있습니다.</p>
+
+        <div id="average-mode-fields">
+          <div class="section-title-row" style="margin-top: 24px;">
+            <div>
+              <h3>추가 매수 내역</h3>
+              <p class="microcopy">여러 번 나눠 매수했다면 행을 추가하세요.</p>
+            </div>
+            <button class="secondary-button" id="add-purchase-row" type="button">+ 매수행 추가</button>
+          </div>
+          <div id="purchase-rows" aria-live="polite"></div>
+        </div>
+
+        <div id="target-mode-fields" hidden>
+          <div class="field-grid two" style="margin-top: 24px;">
+            <div class="field">
+              <label for="target-average">목표 평단</label>
+              <div class="input-wrap">
+                <input id="target-average" name="target" type="text" value="7500" inputmode="numeric" data-number data-price-input data-decimals="0">
+                <span class="unit" data-money-unit>원</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="target-purchase-price">추가 매수 예정가</label>
+              <div class="input-wrap">
+                <input id="target-purchase-price" name="targetPrice" type="text" value="5000" inputmode="numeric" data-number data-price-input data-decimals="0">
+                <span class="unit" data-money-unit>원</span>
+              </div>
+            </div>
+          </div>
+          <p class="hint">추가 매수 예정가 &lt; 목표 평단 &lt; 현재 평단일 때만 목표에 도달할 수 있습니다.</p>
+        </div>
+
+        <div class="field" style="margin-top: 24px;">
+          <label for="current-price">현재가 <span class="microcopy">(선택)</span></label>
+          <div class="input-wrap">
+            <input id="current-price" name="currentPrice" type="text" value="" inputmode="numeric" data-number data-price-input data-decimals="0" placeholder="손익·수익률도 확인하려면 입력">
+            <span class="unit" data-money-unit>원</span>
+          </div>
+        </div>
+      </section>
+    </form>
+
+    <section class="result-card" id="stock-result" aria-labelledby="result-heading" aria-live="polite">
+      <div class="result-title-row">
+        <div>
+          <p class="result-label" id="result-heading">새 평균 단가</p>
+          <p class="result-value" id="result-value">7,500원</p>
+        </div>
+      </div>
+      <p class="result-summary" id="result-summary">총 200주를 보유하게 됩니다.</p>
+      <p class="status-message error" id="result-status" role="alert" hidden></p>
+      <dl class="result-grid" id="result-details"></dl>
+      <div class="button-row">
+        <button class="copy-button" id="copy-result-link" type="button">결과 링크 복사</button>
+      </div>
+    </section>
+
+    <div class="ad-slot" aria-label="광고 영역">
+      <!-- AD SLOT -->
+    </div>
+
+    <section class="content-placeholder" aria-labelledby="explanation-title">
+      <h2 id="explanation-title">주식 평단 계산 안내</h2>
+      <div class="placeholder-box">
+        <p>물타기는 보유 중인 주식이 하락했을 때 추가로 매수해 평균 매입 단가(평단가)를 낮추는 전략입니다. 평단가는 (기존 수량×기존 평단 + 추가 수량×추가 매수가) ÷ 전체 수량으로 계산됩니다. 예를 들어 10,000원에 100주를 보유한 상태에서 5,000원에 100주를 더 사면 평단가는 7,500원이 됩니다. 주가가 7,500원까지만 회복해도 본전이 되는 셈입니다.</p>
+        <p>이 계산기는 두 가지 방식을 지원합니다. 추가 매수 계획을 넣어 새 평단가를 확인하는 기본 모드와, 반대로 "평단가를 얼마까지 낮추고 싶은지"를 먼저 정하면 필요한 수량과 금액을 역산해주는 목표 평단 모드입니다. 여러 차례 나눠 살 계획이라면 행을 추가해 3차, 4차 매수까지 한 번에 계산할 수 있고, 미국 주식(달러)과 코인(소수점 8자리 수량)도 지원합니다.</p>
+        <p>다만 물타기는 신중하게 판단해야 하는 전략입니다. 평단가를 낮추는 만큼 해당 종목에 투입되는 자금과 비중이 커지므로, 주가가 계속 하락하면 손실 규모도 함께 커집니다. 하락한 이유가 일시적인지, 기업 가치 자체가 훼손된 것인지에 대한 판단 없이 기계적으로 물타기를 반복하는 것은 위험합니다. 이 계산기는 산술적인 평단가만 계산할 뿐, 매수 판단의 근거가 될 수는 없습니다.</p>
+      </div>
+
+      <div class="ad-slot" aria-label="광고 영역">
+        <!-- AD SLOT -->
+      </div>
+
+      <section class="related-calculators" aria-labelledby="stock-related-title">
+        <h2 id="stock-related-title">관련 계산기</h2>
+        <div class="related-grid">
+          <a class="related-card" href="../dividend/index.html"><strong>배당금 계산기</strong><span>세후 배당금과 목표 월배당 투자금을 계산해요.</span></a>
+          <a class="related-card" href="../lotto-tax/index.html"><strong>로또 실수령액 계산기</strong><span>당첨금에서 세금을 뺀 금액을 확인해요.</span></a>
+        </div>
+      </section>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>평단가는 어떻게 계산되나요?</h3>
+          <p>전체 매수 금액을 전체 수량으로 나눈 값입니다. (기존 수량×기존 평단 + 추가 수량×추가 매수가) ÷ (기존 수량+추가 수량)으로 계산하며, 매수 횟수가 늘어나도 같은 원리로 누적 계산합니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>목표 평단가를 입력했는데 "도달 불가"라고 나옵니다.</h3>
+          <p>목표 평단가는 추가 매수 가격보다 높고 현재 평단가보다 낮아야 합니다. 예를 들어 추가 매수가가 5,000원이라면 아무리 많이 사도 평단가가 5,000원 밑으로 내려갈 수 없기 때문에, 그보다 낮은 목표는 수학적으로 도달할 수 없습니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>수수료와 세금도 반영되나요?</h3>
+          <p>반영되지 않습니다. 이 계산기는 순수 매수 단가 기준이며, 증권사 수수료·거래세·환전 수수료는 별도입니다. 실제 손익분기점은 계산된 평단가보다 약간 높다고 보시면 됩니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>물타기를 하면 항상 유리한가요?</h3>
+          <p>아닙니다. 평단가가 낮아지는 대신 투자 원금과 종목 비중이 커지므로, 추가 하락 시 손실도 커집니다. 하락 원인에 대한 판단이 먼저이고, 이 계산기는 그 판단 이후의 산술 확인 도구입니다.</p>
+        </article>
+      </div>
+      <p class="content-basis">기준일: 2026-07-27, 2026년 제도 기준</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="../about.html">소개</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+      </nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <noscript>이 계산기를 사용하려면 브라우저에서 JavaScript를 활성화해 주세요.</noscript>
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/stock-average.js"></script>
+</body>
+</html>

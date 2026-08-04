@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>해외결제 수수료 계산기 - 카드 청구액·환전 비교 | 머니데스크</title>
+  <meta name="description" content="외화 결제액과 직접 입력한 환율로 카드 해외결제 예상 청구액을 계산하고, 환전 우대를 적용한 현금 환전 비용과 비교하세요.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="해외결제 수수료·환전 비교 계산기 | 머니데스크">
+  <meta property="og:description" content="국제브랜드·카드사 수수료를 더한 실제 청구액과 현금 환전 비용을 비교합니다.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "[해외결제 FAQ 질문 placeholder 1]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[답변 placeholder] 적용 환율 입력에 관한 실제 FAQ 문구가 들어갈 자리입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "[해외결제 FAQ 질문 placeholder 2]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[답변 placeholder] 국제브랜드와 카드사 수수료 차이에 관한 문구가 들어갈 자리입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "[해외결제 FAQ 질문 placeholder 3]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[답변 placeholder] 현금 환전 우대와 스프레드 해석에 관한 문구가 들어갈 자리입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "[해외결제 FAQ 질문 placeholder 4]",
+        "acceptedAnswer": { "@type": "Answer", "text": "[답변 placeholder] DCC와 현지통화 결제 선택에 관한 문구가 들어갈 자리입니다." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">생활 속 돈 계산을 빠르게</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../stock-average/index.html">물타기</a>
+        <a href="../loan/index.html">대출</a>
+        <a href="../chungyak/index.html">청약</a>
+        <a href="../year-end-tax/index.html">연말정산</a>
+        <a href="index.html" aria-current="page">해외결제</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">환율 · 해외</p>
+      <h1>해외결제 실제<br>청구액 계산기</h1>
+      <p class="lead">단순 환율 변환을 넘어 카드 수수료까지 더한 청구액과 현금 환전 비용을 비교하세요.</p>
+    </header>
+
+    <form id="fx-fee-form" novalidate>
+      <section class="panel" aria-labelledby="fx-input-title">
+        <div class="panel-title-row">
+          <div><p class="eyebrow">수동 환율 입력</p><h2 id="fx-input-title">결제 조건</h2></div>
+        </div>
+        <div class="inline-note" role="note">외부 환율 API를 사용하지 않습니다. 네이버 등에서 오늘 환율을 검색해 외화 1단위 기준 원화 환율을 붙여넣어 주세요.</div>
+
+        <div class="field-grid three">
+          <div class="field">
+            <label for="fx-currency">통화</label>
+            <select class="control" id="fx-currency" name="currency">
+              <option value="USD">USD · 미국 달러</option>
+              <option value="EUR">EUR · 유로</option>
+              <option value="JPY">JPY · 일본 엔</option>
+              <option value="OTHER">OTHER · 기타 통화</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fx-foreign-amount">결제 금액</label>
+            <div class="input-wrap">
+              <input id="fx-foreign-amount" name="foreignAmount" type="text" value="100" inputmode="decimal" data-number data-decimals="2" autocomplete="off">
+              <span class="unit" id="fx-amount-unit">$</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fx-exchange-rate">적용 환율</label>
+            <div class="input-wrap">
+              <input id="fx-exchange-rate" name="exchangeRate" type="text" value="1,400" inputmode="decimal" data-number data-decimals="4" autocomplete="off">
+              <span class="unit">원</span>
+            </div>
+            <p class="hint"><span id="fx-rate-unit-copy">1달러</span>당 원화값 · <span id="fx-currency-name">미국 달러</span></p>
+          </div>
+        </div>
+      </section>
+
+      <div class="tabs" role="tablist" aria-label="해외결제 계산 방식">
+        <button id="fx-card-tab" type="button" role="tab" data-tab="card" aria-selected="true" aria-controls="fx-card-panel">카드 청구액</button>
+        <button id="fx-compare-tab" type="button" role="tab" data-tab="compare" aria-selected="false" aria-controls="fx-compare-panel" tabindex="-1">현금 vs 카드</button>
+      </div>
+
+      <section class="panel" id="fx-card-panel" role="tabpanel" aria-labelledby="fx-card-tab" data-panel="card">
+        <h2>카드 해외결제 수수료</h2>
+        <div class="field-grid two">
+          <div class="field">
+            <label for="fx-brand-fee">국제브랜드 수수료율</label>
+            <div class="input-wrap">
+              <input id="fx-brand-fee" name="brandFeePercent" type="text" value="" inputmode="decimal" data-number data-decimals="3" autocomplete="off">
+              <span class="unit">%</span>
+            </div>
+            <p class="hint">브랜드별 실제 수수료율을 확인해 수정할 수 있습니다.</p>
+          </div>
+          <div class="field">
+            <label for="fx-issuer-fee">카드사 해외이용 수수료율</label>
+            <div class="input-wrap">
+              <input id="fx-issuer-fee" name="issuerFeePercent" type="text" value="" inputmode="decimal" data-number data-decimals="3" autocomplete="off">
+              <span class="unit">%</span>
+            </div>
+            <p class="hint">카드사·상품별 실제 수수료율을 확인해 수정하세요.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="fx-compare-panel" role="tabpanel" aria-labelledby="fx-compare-tab" data-panel="compare" hidden>
+        <h2>현금 환전 조건</h2>
+        <div class="field">
+          <label for="fx-preference">환전 우대율</label>
+          <div class="input-wrap">
+            <input id="fx-preference" name="preferencePercent" type="text" value="90" inputmode="decimal" data-number data-decimals="1" autocomplete="off">
+            <span class="unit">%</span>
+          </div>
+          <p class="hint">선택 통화의 기본 현찰 스프레드에서 우대율만큼 차감해 카드 비용과 비교합니다.</p>
+        </div>
+      </section>
+    </form>
+
+    <section class="result-card" aria-live="polite" aria-atomic="false">
+      <p class="result-label" id="fx-result-label">예상 카드 청구액</p>
+      <p class="result-value" id="fx-result-value">0원</p>
+      <p class="result-summary" id="fx-result-summary"></p>
+      <dl class="result-grid" id="fx-result-details"></dl>
+      <aside class="warning-banner" id="dcc-warning" role="alert" style="margin-top: 18px;">
+        DCC(원화결제) 선택 시 <span id="dcc-min-rate"></span>~<span id="dcc-max-rate"></span>%가 추가될 수 있습니다. 반드시 현지통화로 결제하세요.
+      </aside>
+      <p class="status-message" id="fx-result-status"></p>
+      <div class="button-row">
+        <button class="copy-button" id="copy-fx-link" type="button">결과 링크 복사</button>
+      </div>
+    </section>
+
+    <div class="inline-note" role="note">실제 카드 청구 환율은 승인·매입 시점과 카드사 처리 방식에 따라 입력한 환율과 달라질 수 있습니다.</div>
+    <!-- AD SLOT -->
+    <div class="ad-slot" aria-hidden="true"></div>
+
+    <section class="content-placeholder" aria-labelledby="fx-guide-title">
+      <h2 id="fx-guide-title">해외결제 비용 계산 안내</h2>
+      <div class="placeholder-box">
+        <p>[설명 콘텐츠 placeholder 1] 이 영역에는 해외에서 카드로 결제한 외화금액이 원화 청구액으로 바뀌는 과정을 설명하는 본문이 들어갈 예정입니다. 사용자가 직접 입력한 적용 환율에 외화금액을 곱해 원화 환산금액을 구한 뒤 국제브랜드 수수료와 카드사 해외이용 수수료를 각각 계산해 더하는 순서, 승인 시점과 매입 시점의 차이로 실제 명세서 금액이 달라질 수 있는 이유를 안내할 자리입니다. 현재 문구는 최종 정보가 아니라 800자 이상 콘텐츠 영역의 구조를 확인하기 위한 placeholder입니다.</p>
+        <p>[설명 콘텐츠 placeholder 2] 통화 선택과 수동 환율 입력 방법, USD·EUR·JPY처럼 환율 고시 단위가 다르게 보일 수 있을 때 외화 1단위당 원화값으로 맞추는 방법, 기타 통화를 직접 계산할 때 확인할 항목을 다루는 문단이 배치될 예정입니다. 국제브랜드와 카드사마다 실제 요율이 다를 수 있으므로 카드 상품설명서와 이용 안내에서 정확한 비율을 찾는 위치, 해외 승인 취소나 부분 취소 때 환차손익이 생길 수 있다는 주의사항도 후속 검증 문구로 추가할 자리입니다.</p>
+      </div>
+
+      <!-- AD SLOT -->
+      <div class="ad-slot" aria-hidden="true"></div>
+
+      <div class="placeholder-box">
+        <p>[비교 원리 placeholder 3] 현금 환전 비교에서는 매매기준율에 통화별 현찰 스프레드를 더하고 환전 우대율만큼 스프레드를 줄여 예상 비용을 구한다는 설명이 들어갈 예정입니다. 환전 우대는 환율 전체를 할인하는 비율이 아니라 스프레드 부분에 적용된다는 점, 은행·환전소·공항·모바일 환전의 실제 조건이 서로 다를 수 있다는 점, 남은 현금을 다시 원화로 바꿀 때 추가 비용이 생길 수 있다는 점을 사례와 함께 풀어쓸 공간입니다.</p>
+        <p>[DCC 안내 placeholder 4] 해외 가맹점이나 온라인 결제창에서 원화결제를 선택할 때 별도의 환전 수수료가 붙을 수 있는 DCC의 개념과 현지통화 결제를 선택하는 방법을 설명할 예정입니다. 결제 단말기에서 KRW 대신 현지통화를 고르는 확인 절차, 해외원화결제 차단 서비스, 카드 혜택·적립·여행자보험 같은 부가조건은 단순 비용 차이와 별도로 살펴야 한다는 안내가 들어갑니다. 실제 문구는 요율 검증 후 작성하며 지금은 정보 구조와 광고 간격을 확보하기 위한 placeholder입니다.</p>
+      </div>
+
+      <section aria-labelledby="fx-related-title" style="margin-top: 28px;">
+        <h2 id="fx-related-title">관련 도구</h2>
+        <div class="placeholder-box"><!-- 여행 준비물 사이트 외부 링크 자리 --></div>
+      </section>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>[해외결제 FAQ 질문 placeholder 1]</h3><p>[답변 placeholder] 적용 환율 입력에 관한 실제 FAQ 문구가 들어갈 자리입니다.</p></article>
+        <article class="faq-item"><h3>[해외결제 FAQ 질문 placeholder 2]</h3><p>[답변 placeholder] 국제브랜드와 카드사 수수료 차이에 관한 문구가 들어갈 자리입니다.</p></article>
+        <article class="faq-item"><h3>[해외결제 FAQ 질문 placeholder 3]</h3><p>[답변 placeholder] 현금 환전 우대와 스프레드 해석에 관한 문구가 들어갈 자리입니다.</p></article>
+        <article class="faq-item"><h3>[해외결제 FAQ 질문 placeholder 4]</h3><p>[답변 placeholder] DCC와 현지통화 결제 선택에 관한 문구가 들어갈 자리입니다.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보"><a href="../about.html">소개</a><a href="../privacy.html">개인정보처리방침</a></nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/fx-fee.js"></script>
+</body>
+</html>
