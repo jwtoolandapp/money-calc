@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="머니데스크">
+  <rect width="64" height="64" rx="12" fill="#c1560b"/>
+  <g fill="none" stroke="#fff8ee" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M15 16 L22.5 48 L32 24 L41.5 48 L49 16" stroke-width="7.5"/>
+    <path d="M10 30 H54" stroke-width="4.8"/>
+    <path d="M10 40 H54" stroke-width="4.8"/>
+  </g>
+</svg>

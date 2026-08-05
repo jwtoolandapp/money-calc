@@ -1,0 +1,13 @@
+{
+  "name": "머니데스크",
+  "short_name": "머니데스크",
+  "description": "생활 금융 계산기 11종을 한곳에서.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#e7e5df",
+  "theme_color": "#c1560b",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
