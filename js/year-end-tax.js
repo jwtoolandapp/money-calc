@@ -178,9 +178,13 @@
       withheldInput.readOnly = autoWithheld.checked;
       withheldInput.setAttribute('aria-readonly', autoWithheld.checked ? 'true' : 'false');
       if (autoWithheld.checked) {
-        const estimated = value('grossSalary') * TAX.WITHHELD_ESTIMATE_RATE;
+        const familyCount = TAX.TAXPAYER_COUNT + Math.floor(value('dependents'));
+        const withholding = global.MoneyCalcWithholding;
+        const estimated = withholding
+          ? withholding.estimateAnnualWithheldTax(value('grossSalary'), familyCount)
+          : value('grossSalary') * TAX.WITHHELD_ESTIMATE_RATE;
         withheldInput.value = MC.formatNumber(Math.round(estimated), MATH.WON_ROUNDING_DIGITS);
-        withheldHint.textContent = '총급여에 placeholder 추정 비율을 적용한 값입니다.';
+        withheldHint.textContent = '국세청 근로소득 간이세액표(월급여·부양가족수 기준) 조회값 × 12로 추정한 값입니다.';
       } else {
         withheldHint.textContent = '급여명세서의 소득세 누계액을 입력하세요.';
       }
@@ -275,7 +279,7 @@
     }
 
     form.addEventListener('input', (event) => {
-      if (event.target === autoWithheld || event.target.name === 'grossSalary') syncAutoWithheld();
+      if (event.target === autoWithheld || event.target.name === 'grossSalary' || event.target.name === 'dependents') syncAutoWithheld();
       recalculate();
     });
     form.addEventListener('change', recalculate);

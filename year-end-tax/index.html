@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../css/style.css">
   <script defer src="../js/constants-2026.js"></script>
   <script defer src="../js/common.js"></script>
+  <script defer src="../js/withholding-table-2026.js"></script>
   <script defer src="../js/year-end-tax.js"></script>
   <script defer src="../js/glossary.js"></script>
   <script defer>document.addEventListener('DOMContentLoaded', function () { MoneyCalcGlossary.render('year-end-tax'); });</script>
@@ -44,11 +45,6 @@
   </script>
   <link rel="canonical" href="https://money.jwapplab.com/year-end-tax/">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7773099210940024" crossorigin="anonymous"></script>
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#c1560b">
 </head>
 <body>
   <header class="site-header">
@@ -111,7 +107,7 @@
           <input id="auto-withheld" name="autoWithheld" type="checkbox" value="1">
           <span class="choice-copy">
             <strong>기납부세액 자동 추정</strong>
-            <small>정확한 간이세액표가 아닌 총급여 기반 placeholder 비율을 적용합니다.</small>
+            <small>국세청 근로소득 간이세액표(2024.2.29 개정) 원본 조견표를 그대로 반영합니다. 다음 단계에서 부양가족 수를 입력하면 값이 갱신돼요.</small>
           </span>
         </label>
         <div class="button-row">
@@ -249,7 +245,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <nav class="footer-links" aria-label="사이트 정보"><a href="../about.html">소개</a><a href="../privacy.html">개인정보처리방침</a><a href="https://jwapplab.com" rel="noopener">다른 도구 모음</a></nav>
+      <nav class="footer-links" aria-label="사이트 정보"><a href="../about.html">소개</a><a href="../privacy.html">개인정보처리방침</a></nav>
       <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
       <p class="copyright">© 2026 머니데스크</p>
     </div>
