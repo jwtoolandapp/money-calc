@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>물가 실질가치 계산기 | 화폐가치·구매력 계산 | 머니데스크</title>
+  <meta name="description" content="과거 금액이 오늘 얼마의 가치인지, 오늘 금액이 미래에는 얼마의 구매력을 가지는지 물가상승률을 반영해 계산합니다.">
+  <meta name="keywords" content="물가 실질가치 계산기, 화폐가치 계산기, 구매력 계산, 물가상승률 계산기">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="물가 실질가치 계산기 | 머니데스크">
+  <meta property="og:description" content="과거·미래 금액의 실질가치를 물가상승률 가정으로 환산해 보세요.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "물가 실질가치는 어떻게 계산하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "과거 금액에 (1+연 물가상승률)의 경과 연수 제곱을 곱하면 오늘 기준으로 같은 구매력을 가지는 환산 금액이 나옵니다. 반대로 오늘 금액을 미래 시점의 구매력으로 보려면 (1+연 물가상승률)의 제곱으로 나누면 됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "실제 소비자물가지수(CPI) 데이터를 쓰는 건가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아닙니다. 이 계산기는 사용자가 직접 입력한 가정 물가상승률을 매년 동일하게 적용하는 단순화된 계산입니다. 실제 물가상승률은 해마다 다르고 품목별로도 차이가 크므로, 정확한 과거 화폐가치가 필요하다면 통계청 소비자물가지수 통계를 함께 참고하는 것이 좋습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "구매력 감소율은 무슨 뜻인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "오늘 가진 돈의 명목 금액은 그대로여도, 시간이 지나 물가가 오르면 같은 돈으로 살 수 있는 양이 줄어듭니다. 구매력 감소율은 이렇게 줄어드는 비율을 보여주는 지표로, 예를 들어 연 2.5% 물가상승률이 10년간 이어지면 오늘 돈의 구매력은 약 21.9% 줄어듭니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "연봉이나 저축 계획에도 활용할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "네, 특히 '오늘 금액 → 미래 실질가치' 모드에서 보여주는 '같은 구매력 유지에 필요한 미래 금액'은 은퇴 자금이나 장기 목표 저축액을 계획할 때 참고하기 좋습니다. FIRE 은퇴 계산기나 1억 모으기 계산기와 함께 활용하면 물가를 반영한 더 현실적인 목표 금액을 가늠할 수 있습니다." }
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://money.jwapplab.com/inflation-value/">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7773099210940024" crossorigin="anonymous"></script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#c1560b">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">재테크 계산기 모음</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../index.html">홈</a>
+        <a href="../goal-saving/index.html">1억 모으기</a>
+        <a href="../fire/index.html">FIRE 은퇴</a>
+        <a href="../salary-raise/index.html">연봉 인상률</a>
+        <a href="../inflation-value/index.html" aria-current="page">물가 실질가치</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">저축·목표</p>
+      <h1>물가 실질가치 계산기</h1>
+      <p class="lead">과거 금액이 오늘 얼마인지, 오늘 금액이 미래에 얼마의 구매력을 가지는지 확인하세요.</p>
+    </header>
+
+    <form id="inflation-value-form" class="panel" novalidate>
+      <div class="panel-title-row">
+        <div><p class="eyebrow">양방향 계산</p><h2>금액과 기간 입력</h2></div>
+      </div>
+
+      <div class="segmented" role="group" aria-label="물가 실질가치 계산 모드">
+        <button type="button" data-mode="past" aria-pressed="true">과거 금액 → 오늘 가치</button>
+        <button type="button" data-mode="future" aria-pressed="false">오늘 금액 → 미래 실질가치</button>
+      </div>
+
+      <div class="field" id="past-mode-field" style="margin-top: 16px;">
+        <label for="inflation-past-amount">과거 기준 금액</label>
+        <div class="input-wrap">
+          <input id="inflation-past-amount" name="pastAmount" type="text" value="1,000,000" inputmode="numeric" data-number data-decimals="0">
+          <span class="unit">원</span>
+        </div>
+      </div>
+
+      <div class="field" id="future-mode-field" style="margin-top: 16px;" hidden>
+        <label for="inflation-today-amount">오늘 기준 금액</label>
+        <div class="input-wrap">
+          <input id="inflation-today-amount" name="todayAmount" type="text" value="30,000,000" inputmode="numeric" data-number data-decimals="0">
+          <span class="unit">원</span>
+        </div>
+      </div>
+
+      <div class="field-grid two" style="margin-top: 16px;">
+        <div class="field">
+          <label for="inflation-years">경과 기간</label>
+          <div class="input-wrap">
+            <input id="inflation-years" name="years" type="text" value="10" inputmode="numeric" data-number data-decimals="0">
+            <span class="unit">년</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="inflation-rate">가정 연 물가상승률</label>
+          <div class="input-wrap">
+            <input id="inflation-rate" name="inflationRate" type="text" value="2.5" inputmode="decimal" data-number data-decimals="2">
+            <span class="unit">%</span>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <section class="result-card" aria-live="polite" aria-atomic="false">
+      <p class="result-label" id="inflation-result-label">오늘 기준 환산 금액</p>
+      <p class="result-value" id="inflation-result-value">0원</p>
+      <p class="result-summary" id="inflation-result-summary"></p>
+      <dl class="result-grid" id="inflation-result-details"></dl>
+      <div class="button-row">
+        <button class="copy-button" id="copy-inflation-link" type="button">결과 링크 복사</button>
+      </div>
+    </section>
+
+    <div class="inline-note" role="note">매년 같은 비율로 물가가 오른다고 가정한 간이 계산이며, 실제 소비자물가지수(CPI)를 그대로 반영한 값은 아닙니다.</div>
+    <div class="ad-slot" aria-label="광고 영역">
+      <!-- AD SLOT -->
+    </div>
+
+    <div id="glossary-mount"></div>
+    <section class="content-placeholder" aria-labelledby="inflation-explanation-title">
+      <h2 id="inflation-explanation-title">물가 실질가치 계산 안내</h2>
+      <div class="placeholder-box">
+        <p>"10년 전 100만원이면 지금 얼마쯤 될까?" 혹은 "지금 3,000만원이 10년 뒤에는 얼마만큼의 가치를 가질까?" 이 계산기는 이런 질문에 두 가지 방향으로 답합니다. '과거 금액 → 오늘 가치' 모드는 과거의 특정 금액이 물가상승률만큼 누적 반영됐을 때 오늘 기준으로는 얼마와 같은 가치인지 계산해줍니다. 계산 방식은 과거 금액에 (1+연 물가상승률)을 경과 연수만큼 거듭제곱해 곱하는 것으로, 예금이 복리로 불어나는 것과 똑같은 원리로 물가도 매년 누적해서 오릅니다.</p>
+        <p>'오늘 금액 → 미래 실질가치' 모드는 반대 방향입니다. 지금 가진 돈의 명목 금액은 그대로여도 시간이 지나 물가가 오르면 그 돈으로 살 수 있는 양은 줄어듭니다. 이 계산기는 오늘 금액을 (1+연 물가상승률)의 경과 연수 제곱으로 나눠 미래 시점에서 봤을 때 오늘 얼마와 같은 구매력을 가지는지 보여주고, 반대로 오늘과 완전히 같은 구매력을 미래에도 유지하려면 명목 금액이 얼마나 커야 하는지도 함께 계산해 보여줍니다.</p>
+      </div>
+
+      <div class="ad-slot" aria-label="광고 영역">
+        <!-- AD SLOT -->
+      </div>
+
+      <div class="placeholder-box">
+        <p>이 계산기가 쓰는 물가상승률은 사용자가 직접 입력하는 가정값이며, 통계청이 매달 발표하는 실제 소비자물가지수(CPI)를 그대로 가져온 것이 아닙니다. 실제 물가상승률은 해마다 크게 달라지고 식료품·주거비·의료비 등 품목별로도 오르는 속도가 다르기 때문에, 특정 과거 시점의 정확한 화폐가치가 필요하다면 통계청 국가통계포털(KOSIS)의 소비자물가지수 통계를 함께 참고하는 것을 권장합니다. 이 계산기는 매년 동일한 비율로 물가가 오른다고 가정한 단순화된 추정치를 제공하는 참고용 도구입니다.</p>
+        <p>은퇴 자금이나 목표 저축액을 계획할 때는 명목 금액만 보면 실제보다 넉넉해 보이는 착시가 생기기 쉽습니다. '오늘 금액 → 미래 실질가치' 모드가 보여주는 '같은 구매력 유지에 필요한 미래 금액'을 FIRE 은퇴 계산기나 1억 모으기 계산기의 목표 금액에 참고하면, 물가상승을 감안한 더 현실적인 목표를 세우는 데 도움이 됩니다.</p>
+      </div>
+
+      <section class="panel" aria-labelledby="inflation-related-title">
+        <h2 id="inflation-related-title">관련 계산기</h2>
+        <div class="card-grid">
+          <a class="calculator-card" href="../fire/index.html"><span class="card-kicker">저축·목표</span><h3>FIRE 은퇴 계산기</h3><p>4% 룰 기준 목표 은퇴자산과 도달 시점을 계산합니다.</p><span class="card-action">계산하기 →</span></a>
+          <a class="calculator-card" href="../goal-saving/index.html"><span class="card-kicker">저축·목표</span><h3>1억 모으기 목표 저축 계산기</h3><p>목표 금액에 필요한 월 저축액이나 도달 시점을 계산합니다.</p><span class="card-action">계산하기 →</span></a>
+        </div>
+      </section>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>물가 실질가치는 어떻게 계산하나요?</h3><p>과거 금액에 (1+연 물가상승률)의 경과 연수 제곱을 곱하면 오늘 기준으로 같은 구매력을 가지는 환산 금액이 나옵니다. 반대로 오늘 금액을 미래 시점의 구매력으로 보려면 (1+연 물가상승률)의 제곱으로 나누면 됩니다.</p></article>
+        <article class="faq-item"><h3>실제 소비자물가지수(CPI) 데이터를 쓰는 건가요?</h3><p>아닙니다. 이 계산기는 사용자가 직접 입력한 가정 물가상승률을 매년 동일하게 적용하는 단순화된 계산입니다. 실제 물가상승률은 해마다 다르고 품목별로도 차이가 크므로, 정확한 과거 화폐가치가 필요하다면 통계청 소비자물가지수 통계를 함께 참고하는 것이 좋습니다.</p></article>
+        <article class="faq-item"><h3>구매력 감소율은 무슨 뜻인가요?</h3><p>오늘 가진 돈의 명목 금액은 그대로여도, 시간이 지나 물가가 오르면 같은 돈으로 살 수 있는 양이 줄어듭니다. 구매력 감소율은 이렇게 줄어드는 비율을 보여주는 지표로, 예를 들어 연 2.5% 물가상승률이 10년간 이어지면 오늘 돈의 구매력은 약 21.9% 줄어듭니다.</p></article>
+        <article class="faq-item"><h3>연봉이나 저축 계획에도 활용할 수 있나요?</h3><p>네, 특히 '오늘 금액 → 미래 실질가치' 모드에서 보여주는 '같은 구매력 유지에 필요한 미래 금액'은 은퇴 자금이나 장기 목표 저축액을 계획할 때 참고하기 좋습니다. FIRE 은퇴 계산기나 1억 모으기 계산기와 함께 활용하면 물가를 반영한 더 현실적인 목표 금액을 가늠할 수 있습니다.</p></article>
+      </div>
+      <p class="content-basis">기준일: 2026-08-06</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="../about.html">소개</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+      </nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <noscript>이 계산기를 사용하려면 브라우저에서 JavaScript를 활성화해 주세요.</noscript>
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/inflation-value.js"></script>
+  <script src="../js/glossary.js"></script>
+  <script>MoneyCalcGlossary.render('inflation-value');</script>
+</body>
+</html>

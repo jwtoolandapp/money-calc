@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>연봉 인상률 계산기 | 인상액·목표 연봉·실질 인상률 | 머니데스크</title>
+  <meta name="description" content="현재 연봉과 인상률로 인상 후 연봉을 계산하거나, 목표 연봉으로 필요한 인상률을 역산합니다. 물가상승률을 반영한 실질 인상률도 확인하세요.">
+  <meta name="keywords" content="연봉 인상률 계산기, 연봉 인상액, 목표 연봉, 실질 인상률">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="연봉 인상률 계산기 | 머니데스크">
+  <meta property="og:description" content="인상률로 인상 후 연봉을 계산하거나, 목표 연봉으로 필요한 인상률을 역산하세요.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "연봉 인상률은 어떻게 계산하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "인상 후 연봉에서 현재 연봉을 뺀 인상액을 현재 연봉으로 나눠 백분율로 표시합니다. 예를 들어 4,000만원에서 4,200만원으로 올랐다면 인상액 200만원을 4,000만원으로 나눈 5%가 인상률입니다. 반대로 목표 연봉을 정해두면 같은 공식을 거꾸로 계산해 필요한 인상률을 구할 수 있습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "실질 인상률은 명목 인상률과 무엇이 다른가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "명목 인상률은 급여 명세서에 찍히는 숫자 그대로의 인상률입니다. 실질 인상률은 여기서 물가상승률만큼의 구매력 감소를 반영한 값으로, (1+명목 인상률)÷(1+물가상승률)−1로 계산합니다. 예를 들어 연봉이 5% 올랐어도 물가가 3% 올랐다면 실질적으로는 약 1.94%만큼만 구매력이 늘어난 셈입니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "월급 환산은 왜 함께 보여주나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "연봉 단위의 인상액은 크게 느껴지지만 매달 체감하는 금액은 그보다 작습니다. 연봉 인상액을 12로 나눈 월 환산 금액을 함께 보여줘 실제 월급이 얼마나 늘어나는지 더 직관적으로 확인할 수 있게 했습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "이 계산기는 세전 기준인가요, 세후 기준인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "세전(gross) 연봉 기준입니다. 실제 통장에 들어오는 세후 실수령액은 4대보험료와 소득세 공제에 따라 달라지며, 연봉이 오르면 누진 적용되는 소득세율 구간도 함께 바뀔 수 있어 세전 인상률과 세후 실수령액 증가율이 정확히 일치하지 않을 수 있습니다. 정확한 세후 금액은 연말정산 계산기를 함께 활용해 보세요." }
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://money.jwapplab.com/salary-raise/">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7773099210940024" crossorigin="anonymous"></script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#c1560b">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">재테크 계산기 모음</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../index.html">홈</a>
+        <a href="../year-end-tax/index.html">연말정산</a>
+        <a href="../goal-saving/index.html">1억 모으기</a>
+        <a href="../fire/index.html">FIRE 은퇴</a>
+        <a href="../salary-raise/index.html" aria-current="page">연봉 인상률</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">소득·급여</p>
+      <h1>연봉 인상률 계산기</h1>
+      <p class="lead">인상률로 인상 후 연봉을 계산하거나, 목표 연봉으로 필요한 인상률을 역산하세요.</p>
+    </header>
+
+    <form id="salary-raise-form" class="panel" novalidate>
+      <div class="panel-title-row">
+        <div><p class="eyebrow">양방향 계산</p><h2>연봉 정보 입력</h2></div>
+      </div>
+
+      <div class="segmented" role="group" aria-label="연봉 인상 계산 모드">
+        <button type="button" data-mode="rate" aria-pressed="true">인상률로 계산</button>
+        <button type="button" data-mode="target" aria-pressed="false">목표 연봉으로 계산</button>
+      </div>
+
+      <div class="field" style="margin-top: 16px;">
+        <label for="raise-current-salary">현재 연봉(세전)</label>
+        <div class="input-wrap">
+          <input id="raise-current-salary" name="currentSalary" type="text" value="40,000,000" inputmode="numeric" data-number data-decimals="0">
+          <span class="unit">원</span>
+        </div>
+      </div>
+
+      <div class="field" id="rate-mode-field" style="margin-top: 16px;">
+        <label for="raise-rate">인상률</label>
+        <div class="input-wrap">
+          <input id="raise-rate" name="raiseRate" type="text" value="5" inputmode="decimal" data-number data-decimals="2">
+          <span class="unit">%</span>
+        </div>
+      </div>
+
+      <div class="field" id="target-mode-field" style="margin-top: 16px;" hidden>
+        <label for="raise-target-salary">목표 연봉(세전)</label>
+        <div class="input-wrap">
+          <input id="raise-target-salary" name="targetSalary" type="text" value="44,000,000" inputmode="numeric" data-number data-decimals="0">
+          <span class="unit">원</span>
+        </div>
+      </div>
+
+      <label class="choice-card" for="raise-inflation-enabled" style="margin-top: 18px;">
+        <input id="raise-inflation-enabled" name="inflationEnabled" type="checkbox" value="1">
+        <span class="choice-copy">
+          <strong>물가상승률로 실질 인상률 보기</strong>
+          <small>연봉 인상률 자체는 바꾸지 않고, 물가를 반영한 실질 인상률을 결과에 추가합니다.</small>
+        </span>
+      </label>
+      <div class="field" id="inflation-rate-field" style="margin-top: 16px;" hidden>
+        <label for="raise-inflation-rate">예상 연 물가상승률</label>
+        <div class="input-wrap">
+          <input id="raise-inflation-rate" name="inflationRate" type="text" value="2.5" inputmode="decimal" data-number data-decimals="2">
+          <span class="unit">%</span>
+        </div>
+      </div>
+    </form>
+
+    <section class="result-card" aria-live="polite" aria-atomic="false">
+      <p class="result-label" id="raise-result-label">인상 후 예상 연봉</p>
+      <p class="result-value" id="raise-result-value">0원</p>
+      <p class="result-summary" id="raise-result-summary"></p>
+      <dl class="result-grid" id="raise-result-details"></dl>
+      <p class="status-message" id="raise-result-status" hidden></p>
+      <div class="button-row">
+        <button class="copy-button" id="copy-raise-link" type="button">결과 링크 복사</button>
+      </div>
+    </section>
+
+    <div class="inline-note" role="note">세전(gross) 연봉 기준의 간이 계산이며, 4대보험료·소득세 공제에 따른 실수령액 변화는 반영하지 않습니다.</div>
+    <div class="ad-slot" aria-label="광고 영역">
+      <!-- AD SLOT -->
+    </div>
+
+    <div id="glossary-mount"></div>
+    <section class="content-placeholder" aria-labelledby="raise-explanation-title">
+      <h2 id="raise-explanation-title">연봉 인상률 계산 안내</h2>
+      <div class="placeholder-box">
+        <p>연봉 협상이나 인사평가 시즌에 자주 궁금해지는 것이 "이번에 오른 연봉이 정확히 몇 % 인상인가"입니다. 이 계산기는 두 가지 방향으로 답합니다. 현재 연봉과 인상률을 입력하면 인상 후 예상 연봉과 인상액을 계산해주는 '인상률로 계산' 모드, 그리고 원하는 목표 연봉을 먼저 정하면 그 목표에 도달하기 위해 필요한 인상률을 역산해주는 '목표 연봉으로 계산' 모드입니다.</p>
+        <p>결과에는 연봉 단위 인상액뿐 아니라 이를 12개월로 나눈 월급 환산 금액도 함께 보여줍니다. 연봉으로는 크게 느껴지는 인상액도 매달 체감하는 금액은 생각보다 작을 수 있어, 실제 월급 명세서에서 체감할 변화를 가늠하는 데 도움이 됩니다.</p>
+      </div>
+
+      <div class="ad-slot" aria-label="광고 영역">
+        <!-- AD SLOT -->
+      </div>
+
+      <div class="placeholder-box">
+        <p>'물가상승률로 실질 인상률 보기' 옵션을 켜면 명목 인상률이 실제 구매력 기준으로는 얼마나 되는지도 함께 볼 수 있습니다. 실질 인상률은 (1+명목 인상률)÷(1+물가상승률)−1로 계산하며, 예를 들어 연봉이 5% 올랐어도 그해 물가가 3% 올랐다면 실질적으로는 약 1.94%만큼만 구매력이 늘어난 셈입니다. 물가상승률이 명목 인상률보다 높으면 실질 인상률이 마이너스로 나올 수도 있는데, 이는 급여의 절대 금액은 늘었지만 실제로 살 수 있는 물건과 서비스의 양은 오히려 줄었다는 뜻입니다.</p>
+        <p>이 계산기는 세전(gross) 연봉을 기준으로 한 간이 계산입니다. 실제로 통장에 들어오는 세후 실수령액은 국민연금·건강보험·고용보험 등 4대보험료와 소득세·지방소득세 공제에 따라 달라지고, 연봉 구간이 바뀌면 적용되는 소득세율 구간(누진세율)도 함께 바뀔 수 있어 세전 인상률과 세후 실수령액 증가율이 정확히 일치하지 않을 수 있습니다. 정확한 세후 실수령액과 예상 환급액이 궁금하다면 연말정산 계산기를 함께 활용해 보시기 바랍니다.</p>
+      </div>
+
+      <section class="panel" aria-labelledby="raise-related-title">
+        <h2 id="raise-related-title">관련 계산기</h2>
+        <div class="card-grid">
+          <a class="calculator-card" href="../year-end-tax/index.html"><span class="card-kicker">소득·급여</span><h3>연말정산 환급 미리보기</h3><p>인상된 연봉 기준 예상 환급 또는 추가 납부액을 계산합니다.</p><span class="card-action">계산하기 →</span></a>
+          <a class="calculator-card" href="../fire/index.html"><span class="card-kicker">저축·목표</span><h3>FIRE 은퇴 계산기</h3><p>오른 연봉으로 저축액을 늘리면 은퇴 시점이 얼마나 당겨지는지 확인하세요.</p><span class="card-action">계산하기 →</span></a>
+        </div>
+      </section>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>연봉 인상률은 어떻게 계산하나요?</h3><p>인상 후 연봉에서 현재 연봉을 뺀 인상액을 현재 연봉으로 나눠 백분율로 표시합니다. 예를 들어 4,000만원에서 4,200만원으로 올랐다면 인상액 200만원을 4,000만원으로 나눈 5%가 인상률입니다. 반대로 목표 연봉을 정해두면 같은 공식을 거꾸로 계산해 필요한 인상률을 구할 수 있습니다.</p></article>
+        <article class="faq-item"><h3>실질 인상률은 명목 인상률과 무엇이 다른가요?</h3><p>명목 인상률은 급여 명세서에 찍히는 숫자 그대로의 인상률입니다. 실질 인상률은 여기서 물가상승률만큼의 구매력 감소를 반영한 값으로, (1+명목 인상률)÷(1+물가상승률)−1로 계산합니다. 예를 들어 연봉이 5% 올랐어도 물가가 3% 올랐다면 실질적으로는 약 1.94%만큼만 구매력이 늘어난 셈입니다.</p></article>
+        <article class="faq-item"><h3>월급 환산은 왜 함께 보여주나요?</h3><p>연봉 단위의 인상액은 크게 느껴지지만 매달 체감하는 금액은 그보다 작습니다. 연봉 인상액을 12로 나눈 월 환산 금액을 함께 보여줘 실제 월급이 얼마나 늘어나는지 더 직관적으로 확인할 수 있게 했습니다.</p></article>
+        <article class="faq-item"><h3>이 계산기는 세전 기준인가요, 세후 기준인가요?</h3><p>세전(gross) 연봉 기준입니다. 실제 통장에 들어오는 세후 실수령액은 4대보험료와 소득세 공제에 따라 달라지며, 연봉이 오르면 누진 적용되는 소득세율 구간도 함께 바뀔 수 있어 세전 인상률과 세후 실수령액 증가율이 정확히 일치하지 않을 수 있습니다. 정확한 세후 금액은 연말정산 계산기를 함께 활용해 보세요.</p></article>
+      </div>
+      <p class="content-basis">기준일: 2026-08-06</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="../about.html">소개</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+      </nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <noscript>이 계산기를 사용하려면 브라우저에서 JavaScript를 활성화해 주세요.</noscript>
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/salary-raise.js"></script>
+  <script src="../js/glossary.js"></script>
+  <script>MoneyCalcGlossary.render('salary-raise');</script>
+</body>
+</html>

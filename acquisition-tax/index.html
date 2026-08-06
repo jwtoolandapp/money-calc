@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>취득세 계산기 | 주택·상가 취득세·지방교육세·농특세 | 머니데스크</title>
+  <meta name="description" content="매매가와 보유 주택 수, 조정대상지역 여부를 넣으면 취득세·지방교육세·농어촌특별세를 합산한 예상 납부세액을 계산합니다.">
+  <meta name="keywords" content="취득세 계산기, 취득세율, 다주택 중과세율, 지방교육세, 농어촌특별세">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="취득세 계산기 | 머니데스크">
+  <meta property="og:description" content="주택 수와 조정대상지역 여부에 따른 취득세·지방교육세·농특세를 한번에 계산하세요.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "주택 취득세율은 어떻게 정해지나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "1주택(또는 조정대상지역이 아닌 2주택)은 취득가액에 따라 6억원 이하 1%, 6억원 초과~9억원 이하 구간은 (취득가액÷3억원×2−3)% 공식으로 1~3% 사이에서 계산되고, 9억원 초과는 3%입니다. 조정대상지역 2주택은 8%, 3주택은 12%, 조정대상지역이 아닌 3주택은 8%, 4주택 이상이나 법인은 지역과 무관하게 12%가 적용됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "지방교육세와 농어촌특별세는 왜 따로 계산하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "취득세를 낼 때는 지방교육세와 농어촌특별세가 함께 부과됩니다. 지방교육세는 표준세율(1~3%) 구간에서는 취득세율의 10분의 1이 적용되고, 다주택 중과(8%·12%) 구간에서는 세율과 무관하게 0.4%로 고정됩니다. 농어촌특별세는 전용면적 85㎡ 이하 주택은 비과세이며, 85㎡ 초과 시 표준세율 0.2%, 8% 중과 0.6%, 12% 중과 1.0%가 추가됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "조정대상지역인지는 어떻게 확인하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "조정대상지역은 국토교통부가 주기적으로 지정·해제하며 시점에 따라 대상 지역이 계속 바뀝니다. 계약 전 국토교통부 홈페이지나 위택스(wetax.go.kr), 관할 시·군·구청 세무부서에서 취득 시점 기준 최신 지정 현황을 반드시 확인해야 합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "생애최초 주택 구입 감면도 반영되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "아닙니다. 생애최초 주택 구입 취득세 감면이나 상속·증여(무상취득), 신축(원시취득)에 적용되는 세율은 이 계산기가 다루는 유상취득(매매) 표준·중과세율과 체계가 달라 반영하지 않았습니다. 감면 대상 여부와 감면율은 소득·가액 요건에 따라 다르므로 관할 시·군·구청이나 위택스에서 직접 확인하는 것을 권장합니다." }
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://money.jwapplab.com/acquisition-tax/">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7773099210940024" crossorigin="anonymous"></script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#c1560b">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">재테크 계산기 모음</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../index.html">홈</a>
+        <a href="../brokerage-fee/index.html">복비</a>
+        <a href="../chungyak/index.html">청약</a>
+        <a href="../dsr/index.html">DSR</a>
+        <a href="../acquisition-tax/index.html" aria-current="page">취득세</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">대출·부동산</p>
+      <h1>취득세 계산기</h1>
+      <p class="lead">매매가와 보유 주택 수를 넣으면 취득세·지방교육세·농특세를 합산해 계산합니다.</p>
+    </header>
+
+    <form id="acquisition-tax-form" autocomplete="off" novalidate>
+      <section class="panel" aria-labelledby="acq-input-title">
+        <h2 id="acq-input-title">취득 정보</h2>
+
+        <div class="segmented" role="group" aria-label="부동산 유형">
+          <button type="button" data-property-type="house" aria-pressed="true">주택</button>
+          <button type="button" data-property-type="non-house" aria-pressed="false">주택 외(상가·토지 등)</button>
+        </div>
+
+        <div class="field" style="margin-top: 16px;">
+          <label for="acq-price">매매가(취득가액)</label>
+          <div class="input-wrap">
+            <input id="acq-price" name="price" type="text" value="500,000,000" inputmode="numeric" data-number data-decimals="0">
+            <span class="unit">원</span>
+          </div>
+        </div>
+
+        <div id="house-only-fields">
+          <div class="field-grid two" style="margin-top: 16px;">
+            <div class="field">
+              <label for="acq-house-count">이번 취득 후 보유 주택 수</label>
+              <select class="control" id="acq-house-count" name="houseCount">
+                <option value="1" selected>1주택</option>
+                <option value="2">2주택</option>
+                <option value="3">3주택</option>
+                <option value="4">4주택 이상·법인</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="acq-area">전용면적</label>
+              <select class="control" id="acq-area" name="areaOver85">
+                <option value="0" selected>85㎡ 이하</option>
+                <option value="1">85㎡ 초과</option>
+              </select>
+              <p class="hint">85㎡ 초과 주택에만 농어촌특별세가 추가됩니다.</p>
+            </div>
+          </div>
+
+          <label class="choice-card" for="acq-regulated" id="regulated-field" style="margin-top: 18px;" hidden>
+            <input id="acq-regulated" name="regulated" type="checkbox" value="1">
+            <span class="choice-copy">
+              <strong>조정대상지역</strong>
+              <small>2주택·3주택 중과세율에 영향을 줍니다. 취득 시점 최신 지정 현황을 확인하세요.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+    </form>
+
+    <section class="result-card" aria-labelledby="acq-result-label" aria-live="polite">
+      <p class="result-label" id="acq-result-label">예상 총 납부세액</p>
+      <p class="result-value" id="acq-result-value">0원</p>
+      <p class="result-summary" id="acq-result-summary"></p>
+      <p class="status-message" id="acq-result-status" hidden></p>
+      <dl class="result-grid" id="acq-result-details">
+        <div><dt>적용 취득세율</dt><dd id="acq-rate-result">0%</dd></div>
+        <div><dt>취득세</dt><dd id="acq-base-tax-result">0원</dd></div>
+        <div><dt>지방교육세</dt><dd id="acq-edu-tax-result">0원</dd></div>
+        <div><dt>농어촌특별세</dt><dd id="acq-agri-tax-result">0원</dd></div>
+        <div><dt>총 납부세액</dt><dd id="acq-total-tax-result">0원</dd></div>
+        <div><dt>매매가+세금 합계</dt><dd id="acq-net-amount-result">0원</dd></div>
+      </dl>
+      <div class="button-row">
+        <button class="copy-button" id="copy-acq-link" type="button">결과 링크 복사</button>
+      </div>
+    </section>
+
+    <p class="microcopy">유상취득(매매) 기준 표준·중과세율만 반영한 간이 계산이며, 생애최초 감면 등은 미반영입니다.</p>
+    <div class="ad-slot" aria-label="광고 영역">
+      <!-- AD SLOT -->
+    </div>
+
+    <div id="glossary-mount"></div>
+    <section class="content-placeholder" aria-labelledby="acq-explanation-title">
+      <h2 id="acq-explanation-title">취득세 계산 안내</h2>
+      <div class="placeholder-box">
+        <p>부동산을 매매로 취득하면 취득세와 함께 지방교육세, 경우에 따라 농어촌특별세까지 세 가지 세금을 함께 납부합니다. 주택의 경우 1주택자(또는 조정대상지역이 아닌 지역의 2주택자)는 취득가액에 따라 6억원 이하 1%, 6억원 초과~9억원 이하 구간은 (취득가액÷3억원×2−3)% 공식으로 1~3% 사이에서 계산되며, 9억원을 초과하면 3%가 적용됩니다. 예를 들어 7억 5,000만원 주택이라면 (7.5억÷3억×2−3)=2%가 적용되는 식입니다.</p>
+        <p>다주택자나 법인은 세율이 크게 높아집니다. 조정대상지역에서 2주택을 취득하면 8%, 3주택은 12%가 적용되고, 조정대상지역이 아닌 곳의 3주택은 8%, 4주택 이상이나 법인은 지역과 무관하게 12%가 적용됩니다. 여기에 지방교육세가 표준세율 구간에서는 취득세율의 10분의 1, 중과세율 구간에서는 0.4% 고정으로 추가되고, 전용면적 85㎡를 초과하는 주택은 농어촌특별세(표준 0.2%, 8% 중과 0.6%, 12% 중과 1.0%)도 함께 부과됩니다.</p>
+      </div>
+
+      <div class="ad-slot" aria-label="광고 영역">
+        <!-- AD SLOT -->
+      </div>
+
+      <div class="placeholder-box">
+        <p>주택이 아닌 상가·토지 등 일반 부동산은 보유 주택 수나 조정대상지역 여부와 관계없이 취득세 4%, 지방교육세 0.4%, 농어촌특별세 0.2%를 더한 4.6%가 통상 적용됩니다. 다만 이 계산기는 유상취득(매매) 표준·중과세율만 반영한 간이 계산으로, 상속·증여로 취득하는 무상취득이나 신축 건물의 원시취득, 생애최초 주택 구입 감면 같은 특례는 세율 체계가 완전히 달라 포함하지 않았습니다. 실제 감면 대상 여부와 조정대상지역 지정 현황은 계약 전 반드시 위택스나 관할 시·군·구청에서 최신 정보로 확인하시기 바랍니다.</p>
+      </div>
+
+      <section class="panel" aria-labelledby="acq-related-title">
+        <h2 id="acq-related-title">관련 계산기</h2>
+        <div class="card-grid">
+          <a class="calculator-card" href="../brokerage-fee/index.html">
+            <span class="card-kicker">대출·부동산</span>
+            <h3>부동산 중개수수료(복비) 계산기</h3>
+            <p>매매·전세·월세 거래금액으로 예상 중개수수료를 계산합니다.</p>
+            <span class="card-action">계산하기 →</span>
+          </a>
+          <a class="calculator-card" href="../dsr/index.html">
+            <span class="card-kicker">대출·부동산</span>
+            <h3>DSR 계산기</h3>
+            <p>연소득 대비 연 원리금 비율과 대출 한도를 계산합니다.</p>
+            <span class="card-action">계산하기 →</span>
+          </a>
+        </div>
+      </section>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>주택 취득세율은 어떻게 정해지나요?</h3>
+          <p>1주택(또는 조정대상지역이 아닌 2주택)은 취득가액에 따라 6억원 이하 1%, 6억원 초과~9억원 이하 구간은 (취득가액÷3억원×2−3)% 공식으로 1~3% 사이에서 계산되고, 9억원 초과는 3%입니다. 조정대상지역 2주택은 8%, 3주택은 12%, 조정대상지역이 아닌 3주택은 8%, 4주택 이상이나 법인은 지역과 무관하게 12%가 적용됩니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>지방교육세와 농어촌특별세는 왜 따로 계산하나요?</h3>
+          <p>취득세를 낼 때는 지방교육세와 농어촌특별세가 함께 부과됩니다. 지방교육세는 표준세율(1~3%) 구간에서는 취득세율의 10분의 1이 적용되고, 다주택 중과(8%·12%) 구간에서는 세율과 무관하게 0.4%로 고정됩니다. 농어촌특별세는 전용면적 85㎡ 이하 주택은 비과세이며, 85㎡ 초과 시 표준세율 0.2%, 8% 중과 0.6%, 12% 중과 1.0%가 추가됩니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>조정대상지역인지는 어떻게 확인하나요?</h3>
+          <p>조정대상지역은 국토교통부가 주기적으로 지정·해제하며 시점에 따라 대상 지역이 계속 바뀝니다. 계약 전 국토교통부 홈페이지나 위택스(wetax.go.kr), 관할 시·군·구청 세무부서에서 취득 시점 기준 최신 지정 현황을 반드시 확인해야 합니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>생애최초 주택 구입 감면도 반영되나요?</h3>
+          <p>아닙니다. 생애최초 주택 구입 취득세 감면이나 상속·증여(무상취득), 신축(원시취득)에 적용되는 세율은 이 계산기가 다루는 유상취득(매매) 표준·중과세율과 체계가 달라 반영하지 않았습니다. 감면 대상 여부와 감면율은 소득·가액 요건에 따라 다르므로 관할 시·군·구청이나 위택스에서 직접 확인하는 것을 권장합니다.</p>
+        </article>
+      </div>
+      <p class="content-basis">기준일: 2026-08-06, 지방세법 제11조 유상승계취득 세율 기준</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="../about.html">소개</a>
+        <a href="../privacy.html">개인정보처리방침</a>
+      </nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <noscript>이 계산기를 사용하려면 브라우저에서 JavaScript를 활성화해 주세요.</noscript>
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/acquisition-tax.js"></script>
+  <script src="../js/glossary.js"></script>
+  <script>MoneyCalcGlossary.render('acquisition-tax');</script>
+</body>
+</html>
