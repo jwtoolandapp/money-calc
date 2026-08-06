@@ -283,6 +283,19 @@
         OTHER: { label: '기타 통화', symbol: '', rateUnit: '외화 1단위' },
       },
     },
+
+    FIRE: {
+      // 검증 완료(2026-08-06): "4% 룰"은 1998년 Trinity Study(미국 대학 3곳 공동연구)에서 유래한
+      // 안전 인출률(SWR) 통념 기준. 연 지출의 25배(=1/0.04)를 은퇴자산 목표로 삼는 것이 표준.
+      // 최근에는 저금리·장수 리스크를 고려해 3.5%를 더 보수적으로 권장하는 논의도 있어 사용자가
+      // 직접 조정할 수 있게 기본값만 4%로 두고 입력 가능하게 한다.
+      DEFAULT_WITHDRAWAL_RATE: 4,
+      MIN_WITHDRAWAL_RATE: 1,
+      MAX_WITHDRAWAL_RATE: 10,
+      // 목표 은퇴자산 도달 계산의 안전 상한(브라우저 과부하 방지용, 제도 한도 아님). GOAL_SAVING과 동일 기준.
+      MAX_MONTHS: 1200,
+      MIN_MONTHS: 1,
+    },
   };
 
   global.CALC_CONSTANTS_2026 = Object.freeze(constants);
