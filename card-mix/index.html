@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>카드 소득공제 황금비율 계산기 | 신용·체크카드 최적 배분 | 머니데스크</title>
+  <meta name="description" content="총급여와 연간 카드 사용액을 넣으면 신용카드·체크카드/현금영수증을 얼마씩 나눠 써야 소득공제가 최대가 되는지 계산합니다.">
+  <meta name="keywords" content="카드 소득공제, 신용카드 체크카드 비율, 카드 소득공제 계산기, 연말정산 카드공제">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="머니데스크">
+  <meta property="og:title" content="카드 소득공제 황금비율 계산기 | 머니데스크">
+  <meta property="og:description" content="신용카드와 체크카드·현금영수증을 어떤 비율로 쓰면 소득공제가 최대가 되는지 확인하세요.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "신용카드와 체크카드를 왜 나눠서 써야 하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "카드 소득공제는 총급여의 25%를 초과해서 쓴 금액부터 시작되고, 신용카드는 15%, 체크카드·현금영수증은 30%의 공제율이 적용됩니다. 25% 문턱까지는 어떤 카드를 써도 공제와 무관하므로 적립·할인 혜택이 좋은 신용카드로 채우고, 문턱을 넘는 금액부터는 공제율이 2배인 체크카드·현금영수증으로 쓰는 것이 소득공제 관점에서 가장 유리합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "25% 문턱이 정확히 무슨 뜻인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "1년 동안 쓴 신용카드·체크카드·현금영수증 사용액을 모두 합쳐 총급여의 25%를 넘는 금액부터만 소득공제 대상이 됩니다. 총급여가 5,000만원이면 1,250만원까지는 어떤 카드로 얼마를 쓰든 공제에 전혀 영향을 주지 않으므로, 그 구간은 카드 혜택만 보고 자유롭게 써도 됩니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "공제 한도는 얼마인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "일반 사용분 기준으로 총급여 7,000만원 이하는 연 300만원, 7,000만원을 초과하면 연 250만원이 한도입니다. 전통시장·대중교통 사용분(40%)과 도서·공연·박물관 사용분(30%)은 별도 추가 한도가 있지만, 이 계산기는 간이 계산 특성상 일반 사용분만 반영합니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "황금비율대로 쓰면 실제로 얼마나 이득인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "총급여와 카드 사용액에 따라 다릅니다. 예를 들어 총급여 5,000만원에 카드를 2,000만원 쓴다면, 문턱(1,250만원)을 넘는 750만원을 전부 체크카드·현금영수증으로 쓸 때 공제액은 225만원이지만, 전부 신용카드로만 썼다면 112만 5,000원에 그쳐 112만 5,000원 차이가 납니다. 카드 사용액이 한도에 이미 도달했다면 배분을 바꿔도 공제액 차이는 없습니다." }
+      }
+    ]
+  }
+  </script>
+  <link rel="canonical" href="https://money.jwapplab.com/card-mix/">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7773099210940024" crossorigin="anonymous"></script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#c1560b">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="../index.html" aria-label="머니데스크 홈">
+          <span class="brand-mark" aria-hidden="true">₩</span>
+          <span>머니데스크</span>
+        </a>
+        <span class="header-tagline">재테크 계산기 모음</span>
+      </div>
+      <nav class="calculator-nav" aria-label="계산기 전환">
+        <a href="../index.html">홈</a>
+        <a href="../year-end-tax/index.html">연말정산</a>
+        <a href="../dsr/index.html">DSR</a>
+        <a href="../savings/index.html">예적금</a>
+        <a href="../card-mix/index.html" aria-current="page">카드공제</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <header class="page-heading">
+      <p class="eyebrow">세금·연말정산</p>
+      <h1>카드 소득공제 황금비율 계산기</h1>
+      <p class="lead">신용카드와 체크카드·현금영수증을 어떤 비율로 써야 소득공제가 최대가 되는지 확인하세요.</p>
+    </header>
+
+    <form id="card-mix-form" autocomplete="off" novalidate>
+      <section class="panel" aria-labelledby="card-mix-input-title">
+        <h2 id="card-mix-input-title">급여와 카드 사용액</h2>
+
+        <div class="field-grid two">
+          <div class="field">
+            <label for="gross-salary">연간 총급여</label>
+            <div class="input-wrap">
+              <input id="gross-salary" name="grossSalary" type="text" value="50000000" inputmode="numeric" data-number data-decimals="0">
+              <span class="unit">원</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="total-card-spend">연간 카드 사용 예정 총액</label>
+            <div class="input-wrap">
+              <input id="total-card-spend" name="totalCardSpend" type="text" value="20000000" inputmode="numeric" data-number data-decimals="0">
+              <span class="unit">원</span>
+            </div>
+            <p class="hint">신용카드 + 체크카드 + 현금영수증을 합친 올해 예상 총 사용액입니다.</p>
+          </div>
+        </div>
+      </section>
+    </form>
+
+    <section class="result-card" aria-labelledby="card-mix-result-label" aria-live="polite">
+      <p class="result-label" id="card-mix-result-label">황금비율로 썼을 때 예상 공제액</p>
+      <p class="result-value" id="card-mix-result-value">0원</p>
+      <p class="result-summary" id="card-mix-result-summary">연간 카드 사용 예정액을 입력하면 최적 배분을 계산합니다.</p>
+      <p class="status-message" id="card-mix-status" hidden></p>
+      <dl class="result-grid" id="card-mix-result-details">
+        <div><dt>25% 문턱 금액</dt><dd id="threshold-result">0원</dd></div>
+        <div><dt>신용카드 추천 사용액</dt><dd id="recommended-credit-result">0원</dd></div>
+        <div><dt>체크카드·현금영수증 추천 사용액</dt><dd id="recommended-debit-result">0원</dd></div>
+        <div><dt>황금비율 예상 공제액</dt><dd id="golden-deduction-result">0원</dd></div>
+        <div><dt>전부 신용카드로만 썼을 때 공제액</dt><dd id="all-credit-deduction-result">0원</dd></div>
+        <div><dt>황금비율의 추가 이득</dt><dd id="extra-benefit-result">0원</dd></div>
+        <div><dt>공제 한도</dt><dd id="cap-result">0원</dd></div>
+      </dl>
+      <div class="button-row">
+        <button class="copy-button" id="copy-card-mix-link" type="button">결과 링크 복사</button>
+      </div>
+    </section>
+
+    <p class="microcopy">전통시장·대중교통·도서공연 추가공제는 반영하지 않은 간이 계산입니다.</p>
+    <div class="ad-slot" aria-label="광고 영역">
+      <!-- AD SLOT -->
+    </div>
+
+    <div id="glossary-mount"></div>
+    <section class="content-placeholder" aria-labelledby="card-mix-explanation-title">
+      <h2 id="card-mix-explanation-title">카드 소득공제 황금비율 안내</h2>
+      <div class="placeholder-box">
+        <p>카드 소득공제는 1년 동안 쓴 신용카드·체크카드·현금영수증 사용액 합계가 총급여의 25%를 넘는 금액부터 시작됩니다. 이 25% 문턱까지는 어떤 카드로 얼마를 쓰든 공제와는 무관하므로, 그 구간은 적립률·할인 혜택이 좋은 신용카드로 채우는 것이 이득입니다. 문턱을 넘는 금액부터는 이야기가 달라집니다. 신용카드 사용분은 15% 공제율이 적용되지만, 체크카드·현금영수증 사용분은 그 두 배인 30%가 적용되기 때문에, 문턱을 넘는 구간은 체크카드나 현금영수증으로 쓰는 쪽이 공제액이 훨씬 커집니다.</p>
+        <p>이 계산기는 총급여와 연간 카드 사용 예정 총액을 넣으면, 신용카드로 문턱까지 채우고 나머지를 체크카드·현금영수증으로 쓰는 "황금비율" 배분을 계산하고, 이 배분으로 받는 공제액을 전부 신용카드로만 썼을 경우와 비교해 보여줍니다. 다만 카드 소득공제에는 한도가 있어서, 총급여 7,000만원 이하는 연 300만원, 초과하면 연 250만원을 넘는 공제는 받을 수 없습니다. 이미 한도에 도달한 경우라면 배분을 바꿔도 공제액 차이는 없습니다.</p>
+        <p>이 계산기는 일반 사용분만 반영한 간이 계산입니다. 전통시장 사용분(40%), 대중교통 사용분(40%), 도서·공연·박물관·미술관 사용분(30%, 총급여 7,000만원 이하)에는 각각 별도의 추가 공제 한도가 있는데, 실제로는 이런 항목을 잘 활용하면 앞서 계산한 금액보다 더 많이 공제받을 수 있습니다. 정확한 최종 공제액은 연말정산 계산기에서 다른 공제 항목과 함께 확인하는 것을 권장합니다.</p>
+      </div>
+
+      <div class="ad-slot" aria-label="광고 영역">
+        <!-- AD SLOT -->
+      </div>
+
+      <section class="panel" aria-labelledby="card-mix-related-title">
+        <h2 id="card-mix-related-title">관련 계산기</h2>
+        <div class="card-grid">
+          <a class="calculator-card" href="../year-end-tax/index.html">
+            <span class="card-kicker">세금·연말정산</span>
+            <h3>연말정산 환급 미리보기</h3>
+            <p>카드공제를 포함한 전체 공제 항목으로 예상 환급액을 계산하세요.</p>
+            <span class="card-action">계산하기 →</span>
+          </a>
+          <a class="calculator-card" href="../lotto-tax/index.html">
+            <span class="card-kicker">세금·연말정산</span>
+            <h3>로또 실수령액 계산기</h3>
+            <p>당첨금에서 기타소득세와 지방소득세를 뺀 금액을 확인하세요.</p>
+            <span class="card-action">계산하기 →</span>
+          </a>
+        </div>
+      </section>
+
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>신용카드와 체크카드를 왜 나눠서 써야 하나요?</h3>
+          <p>카드 소득공제는 총급여의 25%를 초과해서 쓴 금액부터 시작되고, 신용카드는 15%, 체크카드·현금영수증은 30%의 공제율이 적용됩니다. 25% 문턱까지는 어떤 카드를 써도 공제와 무관하므로 적립·할인 혜택이 좋은 신용카드로 채우고, 문턱을 넘는 금액부터는 공제율이 2배인 체크카드·현금영수증으로 쓰는 것이 소득공제 관점에서 가장 유리합니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>25% 문턱이 정확히 무슨 뜻인가요?</h3>
+          <p>1년 동안 쓴 신용카드·체크카드·현금영수증 사용액을 모두 합쳐 총급여의 25%를 넘는 금액부터만 소득공제 대상이 됩니다. 총급여가 5,000만원이면 1,250만원까지는 어떤 카드로 얼마를 쓰든 공제에 전혀 영향을 주지 않으므로, 그 구간은 카드 혜택만 보고 자유롭게 써도 됩니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>공제 한도는 얼마인가요?</h3>
+          <p>일반 사용분 기준으로 총급여 7,000만원 이하는 연 300만원, 7,000만원을 초과하면 연 250만원이 한도입니다. 전통시장·대중교통 사용분(40%)과 도서·공연·박물관 사용분(30%)은 별도 추가 한도가 있지만, 이 계산기는 간이 계산 특성상 일반 사용분만 반영합니다.</p>
+        </article>
+        <article class="faq-item">
+          <h3>황금비율대로 쓰면 실제로 얼마나 이득인가요?</h3>
+          <p>총급여와 카드 사용액에 따라 다릅니다. 예를 들어 총급여 5,000만원에 카드를 2,000만원 쓴다면, 문턱(1,250만원)을 넘는 750만원을 전부 체크카드·현금영수증으로 쓸 때 공제액은 225만원이지만, 전부 신용카드로만 썼다면 112만 5,000원에 그쳐 112만 5,000원 차이가 납니다. 카드 사용액이 한도에 이미 도달했다면 배분을 바꿔도 공제액 차이는 없습니다.</p>
+        </article>
+      </div>
+      <p class="content-basis">기준일: 2026-08-06, 2026년 제도 기준</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about">소개</a>
+        <a href="/privacy">개인정보처리방침</a>
+      </nav>
+      <p class="disclaimer">본 계산기는 참고용이며 실제 금액·점수와 다를 수 있습니다. 법적·재무적 판단의 근거로 사용할 수 없습니다.</p>
+      <p class="copyright">© 2026 머니데스크</p>
+    </div>
+  </footer>
+
+  <noscript>이 계산기를 사용하려면 브라우저에서 JavaScript를 활성화해 주세요.</noscript>
+  <script src="../js/constants-2026.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/card-mix.js"></script>
+  <script src="../js/glossary.js"></script>
+  <script>MoneyCalcGlossary.render('card-mix');</script>
+</body>
+</html>
