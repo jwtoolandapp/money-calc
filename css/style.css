@@ -522,6 +522,33 @@ select.control:focus {
   margin: 18px 0;
 }
 
+/*
+ * 광고가 실제로 들어간 슬롯(aria-label="광고")만 라벨과 구분선을 붙인다.
+ * AdSense 게재위치 정책: 광고를 콘텐츠나 메뉴로 오인하게 두지 않는다.
+ * position: fixed/sticky는 절대 쓰지 않는다 — 하단 고정 UI와 겹치면 탐색 도구로 오인된다.
+ */
+.ad-slot[aria-label] {
+  margin: 34px 0;
+  padding-bottom: 8px;
+  border-top: 1px solid var(--navy-200);
+  border-bottom: 1px solid var(--navy-200);
+}
+
+.ad-slot[aria-label]::before {
+  display: block;
+  padding: 7px 0 6px;
+  color: var(--navy-500, #6b7280);
+  content: "광고";
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.ad-slot[aria-label] .adsbygoogle {
+  min-height: 100px;
+}
+
 .content-placeholder {
   margin-top: 50px;
   padding-top: 30px;
