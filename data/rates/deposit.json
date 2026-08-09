@@ -1,0 +1,1298 @@
+{
+  "label": "정기예금",
+  "source": "finlife.fss.or.kr",
+  "products": [
+    {
+      "bank": "우리은행",
+      "name": "WON플러스예금",
+      "joinWay": "인터넷,스마트폰,전화(텔레뱅킹)",
+      "specialCondition": "해당사항 없음",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.7,
+          "maxRate": 2.7
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.9,
+          "maxRate": 2.9
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3,
+          "maxRate": 3
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.2,
+          "maxRate": 3.2
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.5,
+          "maxRate": 2.5
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.5,
+          "maxRate": 2.5
+        }
+      ]
+    },
+    {
+      "bank": "한국스탠다드차타드은행",
+      "name": "e-그린세이브예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "1.SC제일은행 최초 거래 신규고객 우대이율 제공(보너스이율0.1%)                     \n2.만기일에 아래의 조건을 모두 충족하는 경우보너스이율 제공\n-6~12개월제(만기일시지급식) 5천만원 이상 가입\n-만기일 기준 전전월 마지막 영업일에 수익증권(펀드)*을 3천만원 이상 보유 \n(가입기간: 6개월~1년제/ 보너스이율:0.1% / 만기해약하는 경우에 한해 보너스이율을 적용함)",
+      "maxLimit": 1000000000,
+      "disclosedAt": "20260803",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 2.3
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.9,
+          "maxRate": 3
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.2,
+          "maxRate": 3.4
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.65,
+          "maxRate": 3.85
+        }
+      ]
+    },
+    {
+      "bank": "아이엠뱅크",
+      "name": "iM함께예금",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "* 최고우대금리: 연0.45%p\n- 전월 총수신 평잔 30만원 이상 또는 상품 가입 전 첫만남플러스통장 보유\n- 상품 가입 전 당행 주택청약상품 보유\n- 신규일 \"iM함께적금\" 동시 가입 및 만기(12회 불입) 보유 \n- 당행 오픈뱅킹서비스에 다른 은행 계좌 등록\n각 연0.10%p                       \n* 해당 상품을 인터넷/모바일뱅킹을 통해 가입: 연0.05%p",
+      "maxLimit": null,
+      "disclosedAt": "20260728",
+      "options": [
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.1,
+          "maxRate": 3.55
+        }
+      ]
+    },
+    {
+      "bank": "아이엠뱅크",
+      "name": "iM스마트예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "* 최고우대금리 : 연0.25%p\n- 가입일(재예치일)로부터 3개월 이내 아래 1가지 이상 요건 충족시\n① 당행 주택청약종합저축 보유\n② 당행 신용(체크)카드 결제실적 보유(결제금액 출금기준)\n* 해당 상품을 인터넷/모바일뱅킹을 통해 가입 : 연0.05%p",
+      "maxLimit": null,
+      "disclosedAt": "20260728",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.4,
+          "maxRate": 2.45
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.95,
+          "maxRate": 3
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.95,
+          "maxRate": 3.2
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.3,
+          "maxRate": 3.55
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.9,
+          "maxRate": 3.15
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.9,
+          "maxRate": 3.15
+        }
+      ]
+    },
+    {
+      "bank": "부산은행",
+      "name": "LIVE정기예금",
+      "joinWay": "영업점,인터넷",
+      "specialCondition": "*우대이율\n가. 3~5개월 특판우대이율 : 0.60%\n나. 6~11개월 특판 우대이율: 0.60%\n다. 12개월 특판 우대이율 : 0.55%",
+      "maxLimit": null,
+      "disclosedAt": "20260801",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 1.8,
+          "maxRate": 1.8
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2,
+          "maxRate": 2.6
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.1,
+          "maxRate": 2.7
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.25,
+          "maxRate": 2.8
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 1.9,
+          "maxRate": 1.9
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 1.9,
+          "maxRate": 1.9
+        }
+      ]
+    },
+    {
+      "bank": "부산은행",
+      "name": "더(The) 특판 정기예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "* 우대이율 (최대 1.35%p)\n가. 모바일뱅킹 금융정보 및 혜택알림 동의 우대이율 : 0.10%p\n나. 신규고객 또는 정기예금 중도해지고객 우대이율 0.75%p\n다. 특판우대이율 : 0.50%p(24개월 0.85%p)",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 1.4,
+          "maxRate": 2.75
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 1.65,
+          "maxRate": 3
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 1.8,
+          "maxRate": 3.15
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 3.55
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 1.85,
+          "maxRate": 3.55
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 1.25,
+          "maxRate": 2.6
+        }
+      ]
+    },
+    {
+      "bank": "부산은행",
+      "name": "더(The) 레벨업 정기예금",
+      "joinWay": "스마트폰",
+      "specialCondition": "*우대이율(최대 0.90%p)\n가. 모바일뱅킹 금융정보 및 혜택알림 동의 우대이율 : 0.10%p\n나. 비대면 정기예금 재예치 우대이율  : 0.80%",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.5,
+          "maxRate": 3.4
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.65,
+          "maxRate": 3.55
+        }
+      ]
+    },
+    {
+      "bank": "광주은행",
+      "name": "미즈월복리정기예금",
+      "joinWay": "영업점,인터넷,스마트폰,기타",
+      "specialCondition": "▶ 최고우대금리 0.2% \n ① 요구불평잔 : 0.2% -300만원이상 0.1%, 500만원이상 0.2%\n ② 신용(체크)카드결제실적 : 0.1% -전월결제금 300만원이상 0.05%, 500만원이상 0.1%",
+      "maxLimit": 50000000,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 12,
+          "rateType": "복리",
+          "baseRate": 3.32,
+          "maxRate": 3.52
+        },
+        {
+          "months": 24,
+          "rateType": "복리",
+          "baseRate": 3.19,
+          "maxRate": 3.39
+        },
+        {
+          "months": 36,
+          "rateType": "복리",
+          "baseRate": 3.14,
+          "maxRate": 3.34
+        }
+      ]
+    },
+    {
+      "bank": "광주은행",
+      "name": "스마트모아Dream정기예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "▶ 1년미만, 1천만원이상 0.10%p\n▶ 1년이상, 1천만원이상 0.20%p",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.36,
+          "maxRate": 2.46
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.57,
+          "maxRate": 2.67
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.83,
+          "maxRate": 2.93
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.22,
+          "maxRate": 3.42
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 3.09,
+          "maxRate": 3.29
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 3.04,
+          "maxRate": 3.24
+        }
+      ]
+    },
+    {
+      "bank": "광주은행",
+      "name": "굿스타트예금",
+      "joinWay": "스마트폰",
+      "specialCondition": "▶ 최고우대금리 0.5% \n ① 첫예금거래 : 0.4% -최근1년동안 정기예금 계좌 신규 또는 해지이력이 없는경우\n ② 개인(신용)정보 수집이용동의 : 0.1% -만기일전일까지 유지시",
+      "maxLimit": 100000000,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.12,
+          "maxRate": 3.62
+        }
+      ]
+    },
+    {
+      "bank": "광주은행",
+      "name": "The플러스예금",
+      "joinWay": "영업점,스마트폰",
+      "specialCondition": "▶ 해당사항없음",
+      "maxLimit": 1000000000,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.45,
+          "maxRate": 2.45
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.68,
+          "maxRate": 2.68
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.7,
+          "maxRate": 2.7
+        }
+      ]
+    },
+    {
+      "bank": "제주은행",
+      "name": "제주Dream\n정기예금\n(개인/만기\n지급식)",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "최고 연 0.1%p(항목별 0.1%p)\n①급여이체\n②적립식예금 잔액 10만원 이상 보유\n③탑스, 주거래 고객\n④결제계좌(가맹점) 전월 입금액 10만원 이상 \n⑤비과세종합저축 대상 고객\n⑥다자녀(3인이상 자녀)가정\n⑦탐나는 J연금통장 가입고객\n⑧국민연금안심통장 가입고객\n⑨공무원연금안심통장 가입고객",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2,
+          "maxRate": 2.1
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.1,
+          "maxRate": 2.2
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.25,
+          "maxRate": 2.35
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 2.4
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 2.3
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 2.3
+        }
+      ]
+    },
+    {
+      "bank": "제주은행",
+      "name": "J정기예금\n(만기지급식)",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "- 아래의 우대요건 충족시 최고 0.5%p 추가 우대 \n①비대면 채널 가입시 0.3%제공(신규시제공)  \n(단, 이벤트시 디지털 채널에 고시한 우대금리를 추가 적용할 수 있음)\n②신규일로부터 만기달 제외한 계약기간의 1/2이상 매월 Jbank로그인 시 0.2%제공(만기시제공)",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 1.4,
+          "maxRate": 2.4
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 1.7,
+          "maxRate": 2.65
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 1.9,
+          "maxRate": 2.9
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2,
+          "maxRate": 3.7
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 1.85,
+          "maxRate": 2.8
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 1.85,
+          "maxRate": 2.8
+        }
+      ]
+    },
+    {
+      "bank": "제주은행",
+      "name": "스마일드림 \n정기예금\n(개인/선이자\n지급식)",
+      "joinWay": "영업점,스마트폰",
+      "specialCondition": "-아래의 우대요건 충족시 최고0.3% 추가우대(신규시제공)\n①김만덕나눔적금 보유 또는 김만적 나눔적금 만기 해지고객 0.2%우대(가입시제공)\n②예금가입시 탐나는전 체크카드 보유고객 0.1%우대(가입시제공)\n(단, 이벤트시 영업점,디지털채널에 고시한 우대금리를 추가 적용할 수 있음)",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 1.7,
+          "maxRate": 2.55
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 1.8,
+          "maxRate": 2.8
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 1.9,
+          "maxRate": 2.85
+        }
+      ]
+    },
+    {
+      "bank": "전북은행",
+      "name": "JB 다이렉트예금통장\n(만기일시지급식)",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "우대조건\n없음",
+      "maxLimit": null,
+      "disclosedAt": "20260721",
+      "options": [
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.5,
+          "maxRate": 2.5
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.45,
+          "maxRate": 3.45
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.76,
+          "maxRate": 3.76
+        }
+      ]
+    },
+    {
+      "bank": "전북은행",
+      "name": "JB 123 정기예금\n (만기일시지급식)",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "자동재예치 우대이율\n1회차 0.1%,\n2회차 0.2%,\n3회차 0.3%\n\n(이벤트우대이율)\n2026.5.28~12.31 까지\n1)가입일직전 6개월 동안 당행 원화 정기예금 보유이력이 없는 경우 0.50%\n2.개인(신용)정보 수집/이용 동의한 경우(단, 상품서비스 안내수단 전체 동의한 경우에 한함) 0.10%",
+      "maxLimit": null,
+      "disclosedAt": "20260721",
+      "options": [
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.21,
+          "maxRate": 3.81
+        }
+      ]
+    },
+    {
+      "bank": "전북은행",
+      "name": "내맘 쏙 정기예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "1. 마케팅동의고객 0.10%",
+      "maxLimit": null,
+      "disclosedAt": "20260721",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 1.9,
+          "maxRate": 2
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.35,
+          "maxRate": 2.45
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.35,
+          "maxRate": 2.45
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.9,
+          "maxRate": 3
+        }
+      ]
+    },
+    {
+      "bank": "경남은행",
+      "name": "BNK더조은정기예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "①신규시 가입(재예치)금액 20백만원 이상인 경우 0.10%\n②신규시 금리우대쿠폰을 등록한 경우 0.20% \n③경남은행 오픈뱅킹 서비스를 가입한 경우 0.10%\n(만기시까지 해당서비스 유지하는 경우)\n④자동재예치를 통해 가입한 경우 0.05%\n(금리우대쿠폰과 중복적용 불가)\n⑤신규(재예치)시 마케팅동의 및 모바일메시지 수신동의 0.10%",
+      "maxLimit": 500000000,
+      "disclosedAt": "20260731",
+      "options": [
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2,
+          "maxRate": 2.5
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.05,
+          "maxRate": 2.55
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.05,
+          "maxRate": 2.55
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.05,
+          "maxRate": 2.55
+        }
+      ]
+    },
+    {
+      "bank": "경남은행",
+      "name": "The든든예금(시즌2)",
+      "joinWay": "스마트폰",
+      "specialCondition": "①마케팅동의 및 모바일메시지 수신동의 0.05%\n②신규고객 우대(최근 12개월 신규이력·해지이력 미보유) 0.10%\n③이벤트금리(비대면금리) 최대 1.15% (3개월 0.80% / 6, 9개월 0.90% / 12개월 1.15%)",
+      "maxLimit": 1000000000,
+      "disclosedAt": "20260731",
+      "options": [
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.25,
+          "maxRate": 3.2
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.25,
+          "maxRate": 3.3
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 3.6
+        }
+      ]
+    },
+    {
+      "bank": "경남은행",
+      "name": "The파트너예금",
+      "joinWay": "스마트폰",
+      "specialCondition": "①경남은행 거래기간 5년이상 + 마케팅동의 고객 0.20%\n②급여, 연금, 가맹점대금 입금 시 0.10%\n③당행 카드 결제실적 보유 시 0.10%",
+      "maxLimit": 1000000000,
+      "disclosedAt": "20260731",
+      "options": [
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.35,
+          "maxRate": 2.75
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.7,
+          "maxRate": 3.1
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.15,
+          "maxRate": 3.55
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.15,
+          "maxRate": 2.55
+        }
+      ]
+    },
+    {
+      "bank": "중소기업은행",
+      "name": "IBK평생한가족통장(실세금리정기예금)",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "최고 연 0.20%p\n\n-고객별 우대 : 최고 연 0.05%p\n 1. 최초신규고객 : 연 0.05%p\n 2. 재예치고객 : 연 0.05%p\n 3. 장기거래고객 : 연 0.05%p\n\n-주거래우대 : 연 0.15%p",
+      "maxLimit": 100000000,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.25,
+          "maxRate": 2.45
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.1,
+          "maxRate": 2.3
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.05,
+          "maxRate": 2.25
+        }
+      ]
+    },
+    {
+      "bank": "중소기업은행",
+      "name": "IBK더굴리기통장(실세금리정기예금)",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "없음",
+      "maxLimit": null,
+      "disclosedAt": "20260806",
+      "options": [
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.92,
+          "maxRate": 2.92
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.14,
+          "maxRate": 3.14
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 3.16,
+          "maxRate": 3.16
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 3.21,
+          "maxRate": 3.21
+        }
+      ]
+    },
+    {
+      "bank": "중소기업은행",
+      "name": "IBK굴리기통장(정기예금)",
+      "joinWay": "영업점,스마트폰",
+      "specialCondition": "없음",
+      "maxLimit": 300000000,
+      "disclosedAt": "20260806",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.48,
+          "maxRate": 2.48
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.75,
+          "maxRate": 2.75
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.04,
+          "maxRate": 3.04
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.29,
+          "maxRate": 3.29
+        }
+      ]
+    },
+    {
+      "bank": "한국산업은행",
+      "name": "KDB 정기예금",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "해당없음",
+      "maxLimit": null,
+      "disclosedAt": "20260723",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.65,
+          "maxRate": 2.65
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.85,
+          "maxRate": 2.85
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.1,
+          "maxRate": 3.1
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.35,
+          "maxRate": 3.35
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.6,
+          "maxRate": 2.6
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.5,
+          "maxRate": 2.5
+        }
+      ]
+    },
+    {
+      "bank": "국민은행",
+      "name": "KB Star 정기예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "해당무",
+      "maxLimit": null,
+      "disclosedAt": "20260722",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.05,
+          "maxRate": 2.55
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.25,
+          "maxRate": 2.85
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.35,
+          "maxRate": 3
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.4,
+          "maxRate": 3.2
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.4,
+          "maxRate": 2.4
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.4,
+          "maxRate": 2.4
+        }
+      ]
+    },
+    {
+      "bank": "신한은행",
+      "name": "신한My플러스 정기예금",
+      "joinWay": "영업점,스마트폰",
+      "specialCondition": "※가산금리 최고 연 0.2%\n- 정기예금 미보유 : 연 0.1%\n- 소득이체 : 연 0.1%",
+      "maxLimit": 100000000,
+      "disclosedAt": "20260722",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2,
+          "maxRate": 2.5
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 2.85
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 3.1
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 3.3
+        }
+      ]
+    },
+    {
+      "bank": "신한은행",
+      "name": "쏠편한 정기예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "해당사항없음",
+      "maxLimit": null,
+      "disclosedAt": "20260722",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2,
+          "maxRate": 2.5
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 2.85
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 3
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 3.2
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.35,
+          "maxRate": 2.6
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.4,
+          "maxRate": 2.6
+        }
+      ]
+    },
+    {
+      "bank": "농협은행주식회사",
+      "name": "NH왈츠회전예금 II",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "1. 급여이체실적(50만원 이상)이 있는 경우 : 0.1%p\n2. 트리플 회전 우대이율 :  4회전기간부터 0.1%p",
+      "maxLimit": null,
+      "disclosedAt": "20260723",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.4,
+          "maxRate": 2.5
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.7,
+          "maxRate": 2.8
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.95,
+          "maxRate": 3.05
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.15,
+          "maxRate": 3.25
+        }
+      ]
+    },
+    {
+      "bank": "농협은행주식회사",
+      "name": "NH내가Green초록세상예금",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "※ 우대금리 최대한도 : 0.4%p(연%, 세전)\n1. 온실가스 줄이기 실천서약서 동의 : 0.1%p\n2. 통장미발급 : 0.1%p\n3. 손하나로인증 서비스 등록 : 0.1%p\n4. NH내가Green초록세상적금 동시 보유 : 0.1%p",
+      "maxLimit": null,
+      "disclosedAt": "20260723",
+      "options": [
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.45,
+          "maxRate": 2.85
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.35,
+          "maxRate": 2.75
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 2.7
+        }
+      ]
+    },
+    {
+      "bank": "농협은행주식회사",
+      "name": "NH올원e예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "없음",
+      "maxLimit": 1000000000,
+      "disclosedAt": "20260723",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.5,
+          "maxRate": 2.5
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.8,
+          "maxRate": 2.8
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.05,
+          "maxRate": 3.05
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.25,
+          "maxRate": 3.25
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.7,
+          "maxRate": 2.7
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.7,
+          "maxRate": 2.7
+        }
+      ]
+    },
+    {
+      "bank": "농협은행주식회사",
+      "name": "NH고향사랑기부예금",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "1. 고향사랑기부금 납부고객 우대 : 0.3%p\n\n2-1. 만65세 이상 고령자 우대 : 0.1%p\n2-2. 만 19~34세 MZ고객 우대 : 0.1%p\n\n3. 고향사랑 특별금리 : 0.05%p (금리시장상황에 따라 변동 가능)\n - 고향사랑 특별금리는 상품 가입고객 모두에게 적용",
+      "maxLimit": null,
+      "disclosedAt": "20260723",
+      "options": [
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.45,
+          "maxRate": 2.9
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 하나은행",
+      "name": "하나의정기예금",
+      "joinWay": "스마트폰",
+      "specialCondition": "해당사항없음",
+      "maxLimit": null,
+      "disclosedAt": "20260731",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.05,
+          "maxRate": 2.5
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 2.15,
+          "maxRate": 2.85
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 2.25,
+          "maxRate": 3
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 3.2
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 2.5
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 2.4
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 케이뱅크",
+      "name": "코드K 정기예금",
+      "joinWay": "스마트폰",
+      "specialCondition": "우대조건 없음",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.9,
+          "maxRate": 2.9
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 3.3,
+          "maxRate": 3.3
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.4,
+          "maxRate": 3.4
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.71,
+          "maxRate": 3.71
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 3.1,
+          "maxRate": 3.1
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 3.15,
+          "maxRate": 3.15
+        }
+      ]
+    },
+    {
+      "bank": "수협은행",
+      "name": "Sh해양플라스틱Zero!예금\n(만기일시지급식)",
+      "joinWay": "영업점,인터넷,스마트폰",
+      "specialCondition": "* 최대우대금리:0.35%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 봉사활동 또는 상품홍보 : 0.15% (만기시) \n3. 입출금통장 최초신규 : 0.1% (만기시)\n4. 자동이체 출금실적 : 0.1% (만기시)\n - 수협신용카드 / 당행 펀드 또는 적금 / 수협체크카드",
+      "maxLimit": 500000000,
+      "disclosedAt": "20260722",
+      "options": [
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.05,
+          "maxRate": 3.4
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.26,
+          "maxRate": 3.61
+        }
+      ]
+    },
+    {
+      "bank": "수협은행",
+      "name": "헤이(Hey)정기예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "없음",
+      "maxLimit": 1000000000,
+      "disclosedAt": "20260722",
+      "options": [
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 3.4,
+          "maxRate": 3.4
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.4,
+          "maxRate": 3.4
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.61,
+          "maxRate": 3.61
+        }
+      ]
+    },
+    {
+      "bank": "수협은행",
+      "name": "Sh첫만남우대예금",
+      "joinWay": "인터넷,스마트폰",
+      "specialCondition": "* 최대우대금리:1.05%\n1. 첫거래우대 : 1.0% (신규시) \n  - 최근 1년간 수협은행 예적금 활동계좌 미보유 고객포함\n2. 마케팅전체동의 : 0.05%(신규시) \n3. 스마트폰뱅킹의 상품알리기 : 0.80%(만기시)",
+      "maxLimit": 30000000,
+      "disclosedAt": "20260722",
+      "options": [
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.7,
+          "maxRate": 3.75
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 카카오뱅크",
+      "name": "카카오뱅크 정기예금",
+      "joinWay": "스마트폰",
+      "specialCondition": "※복잡한 우대조건 없이 가입가능한 정기예금",
+      "maxLimit": null,
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "months": 1,
+          "rateType": "단리",
+          "baseRate": 2.9,
+          "maxRate": 2.9
+        },
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 3.3,
+          "maxRate": 3.3
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.4,
+          "maxRate": 3.4
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.6,
+          "maxRate": 3.6
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 3,
+          "maxRate": 3
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 3,
+          "maxRate": 3
+        }
+      ]
+    },
+    {
+      "bank": "토스뱅크 주식회사",
+      "name": "토스뱅크 먼저 이자 받는 정기예금",
+      "joinWay": "스마트폰",
+      "specialCondition": "우대조건 없음",
+      "maxLimit": 1000000000,
+      "disclosedAt": "20260806",
+      "options": [
+        {
+          "months": 3,
+          "rateType": "단리",
+          "baseRate": 3.1,
+          "maxRate": 3.1
+        },
+        {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.3,
+          "maxRate": 3.3
+        },
+        {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 3.6,
+          "maxRate": 3.6
+        }
+      ]
+    }
+  ]
+}

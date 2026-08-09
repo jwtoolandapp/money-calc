@@ -1,0 +1,929 @@
+{
+  "label": "전세자금대출",
+  "source": "finlife.fss.or.kr",
+  "products": [
+    {
+      "bank": "우리은행",
+      "name": "우리전세론(주택금융보증)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 3.76,
+          "maxRate": 4.46,
+          "averageRate": 3.96
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 5.3,
+          "maxRate": 6,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.76,
+          "maxRate": 4.46,
+          "averageRate": 4.25
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.3,
+          "maxRate": 6,
+          "averageRate": 5.37
+        }
+      ]
+    },
+    {
+      "bank": "우리은행",
+      "name": "우리전세론(서울보증)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 3.72,
+          "maxRate": 4.42,
+          "averageRate": 4.1
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 5.21,
+          "maxRate": 5.91,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.82,
+          "maxRate": 4.52,
+          "averageRate": 4.27
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.31,
+          "maxRate": 6.01,
+          "averageRate": 5.37
+        }
+      ]
+    },
+    {
+      "bank": "한국스탠다드차타드은행",
+      "name": "전세담보대출",
+      "joinWay": "영업점,스마트폰",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.62,
+          "maxRate": 5.02,
+          "averageRate": 4.99
+        }
+      ]
+    },
+    {
+      "bank": "아이엠뱅크",
+      "name": "DGB 전세자금대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.57,
+          "maxRate": 5.07,
+          "averageRate": 4.55
+        }
+      ]
+    },
+    {
+      "bank": "아이엠뱅크",
+      "name": "무방문전세자금대출(주택금융공사)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.57,
+          "maxRate": 4.57,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "아이엠뱅크",
+      "name": "DGB POWER 전세보증대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.87,
+          "maxRate": 5.37,
+          "averageRate": 5.06
+        }
+      ]
+    },
+    {
+      "bank": "아이엠뱅크",
+      "name": "무방문전세자금대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.87,
+          "maxRate": 4.87,
+          "averageRate": 5.61
+        }
+      ]
+    },
+    {
+      "bank": "부산은행",
+      "name": "BNK전세안심대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260702",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.18,
+          "maxRate": 4.98,
+          "averageRate": null
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 5.36,
+          "maxRate": 6.16,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.18,
+          "maxRate": 4.98,
+          "averageRate": 4.26
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.36,
+          "maxRate": 6.16,
+          "averageRate": 5.49
+        }
+      ]
+    },
+    {
+      "bank": "부산은행",
+      "name": "BNK행복스케치전세자금대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260702",
+      "options": [
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.36,
+          "maxRate": 6.16,
+          "averageRate": 5.49
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.18,
+          "maxRate": 4.98,
+          "averageRate": 4.33
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 5.36,
+          "maxRate": 6.16,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.18,
+          "maxRate": 4.98,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "부산은행",
+      "name": "BNK프리미엄전세자금대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260702",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 3.98,
+          "maxRate": 4.98,
+          "averageRate": null
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 5.46,
+          "maxRate": 6.46,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.98,
+          "maxRate": 4.98,
+          "averageRate": 4.23
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.46,
+          "maxRate": 6.46,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "광주은행",
+      "name": "청년맞춤형 전월세보증금 대출",
+      "joinWay": "영업점",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.32,
+          "maxRate": 3.52,
+          "averageRate": 3.38
+        }
+      ]
+    },
+    {
+      "bank": "제주은행",
+      "name": "주택전세자금대출",
+      "joinWay": "영업점",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.74,
+          "maxRate": 6.44,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "제주은행",
+      "name": "JJB일반전세자금대출",
+      "joinWay": "영업점",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.69,
+          "maxRate": 6.39,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "전북은행",
+      "name": "BEST전세자금대출Ⅱ",
+      "joinWay": "영업점",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.19,
+          "maxRate": 5.99,
+          "averageRate": null
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.58,
+          "maxRate": 5.68,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.18,
+          "maxRate": 5.28,
+          "averageRate": 4.62
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.58,
+          "maxRate": 5.68,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.07,
+          "maxRate": 5.17,
+          "averageRate": 4.63
+        }
+      ]
+    },
+    {
+      "bank": "전북은행",
+      "name": "JB전세자금대출",
+      "joinWay": "영업점",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.55,
+          "maxRate": 6.05,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "경남은행",
+      "name": "전세자금대출(주택금융공사)",
+      "joinWay": "영업점",
+      "disclosedAt": "20260716",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.18,
+          "maxRate": 5.78,
+          "averageRate": 5.13
+        }
+      ]
+    },
+    {
+      "bank": "경남은행",
+      "name": "모바일전세자금대출\n(주택금융공사)",
+      "joinWay": "영업점",
+      "disclosedAt": "20260716",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.04,
+          "maxRate": 5.64,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "경남은행",
+      "name": "고정금리 전세자금대출(주택금융공사)",
+      "joinWay": "영업점",
+      "disclosedAt": "20260716",
+      "options": [
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.14,
+          "maxRate": 5.14,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "경남은행",
+      "name": "모바일전세자금대출(서울보증보험)",
+      "joinWay": "영업점",
+      "disclosedAt": "20260716",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.52,
+          "maxRate": 6.12,
+          "averageRate": 5.08
+        }
+      ]
+    },
+    {
+      "bank": "중소기업은행",
+      "name": "IBK전세대출 (HF)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260715",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.09,
+          "maxRate": 4.69,
+          "averageRate": 3.64
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 5.58,
+          "maxRate": 6.18,
+          "averageRate": 5.36
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.08,
+          "maxRate": 4.68,
+          "averageRate": 3.8
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.58,
+          "maxRate": 6.18,
+          "averageRate": 5.25
+        }
+      ]
+    },
+    {
+      "bank": "중소기업은행",
+      "name": "IBK전세대출 (SGI)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260715",
+      "options": [
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.74,
+          "maxRate": 6.34,
+          "averageRate": 5.4
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.24,
+          "maxRate": 4.84,
+          "averageRate": 4.02
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 5.69,
+          "maxRate": 6.29,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.19,
+          "maxRate": 4.79,
+          "averageRate": 3.91
+        }
+      ]
+    },
+    {
+      "bank": "중소기업은행",
+      "name": "IBK전세대출 (HUG)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260715",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.07,
+          "maxRate": 4.67,
+          "averageRate": 3.85
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 5.57,
+          "maxRate": 6.17,
+          "averageRate": 5.06
+        }
+      ]
+    },
+    {
+      "bank": "국민은행",
+      "name": "KB주택전세자금대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 3.81,
+          "maxRate": 5.21,
+          "averageRate": 4.05
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.81,
+          "maxRate": 5.21,
+          "averageRate": 4.12
+        }
+      ]
+    },
+    {
+      "bank": "국민은행",
+      "name": "KB플러스전세자금대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 3.93,
+          "maxRate": 5.33,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.93,
+          "maxRate": 5.33,
+          "averageRate": 4.37
+        }
+      ]
+    },
+    {
+      "bank": "신한은행",
+      "name": "신한전세대출(주택금융공사)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.19,
+          "maxRate": 5.99,
+          "averageRate": null
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.58,
+          "maxRate": 5.68,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.18,
+          "maxRate": 5.28,
+          "averageRate": 4.62
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.58,
+          "maxRate": 5.68,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.07,
+          "maxRate": 5.17,
+          "averageRate": 4.63
+        }
+      ]
+    },
+    {
+      "bank": "신한은행",
+      "name": "신한전세대출(서울보증)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.17,
+          "maxRate": 4.97,
+          "averageRate": 4.73
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.58,
+          "maxRate": 5.38,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.28,
+          "maxRate": 5.08,
+          "averageRate": 4.71
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.58,
+          "maxRate": 5.38,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "농협은행주식회사",
+      "name": "NH전세대출(서울보증보험)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.28,
+          "maxRate": 5.98,
+          "averageRate": 3.97
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.06,
+          "maxRate": 6.66,
+          "averageRate": 5.05
+        }
+      ]
+    },
+    {
+      "bank": "농협은행주식회사",
+      "name": "NH전세대출(주택금융공사)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.06,
+          "maxRate": 6.66,
+          "averageRate": 4.3
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.28,
+          "maxRate": 5.98,
+          "averageRate": 3.97
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.06,
+          "maxRate": 6.66,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 3.28,
+          "maxRate": 5.98,
+          "averageRate": 3.46
+        }
+      ]
+    },
+    {
+      "bank": "농협은행주식회사",
+      "name": "NH전세대출(주택도시보증공사)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.28,
+          "maxRate": 5.98,
+          "averageRate": 3.82
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.04,
+          "maxRate": 6.64,
+          "averageRate": 5.09
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 하나은행",
+      "name": "주택신보위탁발행보증서담보대출",
+      "joinWay": "영업점",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.24,
+          "maxRate": 5.64,
+          "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.24,
+          "maxRate": 5.64,
+          "averageRate": 3.98
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 하나은행",
+      "name": "우량주택전세론",
+      "joinWay": "영업점",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "minRate": 4.55,
+          "maxRate": 5.85,
+          "averageRate": 4.06
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.55,
+          "maxRate": 5.85,
+          "averageRate": 4.11
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 하나은행",
+      "name": "하나전세금안심대출",
+      "joinWay": "영업점",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.54,
+          "maxRate": 5.84,
+          "averageRate": 4.07
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 케이뱅크",
+      "name": "전월세보증금 대출",
+      "joinWay": "스마트폰",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.94,
+          "maxRate": 3.94,
+          "averageRate": 3.65
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 케이뱅크",
+      "name": "고정금리 전월세보증금 대출",
+      "joinWay": "스마트폰",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.03,
+          "maxRate": 4.33,
+          "averageRate": 4.29
+        }
+      ]
+    },
+    {
+      "bank": "수협은행",
+      "name": "공공주택임차보증금담보대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.47,
+          "maxRate": 5.67,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "수협은행",
+      "name": "Sh전세보증대출(주택금융공사)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.46,
+          "maxRate": 5.66,
+          "averageRate": 4.69
+        }
+      ]
+    },
+    {
+      "bank": "수협은행",
+      "name": "Sh전세보증대출(서울보증보험)",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.43,
+          "maxRate": 5.63,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "수협은행",
+      "name": "Sh전세금안심대출",
+      "joinWay": "영업점,모집인",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.53,
+          "maxRate": 5.73,
+          "averageRate": null
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 카카오뱅크",
+      "name": "HF 전월세보증금 대출",
+      "joinWay": "스마트폰",
+      "disclosedAt": "20260716",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.5,
+          "maxRate": 3.7,
+          "averageRate": 3.83
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.6,
+          "maxRate": 4.8,
+          "averageRate": 4.73
+        }
+      ]
+    },
+    {
+      "bank": "주식회사 카카오뱅크",
+      "name": "SGI 전월세보증금 대출",
+      "joinWay": "스마트폰",
+      "disclosedAt": "20260716",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 3.71,
+          "maxRate": 3.91,
+          "averageRate": 4.09
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.8,
+          "maxRate": 5,
+          "averageRate": 5.13
+        }
+      ]
+    },
+    {
+      "bank": "토스뱅크 주식회사",
+      "name": "전월세보증금대출 플러스",
+      "joinWay": "스마트폰",
+      "disclosedAt": "20260720",
+      "options": [
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "minRate": 4.13,
+          "maxRate": 4.13,
+          "averageRate": 3.96
+        }
+      ]
+    }
+  ]
+}

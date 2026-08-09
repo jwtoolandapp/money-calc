@@ -80,6 +80,10 @@ async function fetchAllPages(endpoint) {
 }
 
 const toNumber = (value) => {
+  // 이 API 는 값이 없는 항목을 빈 문자열로 준다. Number('') 는 0 이므로
+  // 그대로 두면 "평균금리 0.00%" 같은 가짜 숫자가 만들어지고,
+  // 낮은 금리 순 정렬에서 그 상품들이 맨 위를 차지한다.
+  if (value === null || value === undefined || String(value).trim() === '') return null;
   const n = Number(value);
   return Number.isFinite(n) ? n : null;
 };
@@ -135,16 +139,18 @@ function shapeLoanProducts({ baseList, optionList }) {
   }));
 }
 
+// process.exit() 을 쓰지 않는다. fetch 소켓이 아직 열린 상태에서 강제 종료하면
+// Windows 의 libuv 가 assertion 으로 죽으면서 종료코드가 127 로 나온다.
+// exitCode 만 세팅하고 이벤트 루프가 알아서 비워지게 둔다.
 if (VERIFY_ONLY) {
   try {
     const result = await callApi('depositProductsSearch', 1);
     console.log(`인증키 정상. 정기예금 ${result.total_count}건 조회 가능 (${result.max_page_no}페이지)`);
-    process.exit(0);
   } catch (error) {
     console.error(`인증키 확인 실패: ${error.message}`);
-    process.exit(1);
+    process.exitCode = 1;
   }
-}
+} else {
 
 await mkdir(OUT_DIR, { recursive: true });
 
@@ -165,7 +171,9 @@ for (const dataset of DATASETS) {
 
 // 기준일은 페이지에 반드시 표기한다. 언제 받은 금리인지 안 밝히면
 // 금리 정보는 오히려 신뢰를 깎는다.
-const fetchedAt = new Date().toISOString().slice(0, 10);
+// 한국 이용자에게 보여줄 날짜이므로 KST 로 찍는다. toISOString() 은 UTC 라
+// 한국 새벽에 돌리면 기준일이 하루 전으로 나온다.
+const fetchedAt = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Seoul' }).format(new Date());
 await writeFile(
   path.join(OUT_DIR, 'meta.json'),
   JSON.stringify({
@@ -183,3 +191,5 @@ await writeFile(
 
 console.log(`\ndata/rates/ 갱신 완료 (기준일 ${fetchedAt})`);
 console.log('다음: node tools/render-rates.mjs 로 정적 HTML 에 반영하세요.');
+
+}

@@ -70,7 +70,8 @@ function topLoanRows(dataset) {
         averageRate: option.averageRate,
       }))
     )
-    .filter((row) => row.averageRate !== null && row.averageRate !== undefined)
+    // 0 은 공시가 없다는 뜻이지 "무이자 대출"이 아니다. 표에서 뺀다.
+    .filter((row) => typeof row.averageRate === 'number' && row.averageRate > 0)
     .sort((a, b) => a.averageRate - b.averageRate)
     .slice(0, ROW_LIMIT);
 }

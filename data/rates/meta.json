@@ -1,0 +1,31 @@
+{
+  "fetchedAt": "2026-08-10",
+  "finGroup": "020000",
+  "finGroupLabel": "은행",
+  "source": {
+    "name": "금융감독원 금융상품통합비교공시",
+    "url": "https://finlife.fss.or.kr"
+  },
+  "datasets": [
+    {
+      "key": "deposit",
+      "label": "정기예금",
+      "count": 38
+    },
+    {
+      "key": "saving",
+      "label": "적금",
+      "count": 58
+    },
+    {
+      "key": "mortgage",
+      "label": "주택담보대출",
+      "count": 34
+    },
+    {
+      "key": "rent",
+      "label": "전세자금대출",
+      "count": 41
+    }
+  ]
+}
