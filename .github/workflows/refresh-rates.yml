@@ -1,0 +1,77 @@
+# 금감원 공시 금리 주간 갱신
+#
+# 금리는 매주 바뀌는데 페이지에는 "기준일"이 박혀 있다. 손으로 돌리는 걸 잊으면
+# 낡은 숫자가 최신인 척 남는다. 그게 금리 정보에서는 없느니만 못하므로 자동화한다.
+#
+# 필요한 것: 저장소 Secrets 에 FINLIFE_API_KEY
+#   Settings → Secrets and variables → Actions → New repository secret
+#
+# push 가 일어나면 Cloudflare Pages 가 자동 배포한다.
+
+name: 금리 갱신
+
+on:
+  schedule:
+    # 매주 월요일 00:00 UTC = 한국시간 월요일 오전 9시
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+# 갱신 결과를 커밋해야 하므로 쓰기 권한이 필요하다.
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-rates
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 인증키 확인
+        env:
+          FINLIFE_API_KEY: ${{ secrets.FINLIFE_API_KEY }}
+        run: |
+          if [ -z "$FINLIFE_API_KEY" ]; then
+            echo "::error::FINLIFE_API_KEY 시크릿이 없습니다. Settings → Secrets and variables → Actions 에서 등록하세요."
+            exit 1
+          fi
+          node tools/fetch-finlife.mjs --verify
+
+      - name: 금리 수집
+        env:
+          FINLIFE_API_KEY: ${{ secrets.FINLIFE_API_KEY }}
+        run: node tools/fetch-finlife.mjs
+
+      - name: 정적 HTML 반영
+        run: node tools/render-rates.mjs
+
+      # 깨진 결과를 자동으로 배포하면 손으로 돌릴 때보다 위험하다.
+      # 커밋 전에 기존 검사를 그대로 통과시킨다.
+      - name: 검증
+        run: |
+          node tools/prerender-glossary.mjs --check
+          node tools/render-basis.mjs --check
+          node tools/render-rates.mjs --check
+          for test in tests/*.test.js; do
+            node "$test"
+          done
+
+      - name: 변경분 커밋
+        run: |
+          if git diff --quiet -- data/rates savings/index.html loan/index.html; then
+            echo "금리 변동 없음 — 커밋할 것이 없습니다."
+            exit 0
+          fi
+
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/rates savings/index.html loan/index.html
+          git commit -m "chore: 은행 금리 갱신 ($(node -p "require('./data/rates/meta.json').fetchedAt"))"
+          git push
