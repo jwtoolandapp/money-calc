@@ -3,8 +3,8 @@
  * 출처: 사용자 제공 국세청 공식 hwpx 원본 파일에서 직접 추출한 조견표 데이터.
  * 조회 방법: 월급여액(비과세 제외, 원)과 공제대상가족수(본인 포함 1~11명)로 월 원천징수 예상세액을 찾는다.
  * - 공제대상가족수 산정 시 본인 및 배우자도 각각 1명으로 계산(원본 별표 2호 규정).
- * - 8세 이상 20세 이하 자녀가 있으면 원본 3호 규정에 따라 추가 차감 가능(자녀수별 12,500/29,160원 등) —
- *   이 계산기는 부양가족 총수만 입력받고 자녀 연령을 구분해 받지 않으므로 이 세부 차감은 반영하지 않음(간이 계산 한계, 과대추정 방향).
+ * - 8세 이상 20세 이하 자녀 수를 별도로 받아 추가 차감하는 확장 구조를 제공한다.
+ *   정확한 차감액은 constants-2026.js의 WITHHOLDING_CHILD_ADDON_TODO를 사용하며 원문 재검증 전 잠정치다.
  * - 공제대상가족수가 11명을 초과하는 경우 원본 4호 공식(11명 세액 - (10명세액-11명세액)×초과인원)을 적용.
  * - 월급여 10,000,000원(1천만원) 초과 구간은 원본 6개 구간 공식을 그대로 적용(가족수 무관 동일 가산식).
  * - 월급여 770,000원 미만은 표 범위 밖으로 0원 처리(최저 구간과 동일한 비과세 수준).
@@ -720,7 +720,7 @@
    * @param {number} familyCount 공제대상가족수(본인 포함, 1 이상)
    * @returns {number} 월 원천징수세액(원)
    */
-  function lookupMonthlyWithholding(monthlyWage, familyCount) {
+  function lookupMonthlyWithholdingBase(monthlyWage, familyCount) {
     var wage = Math.max(0, Math.round(monthlyWage || 0));
     var family = Math.max(1, Math.round(familyCount || 1));
 
@@ -757,6 +757,20 @@
     return Math.max(0, amountForFamilyCount(row, family));
   }
 
+  function withholdingChildAddon(childCount) {
+    var count = Math.max(0, Math.floor(childCount || 0));
+    if (!count) return 0;
+    var constants = global.CALC_CONSTANTS_2026;
+    var config = constants && constants.FOUR_MAJOR_INSURANCE && constants.FOUR_MAJOR_INSURANCE.WITHHOLDING_CHILD_ADDON_TODO;
+    if (!config) return 0;
+    if (count === 1) return config.ONE_CHILD;
+    if (count === 2) return config.TWO_CHILDREN;
+    return config.TWO_CHILDREN + (count - 2) * config.EACH_AFTER_TWO;
+  }
+
+  function lookupMonthlyWithholding(monthlyWage, familyCount, childCount) {
+    return Math.max(0, lookupMonthlyWithholdingBase(monthlyWage, familyCount) - withholdingChildAddon(childCount));
+  }
   /**
    * 연간 기납부세액(원천징수 누계) 추정치를 반환한다. 매월 동일 급여를 가정해 월세액 × 12로 근사한다.
    * (실제로는 상여·성과급 시점, 중도입퇴사 등으로 달라질 수 있음 — 화면에도 "추정치" 안내 유지.)
@@ -764,14 +778,15 @@
    * @param {number} familyCount 공제대상가족수(본인 포함)
    * @returns {number} 연간 기납부세액 추정치(원)
    */
-  function estimateAnnualWithheldTax(annualGrossSalary, familyCount) {
+  function estimateAnnualWithheldTax(annualGrossSalary, familyCount, childCount) {
     var monthlyWage = Math.max(0, (annualGrossSalary || 0) / 12);
-    var monthly = lookupMonthlyWithholding(monthlyWage, familyCount);
+    var monthly = lookupMonthlyWithholding(monthlyWage, familyCount, childCount);
     return Math.round(monthly * 12);
   }
 
   global.MoneyCalcWithholding = {
     lookupMonthlyWithholding: lookupMonthlyWithholding,
+    withholdingChildAddon: withholdingChildAddon,
     estimateAnnualWithheldTax: estimateAnnualWithheldTax,
   };
 })(window);

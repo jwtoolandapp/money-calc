@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "notice": "각 계산기의 기준일과 근거 자료. lastReviewed 는 js/constants-2026.js 의 검증 주석에 기록된 날짜를 그대로 옮긴 것이고, references 는 그 검증에서 실제로 참조한 기관 자료만 적는다. 근거를 특정할 수 없는 계산기는 references 를 비워 두고 기준일만 표기한다. 지어내지 말 것.",
+  "authorities": {
+    "law": { "name": "국가법령정보센터", "url": "https://www.law.go.kr" },
+    "nts": { "name": "국세청", "url": "https://www.nts.go.kr" },
+    "nps": { "name": "국민연금공단", "url": "https://www.nps.or.kr" },
+    "moel": { "name": "고용노동부", "url": "https://www.moel.go.kr" },
+    "minimumwage": { "name": "최저임금위원회", "url": "https://www.minimumwage.go.kr" },
+    "applyhome": { "name": "청약홈(한국부동산원)", "url": "https://www.applyhome.co.kr" },
+    "finlife": { "name": "금융감독원 금융상품통합비교공시", "url": "https://finlife.fss.or.kr" },
+    "fss": { "name": "금융감독원", "url": "https://www.fss.or.kr" },
+    "dhlottery": { "name": "동행복권", "url": "https://dhlottery.co.kr" }
+  },
+  "pages": {
+    "acquisition-tax": {
+      "lastReviewed": "2026-08-06",
+      "references": [{ "authority": "law", "title": "지방세법 제11조(부동산 취득의 세율)" }]
+    },
+    "property-holding-tax": {
+      "lastReviewed": "2026-08-09",
+      "references": [
+        { "authority": "law", "title": "지방세법(재산세)" },
+        { "authority": "law", "title": "종합부동산세법" }
+      ]
+    },
+    "inheritance-gift-tax": {
+      "lastReviewed": "2026-08-09",
+      "references": [{ "authority": "nts", "title": "상속세·증여세 세율 및 공제" }]
+    },
+    "national-pension": {
+      "lastReviewed": "2026-08-09",
+      "references": [{ "authority": "nps", "title": "2026년 A값·보험료율·수급개시연령" }]
+    },
+    "salary-net-pay": {
+      "lastReviewed": "2026-08-09",
+      "references": [
+        { "authority": "nts", "title": "근로소득 간이세액표" },
+        { "authority": "nps", "title": "4대 보험 근로자 부담 요율" }
+      ]
+    },
+    "severance-pay": {
+      "lastReviewed": "2026-08-09",
+      "references": [{ "authority": "nts", "title": "퇴직소득세 계산방법·계산사례" }]
+    },
+    "weekly-holiday-pay": {
+      "lastReviewed": "2026-08-09",
+      "references": [
+        { "authority": "moel", "title": "주휴수당 산정 기준" },
+        { "authority": "minimumwage", "title": "2026년 최저임금" }
+      ]
+    },
+    "year-end-tax": {
+      "lastReviewed": "2026-08-09",
+      "references": [{ "authority": "nts", "title": "연말정산 소득·세액공제 기준" }]
+    },
+    "savings": {
+      "lastReviewed": "2026-07-27",
+      "references": [{ "authority": "nts", "title": "이자소득 원천징수세율(소득세 14% + 지방소득세 1.4%)" }]
+    },
+    "dividend": {
+      "lastReviewed": "2026-07-27",
+      "references": [{ "authority": "nts", "title": "배당소득 원천징수세율" }]
+    },
+    "lotto-tax": {
+      "lastReviewed": "2026-08-05",
+      "references": [
+        { "authority": "law", "title": "소득세법(기타소득 과세·비과세 특례)" },
+        { "authority": "dhlottery", "title": "회차별 당첨금 현황" }
+      ]
+    },
+    "dsr": {
+      "lastReviewed": "2026-08-04",
+      "references": [{ "authority": "fss", "title": "스트레스 DSR 적용 기준" }]
+    },
+    "chungyak": {
+      "lastReviewed": "2026-07-27",
+      "references": [{ "authority": "applyhome", "title": "민영주택 청약 가점제 배점" }]
+    },
+    "loan": {
+      "lastReviewed": "2026-07-27",
+      "references": [{ "authority": "fss", "title": "중도상환수수료 부과 기준" }]
+    },
+    "fx-fee": {
+      "lastReviewed": "2026-07-27",
+      "references": []
+    },
+    "brokerage-fee": { "lastReviewed": "2026-07-27", "references": [] },
+    "card-mix": { "lastReviewed": "2026-07-27", "references": [] },
+    "fire": { "lastReviewed": "2026-07-27", "references": [] },
+    "goal-saving": { "lastReviewed": "2026-07-27", "references": [] },
+    "inflation-value": { "lastReviewed": "2026-07-27", "references": [] },
+    "jeonse-vs-monthly": { "lastReviewed": "2026-07-27", "references": [] },
+    "salary-raise": { "lastReviewed": "2026-07-27", "references": [] },
+    "stock-average": { "lastReviewed": "2026-07-27", "references": [] }
+  }
+}

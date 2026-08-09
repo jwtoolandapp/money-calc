@@ -153,7 +153,16 @@
       <!-- AD SLOT -->
     </div>
 
-    <div id="glossary-mount"></div>
+    <!-- glossary:start (생성물 — tools/prerender-glossary.mjs 로 갱신) -->
+    <section class="glossary-section" aria-labelledby="glossary-heading">
+    <div class="glossary-head"><h2 id="glossary-heading">🔤 쉬운 용어 설명</h2><label class="glossary-toggle"><span>더 쉽게 설명</span><input type="checkbox" id="glossary-easy-toggle"><span class="switch" aria-hidden="true"></span></label></div><div class="glossary-list"><details class="glossary-item" open><summary>상한요율</summary><div class="glossary-body"><p class="normal-mode">법령이 정한 중개보수의 최대 비율입니다. 실제 지급액은 이 비율 이내에서 중개의뢰인과 개업공인중개사가 협의해 정합니다.</p><p class="easy-mode">&quot;무조건 이 비율만큼 낸다&quot;가 아니라 &quot;최대 이만큼까지만 받을 수 있다&quot;는 뜻이에요. 실제로는 이보다 낮게 협의하는 경우도 많아요.</p></div></details><details class="glossary-item"><summary>한도액</summary><div class="glossary-body"><p class="normal-mode">거래금액이 낮은 구간(매매 2억원 미만, 임대차 1억원 미만)에 별도로 정해진 중개보수의 최대 금액입니다. 요율로 계산한 금액이 한도액을 넘으면 한도액이 상한이 됩니다.</p><p class="easy-mode">집값이 낮을수록 요율(%)만 적용하면 너무 적은 돈이라 중개사에게 불리할 수 있어서, 반대로 요율로 계산한 금액이 너무 크지 않게 최대 금액을 따로 정해둔 거예요.</p><div class="example easy-mode">5천만원 미만 매매는 요율 0.6%와 별개로 한도액 25만원이 있어, 둘 중 더 낮은 금액이 상한이 돼요.</div></div></details><details class="glossary-item"><summary>월세 환산 거래금액</summary><div class="glossary-body"><p class="normal-mode">월세가 있는 임대차 계약의 중개보수를 계산하기 위해 보증금과 월세를 하나의 금액으로 합산한 값입니다. 보증금 + (월세×100)이 원칙이며, 합산액이 5천만원 미만이면 보증금 + (월세×70)을 씁니다.</p><p class="easy-mode">월세는 매달 내는 돈이라 보증금처럼 &quot;한 번에 얼마&quot;로 보기 어려워서, 월세에 100(또는 5천만원 미만이면 70)을 곱해 보증금과 같은 기준으로 바꿔주는 거예요.</p><div class="example easy-mode">보증금 1,000만원 + 월세 50만원 → 1,000만원 + (50만원×100) = 6,000만원이 거래금액이 돼요.</div></div></details></div>
+    </section>
+    <!-- glossary:end -->
+    <!-- basis:start (생성물 — tools/render-basis.mjs 로 갱신) -->
+    <section class="basis-section" aria-labelledby="basis-heading">
+    <h2 id="basis-heading">근거 자료와 기준일</h2><p class="basis-date">이 페이지의 세율·요율은 <time datetime="2026-07-27">2026-07-27</time> 기준으로 확인했습니다.</p><p class="basis-note">이 계산기는 법정 요율이 아니라 사용자가 입력한 조건으로만 계산합니다. 금융회사·지자체마다 실제 적용 기준이 다를 수 있습니다.</p>
+    </section>
+    <!-- basis:end -->
     <section class="content-placeholder" aria-labelledby="fee-explanation-title">
       <h2 id="fee-explanation-title">중개수수료(복비) 계산 안내</h2>
       <div class="placeholder-box">

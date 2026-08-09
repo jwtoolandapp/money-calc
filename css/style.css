@@ -1179,3 +1179,124 @@ a.calculator-card:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* 금리 표 (tools/render-rates.mjs 생성물) — 글로서리 카드와 같은 톤을 유지한다. */
+.rates-section {
+  margin: 24px 0;
+  padding: 20px 22px;
+  border: 1px solid var(--navy-200);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
+
+.rates-section h2 {
+  margin: 0 0 4px;
+}
+
+.rates-section h3 {
+  margin: 20px 0 10px;
+  font-size: 1rem;
+  color: var(--navy-700);
+}
+
+/* 은행명·상품명이 길어 모바일에서 넘치므로 표 자체만 가로 스크롤시킨다.
+   페이지 본문이 가로로 밀리면 안 된다. */
+.rates-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rates-table {
+  width: 100%;
+  min-width: 460px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.rates-table th,
+.rates-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--navy-100);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.rates-table thead th {
+  background: var(--mint-50);
+  color: var(--navy-700);
+  font-weight: 600;
+}
+
+.rates-table tbody th {
+  font-weight: 600;
+}
+
+.rates-table td:nth-child(n + 3) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.rates-caveat {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--warning-bg);
+  border-left: 3px solid var(--warning-border);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.rates-source {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  color: var(--navy-500);
+}
+
+/* 근거 자료·기준일 (tools/render-basis.mjs 생성물) */
+.basis-section {
+  margin: 24px 0;
+  padding: 20px 22px;
+  border: 1px solid var(--navy-200);
+  border-radius: var(--radius-md);
+  background: var(--white);
+}
+
+.basis-section h2 {
+  margin: 0 0 10px;
+}
+
+.basis-date {
+  margin: 0 0 12px;
+  color: var(--navy-700);
+  font-size: 0.95rem;
+}
+
+.basis-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.basis-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--mint-50);
+  font-size: 0.92rem;
+}
+
+.basis-title {
+  font-weight: 600;
+}
+
+.basis-note {
+  margin: 12px 0 0;
+  color: var(--navy-500);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}

@@ -63,10 +63,20 @@
     const houseCount = isHouse ? U.clamp(Math.round(nonNegative(source.houseCount)) || 1, 1, 4) : ZERO;
     const regulated = source.regulated === true || source.regulated === '1';
     const areaOver85 = source.areaOver85 === true || source.areaOver85 === '1';
+    const acquisitionType = ['purchase', 'inheritance', 'gift'].includes(source.acquisitionType) ? source.acquisitionType : 'purchase';
+    const firstTimeBuyer = source.firstTimeBuyer === true || source.firstTimeBuyer === '1';
+    const inheritanceSingleHouse = source.inheritanceSingleHouse === true || source.inheritanceSingleHouse === '1';
+    const giftHeavy = source.giftHeavy === true || source.giftHeavy === '1';
 
     let rate;
     let category;
-    if (isHouse) {
+    if (acquisitionType === 'inheritance') {
+      rate = inheritanceSingleHouse ? TAX.INHERITANCE_RATE.SINGLE_HOUSE_SPECIAL : TAX.INHERITANCE_RATE.STANDARD;
+      category = 'inheritance';
+    } else if (acquisitionType === 'gift') {
+      rate = giftHeavy ? TAX.GIFT_RATE.HEAVY_REGULATED : TAX.GIFT_RATE.STANDARD;
+      category = giftHeavy ? 'heavy12' : 'gift';
+    } else if (isHouse) {
       const resolved = resolveHouseRate(price, houseCount, regulated);
       rate = resolved.rate;
       category = resolved.category;
@@ -79,7 +89,10 @@
     const agriRate = agriTaxRate(category, isHouse, areaOver85);
     const totalRate = rate + eduRate + agriRate;
 
-    const acquisitionTax = Math.round(price * rate);
+    const rawAcquisitionTax = Math.round(price * rate);
+    const firstTimeExemption = acquisitionType === 'purchase' && isHouse && firstTimeBuyer && price <= TAX.FIRST_TIME_BUYER_EXEMPTION.PRICE_LIMIT
+      ? Math.min(rawAcquisitionTax, TAX.FIRST_TIME_BUYER_EXEMPTION.EXEMPTION_CAP) : ZERO;
+    const acquisitionTax = Math.max(ZERO, rawAcquisitionTax - firstTimeExemption);
     const eduTax = Math.round(price * eduRate);
     const agriTax = Math.round(price * agriRate);
     const totalTax = acquisitionTax + eduTax + agriTax;
@@ -90,12 +103,18 @@
       houseCount,
       regulated,
       areaOver85,
+      acquisitionType,
+      firstTimeBuyer,
+      inheritanceSingleHouse,
+      giftHeavy,
       category,
       rate,
       eduRate,
       agriRate,
       totalRate,
       acquisitionTax,
+      rawAcquisitionTax,
+      firstTimeExemption,
       eduTax,
       agriTax,
       totalTax,
@@ -113,6 +132,8 @@
   if (typeof document === 'undefined') return;
 
   function categoryLabel(result) {
+    if (result.acquisitionType === 'inheritance') return result.inheritanceSingleHouse ? '상속 1주택 특례' : '상속 취득';
+    if (result.acquisitionType === 'gift') return result.giftHeavy ? '증여 중과' : '증여 취득';
     if (!result.isHouse) return '주택 외 부동산(4%)';
     if (result.category === 'heavy12') return '다주택·법인 중과(12%)';
     if (result.category === 'heavy8') return '다주택 중과(8%)';
@@ -136,6 +157,10 @@
         houseCount: U.parseNumber(houseCountSelect.value),
         regulated: form.elements.regulated.checked,
         areaOver85: form.elements.areaOver85.value === '1',
+        acquisitionType: form.elements.acquisitionType.value,
+        firstTimeBuyer: form.elements.firstTimeBuyer.checked,
+        inheritanceSingleHouse: form.elements.inheritanceSingleHouse.checked,
+        giftHeavy: form.elements.giftHeavy.checked,
       };
     }
 
@@ -156,7 +181,11 @@
       value.textContent = U.formatWon(result.totalTax);
       summary.textContent = `${categoryLabel(result)} 기준, 취득세율 ${U.formatNumber(result.rate * MATH.HUNDRED, 2)}%를 적용한 예상 납부세액입니다.`;
       status.hidden = false;
-      if (result.category === 'heavy8' || result.category === 'heavy12') {
+      if (result.firstTimeExemption > ZERO) {
+        status.textContent = `생애최초 감면 ${U.formatWon(result.firstTimeExemption)}을 취득세 본세에서 차감했습니다. 전입·보유 요건을 반드시 확인하세요.`;
+      } else if (result.acquisitionType === 'inheritance' || result.acquisitionType === 'gift') {
+        status.textContent = '상속·증여 취득세율은 적용요건에 따라 달라질 수 있어 관할 지방자치단체에서 최종 확인하세요.';
+      } else if (result.category === 'heavy8' || result.category === 'heavy12') {
         status.textContent = '다주택 중과는 조정대상지역 지정 현황에 따라 달라질 수 있어, 계약 전 국토교통부·위택스 공고로 최종 확인하세요.';
       } else if (!result.isHouse) {
         status.textContent = '상가·토지 등 주택 외 부동산은 보유 주택 수와 무관하게 4% 표준세율이 적용됩니다.';
@@ -175,7 +204,9 @@
 
     function recalculate() {
       render(calculateAcquisitionTax(readInput()));
-      U.setQuery(U.formToParams(form));
+      const params = U.formToParams(form);
+      params.set('propertyType', propertyType);
+      U.setQuery(params);
     }
 
     propertyTypeButtons.forEach((button) => {
@@ -188,6 +219,7 @@
 
     U.setupNumericInputs(form);
     U.restoreForm(form);
+    if (U.queryParams().get('propertyType') === 'non-house') propertyType = 'non-house';
     updatePresentation();
     form.addEventListener('input', () => {
       updatePresentation();

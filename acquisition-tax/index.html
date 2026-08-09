@@ -88,6 +88,8 @@
       <section class="panel" aria-labelledby="acq-input-title">
         <h2 id="acq-input-title">취득 정보</h2>
 
+        <div class="field"><label for="acquisition-type">취득 원인</label><select id="acquisition-type" name="acquisitionType"><option value="purchase">매매</option><option value="inheritance">상속</option><option value="gift">증여</option></select></div>
+
         <div class="segmented" role="group" aria-label="부동산 유형">
           <button type="button" data-property-type="house" aria-pressed="true">주택</button>
           <button type="button" data-property-type="non-house" aria-pressed="false">주택 외(상가·토지 등)</button>
@@ -129,6 +131,9 @@
               <small>2주택·3주택 중과세율에 영향을 줍니다. 취득 시점 최신 지정 현황을 확인하세요.</small>
             </span>
           </label>
+          <label class="choice-card" style="margin-top:18px"><input name="firstTimeBuyer" type="checkbox" value="1"><span class="choice-copy"><strong>생애최초 주택 구입 감면</strong><small>실거래가 12억원 이하, 취득세 최대 200만원. 전입·보유 요건은 별도 확인하세요.</small></span></label>
+          <label class="choice-card" style="margin-top:18px"><input name="inheritanceSingleHouse" type="checkbox" value="1"><span class="choice-copy"><strong>무주택자의 1주택 상속 특례</strong></span></label>
+          <label class="choice-card" style="margin-top:18px"><input name="giftHeavy" type="checkbox" value="1"><span class="choice-copy"><strong>조정대상지역 고가주택 증여 중과</strong><small>정확한 적용요건은 관할 지자체에서 확인하세요.</small></span></label>
         </div>
       </section>
     </form>
@@ -156,7 +161,16 @@
       <!-- AD SLOT -->
     </div>
 
-    <div id="glossary-mount"></div>
+    <!-- glossary:start (생성물 — tools/prerender-glossary.mjs 로 갱신) -->
+    <section class="glossary-section" aria-labelledby="glossary-heading">
+    <div class="glossary-head"><h2 id="glossary-heading">🔤 쉬운 용어 설명</h2><label class="glossary-toggle"><span>더 쉽게 설명</span><input type="checkbox" id="glossary-easy-toggle"><span class="switch" aria-hidden="true"></span></label></div><div class="glossary-list"><details class="glossary-item" open><summary>다주택 중과세율</summary><div class="glossary-body"><p class="normal-mode">2주택 이상을 취득할 때 표준세율(1~3%) 대신 적용되는 높은 취득세율입니다. 조정대상지역 2주택은 8%, 3주택은 12%가 적용됩니다.</p><p class="easy-mode">집을 이미 갖고 있는데 또 사면 취득세를 훨씬 많이 내야 해요. 특히 조정대상지역(정부가 규제하는 지역)이면 세율이 더 확 뛰어요.</p><div class="example easy-mode">조정대상지역에서 3주택째 집을 사면 취득세만 12%예요. 5억원짜리 집이면 취득세만 6,000만원이에요.</div></div></details><details class="glossary-item"><summary>조정대상지역</summary><div class="glossary-body"><p class="normal-mode">정부가 주택시장 과열을 막기 위해 지정한 규제지역입니다. 다주택자 취득세 중과 여부를 가르는 기준이 됩니다.</p><p class="easy-mode">지정·해제가 수시로 바뀌기 때문에, 계약 전에 반드시 최신 지정 현황을 국토교통부나 관할 구청에서 확인해야 해요.</p></div></details><details class="glossary-item"><summary>지방교육세·농어촌특별세</summary><div class="glossary-body"><p class="normal-mode">취득세를 낼 때 함께 부과되는 부가세금입니다. 지방교육세는 표준세율 구간에서는 취득세율의 10분의 1, 중과세율 구간에서는 0.4% 고정이며, 농어촌특별세는 전용면적 85㎡ 초과 주택에만 추가로 붙습니다.</p><p class="easy-mode">내가 내는 돈이 &quot;취득세&quot; 하나가 아니라 취득세+지방교육세(+농특세) 세 가지를 합친 금액이라는 뜻이에요. 그래서 실제 부담률은 발표되는 취득세율보다 조금 더 높아요.</p><div class="example easy-mode">1주택 6억원 이하(85㎡ 초과)는 취득세 1%가 아니라 지방교육세 0.1%, 농특세 0.2%까지 더해 실제로는 1.3%를 내요.</div></div></details></div>
+    </section>
+    <!-- glossary:end -->
+    <!-- basis:start (생성물 — tools/render-basis.mjs 로 갱신) -->
+    <section class="basis-section" aria-labelledby="basis-heading">
+    <h2 id="basis-heading">근거 자료와 기준일</h2><p class="basis-date">이 페이지의 세율·요율은 <time datetime="2026-08-06">2026-08-06</time> 기준으로 확인했습니다.</p><ul class="basis-list"><li><span class="basis-title">지방세법 제11조(부동산 취득의 세율)</span><a href="https://www.law.go.kr" rel="nofollow noopener" target="_blank">국가법령정보센터</a></li></ul><p class="basis-note">제도는 개정될 수 있습니다. 실제 신고·가입 전에는 위 기관의 최신 자료에서 다시 확인하세요.</p>
+    </section>
+    <!-- basis:end -->
     <section class="content-placeholder" aria-labelledby="acq-explanation-title">
       <h2 id="acq-explanation-title">취득세 계산 안내</h2>
       <div class="placeholder-box">

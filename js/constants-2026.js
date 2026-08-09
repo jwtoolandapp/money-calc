@@ -196,6 +196,28 @@
         EXCESS_RATE: 0.3,
       },
 
+      // money-calc 3차 업데이트(2026-08-09) — 기존 2026-07-27 검증 완료 블록은 그대로 두고 추가만 함.
+      TRADITIONAL_MARKET_RATE: 0.4,
+      PUBLIC_TRANSPORT_RATE: 0.4,
+      CULTURE_RATE: 0.3,
+      CULTURE_ELIGIBLE_SALARY_LIMIT: 70000000,
+      ADDITIONAL_CARD_CAP_BRACKETS: [
+        { salaryUpTo: 70000000, cap: 3000000 },
+        { salaryUpTo: null, cap: 2000000 },
+      ],
+      MEDICAL_DEPENDENT_CAP: 7000000,
+      MEDICAL_FERTILITY_RATE: 0.3,
+      MEDICAL_PREMATURE_RATE: 0.2,
+      EDUCATION_CAP_PRESCHOOL_TO_HIGH: 3000000,
+      EDUCATION_CAP_COLLEGE: 9000000,
+      ADDITIONAL_DEDUCTIONS: {
+        ELDERLY_70_UP: 1000000,
+        DISABLED: 2000000,
+        SINGLE_WOMAN_HEAD: 500000,
+        SINGLE_PARENT: 1000000,
+      },
+      // 검증 완료(2026-08-09): 기부금 이월공제 가능기간 10년. 유형별 한도는 TODO: 원문 재검증.
+      DONATION_CARRYFORWARD_YEARS: 10,
       // 검증 완료(2026-08-06): 기납부세액 자동 추정은 이제 js/withholding-table-2026.js의
       // 국세청 근로소득 간이세액표 원본 조견표(사용자 제공 hwpx 파일에서 추출)를 사용한다.
       // 아래 비율은 그 모듈이 로드되지 않았을 때만 쓰이는 방어적 폴백값(의도적 단순화 — 유지).
@@ -269,7 +291,7 @@
         // USD만 직접 검증 완료(2026-08-05, 1.75%). EUR/EUR·JPY·기타통화는 USD 대비 상대적 추정치이며
         // 통화별 실측 데이터로 추가 검증 권장 — TODO: EUR/JPY/OTHER 개별 검증
         USD: 0.0175,
-        EUR: 0.0199,
+        EUR: 0.0195, // TODO: 은행연합회 1차 출처 원문 재검증
         JPY: 0.0175,
         OTHER: 0.02,
       },
@@ -363,8 +385,126 @@
       AGRI_TAX_HEAVY_8: 0.006,
       AGRI_TAX_HEAVY_12: 0.01,
       AGRI_TAX_NON_HOUSE: 0.002,
-    },
-  };
 
+      // money-calc 3차 업데이트(2026-08-09) — 생애최초 감면 및 무상취득 세율.
+      FIRST_TIME_BUYER_EXEMPTION: {
+        PRICE_LIMIT: 1200000000,
+        EXEMPTION_CAP: 2000000,
+        REQUIRES_RESIDENCE: true,
+      },
+      INHERITANCE_RATE: {
+        STANDARD: 0.028, // TODO: 상속 표준세율 원문 재검증
+        SINGLE_HOUSE_SPECIAL: 0.008,
+      },
+      GIFT_RATE: {
+        STANDARD: 0.035,
+        HEAVY_REGULATED: 0.12, // TODO: 2025-10-15 대책 이후 중과 적용요건 원문 재검증
+      },
+    },
+
+    /* money-calc 3차 신규 계산기 상수 — 업데이트3차_빌드지침.md 기준 */
+    PROPERTY_HOLDING_TAX: {
+      // 2026-08-09 검증 기준: 2026년 주택 재산세·종부세 시행 기준.
+      SINGLE_HOUSE_SPECIAL_PRICE_LIMIT: 900000000,
+      FAIR_MARKET_VALUE_RATIO: { SPECIAL_LOW: 0.43, SPECIAL_MID: 0.44, SPECIAL_HIGH: 0.45, STANDARD: 0.6 },
+      HOUSE_TAX_BRACKETS_STANDARD: [
+        { upTo: 60000000, rate: 0.001, quickDeduction: 0 },
+        { upTo: 150000000, rate: 0.0015, quickDeduction: 30000 },
+        { upTo: 300000000, rate: 0.0025, quickDeduction: 180000 },
+        { upTo: null, rate: 0.004, quickDeduction: 630000 },
+      ],
+      HOUSE_TAX_BRACKETS_SPECIAL: [
+        { upTo: 60000000, rate: 0.0005, quickDeduction: 0 },
+        { upTo: 150000000, rate: 0.001, quickDeduction: 30000 }, // TODO: 특례 구간 누진공제 원문 재검증
+        { upTo: 300000000, rate: 0.002, quickDeduction: 180000 },
+        { upTo: null, rate: 0.0035, quickDeduction: 630000 },
+      ],
+      URBAN_AREA_RATE: 0.0014,
+      LOCAL_EDU_TAX_RATE: 0.2,
+      COMPREHENSIVE_TAX_DEDUCTION: { SINGLE_HOUSE: 1200000000, STANDARD: 900000000 },
+      COMPREHENSIVE_FAIR_MARKET_VALUE_RATIO: 0.6,
+      COMPREHENSIVE_TAX_BRACKETS_UNDER_2: [
+        { upTo: 300000000, rate: 0.005, quickDeduction: 0 },
+        { upTo: 600000000, rate: 0.007, quickDeduction: 600000 },
+        { upTo: 1200000000, rate: 0.01, quickDeduction: 2400000 },
+        { upTo: 2500000000, rate: 0.013, quickDeduction: 6000000 },
+        { upTo: 5000000000, rate: 0.015, quickDeduction: 11000000 },
+        { upTo: 9400000000, rate: 0.02, quickDeduction: 36000000 },
+        { upTo: null, rate: 0.027, quickDeduction: 101800000 },
+      ], // TODO: 누진공제액은 세율표 역산값 — 시행령 원문 대조 필요
+      COMPREHENSIVE_TAX_BRACKETS_OVER_3: [
+        { upTo: 300000000, rate: 0.005, quickDeduction: 0 },
+        { upTo: 600000000, rate: 0.007, quickDeduction: 600000 },
+        { upTo: 1200000000, rate: 0.01, quickDeduction: 2400000 },
+        { upTo: 2500000000, rate: 0.02, quickDeduction: 15000000 },
+        { upTo: 5000000000, rate: 0.03, quickDeduction: 40000000 },
+        { upTo: 9400000000, rate: 0.04, quickDeduction: 90000000 },
+        { upTo: null, rate: 0.05, quickDeduction: 184000000 },
+      ], // TODO: 누진공제액은 시행령 원문 대조 필요
+    },
+    INHERITANCE_GIFT_TAX: {
+      // 2026-08-09 검증 기준: 국세청 상속·증여세 세율 및 공제 원문 직접 확인.
+      TAX_BRACKETS: [
+        { upTo: 100000000, rate: 0.1, quickDeduction: 0 },
+        { upTo: 500000000, rate: 0.2, quickDeduction: 10000000 },
+        { upTo: 1000000000, rate: 0.3, quickDeduction: 60000000 },
+        { upTo: 3000000000, rate: 0.4, quickDeduction: 160000000 },
+        { upTo: null, rate: 0.5, quickDeduction: 460000000 },
+      ],
+      REPORT_TAX_CREDIT_RATE: 0.03,
+      INHERITANCE: {
+        MINOR_ADULT_AGE: 19,
+        BASIC_DEDUCTION: 200000000, LUMP_SUM_DEDUCTION: 500000000, SPOUSE_MIN_DEDUCTION: 500000000,
+        CHILD_DEDUCTION: 50000000, MINOR_DEDUCTION_PER_YEAR: 10000000, ELDERLY_DEDUCTION: 50000000,
+        FINANCIAL_ASSET_DEDUCTION_BRACKETS: [
+          { upTo: 20000000, rate: 1, cap: null }, { upTo: 100000000, rate: 0, cap: 20000000 },
+          { upTo: 1000000000, rate: 0.2, cap: null }, { upTo: null, rate: 0, cap: 200000000 },
+        ],
+      },
+      GIFT: { SPOUSE: 600000000, ADULT_CHILD: 50000000, MINOR_CHILD: 20000000, PARENT_FROM_CHILD: 50000000, OTHER_RELATIVE: 10000000, MARRIAGE_CHILDBIRTH_EXTRA: 100000000 },
+    },
+    NATIONAL_PENSION: {
+      // 2026-08-09 검증 기준: 국민연금공단 2026년 A값·보험료율·수급연령 원문 확인.
+      A_VALUE_2026: 3193511,
+      PROPORTIONAL_CONSTANT: 1.29, // 참고용 상수. 이번 선형 근사 계산에는 사용하지 않음.
+      INCOME_REPLACEMENT_RATE: 0.43,
+      MAX_CREDITED_YEARS: 40, // 2026-08-09 결정: 40년 가입 소득대체율 벤치마크용 선형 근사 상한.
+      CONTRIBUTION_RATE: 0.095,
+      INCOME_CEILING: 6590000,
+      INCOME_FLOOR: 410000,
+      EARLY_PENSION: { MAX_YEARS: 5, REDUCTION_PER_YEAR: 0.06 },
+      DEFERRED_PENSION: { MAX_YEARS: 5, INCREASE_PER_YEAR: 0.072 },
+      PENSION_AGE_BY_BIRTH_YEAR: [
+        { birthYearUpTo: 1956, normalAge: 61, earlyAge: 56 }, { birthYearUpTo: 1960, normalAge: 62, earlyAge: 57 },
+        { birthYearUpTo: 1964, normalAge: 63, earlyAge: 58 }, { birthYearUpTo: 1968, normalAge: 64, earlyAge: 59 },
+        { birthYearUpTo: null, normalAge: 65, earlyAge: 60 },
+      ],
+    },
+    FOUR_MAJOR_INSURANCE: {
+      // 2026-08-09 검증 기준: 2026년 근로자 부담분 요율.
+      NATIONAL_PENSION_RATE: 0.0475, NATIONAL_PENSION_CEILING: 6590000, NATIONAL_PENSION_FLOOR: 410000,
+      HEALTH_INSURANCE_RATE: 0.03595, LONG_TERM_CARE_RATE_OF_HEALTH: 0.1314, EMPLOYMENT_INSURANCE_RATE: 0.009,
+      LOCAL_INCOME_TAX_RATE: 0.1,
+      MEAL_ALLOWANCE_TAX_FREE: 200000, // TODO: 비과세 식대 한도 시행령 원문 재검증
+      // TODO: 국세청 간이세액표 8~20세 자녀 추가 차감액 원문 재검증. 구조 검증용 잠정치.
+      WITHHOLDING_CHILD_ADDON_TODO: { ONE_CHILD: 12500, TWO_CHILDREN: 29160, EACH_AFTER_TWO: 25000 },
+    },
+    SEVERANCE_PAY: {
+      // 2026-08-09 검증 기준: 국세청 퇴직소득세 계산방법·계산사례 원문 확인.
+      MIN_SERVICE_DAYS_FOR_ELIGIBILITY: 365, AVERAGE_WAGE_DAYS: 30, BONUS_MONTHLY_RATIO: 1 / 12 * 3,
+      SERVICE_YEAR_DEDUCTION_BRACKETS: [
+        { upToYears: 5, perYear: 1000000, base: 0 }, { upToYears: 10, perYear: 2000000, base: 5000000 },
+        { upToYears: 20, perYear: 2500000, base: 15000000 }, { upToYears: null, perYear: 3000000, base: 40000000 },
+      ],
+      CONVERTED_SALARY_DEDUCTION_BRACKETS: [
+        { upTo: 8000000, rate: 1, base: 0 }, { upTo: 70000000, rate: 0.6, base: 8000000 },
+        { upTo: 100000000, rate: 0.55, base: 45200000 }, { upTo: 300000000, rate: 0.45, base: 61700000 },
+        { upTo: null, rate: 0.35, base: 151700000 },
+      ],
+    },
+    // 2026-08-09 검증 기준: 고용노동부 주휴수당 산식 및 2026년 최저임금.
+    WEEKLY_HOLIDAY_PAY: { ELIGIBILITY_MIN_WEEKLY_HOURS: 15, STANDARD_WEEKLY_HOURS: 40, STANDARD_DAILY_HOURS: 8 },
+    MINIMUM_WAGE: { YEAR: 2026, HOURLY: 10320, MONTHLY_209H: 2156880 },
+  };
   global.CALC_CONSTANTS_2026 = Object.freeze(constants);
 })(window);

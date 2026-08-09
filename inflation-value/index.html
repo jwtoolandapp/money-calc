@@ -143,7 +143,16 @@
       <!-- AD SLOT -->
     </div>
 
-    <div id="glossary-mount"></div>
+    <!-- glossary:start (생성물 — tools/prerender-glossary.mjs 로 갱신) -->
+    <section class="glossary-section" aria-labelledby="glossary-heading">
+    <div class="glossary-head"><h2 id="glossary-heading">🔤 쉬운 용어 설명</h2><label class="glossary-toggle"><span>더 쉽게 설명</span><input type="checkbox" id="glossary-easy-toggle"><span class="switch" aria-hidden="true"></span></label></div><div class="glossary-list"><details class="glossary-item" open><summary>구매력</summary><div class="glossary-body"><p class="normal-mode">같은 금액의 돈으로 실제 살 수 있는 물건이나 서비스의 양입니다. 물가가 오르면 명목 금액이 그대로여도 구매력은 줄어듭니다.</p><p class="easy-mode">&quot;돈이 얼마 있냐&quot;가 아니라 &quot;그 돈으로 뭘 얼마나 살 수 있냐&quot;를 뜻해요. 물가가 오르면 지갑 속 돈은 그대로인데 살 수 있는 게 줄어드는 게 바로 구매력 감소예요.</p></div></details><details class="glossary-item"><summary>누적 물가 배율</summary><div class="glossary-body"><p class="normal-mode">경과 연수 동안 물가가 매년 같은 비율로 올랐다고 가정할 때, 처음 금액이 몇 배로 불어나는지를 나타내는 값입니다.</p><p class="easy-mode">예금이 복리로 불어나는 것처럼 물가도 매년 쌓여서 오르기 때문에, 단순히 &quot;연 2.5% × 10년 = 25%&quot;가 아니라 그보다 더 크게 불어나요.</p><div class="example easy-mode">연 2.5% 물가상승률이 10년간 이어지면 누적 배율은 약 1.28배가 돼요. 단순 곱셈(25%)보다 더 큰 셈이에요.</div></div></details><details class="glossary-item"><summary>가정 물가상승률</summary><div class="glossary-body"><p class="normal-mode">통계청이 발표하는 실제 소비자물가지수(CPI)가 아니라, 계산을 위해 사용자가 직접 입력하는 예상 물가상승률입니다.</p><p class="easy-mode">이 계산기는 실제 과거 물가 데이터를 가져오는 게 아니라 &quot;앞으로 매년 이 정도씩 오른다고 가정하면&quot;이라는 시나리오를 계산해주는 도구예요.</p></div></details></div>
+    </section>
+    <!-- glossary:end -->
+    <!-- basis:start (생성물 — tools/render-basis.mjs 로 갱신) -->
+    <section class="basis-section" aria-labelledby="basis-heading">
+    <h2 id="basis-heading">근거 자료와 기준일</h2><p class="basis-date">이 페이지의 세율·요율은 <time datetime="2026-07-27">2026-07-27</time> 기준으로 확인했습니다.</p><p class="basis-note">이 계산기는 법정 요율이 아니라 사용자가 입력한 조건으로만 계산합니다. 금융회사·지자체마다 실제 적용 기준이 다를 수 있습니다.</p>
+    </section>
+    <!-- basis:end -->
     <section class="content-placeholder" aria-labelledby="inflation-explanation-title">
       <h2 id="inflation-explanation-title">물가 실질가치 계산 안내</h2>
       <div class="placeholder-box">
