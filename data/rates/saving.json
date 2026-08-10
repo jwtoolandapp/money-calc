@@ -81,20 +81,14 @@
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 2.4,
-          "maxRate": 2.4
-        },
-        {
-          "months": 6,
-          "rateType": "단리",
           "baseRate": 2.3,
           "maxRate": 2.3
         },
         {
-          "months": 12,
+          "months": 6,
           "rateType": "단리",
-          "baseRate": 2.7,
-          "maxRate": 2.7
+          "baseRate": 2.4,
+          "maxRate": 2.4
         },
         {
           "months": 12,
@@ -103,10 +97,10 @@
           "maxRate": 2.55
         },
         {
-          "months": 24,
+          "months": 12,
           "rateType": "단리",
-          "baseRate": 2.75,
-          "maxRate": 2.75
+          "baseRate": 2.7,
+          "maxRate": 2.7
         },
         {
           "months": 24,
@@ -115,16 +109,22 @@
           "maxRate": 2.6
         },
         {
-          "months": 36,
+          "months": 24,
           "rateType": "단리",
-          "baseRate": 2.8,
-          "maxRate": 2.8
+          "baseRate": 2.75,
+          "maxRate": 2.75
         },
         {
           "months": 36,
           "rateType": "단리",
           "baseRate": 2.65,
           "maxRate": 2.65
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.8,
+          "maxRate": 2.8
         }
       ]
     },
@@ -295,20 +295,14 @@
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 2.4,
-          "maxRate": 3.6
-        },
-        {
-          "months": 6,
-          "rateType": "단리",
           "baseRate": 2.2,
           "maxRate": 3.4
         },
         {
-          "months": 12,
+          "months": 6,
           "rateType": "단리",
-          "baseRate": 2.5,
-          "maxRate": 3.7
+          "baseRate": 2.4,
+          "maxRate": 3.6
         },
         {
           "months": 12,
@@ -317,13 +311,25 @@
           "maxRate": 3.5
         },
         {
+          "months": 12,
+          "rateType": "단리",
+          "baseRate": 2.5,
+          "maxRate": 3.7
+        },
+        {
+          "months": 24,
+          "rateType": "단리",
+          "baseRate": 2.2,
+          "maxRate": 3.4
+        },
+        {
           "months": 24,
           "rateType": "단리",
           "baseRate": 2.4,
           "maxRate": 3.6
         },
         {
-          "months": 24,
+          "months": 36,
           "rateType": "단리",
           "baseRate": 2.2,
           "maxRate": 3.4
@@ -333,12 +339,6 @@
           "rateType": "단리",
           "baseRate": 2.4,
           "maxRate": 3.6
-        },
-        {
-          "months": 36,
-          "rateType": "단리",
-          "baseRate": 2.2,
-          "maxRate": 3.4
         }
       ]
     },
@@ -1193,20 +1193,14 @@
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 2,
-          "maxRate": 2.5
-        },
-        {
-          "months": 6,
-          "rateType": "단리",
           "baseRate": 1.7,
           "maxRate": 2.2
         },
         {
-          "months": 12,
+          "months": 6,
           "rateType": "단리",
-          "baseRate": 2.1,
-          "maxRate": 2.6
+          "baseRate": 2,
+          "maxRate": 2.5
         },
         {
           "months": 12,
@@ -1215,10 +1209,10 @@
           "maxRate": 2.3
         },
         {
-          "months": 24,
+          "months": 12,
           "rateType": "단리",
-          "baseRate": 2.2,
-          "maxRate": 2.7
+          "baseRate": 2.1,
+          "maxRate": 2.6
         },
         {
           "months": 24,
@@ -1227,16 +1221,22 @@
           "maxRate": 2.4
         },
         {
-          "months": 36,
+          "months": 24,
           "rateType": "단리",
-          "baseRate": 2.3,
-          "maxRate": 2.8
+          "baseRate": 2.2,
+          "maxRate": 2.7
         },
         {
           "months": 36,
           "rateType": "단리",
           "baseRate": 2,
           "maxRate": 2.5
+        },
+        {
+          "months": 36,
+          "rateType": "단리",
+          "baseRate": 2.3,
+          "maxRate": 2.8
         }
       ]
     },
