@@ -54,13 +54,30 @@ assert.equal(context.CALC_CONSTANTS_2026.FOUR_MAJOR_INSURANCE.LONG_TERM_CARE_RAT
 const pages = ['unemployment-benefit', 'parental-leave-pay', 'youth-savings', 'local-health-insurance'];
 pages.forEach((slug) => {
   const html = fs.readFileSync(path.join(root, slug, 'index.html'), 'utf8');
-  assert.match(html, /id="glossary-mount"/);
+  // 글로서리는 tools/prerender-glossary.mjs 로 정적 HTML 에 구워진다. JS 주입만으로는
+  // 네이버 Yeti 가 읽지 못하므로, 마운트 div 가 아니라 실제로 렌더된 섹션을 확인한다.
+  assert.match(html, /class="glossary-section"/, slug + ': 글로서리 사전 렌더링 누락 (node tools/prerender-glossary.mjs)');
+  assert.ok(
+    (html.match(/<details class="glossary-item"/g) || []).length > 0,
+    slug + ': 정적 글로서리 항목이 하나도 없음'
+  );
   assert.match(html, new RegExp("MoneyCalcGlossary\\.render\\('" + slug + "'\\)"));
   assert.match(html, /FAQPage/);
   assert.match(html, /결과 링크 복사/);
   assert.match(html, /본 계산기는 참고용/);
 });
-const glossary = fs.readFileSync(path.join(root, 'js/glossary.js'), 'utf8');
-pages.forEach((slug) => assert.match(glossary, new RegExp("'" + slug + "': \\[\\]")));
+// 초기 구현에서는 글로서리 항목이 비어 있는 상태(': []')를 확인했지만, 그건
+// "아직 안 썼다"를 고정하는 검사라 채우는 순간 실패한다. 지금은 반대로
+// 항목이 실제로 들어 있는지 본다 — 비면 페이지의 용어 설명이 통째로 사라진다.
+const glossaryModule = {};
+new Function('globalThis', 'window', fs.readFileSync(path.join(root, 'js/glossary.js'), 'utf8'))
+  .call(glossaryModule, glossaryModule, undefined);
+const TERMS = glossaryModule.MoneyCalcGlossary.TERMS;
+pages.forEach((slug) => {
+  assert.ok(Array.isArray(TERMS[slug]) && TERMS[slug].length > 0, slug + ': 글로서리 용어가 비어 있음');
+  TERMS[slug].forEach((entry) => {
+    assert.ok(entry.term && entry.normal && entry.easy, slug + ': 용어 항목에 term/normal/easy 가 모두 있어야 함');
+  });
+});
 
 console.log('update4 stage1 calculator tests: PASS');
