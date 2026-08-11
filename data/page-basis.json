@@ -299,6 +299,15 @@
           "title": "연금계좌 세액공제 한도와 공제율"
         }
       ]
+    },
+    "prepayment-fee": {
+      "lastReviewed": "2026-08-11",
+      "references": [
+        {
+          "authority": "fss",
+          "title": "중도상환수수료 부과 기준과 요율 인하(2025-01-13 이후 신규 체결분)"
+        }
+      ]
     }
   }
 }

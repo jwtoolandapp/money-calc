@@ -3,6 +3,11 @@
   <url><loc>https://money.jwapplab.com/</loc></url>
   <url><loc>https://money.jwapplab.com/stock-average/</loc></url>
   <url><loc>https://money.jwapplab.com/loan/</loc></url>
+  <url>
+    <loc>https://money.jwapplab.com/prepayment-fee/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url><loc>https://money.jwapplab.com/chungyak/</loc></url>
   <url><loc>https://money.jwapplab.com/year-end-tax/</loc></url>
   <url><loc>https://money.jwapplab.com/savings/</loc></url>
