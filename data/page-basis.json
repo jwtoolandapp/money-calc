@@ -326,6 +326,15 @@
           "title": "해외주식 양도소득세 기본공제와 세율"
         }
       ]
+    },
+    "income-tax": {
+      "lastReviewed": "2026-07-27",
+      "references": [
+        {
+          "authority": "nts",
+          "title": "종합소득세 기본세율표(누진공제 방식)"
+        }
+      ]
     }
   }
 }
