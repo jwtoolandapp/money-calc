@@ -5,7 +5,10 @@ const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
 const pages = ['property-holding-tax', 'inheritance-gift-tax', 'national-pension', 'salary-net-pay', 'severance-pay', 'weekly-holiday-pay'];
-const expectedTerms = { 'property-holding-tax': 5, 'inheritance-gift-tax': 5, 'national-pension': 5, 'salary-net-pay': 5, 'severance-pay': 5, 'weekly-holiday-pay': 4 };
+// 용어 개수를 페이지마다 못 박아두면 용어를 늘릴 때마다 테스트가 깨진다.
+// 지켜야 할 것은 "최소한 이만큼은 있어야 한다"와 "정적 HTML 이 TERMS 와
+// 일치한다(= 프리렌더를 돌렸다)" 두 가지다.
+const MIN_TERMS_PER_PAGE = 4;
 const context = { window: null, document: {} };
 context.window = context;
 vm.createContext(context);
@@ -20,12 +23,13 @@ for (const slug of pages) {
   // 글로서리는 tools/prerender-glossary.mjs 로 정적 HTML 에 구워져 있어야 한다.
   // JS 주입만으로는 네이버 Yeti 가 읽지 못하므로, 마운트 div 가 아니라
   // 실제로 렌더된 항목 수를 센다.
-  assert.equal(context.MoneyCalcGlossary.TERMS[slug].length, expectedTerms[slug], `${slug}: glossary terms`);
+  const termCount = context.MoneyCalcGlossary.TERMS[slug].length;
+  assert.ok(termCount >= MIN_TERMS_PER_PAGE, `${slug}: glossary terms ${termCount}개 (최소 ${MIN_TERMS_PER_PAGE}개)`);
   assert.ok(html.includes('class="glossary-section"'), `${slug}: 글로서리 사전 렌더링 누락 (node tools/prerender-glossary.mjs)`);
   assert.equal(
     [...html.matchAll(/<details class="glossary-item"/g)].length,
-    expectedTerms[slug],
-    `${slug}: 정적 글로서리 항목 수가 TERMS 와 다름`
+    termCount,
+    `${slug}: 정적 글로서리 항목 수가 TERMS 와 다름 (node tools/prerender-glossary.mjs)`
   );
 
   const jsonLdMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
