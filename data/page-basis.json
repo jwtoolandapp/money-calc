@@ -281,6 +281,15 @@
           "title": "지역가입자 보험료 부과 기준"
         }
       ]
+    },
+    "car-acquisition-tax": {
+      "lastReviewed": "2026-08-11",
+      "references": [
+        {
+          "authority": "law",
+          "title": "지방세법 제12조·시행령 제23조(자동차 취득세 표준세율)"
+        }
+      ]
     }
   }
 }

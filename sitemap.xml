@@ -9,6 +9,11 @@
   <url><loc>https://money.jwapplab.com/dsr/</loc></url>
   <url><loc>https://money.jwapplab.com/brokerage-fee/</loc></url>
   <url><loc>https://money.jwapplab.com/acquisition-tax/</loc></url>
+  <url>
+    <loc>https://money.jwapplab.com/car-acquisition-tax/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url><loc>https://money.jwapplab.com/salary-raise/</loc></url>
   <url><loc>https://money.jwapplab.com/inflation-value/</loc></url>
   <url><loc>https://money.jwapplab.com/jeonse-vs-monthly/</loc></url>
