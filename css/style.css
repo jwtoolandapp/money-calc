@@ -1300,3 +1300,12 @@ a.calculator-card:focus-visible {
   font-size: 0.85rem;
   line-height: 1.7;
 }
+
+.reviewed-note {
+  margin: 26px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--navy-200);
+  color: var(--navy-700);
+  font-size: 14px;
+  line-height: 1.7;
+}
