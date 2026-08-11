@@ -1,0 +1,6 @@
+# wrangler 로컬 캐시. Cloudflare 계정 ID 같은 환경 정보가 들어가므로 추적하지 않는다.
+.wrangler/
+
+# 빌드 산출물·의존성
+node_modules/
+dist/
