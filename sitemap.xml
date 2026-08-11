@@ -33,6 +33,11 @@
   <url><loc>https://money.jwapplab.com/inflation-value/</loc></url>
   <url><loc>https://money.jwapplab.com/jeonse-vs-monthly/</loc></url>
   <url><loc>https://money.jwapplab.com/dividend/</loc></url>
+  <url>
+    <loc>https://money.jwapplab.com/foreign-stock-tax/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url><loc>https://money.jwapplab.com/lotto-tax/</loc></url>
   <url><loc>https://money.jwapplab.com/goal-saving/</loc></url>
   <url><loc>https://money.jwapplab.com/fx-fee/</loc></url>
