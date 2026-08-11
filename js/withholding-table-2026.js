@@ -4,7 +4,8 @@
  * 조회 방법: 월급여액(비과세 제외, 원)과 공제대상가족수(본인 포함 1~11명)로 월 원천징수 예상세액을 찾는다.
  * - 공제대상가족수 산정 시 본인 및 배우자도 각각 1명으로 계산(원본 별표 2호 규정).
  * - 8세 이상 20세 이하 자녀 수를 별도로 받아 추가 차감하는 확장 구조를 제공한다.
- *   정확한 차감액은 constants-2026.js의 WITHHOLDING_CHILD_ADDON_TODO를 사용하며 원문 재검증 전 잠정치다.
+ *   2026.3.1 이후 차감액은 constants-2026.js의 WITHHOLDING_CHILD_ADDON을 사용한다.
+ *   수치는 2026-08-11 2차 출처 4곳 교차검증 값이며 국세청 원문 고시 확인 TODO는 상수 주석에 유지한다.
  * - 공제대상가족수가 11명을 초과하는 경우 원본 4호 공식(11명 세액 - (10명세액-11명세액)×초과인원)을 적용.
  * - 월급여 10,000,000원(1천만원) 초과 구간은 원본 6개 구간 공식을 그대로 적용(가족수 무관 동일 가산식).
  * - 월급여 770,000원 미만은 표 범위 밖으로 0원 처리(최저 구간과 동일한 비과세 수준).
@@ -761,11 +762,11 @@
     var count = Math.max(0, Math.floor(childCount || 0));
     if (!count) return 0;
     var constants = global.CALC_CONSTANTS_2026;
-    var config = constants && constants.FOUR_MAJOR_INSURANCE && constants.FOUR_MAJOR_INSURANCE.WITHHOLDING_CHILD_ADDON_TODO;
+    var config = constants && constants.FOUR_MAJOR_INSURANCE && constants.FOUR_MAJOR_INSURANCE.WITHHOLDING_CHILD_ADDON;
     if (!config) return 0;
-    if (count === 1) return config.ONE_CHILD;
-    if (count === 2) return config.TWO_CHILDREN;
-    return config.TWO_CHILDREN + (count - 2) * config.EACH_AFTER_TWO;
+    if (count === 1) return config.ONE;
+    if (count === 2) return config.TWO;
+    return config.TWO + (count - 2) * config.PER_ADDITIONAL_AFTER_TWO;
   }
 
   function lookupMonthlyWithholding(monthlyWage, familyCount, childCount) {

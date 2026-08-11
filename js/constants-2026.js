@@ -291,7 +291,7 @@
         // USD만 직접 검증 완료(2026-08-05, 1.75%). EUR/EUR·JPY·기타통화는 USD 대비 상대적 추정치이며
         // 통화별 실측 데이터로 추가 검증 권장 — TODO: EUR/JPY/OTHER 개별 검증
         USD: 0.0175,
-        EUR: 0.0195, // TODO: 은행연합회 1차 출처 원문 재검증
+        EUR: 0.015, // 2026-08-11 우리은행·KDB산업은행 실측 0.96~1.5% 확인 — TODO: 은행연합회 1차 출처 원문 재검증, 은행별 편차가 큰 참고값
         JPY: 0.0175,
         OTHER: 0.02,
       },
@@ -415,10 +415,12 @@
       ],
       HOUSE_TAX_BRACKETS_SPECIAL: [
         { upTo: 60000000, rate: 0.0005, quickDeduction: 0 },
-        { upTo: 150000000, rate: 0.001, quickDeduction: 30000 }, // TODO: 특례 구간 누진공제 원문 재검증
+        { upTo: 150000000, rate: 0.001, quickDeduction: 30000 },
         { upTo: 300000000, rate: 0.002, quickDeduction: 180000 },
         { upTo: null, rate: 0.0035, quickDeduction: 630000 },
-      ],
+      ], // 검증 완료(2026-08-11, 지방세법 제111조의2① 원문 직접 확인 — 전 구간 일치)
+         // 한시 조항: 법률 제17769호 부칙 제2조에 따라 2026년 12월 28일까지 성립한 납세의무에 한정하여 유효.
+         // 2027년 연장 여부는 미확정이므로 다음 연도 상수 갱신 시 반드시 재확인할 것.
       URBAN_AREA_RATE: 0.0014,
       LOCAL_EDU_TAX_RATE: 0.2,
       COMPREHENSIVE_TAX_DEDUCTION: { SINGLE_HOUSE: 1200000000, STANDARD: 900000000 },
@@ -436,11 +438,31 @@
         { upTo: 300000000, rate: 0.005, quickDeduction: 0 },
         { upTo: 600000000, rate: 0.007, quickDeduction: 600000 },
         { upTo: 1200000000, rate: 0.01, quickDeduction: 2400000 },
-        { upTo: 2500000000, rate: 0.02, quickDeduction: 15000000 },
-        { upTo: 5000000000, rate: 0.03, quickDeduction: 40000000 },
-        { upTo: 9400000000, rate: 0.04, quickDeduction: 90000000 },
-        { upTo: null, rate: 0.05, quickDeduction: 184000000 },
-      ], // TODO: 누진공제액은 시행령 원문 대조 필요
+        { upTo: 2500000000, rate: 0.02, quickDeduction: 14400000 },
+        { upTo: 5000000000, rate: 0.03, quickDeduction: 39400000 },
+        { upTo: 9400000000, rate: 0.04, quickDeduction: 89400000 },
+        { upTo: null, rate: 0.05, quickDeduction: 183400000 },
+      ], // 검증 완료(2026-08-11, 종합부동산세법 제9조① 원문 역산 대조 — 기존 4개 구간의 60만원 오차 수정)
+      // 종합부동산세법 시행령 제4조의3① 재산세액공제 정밀 산식:
+      // 공제액 = 주택분 재산세 부과세액 합계 ×
+      // [(종부세 과세표준 × 지방세법 시행령 제109조제1항제2호 공정시장가액비율) ×
+      //  지방세법 제111조제1항제3호 표준세율] ÷ 주택 합산 재산세 표준세율 상당액.
+      // 종부세 탭은 개별 주택이 아닌 공시가격 합계만 입력받아 분모의 가상 재산세 상당액을 재현할 수 없으므로,
+      // 현재는 재산세 탭에서 계산한 재산세 본세를 차감하는 간이화를 유지한다.
+      // 검증 완료(2026-08-11, 종합부동산세법 제9조⑤~⑨ 원문 직접 확인).
+      COMPREHENSIVE_TAX_CREDIT: {
+        ELDERLY_BRACKETS: [
+          { minAge: 60, maxAge: 65, rate: 0.2 },
+          { minAge: 65, maxAge: 70, rate: 0.3 },
+          { minAge: 70, maxAge: null, rate: 0.4 },
+        ],
+        LONG_TERM_BRACKETS: [
+          { minYears: 5, maxYears: 10, rate: 0.2 },
+          { minYears: 10, maxYears: 15, rate: 0.4 },
+          { minYears: 15, maxYears: null, rate: 0.5 },
+        ],
+        CREDIT_CAP: 0.8,
+      },
     },
     INHERITANCE_GIFT_TAX: {
       // 2026-08-09 검증 기준: 국세청 상속·증여세 세율 및 공제 원문 직접 확인.
@@ -486,8 +508,9 @@
       HEALTH_INSURANCE_RATE: 0.03595, LONG_TERM_CARE_RATE_OF_HEALTH: 0.1314, EMPLOYMENT_INSURANCE_RATE: 0.009,
       LOCAL_INCOME_TAX_RATE: 0.1,
       MEAL_ALLOWANCE_TAX_FREE: 200000, // TODO: 비과세 식대 한도 시행령 원문 재검증
-      // TODO: 국세청 간이세액표 8~20세 자녀 추가 차감액 원문 재검증. 구조 검증용 잠정치.
-      WITHHOLDING_CHILD_ADDON_TODO: { ONE_CHILD: 12500, TWO_CHILDREN: 29160, EACH_AFTER_TWO: 25000 },
+      // 2026.3.1 이후 원천징수분 적용. 2026-08-11 2차 출처 4곳 교차검증 일치.
+      // TODO: 국세청 원문 고시 직접 확인은 다음 검증 라운드로 이월.
+      WITHHOLDING_CHILD_ADDON: { ONE: 20830, TWO: 45830, PER_ADDITIONAL_AFTER_TWO: 33330 },
     },
     SEVERANCE_PAY: {
       // 2026-08-09 검증 기준: 국세청 퇴직소득세 계산방법·계산사례 원문 확인.
@@ -505,6 +528,71 @@
     // 2026-08-09 검증 기준: 고용노동부 주휴수당 산식 및 2026년 최저임금.
     WEEKLY_HOLIDAY_PAY: { ELIGIBILITY_MIN_WEEKLY_HOURS: 15, STANDARD_WEEKLY_HOURS: 40, STANDARD_DAILY_HOURS: 8 },
     MINIMUM_WAGE: { YEAR: 2026, HOURLY: 10320, MONTHLY_209H: 2156880 },
+
+    /* money-calc 4차 1단계 신규 계산기 상수 — 업데이트4차_1단계_빌드지침.md 기준 */
+    UNEMPLOYMENT_BENEFIT: {
+      // 검증 완료(2026-08-11): 고용보험법·시행령 및 2026년 최저임금 기준.
+      BENEFIT_RATE: 0.6,
+      BASE_WAGE_CAP: 113500,
+      MINIMUM_WAGE_HOURLY_2026: 10320, // TODO: 연도 갱신 시 반드시 재확인
+      STANDARD_DAILY_HOURS: 8,
+      MIN_BENEFIT_RATE_OF_MIN_WAGE: 0.8,
+      WAITING_PERIOD_DAYS: 7,
+      ELIGIBLE_DAYS_TABLE: [
+        { minInsuredYears: 0, maxInsuredYears: 1, under50: 120, over50OrDisabled: 120 },
+        { minInsuredYears: 1, maxInsuredYears: 3, under50: 150, over50OrDisabled: 180 },
+        { minInsuredYears: 3, maxInsuredYears: 5, under50: 180, over50OrDisabled: 210 },
+        { minInsuredYears: 5, maxInsuredYears: 10, under50: 210, over50OrDisabled: 240 },
+        { minInsuredYears: 10, maxInsuredYears: null, under50: 240, over50OrDisabled: 270 },
+      ],
+    },
+    PARENTAL_LEAVE_PAY: {
+      // 검증 완료(2026-08-11): 고용보험법 시행령의 2026년 육아휴직급여 지급 구간 기준.
+      STANDARD: [
+        { fromMonth: 1, toMonth: 3, rate: 1, cap: 2500000 },
+        { fromMonth: 4, toMonth: 6, rate: 1, cap: 2000000 },
+        { fromMonth: 7, toMonth: null, rate: 0.8, cap: 1600000 },
+      ],
+      SIX_PLUS_SIX: [
+        { month: 1, cap: 2500000 }, { month: 2, cap: 2500000 }, { month: 3, cap: 3000000 },
+        { month: 4, cap: 3500000 }, { month: 5, cap: 4000000 }, { month: 6, cap: 4500000 },
+      ],
+      SIX_PLUS_SIX_AFTER_MONTH: 6,
+      POST_SIX_PLUS_SIX_RATE: 0.8,
+      POST_SIX_PLUS_SIX_CAP: 1600000,
+      FLOOR: 700000,
+    },
+    YOUTH_LEAP_ACCOUNT: {
+      // 검증 완료(2026-08-11): 서민금융진흥원 청년도약계좌 상품안내의 2025.1월 납입분 이후 지급 구조.
+      MATURITY_MONTHS: 60,
+      MAX_MONTHLY_DEPOSIT: 700000,
+      NEW_ENROLLMENT_CLOSED: true,
+      NEW_ENROLLMENT_CLOSED_DATE: '2025-12-31',
+      MATCHING_BRACKETS: [
+        { incomeUpTo: 24000000, matchCapFirst: 400000, rateFirst: 0.06, rateRemaining: 0.03, maxMonthly: 33000 },
+        { incomeUpTo: 36000000, matchCapFirst: 500000, rateFirst: 0.046, rateRemaining: 0.03, maxMonthly: 29000 },
+        { incomeUpTo: 48000000, matchCapFirst: 600000, rateFirst: 0.037, rateRemaining: 0.03, maxMonthly: 25200 },
+        { incomeUpTo: 60000000, matchCapFirst: 700000, rateFirst: 0.03, rateRemaining: 0, maxMonthly: 21000 },
+        { incomeUpTo: 75000000, matchCapFirst: 0, rateFirst: 0, rateRemaining: 0, maxMonthly: 0 },
+      ],
+    },
+    YOUTH_TOMORROW_SAVINGS: {
+      // 검증 완료(2026-08-11): 청년내일저축계좌 3년 만기 및 대상별 월 정액 지원 구조.
+      // TODO: 월 10만원 미만 저축 시 정부지원금 비례 삭감 여부 확인 필요.
+      MATURITY_MONTHS: 36,
+      GENERAL: { monthlyGovSupport: 100000 },
+      NEAR_POVERTY_OR_BELOW: { monthlyGovSupport: 300000 },
+      MIN_MONTHLY_DEPOSIT: 100000,
+      MAX_MONTHLY_DEPOSIT: 500000,
+    },
+    LOCAL_HEALTH_INSURANCE: {
+      // 검증 완료(2026-08-11): 국민건강보험법·시행령의 2026년 지역가입자 소득보험료율 및 상·하한.
+      INCOME_RATE: 0.0719,
+      PROPERTY_SCORE_UNIT_AMOUNT: 211.5,
+      MAX_MONTHLY_PREMIUM: 4591740,
+      MIN_MONTHLY_PREMIUM: 20160,
+      // TODO: 재산보험료부과점수 등급표(시행령 별표 4)는 후속 라운드에서 구현.
+    },
   };
   global.CALC_CONSTANTS_2026 = Object.freeze(constants);
 })(window);

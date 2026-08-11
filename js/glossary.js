@@ -589,7 +589,11 @@
         easy: '이 계산기는 실제 과거 물가 데이터를 가져오는 게 아니라 "앞으로 매년 이 정도씩 오른다고 가정하면"이라는 시나리오를 계산해주는 도구예요.',
         example: null
       }
-    ]
+    ],
+    'unemployment-benefit': [],
+    'parental-leave-pay': [],
+    'youth-savings': [],
+    'local-health-insurance': []
   };
 
   function escapeHtml(text) {
