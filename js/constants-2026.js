@@ -600,6 +600,48 @@
     WEEKLY_HOLIDAY_PAY: { ELIGIBILITY_MIN_WEEKLY_HOURS: 15, STANDARD_WEEKLY_HOURS: 40, STANDARD_DAILY_HOURS: 8 },
     MINIMUM_WAGE: { YEAR: 2026, HOURLY: 10320, MONTHLY_209H: 2156880 },
 
+    /*
+     * 근로기준법 제60조(연차 유급휴가).
+     *
+     * 1년간 80% 이상 출근하면 15일. 3년 이상 계속 근로한 경우 최초 1년을
+     * 초과하는 매 2년마다 1일을 더하되 총 25일을 넘지 못한다. 1년 미만
+     * 근로자는 1개월 개근할 때마다 1일이 생기고 최대 11일이다.
+     *
+     * 209는 주 40시간 근로자의 월 통상임금 산정 기준시간이다(주휴시간 포함).
+     */
+    ANNUAL_LEAVE: {
+      BASE_DAYS: 15,
+      // 가산은 3년차부터, 2년마다 1일.
+      EXTRA_START_YEAR: 3,
+      EXTRA_EVERY_YEARS: 2,
+      MAX_DAYS: 25,
+      // 1년 미만 근로자: 1개월 개근당 1일, 최대 11일.
+      UNDER_ONE_YEAR_MAX_DAYS: 11,
+      MONTHLY_STANDARD_HOURS: 209,
+      STANDARD_DAILY_HOURS: 8,
+    },
+
+    /*
+     * 근로기준법 제56조(연장·야간 및 휴일 근로).
+     *
+     * 연장근로와 야간근로(오후 10시~다음 날 오전 6시)는 통상임금의 50% 이상을
+     * 가산한다. 휴일근로는 8시간 이내 50%, 8시간을 초과한 시간은 100%를
+     * 가산한다. 가산 사유가 겹치면 각각 더해진다 — 야간에 한 연장근로는
+     * 연장 50% + 야간 50% 로 통상임금의 2배가 된다.
+     *
+     * 상시 5명 미만 사업장에는 이 가산 규정이 적용되지 않는다(근로기준법
+     * 제11조 및 시행령 제7조 별표1). 가산 없이 통상임금만 지급하면 된다.
+     */
+    OVERTIME_PAY: {
+      MONTHLY_STANDARD_HOURS: 209,
+      OVERTIME_PREMIUM: 0.5,
+      NIGHT_PREMIUM: 0.5,
+      HOLIDAY_PREMIUM_WITHIN_8H: 0.5,
+      HOLIDAY_PREMIUM_OVER_8H: 1,
+      HOLIDAY_PREMIUM_THRESHOLD_HOURS: 8,
+      SMALL_WORKPLACE_HEADCOUNT: 5,
+    },
+
     /* money-calc 4차 1단계 신규 계산기 상수 — 업데이트4차_1단계_빌드지침.md 기준 */
     UNEMPLOYMENT_BENEFIT: {
       // 검증 완료(2026-08-11): 고용보험법·시행령 및 2026년 최저임금 기준.

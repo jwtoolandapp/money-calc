@@ -335,6 +335,32 @@
           "title": "종합소득세 기본세율표(누진공제 방식)"
         }
       ]
+    },
+    "annual-leave-pay": {
+      "lastReviewed": "2026-08-12",
+      "references": [
+        {
+          "authority": "law",
+          "title": "근로기준법 제60조(연차 유급휴가) · 제61조(연차 유급휴가의 사용 촉진)"
+        },
+        {
+          "authority": "moel",
+          "title": "통상임금 산정 기준시간 209시간(주 40시간제) 안내"
+        }
+      ]
+    },
+    "overtime-pay": {
+      "lastReviewed": "2026-08-12",
+      "references": [
+        {
+          "authority": "law",
+          "title": "근로기준법 제56조(연장·야간 및 휴일 근로) · 제11조(적용 범위)"
+        },
+        {
+          "authority": "moel",
+          "title": "통상임금 산정 기준시간 209시간(주 40시간제) 안내"
+        }
+      ]
     }
   }
 }
