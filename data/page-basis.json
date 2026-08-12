@@ -361,6 +361,32 @@
           "title": "통상임금 산정 기준시간 209시간(주 40시간제) 안내"
         }
       ]
+    },
+    "vat": {
+      "lastReviewed": "2026-08-13",
+      "references": [
+        {
+          "authority": "law",
+          "title": "부가가치세법 제30조(세율) · 제29조(과세표준)"
+        },
+        {
+          "authority": "nts",
+          "title": "부가가치세 신고·납부 안내(일반과세자·간이과세자 구분)"
+        }
+      ]
+    },
+    "minimum-wage": {
+      "lastReviewed": "2026-08-13",
+      "references": [
+        {
+          "authority": "minimumwage",
+          "title": "2026년 최저임금 고시(시간급 10,320원)"
+        },
+        {
+          "authority": "law",
+          "title": "최저임금법 제5조(최저임금액) · 제6조(최저임금의 효력) · 시행령 제3조(수습 감액)"
+        }
+      ]
     }
   }
 }
