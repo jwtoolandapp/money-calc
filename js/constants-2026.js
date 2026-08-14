@@ -1,6 +1,9 @@
 (function (global) {
   'use strict';
 
+  // 2026년 최저임금의 단일 기준값. 최저임금·실업급여 하한 등에서 함께 참조한다.
+  const MINIMUM_WAGE_HOURLY_2026 = 10320;
+
   /**
    * 머니데스크 2026 계산 상수 모음.
    * 제도·세율·점수·공제 한도는 반드시 이 파일에서만 관리합니다.
@@ -336,8 +339,9 @@
       THRESHOLD: 300000000,
       LOWER_RATE: 0.22,
       UPPER_RATE: 0.33,
-      // 검증 완료(2026-08-04): 복권 당첨금은 200만원까지 비과세(소득세법령 특례). 일반 기타소득 비과세
-      // 한도(5만원)와는 다른 별도 규정이므로 혼동 주의.
+      // 검증 완료(2026-08-15): 소득세법 제84조 과세최저한. 건별 당첨금이 이 금액 **이하**이면
+      // 과세하지 않고, 초과하면 공제 없이 **전액**이 과세 대상이다. 공제 한도가 아니라 문턱이다.
+      // 일반 기타소득 과세최저한(5만원)과는 다른 별도 규정이므로 혼동 주의.
       TAX_FREE_UP_TO: 2000000,
       // 검증 완료(2026-08-05): 1등 평균 당첨금 프리셋. 회차별 변동되나 최근 1등 기대 당첨금 수준(약 19~20억)과
       // 근사한 값으로 참고용 예시 입력에 사용. 실제 회차 금액은 사용자가 직접 입력.
@@ -445,10 +449,14 @@
       HEAVY_RATE_8: 0.08,
       HEAVY_RATE_12: 0.12,
       NON_HOUSE_RATE: 0.04,
-      // 지방교육세: 표준세율(1~3%) 구간은 취득세율의 1/10, 중과세율(8%·12%) 구간은 세율과 무관하게
-      // 0.4% 고정. 주택 외 부동산(4%)도 취득세율의 1/10인 0.4%.
+      // 지방교육세: 주택 유상거래(1~3%)는 취득세율의 1/10, 중과세율(8%·12%)은 세율과 무관하게
+      // 0.4% 고정. 주택 외 부동산(4%)은 (4%−2%)×20% = 0.4% 로 1/10 과 같은 값이 된다.
       EDU_TAX_STANDARD_RATIO: 0.1,
       EDU_TAX_HEAVY_FIXED: 0.004,
+      // 상속·증여 등 무상취득의 지방교육세는 (세율 − 중과기준세율) × 20% 다(지방세법 §151①1 가목).
+      // 주택 유상거래에만 적용되는 10% 를 상속·증여에 쓰면 상속 0.28%·증여 0.35% 로 과대 계산된다.
+      HEAVY_BASE_RATE: 0.02,
+      EDU_TAX_GENERAL_RATIO: 0.2,
       // 농어촌특별세: 전용면적 85㎡ 이하는 비과세. 85㎡ 초과 시 표준세율 0.2%, 8% 중과 0.6%,
       // 12% 중과 1.0%. 주택 외 부동산은 면적과 무관하게 0.2%.
       AGRI_TAX_AREA_THRESHOLD: 85,
@@ -598,7 +606,15 @@
     },
     // 2026-08-09 검증 기준: 고용노동부 주휴수당 산식 및 2026년 최저임금.
     WEEKLY_HOLIDAY_PAY: { ELIGIBILITY_MIN_WEEKLY_HOURS: 15, STANDARD_WEEKLY_HOURS: 40, STANDARD_DAILY_HOURS: 8 },
-    MINIMUM_WAGE: { YEAR: 2026, HOURLY: 10320, MONTHLY_209H: 2156880 },
+    MINIMUM_WAGE: {
+      YEAR: 2026,
+      HOURLY: MINIMUM_WAGE_HOURLY_2026,
+      DAILY_8H: MINIMUM_WAGE_HOURLY_2026 * 8,
+      MONTHLY_209H: MINIMUM_WAGE_HOURLY_2026 * 209,
+      DEFAULT_WEEKLY_SCHEDULED_HOURS: 40,
+      DEFAULT_WEEKLY_PAID_HOURS: 8,
+      MONTHLY_HOURS_ROUNDING: 'nearest-integer',
+    },
 
     /*
      * 부가가치세법 제30조. 세율은 10% 단일이다.
@@ -625,6 +641,8 @@
       MAX_DAYS: 25,
       // 1년 미만 근로자: 1개월 개근당 1일, 최대 11일.
       UNDER_ONE_YEAR_MAX_DAYS: 11,
+      // 1년 이상이지만 직전 1년 출근율 80% 미만: 1개월 개근당 1일.
+      LOW_ATTENDANCE_MAX_DAYS: 12,
       MONTHLY_STANDARD_HOURS: 209,
       STANDARD_DAILY_HOURS: 8,
     },
@@ -655,7 +673,7 @@
       // 검증 완료(2026-08-11): 고용보험법·시행령 및 2026년 최저임금 기준.
       BENEFIT_RATE: 0.6,
       BASE_WAGE_CAP: 113500,
-      MINIMUM_WAGE_HOURLY_2026: 10320, // TODO: 연도 갱신 시 반드시 재확인
+      MINIMUM_WAGE_HOURLY_2026: MINIMUM_WAGE_HOURLY_2026, // TODO: 연도 갱신 시 반드시 재확인
       STANDARD_DAILY_HOURS: 8,
       MIN_BENEFIT_RATE_OF_MIN_WAGE: 0.8,
       WAITING_PERIOD_DAYS: 7,

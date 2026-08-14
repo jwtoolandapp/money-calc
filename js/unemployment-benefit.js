@@ -24,7 +24,11 @@
     const dailyBenefit = averageDailyWage > 0 ? U.clamp(averageDailyWage * B.BENEFIT_RATE, dailyFloor, dailyCap) : 0;
     const insuredYears = nonNegative(input && input.insuredYears) + nonNegative(input && input.insuredMonths) / 12;
     const days = eligibleDays(insuredYears, input && input.age, Boolean(input && input.disabled));
-    const payableDays = Math.max(0, days - B.WAITING_PERIOD_DAYS);
+    // 대기기간 7일은 지급이 **시작되는 시점**을 늦출 뿐 소정급여일수(120~270일)를
+    // 깎지 않는다(고용보험법 제49조). 여기서 7일을 빼고 있어서 총액이 언제나 7일분
+    // 적게 나왔다 — 180일 대상자라면 68,100원 × 7 = 476,700원이 덜 계산됐다.
+    // 소정급여일수가 곧 지급일수다.
+    const payableDays = days;
     return { mode, averageDailyWage, insuredYears, dailyCap, dailyFloor, dailyBenefit, eligibleDays: days, payableDays, waitingDays: B.WAITING_PERIOD_DAYS, totalBenefit: dailyBenefit * payableDays };
   }
 
@@ -47,7 +51,7 @@
       form.elements.wageDays.disabled = mode !== 'threeMonth';
       const result = calculate({ mode, averageDailyWage: form.elements.averageDailyWage.value, totalWages: form.elements.totalWages.value, wageDays: form.elements.wageDays.value, age: form.elements.age.value, insuredYears: form.elements.insuredYears.value, insuredMonths: form.elements.insuredMonths.value, disabled: form.elements.disabled.checked });
       document.getElementById('unemployment-result-value').textContent = U.formatWon(result.totalBenefit);
-      document.getElementById('unemployment-result-summary').textContent = `대기기간 ${result.waitingDays}일을 제외한 ${result.payableDays}일 지급 기준입니다.`;
+      document.getElementById('unemployment-result-summary').textContent = `소정급여일수 ${result.payableDays}일 기준입니다. 신청 후 ${result.waitingDays}일의 대기기간이 지나면 지급이 시작됩니다.`;
       document.getElementById('unemployment-result-details').innerHTML = [
         ['평균임금(1일)', U.formatWon(result.averageDailyWage)], ['구직급여일액', U.formatWon(result.dailyBenefit)],
         ['소정급여일수', `${U.formatNumber(result.eligibleDays)}일`], ['실제 지급일수', `${U.formatNumber(result.payableDays)}일`],

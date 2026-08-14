@@ -18,11 +18,17 @@
       ? (prizeValue.prize != null ? prizeValue.prize : prizeValue.amount)
       : prizeValue;
     const prize = nonNegative(source);
-    const taxFreeUpTo = LOTTO.TAX_FREE_UP_TO || ZERO;
-    const taxFreeAmount = Math.min(prize, taxFreeUpTo);
-    const lowerBandGross = Math.min(prize, LOTTO.THRESHOLD);
-    const lowerTaxableAmount = Math.max(ZERO, lowerBandGross - taxFreeUpTo);
-    const upperTaxableAmount = Math.max(ZERO, prize - LOTTO.THRESHOLD);
+
+    // 200만원은 **공제가 아니라 문턱**이다(소득세법 제84조 과세최저한).
+    // 건별 당첨금이 200만원 이하이면 과세하지 않고, 1원이라도 넘으면 전액이
+    // 과세 대상이 된다. 예전에는 이 금액을 빼고 과세해서 2등(5,000만원) 세금이
+    // 1,056만원으로 나왔다 — 실제는 1,100만원이다.
+    const taxFreeLimit = LOTTO.TAX_FREE_UP_TO || ZERO;
+    const exempt = prize <= taxFreeLimit;
+    const taxFreeAmount = exempt ? prize : ZERO;
+    const taxableBase = exempt ? ZERO : prize;
+    const lowerTaxableAmount = Math.min(taxableBase, LOTTO.THRESHOLD);
+    const upperTaxableAmount = Math.max(ZERO, taxableBase - LOTTO.THRESHOLD);
     const lowerBracketTax = lowerTaxableAmount * LOTTO.LOWER_RATE;
     const upperBracketTax = upperTaxableAmount * LOTTO.UPPER_RATE;
     const totalTax = lowerBracketTax + upperBracketTax;

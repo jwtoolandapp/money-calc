@@ -17,10 +17,11 @@ const calculators = context.MoneyCalcCalculators;
 const unemployment = calculators.unemploymentBenefit.calculate({ averageDailyWage: 150000, age: 32, insuredYears: 4, insuredMonths: 0, disabled: false });
 assert.equal(unemployment.dailyBenefit, 68100);
 assert.equal(unemployment.eligibleDays, 180);
-assert.equal(unemployment.payableDays, 173);
-// 68,100원 × (180일 - 대기 7일) = 11,781,300원.
-// 빌드지침의 11,780,300원은 산술상 1,000원 차이가 있어 공식 계산값을 기준으로 검증한다.
-assert.equal(unemployment.totalBenefit, 11781300);
+// 대기기간 7일은 지급 개시를 늦출 뿐 소정급여일수를 깎지 않는다(고용보험법 제49조).
+// 예전에는 173일을 정답으로 고정하고 있어서, 구현이 7일분 덜 주는 것을 테스트가 지켜주고 있었다.
+assert.equal(unemployment.payableDays, 180);
+// 68,100원 × 180일 = 12,258,000원.
+assert.equal(unemployment.totalBenefit, 12258000);
 const converted = calculators.unemploymentBenefit.calculate({ mode: 'threeMonth', totalWages: 13500000, wageDays: 90, age: 32, insuredYears: 4 });
 assert.equal(converted.averageDailyWage, 150000);
 assert.equal(converted.totalBenefit, unemployment.totalBenefit);

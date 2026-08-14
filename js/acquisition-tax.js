@@ -43,8 +43,25 @@
     return { rate: TAX.HEAVY_RATE_12, category: 'heavy12' };
   }
 
+  /*
+   * 지방교육세(지방세법 제151조 제1항 제1호)는 취득 유형에 따라 산식이 다르다.
+   *
+   *   주택 유상거래(나목)  세율 × 50% × 20%  =  세율 × 10%
+   *   그 밖의 취득(가목)    (세율 − 중과기준세율 2%) × 20%
+   *
+   * 예전에는 모든 유형에 10% 를 적용했다. 주택 유상거래에는 맞지만 상속·증여에는 틀린다 —
+   * 상속 2.8% 는 0.28% 가 아니라 0.16%, 증여 3.5% 는 0.35% 가 아니라 0.30% 다.
+   * 비주택 4% 는 (4−2)×20% = 0.4% 로 10% 적용값과 우연히 같아 그동안 드러나지 않았다.
+   */
   function eduTaxRate(category, baseRate) {
     if (category === 'heavy8' || category === 'heavy12') return TAX.EDU_TAX_HEAVY_FIXED;
+    if (category === 'inheritance' || category === 'gift') {
+      // ⚠️ 미검증: 상속 1가구1주택 특례세율 0.8% 는 중과기준세율 2% 보다 낮아 이 산식이
+      // 0 을 낸다. 법문을 그대로 따르면 0 이 맞지만, 실무 안내표 중에는 0.16% 로 적은 것도
+      // 있다. 어느 쪽인지 원문으로 확인하기 전까지는 법문대로 두되, 이 한 줄을 지우지 말 것.
+      // (고치기 전 값은 0.8% × 10% = 0.08% 였고, 그건 근거가 없는 값이었다.)
+      return Math.max(ZERO, baseRate - TAX.HEAVY_BASE_RATE) * TAX.EDU_TAX_GENERAL_RATIO;
+    }
     return baseRate * TAX.EDU_TAX_STANDARD_RATIO;
   }
 
