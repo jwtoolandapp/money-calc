@@ -54,7 +54,10 @@
       document.getElementById('unemployment-result-summary').textContent = `소정급여일수 ${result.payableDays}일 기준입니다. 신청 후 ${result.waitingDays}일의 대기기간이 지나면 지급이 시작됩니다.`;
       document.getElementById('unemployment-result-details').innerHTML = [
         ['평균임금(1일)', U.formatWon(result.averageDailyWage)], ['구직급여일액', U.formatWon(result.dailyBenefit)],
-        ['소정급여일수', `${U.formatNumber(result.eligibleDays)}일`], ['실제 지급일수', `${U.formatNumber(result.payableDays)}일`],
+        // 예전에는 '소정급여일수'와 '실제 지급일수'를 나란히 뒀다. 대기기간을 빼던 시절엔
+        // 두 값이 달랐지만 이제 같으므로, 같은 숫자를 두 줄로 보여줄 이유가 없다.
+        ['소정급여일수', `${U.formatNumber(result.eligibleDays)}일`],
+        ['대기기간', `${U.formatNumber(result.waitingDays)}일 (지급일수에서 차감되지 않음)`],
         ['일 상한 / 하한', `${U.formatWon(result.dailyCap)} / ${U.formatWon(result.dailyFloor)}`]
       ].map(([a,b]) => `<div class="result-row"><dt>${a}</dt><dd>${b}</dd></div>`).join('');
       U.setQuery(U.formToParams(form));

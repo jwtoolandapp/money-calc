@@ -86,14 +86,19 @@
     function calculateAndRender() {
       const result = calculateLottoTax(prizeInput.value);
       resultValue.textContent = MoneyCalc.formatWon(result.netAmount);
-      resultSummary.textContent = `당첨금 ${MoneyCalc.formatWon(result.prize)}에서 예상 세금을 뺀 금액입니다.`;
+      resultSummary.textContent = result.prize > ZERO && result.taxFreeAmount > ZERO
+        ? `당첨금이 ${MoneyCalc.formatWon(LOTTO.TAX_FREE_UP_TO)} 이하라 세금이 없습니다.`
+        : `당첨금 ${MoneyCalc.formatWon(result.prize)}에서 예상 세금을 뺀 금액입니다.`;
       resultDetails.replaceChildren();
+      // 라벨이 "비과세 구간 (200만원까지)" / "200만원~3억 구간" 이었다. 200만원이 공제되고
+      // 그 위만 과세되는 것처럼 읽히는데, 실제로는 200만원을 넘으면 전액이 과세된다.
+      // 숫자를 고쳐도 라벨이 그대로면 사용자는 여전히 잘못 이해한다.
       appendDetail(
-        `비과세 구간 (${MoneyCalc.formatWon(LOTTO.TAX_FREE_UP_TO)}까지)`,
+        `비과세 (${MoneyCalc.formatWon(LOTTO.TAX_FREE_UP_TO)} 이하일 때만)`,
         MoneyCalc.formatWon(result.taxFreeAmount)
       );
       appendDetail(
-        `${MoneyCalc.formatWon(LOTTO.TAX_FREE_UP_TO)}~${MoneyCalc.formatWon(LOTTO.THRESHOLD)} 구간 세금 (${MoneyCalc.formatPercent(LOTTO.LOWER_RATE * HUNDRED, ZERO)})`,
+        `과세대상 ${MoneyCalc.formatWon(LOTTO.THRESHOLD)}까지 (${MoneyCalc.formatPercent(LOTTO.LOWER_RATE * HUNDRED, ZERO)})`,
         MoneyCalc.formatWon(result.lowerBracketTax)
       );
       appendDetail(
