@@ -101,6 +101,18 @@
       const equityInput = document.getElementById('jeonse-equity');
       equityInput.value = U.formatNumber(result.jeonseEquity, MATH.WON_ROUNDING_DIGITS);
 
+      // 전세대출이 보증금보다 클 수는 없다. 예전에는 자기자본을 0으로 눌러놓고 계산을
+      // 계속해 "전세가 월 N원 유리" 같은 결론까지 냈다. 성립하지 않는 입력에서 나온
+      // 결론은 경고를 곁들여도 결론으로 읽힌다 — 판단 자체를 멈춰야 한다.
+      if (result.loanExceedsDeposit) {
+        resultValue.textContent = '입력값을 확인해 주세요';
+        resultValue.classList.remove('positive', 'negative');
+        summary.textContent = '전세대출금이 전세보증금보다 클 수 없습니다. 두 값을 확인하면 비교 결과를 보여드릴게요.';
+        status.textContent = '전세대출금이 전세보증금보다 큽니다. 성립하지 않는 조건이라 비교를 멈췄습니다.';
+        status.classList.add('error');
+        return;
+      }
+
       if (result.favorable === 'jeonse') {
         resultValue.textContent = `전세가 월 ${U.formatWon(result.absoluteDifference)} 유리`;
         summary.textContent = '입력한 이자율과 기회비용을 적용하면 전세의 월 환산 비용이 더 낮습니다.';

@@ -144,7 +144,12 @@
     function recalculate() {
       updatePresentation();
       render();
-      U.setQuery(U.formToParams(form));
+      // mode 는 폼 필드가 아니라 버튼 상태라 formToParams 에 안 잡힌다. 읽기 쪽은
+      // 예전부터 params.get("mode") 를 보고 있었지만 쓰기에서 빠져 있어서, 공유한 링크가
+      // 언제나 과거 모드로 열렸다.
+      const params = U.formToParams(form);
+      params.set("mode", mode);
+      U.setQuery(params);
     }
 
     modeButtons.forEach((button) => {

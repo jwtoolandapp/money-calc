@@ -26,12 +26,19 @@
     return { monthlyDeposit, annualIncome, annualRate, months: L.MATURITY_MONTHS, monthlyContribution, principal, governmentContribution, interest: Math.max(0, maturity - principal - governmentContribution), maturity };
   }
   function calculateTomorrow(input) {
-    const monthlyDeposit = U.clamp(nonNegative(input && input.monthlyDeposit), T.MIN_MONTHLY_DEPOSIT, T.MAX_MONTHLY_DEPOSIT);
+    // 예전에는 clamp 로 최소 10만원까지 **끌어올렸다**. 0원을 넣어도 10만원을 넣은 것처럼
+    // 계산해 존재하지 않는 만기금액을 보여줬다 — 사용자가 넣지 않은 값으로 답을 만든 셈이다.
+    // 위(50만원)로 자르는 건 제도 한도라 맞지만, 아래로 올리는 건 입력을 지어내는 것이다.
+    const entered = nonNegative(input && input.monthlyDeposit);
+    const monthlyDeposit = Math.min(entered, T.MAX_MONTHLY_DEPOSIT);
+    const empty = entered <= 0;
+    const belowMinimum = !empty && entered < T.MIN_MONTHLY_DEPOSIT;
     const nearPoverty = Boolean(input && input.nearPoverty), annualRate = nonNegative(input && input.annualRate);
-    const monthlyContribution = nearPoverty ? T.NEAR_POVERTY_OR_BELOW.monthlyGovSupport : T.GENERAL.monthlyGovSupport;
+    // 저축액이 없으면 정부지원금도 없다. 가입 자체가 성립하지 않는 상태다.
+    const monthlyContribution = empty ? 0 : (nearPoverty ? T.NEAR_POVERTY_OR_BELOW.monthlyGovSupport : T.GENERAL.monthlyGovSupport);
     const principal = monthlyDeposit * T.MATURITY_MONTHS, governmentContribution = monthlyContribution * T.MATURITY_MONTHS;
     const maturity = annuityFutureValue(monthlyDeposit + monthlyContribution, T.MATURITY_MONTHS, annualRate);
-    return { monthlyDeposit, nearPoverty, annualRate, months: T.MATURITY_MONTHS, monthlyContribution, principal, governmentContribution, interest: Math.max(0, maturity - principal - governmentContribution), maturity };
+    return { monthlyDeposit, entered, empty, belowMinimum, minimumDeposit: T.MIN_MONTHLY_DEPOSIT, nearPoverty, annualRate, months: T.MATURITY_MONTHS, monthlyContribution, principal, governmentContribution, interest: Math.max(0, maturity - principal - governmentContribution), maturity };
   }
   global.MoneyCalcCalculators = global.MoneyCalcCalculators || {};
   global.MoneyCalcCalculators.youthSavings = Object.freeze({ calculateLeap, calculateTomorrow, leapMonthlyContribution });
@@ -57,7 +64,13 @@
         result = calculateTomorrow({ monthlyDeposit: tomorrowForm.elements.tomorrowMonthlyDeposit.value, annualRate: tomorrowForm.elements.tomorrowAnnualRate.value, nearPoverty: tomorrowForm.elements.nearPoverty.checked }); label = '청년내일저축계좌';
       }
       document.getElementById('youth-result-value').textContent = U.formatWon(result.maturity);
-      document.getElementById('youth-result-summary').textContent = `${label} ${result.months}개월 만기 예상액(월복리 가정)`;
+      // 입력이 없거나 제도 최소액에 못 미치면 숫자만 보여주지 않는다. 예전에는 0원을
+      // 10만원으로 올려 계산해 놓고 아무 말도 하지 않아, 넣지 않은 값의 답이 그냥 떴다.
+      document.getElementById('youth-result-summary').textContent = result.empty
+        ? `${label}: 월 저축액을 입력하면 만기 예상액을 계산합니다.`
+        : result.belowMinimum
+          ? `${label} ${result.months}개월 만기 예상액(월복리 가정) · 월 ${U.formatWon(result.minimumDeposit)} 이상부터 가입할 수 있어 실제 지원 대상이 아닐 수 있습니다.`
+          : `${label} ${result.months}개월 만기 예상액(월복리 가정)`;
       document.getElementById('youth-result-details').innerHTML = [['본인 납입 원금', U.formatWon(result.principal)], ['정부지원 합계', U.formatWon(result.governmentContribution)], ['예상 이자(비과세 가정)', U.formatWon(result.interest)], ['월 정부지원', U.formatWon(result.monthlyContribution)]].map(([a,b]) => `<div class="result-row"><dt>${a}</dt><dd>${b}</dd></div>`).join('');
       const form = activeTab === 'leap' ? leapForm : tomorrowForm, out = U.formToParams(form); out.set('tab', activeTab); U.setQuery(out);
     }

@@ -160,7 +160,11 @@
 
     function recalculate() {
       render(calculateBrokerageFee(readInput()));
-      U.setQuery(U.formToParams(form));
+      // dealType 은 폼 필드가 아니라 버튼 상태라 formToParams 에 안 잡힌다.
+      // 매매로 계산한 결과를 공유해도 받는 사람은 임대차 화면을 보게 된다.
+      const params = U.formToParams(form);
+      params.set("dealType", dealType);
+      U.setQuery(params);
     }
 
     dealTypeButtons.forEach((button) => {
@@ -173,6 +177,7 @@
 
     U.setupNumericInputs(form);
     U.restoreForm(form);
+    if (U.queryParams().get("dealType") === "lease") dealType = "lease";
     updatePresentation();
     form.addEventListener('input', recalculate);
     form.addEventListener('change', recalculate);

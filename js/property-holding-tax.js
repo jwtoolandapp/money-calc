@@ -53,9 +53,15 @@
     const combinedCreditRate = Math.min(creditConfig.CREDIT_CAP, elderlyCreditRate + longTermCreditRate);
     const singleHouseCredit = taxAfterPropertyCredit * combinedCreditRate;
     const payableTax = Math.max(ZERO, taxAfterPropertyCredit - singleHouseCredit);
+    // 종부세에는 농어촌특별세가 20% 함께 붙어 고지된다(농어촌특별세법 제5조제1항).
+    // 예전에는 이걸 빼고 종부세만 "예상 종합부동산세"로 보여줘서, 실제 고지서보다
+    // 20% 적은 금액을 최종 부담액으로 오해하게 했다. 재산세에는 붙지 않는다.
+    const ruralSpecialTax = payableTax * TAX.COMPREHENSIVE_RURAL_SPECIAL_TAX_RATE;
+    const totalPayable = payableTax + ruralSpecialTax;
     return {
       assessedPrice, ownershipType, deduction, taxBase, calculatedTax, propertyTaxCredit, taxAfterPropertyCredit,
       age, holdingYears, elderlyCreditRate, longTermCreditRate, combinedCreditRate, singleHouseCredit, payableTax,
+      ruralSpecialTax, totalPayable,
     };
   }
 
@@ -82,8 +88,10 @@
         form.elements.propertyTaxCredit.value = U.formatNumber(Math.round(result.houseTax), 0);
       } else {
         const result = calculateComprehensiveTax({ comprehensivePrice:value('comprehensivePrice'), ownershipType:form.elements.ownershipType.value, propertyTaxCredit:value('propertyTaxCredit'), age:value('age'), holdingYears:value('holdingYears') });
-        document.getElementById('property-result-label').textContent = '예상 종합부동산세';
-        document.getElementById('property-result-value').textContent = U.formatWon(Math.round(result.payableTax));
+        // 큰 숫자는 실제로 고지되는 금액(종부세 + 농특세)이어야 한다. 종부세만 보여주면
+        // 고지서를 받았을 때 20% 더 나온다.
+        document.getElementById('property-result-label').textContent = '예상 납부액 (종부세 + 농특세)';
+        document.getElementById('property-result-value').textContent = U.formatWon(Math.round(result.totalPayable));
         document.getElementById('property-result-summary').textContent = result.ownershipType === 'single'
           ? `고령자 ${U.formatPercent(result.elderlyCreditRate * 100, 0)} + 장기보유 ${U.formatPercent(result.longTermCreditRate * 100, 0)}를 합산 ${U.formatPercent(result.combinedCreditRate * 100, 0)} 한도로 적용했습니다.`
           : '1세대1주택 고령자·장기보유 세액공제는 적용되지 않는 보유 유형입니다.';
@@ -92,6 +100,8 @@
           ['산출세액',U.formatWon(result.calculatedTax)],['재산세액공제(간이)',U.formatWon(result.propertyTaxCredit)],
           ['재산세액공제 후 세액',U.formatWon(result.taxAfterPropertyCredit)],
           ['1세대1주택 세액공제',`${U.formatWon(result.singleHouseCredit)} (${U.formatPercent(result.combinedCreditRate * 100, 0)})`],
+          ['종합부동산세',U.formatWon(result.payableTax)],
+          ['농어촌특별세 (종부세의 20%)',U.formatWon(result.ruralSpecialTax)],
         ]);
       }
       const q=U.formToParams(form);q.set('mode',mode);U.setQuery(q);return mode;
