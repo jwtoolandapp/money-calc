@@ -12,6 +12,17 @@ require('../js/vat.js');
 
 const { calculate, fromSupplyPrice, fromTotalPrice } = global.Vat;
 
+// 원 단위 경계에서도 표시 공급가액 + 표시 부가세 = 표시 합계여야 한다.
+[1, 9, 10, 11].forEach((amount) => {
+  const result = calculate({ amount, includesVat: false });
+  assert.equal(result.display.supplyPrice + result.display.vat, result.display.total);
+});
+[100, 101].forEach((amount) => {
+  const result = calculate({ amount, includesVat: true });
+  assert.equal(result.display.supplyPrice + result.display.vat, result.display.total);
+  assert.equal(result.display.total, amount);
+});
+
 // --- 공급가액 → 합계 ---
 const forward = fromSupplyPrice(1000000);
 assert.equal(forward.vat, 100000);

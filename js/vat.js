@@ -42,6 +42,8 @@
     var base = includesVat ? fromTotalPrice(amount) : fromSupplyPrice(amount);
     if (!base) return null;
 
+    var displayTotal = Math.round(base.total);
+    var displaySupplyPrice = Math.round(base.supplyPrice);
     return {
       supplyPrice: base.supplyPrice,
       vat: base.vat,
@@ -50,6 +52,12 @@
       // 부가세 포함 금액에 그냥 10%를 곱했을 때의 값. 흔한 오산과의 대조용.
       wrongWayVat: includesVat ? amount * C.RATE : null,
       rate: C.RATE,
+      // 화면에서는 두 항목을 독립 반올림하지 않고 합계에서 차감해 항상 합계가 맞게 한다.
+      display: {
+        supplyPrice: displaySupplyPrice,
+        vat: displayTotal - displaySupplyPrice,
+        total: displayTotal,
+      },
     };
   }
 

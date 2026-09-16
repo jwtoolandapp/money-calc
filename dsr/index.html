@@ -56,8 +56,19 @@
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c1560b">
-</head>
-<body>
+<style data-jw-network="style">
+[data-jw-network="top"],[data-jw-network="bottom"]{display:flex!important;justify-content:center!important;align-items:center!important;position:relative!important;box-sizing:border-box!important;font-family:system-ui,sans-serif!important;flex-shrink:0!important;float:none!important;color:#29364b!important}
+[data-jw-network="top"]{width:fit-content!important;max-width:100%!important;min-height:56px!important;margin:0 auto!important;padding:8px 12px 4px!important;align-self:center!important;background:transparent!important;border:0!important;box-shadow:none!important}
+[data-jw-network="bottom"]{width:100%!important;max-width:none!important;min-height:44px!important;padding:4px 12px!important;margin:24px 0 0!important;background:#fff!important;border:0!important;border-top:1px solid #e5e7eb!important}
+[data-jw-network] a{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:36px!important;padding:0 12px!important;font-size:14px!important;font-weight:750!important;letter-spacing:.02em!important;text-decoration:none!important;color:inherit!important;background:none!important;border:0!important;box-shadow:none!important}
+[data-jw-network="top"] a{min-height:44px!important;gap:7px!important;padding:0 8px!important;white-space:nowrap!important}
+[data-jw-logo] .jw-monogram{font-family:Georgia,serif!important;font-style:italic!important;font-size:26px!important;font-weight:700!important;letter-spacing:-.09em!important;line-height:1!important;color:#29364b!important}
+[data-jw-logo] .jw-dot{color:#7989bc!important}
+[data-jw-logo] .jw-caption{font-family:system-ui,sans-serif!important;font-size:10px!important;font-weight:700!important;letter-spacing:.16em!important;line-height:1.3!important;color:#29364b!important}
+[data-jw-network] a:focus-visible{outline:2px solid #355cff!important;outline-offset:2px!important;border-radius:4px!important}
+@media print{[data-jw-network]{display:none!important}}
+</style></head>
+<body><nav data-jw-network="top" aria-label="JW App Lab"><a data-jw-logo="wordmark" href="https://jwapplab.com/" aria-label="JW App Lab 메인으로"><span class="jw-monogram">jw<span class="jw-dot">.</span></span><span class="jw-caption">APP LAB</span></a></nav>
   <header class="site-header">
     <div class="header-inner">
       <div class="brand-row">
@@ -189,15 +200,14 @@
     <h2 id="basis-heading">근거 자료와 기준일</h2><p class="basis-date">이 페이지의 세율·요율은 <time datetime="2026-08-04">2026-08-04</time> 기준으로 확인했습니다.</p><ul class="basis-list"><li><span class="basis-title">스트레스 DSR 적용 기준</span><a href="https://www.fss.or.kr" rel="nofollow noopener" target="_blank">금융감독원</a></li></ul><p class="basis-note">제도는 개정될 수 있습니다. 실제 신고·가입 전에는 위 기관의 최신 자료에서 다시 확인하세요.</p>
     </section>
     <!-- basis:end -->
-    <section class="content-placeholder" aria-labelledby="dsr-guide-title">
+    <section class="guide-section" aria-labelledby="dsr-guide-title">
       <h2 id="dsr-guide-title">DSR 계산 안내</h2>
-      <div class="placeholder-box">
-        <p><strong>DSR, 왜 계산해야 할까요</strong></p>
-        <p>DSR(총부채원리금상환비율)은 연소득 중 1년 동안 갚아야 하는 모든 대출의 원금과 이자가 차지하는 비율입니다. 신용대출, 주택담보대출, 카드론 등 보유한 모든 대출의 연 원리금을 더해 연소득으로 나눠 계산하며, 은행권 일반 기준으로는 이 비율이 40%를 넘으면 추가 대출이 어려워집니다. 즉 DSR은 "내 소득으로 얼마까지 빌릴 수 있는가"를 가늠하는 가장 중요한 기준입니다.</p>
-        <p>이 계산기는 기존 대출들의 연 원리금 합계에 신규 대출의 예상 연 원리금을 더해 전체 DSR을 계산합니다. 신규 대출의 연 원리금은 원리금균등 상환 방식을 기준으로 추정하며, 원금·금리·기간을 입력하면 자동으로 월 납입액과 연 원리금으로 환산됩니다. 스트레스 DSR 옵션을 켜면 실제 금리에 지역별 가산금리(수도권 +3.0%p, 비수도권 +1.5%p)를 더한 금리로 다시 계산해, 향후 금리가 오르더라도 상환 가능한지를 미리 점검할 수 있습니다.</p>
-        <p>기존 대출을 입력할 때는 대출 이름과 상관없이 "앞으로 1년 동안 실제로 낼 원금과 이자의 합계"만 정확히 넣으면 됩니다. 마이너스통장처럼 매달 상환액이 일정하지 않은 대출은 최근 1년간 실제 납부액을 기준으로 추정해 입력하는 것이 좋습니다. 결과 화면의 "한도까지 남은 연 상환 여력"은 새로 빌릴 수 있는 원금이 아니라, 1년 동안 추가로 낼 수 있는 원리금 여유분이라는 점에 유의하세요. 이 여력을 실제 대출 원금으로 바꾸려면 새 대출의 금리와 기간을 반영해 다시 계산해야 합니다.</p>
-        <p>실제 은행 심사에서는 대출 종류별 만기 산정 방식, 소액 신용대출 반영 방식, 소득 산정 기준(국세청 신고소득·인정소득 등)이 금융사마다 다르게 적용되어 이 계산기의 결과와 차이가 날 수 있습니다. 소득이 없거나 입력값이 불확실한 경우에는 결과의 신뢰도가 낮아지므로 참고용으로만 활용하고, 실제 한도는 대출을 신청하려는 금융사에서 정확히 확인하시기 바랍니다.</p>
-      </div>
+      <h3>입력값</h3>
+      <p>연소득, 기존 대출별로 앞으로 1년 동안 낼 원금+이자 합계, 신규 대출 원금·연 이자율·기간을 넣습니다. 마이너스통장처럼 월 납입이 일정하지 않으면 최근 1년 실제 납부액으로 추정합니다. 스트레스 DSR을 켜면 수도권 +3.0%p, 비수도권 +1.5%p를 신규 금리에 더한 시나리오로 다시 계산합니다. 이 가산은 간이 기준이며 대출 종류·금리 유형에 따라 실제 적용이 다릅니다.</p>
+      <h3>결과</h3>
+      <p>예상 DSR(%), 기존·신규 연 원리금, 일반 기준 한도 연 원리금(연소득의 40%), 한도까지 남은 연 상환 여력이 나옵니다. DSR은 연소득 대비 모든 대출의 1년치 원리금 비율입니다. 남은 여력은 더 빌릴 수 있는 원금이 아니라, 1년 동안 추가로 낼 수 있는 원리금입니다. 그 여력을 원금으로 바꾸려면 새 대출의 금리와 기간으로 역산해야 합니다.</p>
+      <h3>이 계산기가 하지 않는 일</h3>
+      <p>금융사 심사의 소득 산정(신고소득·인정소득), 마이너스통장 한도 전액 반영, 대출 종류별 만기 산정은 재현하지 않습니다. 은행권 일반 40% 기준의 원리금균등 가정이며, 실제 한도는 신청하는 금융사에서 확인해야 합니다.</p>
 
       <div class="ad-slot" aria-hidden="true">
         <!-- AD SLOT -->
@@ -237,5 +247,5 @@
   <script src="../js/dsr.js"></script>
   <script src="../js/glossary.js"></script>
   <script>MoneyCalcGlossary.render('dsr');</script>
-</body>
+<nav data-jw-network="bottom" aria-label="전체 앱"><a href="https://jwapplab.com/">전체 앱 보기</a></nav></body>
 </html>

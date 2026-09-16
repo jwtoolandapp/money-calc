@@ -44,7 +44,7 @@
       {
         "@type": "Question",
         "name": "생애최초 주택 구입 감면도 반영되나요?",
-        "acceptedAnswer": { "@type": "Answer", "text": "아닙니다. 생애최초 주택 구입 취득세 감면이나 상속·증여(무상취득), 신축(원시취득)에 적용되는 세율은 이 계산기가 다루는 유상취득(매매) 표준·중과세율과 체계가 달라 반영하지 않았습니다. 감면 대상 여부와 감면율은 소득·가액 요건에 따라 다르므로 관할 시·군·구청이나 위택스에서 직접 확인하는 것을 권장합니다." }
+        "acceptedAnswer": { "@type": "Answer", "text": "체크하면 매매·주택·실거래가 12억원 이하 가정으로 취득세 본세에서 최대 200만원을 빼 보여 줍니다. 소득·전입·보유 요건은 계산하지 않으므로, 해당 여부는 위택스나 관할 시·군·구청에서 확인해야 합니다." }
       }
     ]
   }
@@ -57,8 +57,19 @@
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c1560b">
-</head>
-<body>
+<style data-jw-network="style">
+[data-jw-network="top"],[data-jw-network="bottom"]{display:flex!important;justify-content:center!important;align-items:center!important;position:relative!important;box-sizing:border-box!important;font-family:system-ui,sans-serif!important;flex-shrink:0!important;float:none!important;color:#29364b!important}
+[data-jw-network="top"]{width:fit-content!important;max-width:100%!important;min-height:56px!important;margin:0 auto!important;padding:8px 12px 4px!important;align-self:center!important;background:transparent!important;border:0!important;box-shadow:none!important}
+[data-jw-network="bottom"]{width:100%!important;max-width:none!important;min-height:44px!important;padding:4px 12px!important;margin:24px 0 0!important;background:#fff!important;border:0!important;border-top:1px solid #e5e7eb!important}
+[data-jw-network] a{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:36px!important;padding:0 12px!important;font-size:14px!important;font-weight:750!important;letter-spacing:.02em!important;text-decoration:none!important;color:inherit!important;background:none!important;border:0!important;box-shadow:none!important}
+[data-jw-network="top"] a{min-height:44px!important;gap:7px!important;padding:0 8px!important;white-space:nowrap!important}
+[data-jw-logo] .jw-monogram{font-family:Georgia,serif!important;font-style:italic!important;font-size:26px!important;font-weight:700!important;letter-spacing:-.09em!important;line-height:1!important;color:#29364b!important}
+[data-jw-logo] .jw-dot{color:#7989bc!important}
+[data-jw-logo] .jw-caption{font-family:system-ui,sans-serif!important;font-size:10px!important;font-weight:700!important;letter-spacing:.16em!important;line-height:1.3!important;color:#29364b!important}
+[data-jw-network] a:focus-visible{outline:2px solid #355cff!important;outline-offset:2px!important;border-radius:4px!important}
+@media print{[data-jw-network]{display:none!important}}
+</style></head>
+<body><nav data-jw-network="top" aria-label="JW App Lab"><a data-jw-logo="wordmark" href="https://jwapplab.com/" aria-label="JW App Lab 메인으로"><span class="jw-monogram">jw<span class="jw-dot">.</span></span><span class="jw-caption">APP LAB</span></a></nav>
   <header class="site-header">
     <div class="header-inner">
       <div class="brand-row">
@@ -172,19 +183,17 @@
     <h2 id="basis-heading">근거 자료와 기준일</h2><p class="basis-date">이 페이지의 세율·요율은 <time datetime="2026-08-06">2026-08-06</time> 기준으로 확인했습니다.</p><ul class="basis-list"><li><span class="basis-title">지방세법 제11조(부동산 취득의 세율)</span><a href="https://www.law.go.kr" rel="nofollow noopener" target="_blank">국가법령정보센터</a></li></ul><p class="basis-note">제도는 개정될 수 있습니다. 실제 신고·가입 전에는 위 기관의 최신 자료에서 다시 확인하세요.</p>
     </section>
     <!-- basis:end -->
-    <section class="content-placeholder" aria-labelledby="acq-explanation-title">
+    <section class="guide-section" aria-labelledby="acq-explanation-title">
       <h2 id="acq-explanation-title">취득세 계산 안내</h2>
-      <div class="placeholder-box">
-        <p>부동산을 매매로 취득하면 취득세와 함께 지방교육세, 경우에 따라 농어촌특별세까지 세 가지 세금을 함께 납부합니다. 주택의 경우 1주택자(또는 조정대상지역이 아닌 지역의 2주택자)는 취득가액에 따라 6억원 이하 1%, 6억원 초과~9억원 이하 구간은 (취득가액÷3억원×2−3)% 공식으로 1~3% 사이에서 계산되며, 9억원을 초과하면 3%가 적용됩니다. 예를 들어 7억 5,000만원 주택이라면 (7.5억÷3억×2−3)=2%가 적용되는 식입니다.</p>
-        <p>다주택자나 법인은 세율이 크게 높아집니다. 조정대상지역에서 2주택을 취득하면 8%, 3주택은 12%가 적용되고, 조정대상지역이 아닌 곳의 3주택은 8%, 4주택 이상이나 법인은 지역과 무관하게 12%가 적용됩니다. 여기에 지방교육세가 표준세율 구간에서는 취득세율의 10분의 1, 중과세율 구간에서는 0.4% 고정으로 추가되고, 전용면적 85㎡를 초과하는 주택은 농어촌특별세(표준 0.2%, 8% 중과 0.6%, 12% 중과 1.0%)도 함께 부과됩니다.</p>
-      </div>
+      <h3>입력값</h3>
+      <p>취득 원인(매매·상속·증여), 주택/주택 외, 취득가액, 이번 취득 후 보유 주택 수, 전용면적 85㎡ 초과 여부, 조정대상지역 여부, 생애최초 감면·상속 특례·증여 중과 체크를 넣습니다. 주택 외(상가·토지)는 보유 주택 수와 조정대상지역이 세율을 바꾸지 않습니다.</p>
+      <h3>결과</h3>
+      <p>적용 취득세율, 취득세, 지방교육세, 농어촌특별세, 총 납부세액, 매매가+세금 합계가 나옵니다. 1주택(또는 비조정 2주택)은 6억 이하 1%, 6억 초과~9억 이하는 (취득가액÷3억×2−3)%, 9억 초과 3%입니다. 7억 5천만원이면 2%입니다. 조정대상지역 2주택 8%·3주택 12%, 비조정 3주택 8%, 4주택 이상·법인은 12%입니다. 지방교육세는 표준 구간에서 취득세율의 1/10, 중과 구간은 0.4% 고정이고, 농특세는 85㎡ 초과 주택에만 붙습니다. 상가·토지는 통상 취득세 4%+지방교육세 0.4%+농특세 0.2%입니다.</p>
+      <h3>이 계산기가 하지 않는 일</h3>
+      <p>조정대상지역 지정·해제, 생애최초 감면의 소득·전입 요건, 상속·증여 특례의 실제 해당 여부는 위택스나 관할 시·군·구청에서 확인해야 합니다. 화면의 감면 체크는 요건을 충족한다고 가정한 참고 차감이며, 신고 세액의 근거로 쓸 수 없습니다.</p>
 
       <div class="ad-slot" aria-label="광고 영역">
         <!-- AD SLOT -->
-      </div>
-
-      <div class="placeholder-box">
-        <p>주택이 아닌 상가·토지 등 일반 부동산은 보유 주택 수나 조정대상지역 여부와 관계없이 취득세 4%, 지방교육세 0.4%, 농어촌특별세 0.2%를 더한 4.6%가 통상 적용됩니다. 다만 이 계산기는 유상취득(매매) 표준·중과세율만 반영한 간이 계산으로, 상속·증여로 취득하는 무상취득이나 신축 건물의 원시취득, 생애최초 주택 구입 감면 같은 특례는 세율 체계가 완전히 달라 포함하지 않았습니다. 실제 감면 대상 여부와 조정대상지역 지정 현황은 계약 전 반드시 위택스나 관할 시·군·구청에서 최신 정보로 확인하시기 바랍니다.</p>
       </div>
 
       <section class="panel" aria-labelledby="acq-related-title">
@@ -221,7 +230,7 @@
         </article>
         <article class="faq-item">
           <h3>생애최초 주택 구입 감면도 반영되나요?</h3>
-          <p>아닙니다. 생애최초 주택 구입 취득세 감면이나 상속·증여(무상취득), 신축(원시취득)에 적용되는 세율은 이 계산기가 다루는 유상취득(매매) 표준·중과세율과 체계가 달라 반영하지 않았습니다. 감면 대상 여부와 감면율은 소득·가액 요건에 따라 다르므로 관할 시·군·구청이나 위택스에서 직접 확인하는 것을 권장합니다.</p>
+          <p>체크하면 매매·주택·실거래가 12억원 이하 가정으로 취득세 본세에서 최대 200만원을 빼 보여 줍니다. 소득·전입·보유 요건은 계산하지 않으므로, 해당 여부는 위택스나 관할 시·군·구청에서 확인해야 합니다.</p>
         </article>
       </div>
       <p class="content-basis">기준일: 2026-08-06, 지방세법 제11조 유상승계취득 세율 기준</p>
@@ -246,5 +255,5 @@
   <script src="../js/acquisition-tax.js"></script>
   <script src="../js/glossary.js"></script>
   <script>MoneyCalcGlossary.render('acquisition-tax');</script>
-</body>
+<nav data-jw-network="bottom" aria-label="전체 앱"><a href="https://jwapplab.com/">전체 앱 보기</a></nav></body>
 </html>

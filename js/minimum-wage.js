@@ -1,77 +1,66 @@
 (function (global) {
   'use strict';
 
-  var CONST = global.CALC_CONSTANTS_2026 || {};
-  var MW = CONST.MINIMUM_WAGE || {};
-  var AL = CONST.ANNUAL_LEAVE || {};
+  var MW = (global.CALC_CONSTANTS_2026 || {}).MINIMUM_WAGE || {};
 
-  /**
-   * 최저임금 위반 여부(최저임금법).
-   *
-   * 월급제 근로자에게서 가장 자주 어긋나는 지점은 나눗셈의 분모다.
-   *
-   *   월 소정근로시간 174시간 (주 40시간 × 4.345주)
-   *   월 통상임금 산정 기준시간 209시간 (174 + 주휴시간 35시간)
-   *
-   * 최저임금 월 환산액은 209시간을 쓴다. 174로 나누면 시급이 실제보다 높게
-   * 나와서, 위반인 월급을 "최저임금을 넘었다"고 잘못 판단하게 된다.
-   * 이 계산기는 두 값을 함께 보여준다.
-   *
-   * 주의: 최저임금에 산입되는 임금의 범위는 따로 정해져 있다. 이 계산기는
-   * 사용자가 넣은 금액을 그대로 산입 대상으로 보고 계산한다.
-   */
-  function monthlyFromHourly(hourlyWage) {
+  /** 월 환산 기준시간은 최종 정수로 반올림한다. 40+8시간은 208.57… → 209시간이다. */
+  function monthlyConversionHours(weeklyScheduledHours, weeklyPaidHours) {
+    var scheduled = Number(weeklyScheduledHours);
+    var paid = Number(weeklyPaidHours);
+    if (!Number.isFinite(scheduled) || scheduled < 0 || !Number.isFinite(paid) || paid < 0) return null;
+    return Math.round((scheduled + paid) * 365 / 7 / 12);
+  }
+
+  function monthlyFromHourly(hourlyWage, weeklyScheduledHours, weeklyPaidHours) {
     var value = Number(hourlyWage);
     if (!Number.isFinite(value) || value < 0) return 0;
-    return value * AL.MONTHLY_STANDARD_HOURS;
+    var hours = monthlyConversionHours(
+      weeklyScheduledHours == null ? MW.DEFAULT_WEEKLY_SCHEDULED_HOURS : weeklyScheduledHours,
+      weeklyPaidHours == null ? MW.DEFAULT_WEEKLY_PAID_HOURS : weeklyPaidHours
+    );
+    return hours == null ? 0 : value * hours;
   }
 
   function calculate(input) {
+    input = input || {};
     var mode = input.mode === 'monthly' ? 'monthly' : 'hourly';
     var amount = Number(input.amount);
-    if (!Number.isFinite(amount) || amount < 0) return null;
+    var weeklyScheduledHours = input.weeklyScheduledHours == null || input.weeklyScheduledHours === ''
+      ? MW.DEFAULT_WEEKLY_SCHEDULED_HOURS : Number(input.weeklyScheduledHours);
+    var weeklyPaidHours = input.weeklyPaidHours == null || input.weeklyPaidHours === ''
+      ? MW.DEFAULT_WEEKLY_PAID_HOURS : Number(input.weeklyPaidHours);
+    if (!Number.isFinite(amount) || amount < 0 || !Number.isFinite(weeklyScheduledHours) || weeklyScheduledHours < 0 ||
+        !Number.isFinite(weeklyPaidHours) || weeklyPaidHours < 0) return null;
 
-    var minimumHourly = MW.HOURLY;
-    var standardHours = AL.MONTHLY_STANDARD_HOURS; // 209
-    var actualHours = CONST.WEEKLY_HOLIDAY_PAY
-      // 주 40시간 × 4.345주 ≒ 174시간. 주휴시간을 뺀 실제 소정근로시간.
-      ? Math.round(CONST.WEEKLY_HOLIDAY_PAY.STANDARD_WEEKLY_HOURS * 4.345)
-      : 174;
-
-    var hourly;
-    var monthly;
-    if (mode === 'hourly') {
-      hourly = amount;
-      monthly = monthlyFromHourly(amount);
-    } else {
-      monthly = amount;
-      hourly = amount / standardHours;
-    }
-
-    var minimumMonthly = MW.MONTHLY_209H;
-    var meetsMinimum = hourly >= minimumHourly;
+    var standardHours = monthlyConversionHours(weeklyScheduledHours, weeklyPaidHours);
+    if (!standardHours) return null;
+    var rawStandardHours = (weeklyScheduledHours + weeklyPaidHours) * 365 / 7 / 12;
+    var hourly = mode === 'hourly' ? amount : amount / standardHours;
+    var monthly = mode === 'hourly' ? amount * standardHours : amount;
+    var minimumMonthly = MW.HOURLY * standardHours;
+    var meetsMinimum = hourly >= MW.HOURLY;
 
     return {
       mode: mode,
       year: MW.YEAR,
-      minimumHourly: minimumHourly,
+      minimumHourly: MW.HOURLY,
       minimumMonthly: minimumMonthly,
       standardHours: standardHours,
-      actualHours: actualHours,
+      rawStandardHours: rawStandardHours,
+      weeklyScheduledHours: weeklyScheduledHours,
+      weeklyPaidHours: weeklyPaidHours,
       hourlyWage: hourly,
       monthlyWage: monthly,
       meetsMinimum: meetsMinimum,
-      // 미달이면 얼마나 모자란지. 월급 기준으로 보여줘야 체감이 된다.
-      shortfallHourly: meetsMinimum ? 0 : minimumHourly - hourly,
+      shortfallHourly: meetsMinimum ? 0 : MW.HOURLY - hourly,
       shortfallMonthly: meetsMinimum ? 0 : minimumMonthly - monthly,
-      // 174시간으로 나눴을 때의 시급. 이 값만 보고 판단하면 위반을 놓친다.
-      hourlyByActualHours: mode === 'monthly' ? monthly / actualHours : null,
     };
   }
 
   global.MinimumWage = {
     calculate: calculate,
     monthlyFromHourly: monthlyFromHourly,
+    monthlyConversionHours: monthlyConversionHours,
     CONSTANTS: MW,
   };
 })(typeof window !== 'undefined' ? window : globalThis);

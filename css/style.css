@@ -549,10 +549,14 @@ select.control:focus {
   min-height: 100px;
 }
 
-.content-placeholder {
+.content-placeholder, .guide-section {
   margin-top: 50px;
   padding-top: 30px;
   border-top: 1px solid var(--navy-200);
+}
+.guide-section h3 {
+  margin: 22px 0 8px;
+  font-size: 1.05rem;
 }
 
 .placeholder-box {

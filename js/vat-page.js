@@ -25,15 +25,15 @@
     });
     if (!result) return;
 
-    valueNode.textContent = won(result.vat);
+    valueNode.textContent = won(result.display.vat);
     summaryNode.textContent = result.includesVat
       ? '입력한 금액을 부가세 포함으로 보고 1.1로 나눠 계산했습니다.'
       : '입력한 금액을 공급가액으로 보고 10%를 더했습니다.';
 
     var rows = [
-      ['공급가액 (부가세 별도)', won(result.supplyPrice)],
-      ['부가세 (10%)', won(result.vat)],
-      ['합계 (공급대가)', won(result.total)]
+      ['공급가액 (부가세 별도)', won(result.display.supplyPrice)],
+      ['부가세 (10%)', won(result.display.vat)],
+      ['합계 (공급대가)', won(result.display.total)]
     ];
     if (result.wrongWayVat !== null) {
       // 포함 금액에 그냥 10%를 곱하는 실수. 두 값을 나란히 놓아야 차이가 보인다.

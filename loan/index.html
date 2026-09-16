@@ -68,8 +68,19 @@
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c1560b">
-</head>
-<body>
+<style data-jw-network="style">
+[data-jw-network="top"],[data-jw-network="bottom"]{display:flex!important;justify-content:center!important;align-items:center!important;position:relative!important;box-sizing:border-box!important;font-family:system-ui,sans-serif!important;flex-shrink:0!important;float:none!important;color:#29364b!important}
+[data-jw-network="top"]{width:fit-content!important;max-width:100%!important;min-height:56px!important;margin:0 auto!important;padding:8px 12px 4px!important;align-self:center!important;background:transparent!important;border:0!important;box-shadow:none!important}
+[data-jw-network="bottom"]{width:100%!important;max-width:none!important;min-height:44px!important;padding:4px 12px!important;margin:24px 0 0!important;background:#fff!important;border:0!important;border-top:1px solid #e5e7eb!important}
+[data-jw-network] a{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:36px!important;padding:0 12px!important;font-size:14px!important;font-weight:750!important;letter-spacing:.02em!important;text-decoration:none!important;color:inherit!important;background:none!important;border:0!important;box-shadow:none!important}
+[data-jw-network="top"] a{min-height:44px!important;gap:7px!important;padding:0 8px!important;white-space:nowrap!important}
+[data-jw-logo] .jw-monogram{font-family:Georgia,serif!important;font-style:italic!important;font-size:26px!important;font-weight:700!important;letter-spacing:-.09em!important;line-height:1!important;color:#29364b!important}
+[data-jw-logo] .jw-dot{color:#7989bc!important}
+[data-jw-logo] .jw-caption{font-family:system-ui,sans-serif!important;font-size:10px!important;font-weight:700!important;letter-spacing:.16em!important;line-height:1.3!important;color:#29364b!important}
+[data-jw-network] a:focus-visible{outline:2px solid #355cff!important;outline-offset:2px!important;border-radius:4px!important}
+@media print{[data-jw-network]{display:none!important}}
+</style></head>
+<body><nav data-jw-network="top" aria-label="JW App Lab"><a data-jw-logo="wordmark" href="https://jwapplab.com/" aria-label="JW App Lab 메인으로"><span class="jw-monogram">jw<span class="jw-dot">.</span></span><span class="jw-caption">APP LAB</span></a></nav>
   <header class="site-header">
     <div class="header-inner">
       <div class="brand-row">
@@ -345,6 +356,17 @@
       </section>
       <p class="content-basis">기준일: 2026-07-27, 2026년 제도 기준</p>
     </section>
+    <section class="content-placeholder" aria-labelledby="loan-repayment-example">
+      <h2 id="loan-repayment-example">같은 1,200만원·연 6%라도 월 납입액은 다릅니다</h2>
+      <p>원금 12,000,000원, 연이율 6%, 기간 12개월, 거치 0개월을 넣은 가상 비교입니다. 금리는 전 기간 고정하고, 월이율은 연이율 ÷ 12로 계산합니다. 현재 판매 상품의 금리나 대출 가능 금액을 뜻하지 않습니다.</p>
+      <ul>
+        <li><strong>원금균등:</strong> 매월 원금 1,000,000원을 갚습니다. 첫 달 이자 60,000원으로 납입액은 1,060,000원, 마지막 달은 1,005,000원입니다. 총이자는 390,000원입니다.</li>
+        <li><strong>만기일시:</strong> 1~11개월은 매월 이자 60,000원, 마지막 달은 원금과 이자를 합쳐 12,060,000원입니다. 총이자는 720,000원입니다. 월이자가 작아 보여도 만기 원금이 사라지지는 않습니다.</li>
+      </ul>
+      <p>비교 순서는 첫 달 납입액 → 마지막 달 납입액 → 총이자입니다. 첫 달 부담만 비교하면 만기의 큰 상환액을 놓칠 수 있습니다. 상환 방식만 바꿔 위 계산표와 대조해 보세요.</p>
+      <p>이 예시에는 수수료·보증료·연체·금리 변동과 날짜별 일할 계산을 넣지 않았습니다. 실제 납부액은 금융기관의 약정과 상환 예정표를 확인해야 하며, 특정 대출이나 상환 방식을 권하는 예시가 아닙니다.</p>
+      <p>개념 참고: <a href="https://www.consumerfinance.gov/ask-cfpb/how-does-paying-down-a-mortgage-work-en-1943/" target="_blank" rel="noopener noreferrer">미국 CFPB의 원금·이자 상환 구조 설명</a>. 상환 구조를 이해하기 위한 자료이며 한국 금융상품의 계약 조건이나 세법 근거로 사용하지 않습니다.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -364,5 +386,5 @@
   <script src="../js/loan.js"></script>
   <script src="../js/glossary.js"></script>
   <script>MoneyCalcGlossary.render('loan');</script>
-</body>
+<nav data-jw-network="bottom" aria-label="전체 앱"><a href="https://jwapplab.com/">전체 앱 보기</a></nav></body>
 </html>

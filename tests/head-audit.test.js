@@ -52,9 +52,12 @@ htmlFiles.forEach(function (file) {
     if (canonical) failures.push(relative + ': noindex page must not declare a canonical');
     if (!/content=["'][^"']*noindex/i.test(text)) failures.push(relative + ': expected a noindex robots meta');
   } else {
-    if (adsense.length !== 1) {
+    const noAds = ['about.html', 'privacy.html', 'terms.html', 'contact.html'].includes(relative.split(path.sep).join('/'));
+    if (noAds && adsense.length) {
+      failures.push(relative + ': policy page must not load AdSense');
+    } else if (!noAds && adsense.length !== 1) {
       failures.push(relative + ': expected exactly 1 AdSense script tag, found ' + adsense.length);
-    } else if (!adsense[0][1].startsWith(ADSENSE_SRC)) {
+    } else if (!noAds && !adsense[0][1].startsWith(ADSENSE_SRC)) {
       failures.push(relative + ': AdSense script has the wrong publisher id — ' + adsense[0][1]);
     }
 
@@ -66,8 +69,8 @@ htmlFiles.forEach(function (file) {
       failures.push(relative + ': canonical ' + canonical[1] + ' is not listed in sitemap.xml');
     }
 
-    if (!text.includes('mailto:contact@jwapplab.com')) {
-      failures.push(relative + ': missing contact@jwapplab.com link');
+    if (!text.includes('mailto:contact@jwapplab.com') && !/href=["'](?:\/contact\/?|(?:\.\.\/)?contact\.html)["']/.test(text)) {
+      failures.push(relative + ': missing contact page or email link');
     }
 
     if (!/adsense|광고/i.test(text) && relative === 'privacy.html') {
