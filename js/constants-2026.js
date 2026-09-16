@@ -739,6 +739,20 @@
       MIN_MONTHLY_PREMIUM: 20160,
       // TODO: 재산보험료부과점수 등급표(시행령 별표 4)는 후속 라운드에서 구현.
     },
+
+    /*
+     * 프리랜서·사업소득 원천징수.
+     *
+     * 소득세법 제127조·제156조: 인적용역 사업소득은 지급액의 3%를 소득세로
+     * 원천징수하고, 지방소득세법 제103조의3에 따라 소득세의 10%를 더해
+     * 흔히 "3.3%"라 부른다. 이 3.3%는 정산이 아니라 원천징수일 뿐이라
+     * 종합소득세 신고 때 필요경비·공제를 반영해 다시 계산한다.
+     */
+    FREELANCE_WITHHOLDING: {
+      INCOME_TAX_RATE: 0.03,
+      LOCAL_TAX_RATE_OF_INCOME_TAX: 0.1,
+      TOTAL_RATE: 0.033,
+    },
   };
   global.CALC_CONSTANTS_2026 = Object.freeze(constants);
 })(window);
