@@ -34,6 +34,13 @@ jobs:
         with:
           node-version: '22'
 
+      # Detect source/generated-copy drift before spending API calls.
+      - name: 기존 생성물과 수집기 사전 검증
+        run: |
+          node tools/prerender-glossary.mjs --check
+          node tools/render-basis.mjs --check
+          node tests/fetch-finlife.test.js
+
       - name: 인증키 확인
         env:
           FINLIFE_API_KEY: ${{ secrets.FINLIFE_API_KEY }}

@@ -100,11 +100,15 @@ function table(headers, rows) {
 function sourceNote(meta) {
   return (
     '<p class="rates-source">' +
-      `기준일 ${escapeHtml(meta.fetchedAt)} · 출처 ` +
+      `공시 수집일 ${escapeHtml(meta.fetchedAt)} · 출처 ` +
       `<a href="${escapeHtml(meta.source.url)}" rel="nofollow noopener" target="_blank">${escapeHtml(meta.source.name)}</a>` +
       ` (${escapeHtml(meta.finGroupLabel)} 공시 기준)` +
     '</p>'
   );
+}
+
+function freshnessNotice(meta) {
+  return `<p class="rates-caveat" data-rates-fetched="${escapeHtml(meta.fetchedAt)}"><strong>공시 수집일 <time datetime="${escapeHtml(meta.fetchedAt)}">${escapeHtml(meta.fetchedAt)}</time></strong> · <span data-rates-status>수집 당시의 참고 자료이며 실시간 금리가 아닙니다. 가입 전 금융감독원과 해당 은행의 최신 공시를 확인하세요.</span></p><script defer src="../js/rate-freshness.js?v=2026-10-12"></script>`;
 }
 
 function buildSavingsBlock(meta, deposit, saving) {
@@ -112,7 +116,7 @@ function buildSavingsBlock(meta, deposit, saving) {
   const savingRows = topSavingRows(saving);
   if (!depositRows.length && !savingRows.length) return null;
 
-  const section = ['<h2 id="rates-heading">지금 은행 금리</h2>'];
+  const section = ['<h2 id="rates-heading">은행 예금·적금 공시 금리 참고표</h2>', freshnessNotice(meta)];
 
   if (depositRows.length) {
     section.push('<h3>정기예금 12개월 · 최고금리 순</h3>');
@@ -144,7 +148,7 @@ function buildLoanBlock(meta, mortgage, rent) {
   const rentRows = topLoanRows(rent);
   if (!mortgageRows.length && !rentRows.length) return null;
 
-  const section = ['<h2 id="rates-heading">지금 은행 대출금리</h2>'];
+  const section = ['<h2 id="rates-heading">은행 대출 공시 금리 참고표</h2>', freshnessNotice(meta)];
 
   if (mortgageRows.length) {
     section.push('<h3>주택담보대출 · 평균금리 낮은 순</h3>');

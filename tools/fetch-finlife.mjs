@@ -36,7 +36,8 @@ const DATASETS = [
   { key: 'rent', endpoint: 'rentHouseLoanProductsSearch', label: '전세자금대출' },
 ];
 
-if (!API_KEY) {
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isMain && !API_KEY) {
   console.error(
     '환경변수 FINLIFE_API_KEY 가 없습니다.\n' +
     '  발급: https://finlife.fss.or.kr → 오픈API → 인증키 신청 (무료)\n' +
@@ -49,7 +50,7 @@ async function callApi(endpoint, pageNo) {
   const url = `${BASE}/${endpoint}.json?auth=${encodeURIComponent(API_KEY)}` +
     `&topFinGrpNo=${FIN_GROUP}&pageNo=${pageNo}`;
 
-  const response = await fetch(url, { headers: { accept: 'application/json' } });
+  const response = await fetch(url, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(30000) });
   if (!response.ok) throw new Error(`${endpoint} HTTP ${response.status}`);
 
   const body = await response.json();
@@ -57,24 +58,28 @@ async function callApi(endpoint, pageNo) {
   if (!result) throw new Error(`${endpoint}: result 필드 없음 — 응답 형식이 바뀌었을 수 있습니다.`);
   // err_cd 000 이 정상. 그 외는 키 오류/한도초과 등이라 조용히 넘기면 안 된다.
   if (result.err_cd && result.err_cd !== '000') {
-    throw new Error(`${endpoint}: [${result.err_cd}] ${result.err_msg ?? '알 수 없는 오류'}`);
+    throw new Error(`${endpoint}: API 오류 [${String(result.err_cd).replace(/[^a-zA-Z0-9]/g, '')}]`);
   }
   return result;
 }
 
-async function fetchAllPages(endpoint) {
+export async function fetchAllPages(endpoint, load = callApi) {
   const baseList = [];
   const optionList = [];
   let pageNo = 1;
   let maxPage = 1;
 
   do {
-    const result = await callApi(endpoint, pageNo);
+    const result = await load(endpoint, pageNo);
+    if (!Array.isArray(result.baseList) || !Array.isArray(result.optionList)) throw new Error(`${endpoint}: invalid product lists`);
+    const reportedMax = Number(result.max_page_no);
+    if (!Number.isInteger(reportedMax) || reportedMax < 1 || reportedMax > 20) throw new Error(`${endpoint}: invalid/excessive page count`);
+    if (pageNo > 1 && reportedMax !== maxPage) throw new Error(`${endpoint}: page count changed during collection`);
     baseList.push(...(result.baseList ?? []));
     optionList.push(...(result.optionList ?? []));
-    maxPage = Number(result.max_page_no) || 1;
+    maxPage = reportedMax;
     pageNo += 1;
-  } while (pageNo <= maxPage && pageNo <= 20); // 폭주 방지 상한
+  } while (pageNo <= maxPage); // 폭주 방지 상한
 
   return { baseList, optionList };
 }
@@ -88,18 +93,23 @@ const toNumber = (value) => {
   return Number.isFinite(n) ? n : null;
 };
 
+function productKey(item) {
+  if (!item.fin_co_no || !item.fin_prdt_cd) throw new Error('Product identity is incomplete');
+  return `${item.fin_co_no}:${item.fin_prdt_cd}`;
+}
+
 /** 예·적금: 저축기간(개월)별 기본금리·최고금리를 상품에 붙인다. */
-function shapeSavingProducts({ baseList, optionList }) {
+export function shapeSavingProducts({ baseList, optionList }) {
   const optionsByProduct = new Map();
   for (const option of optionList) {
-    const list = optionsByProduct.get(option.fin_prdt_cd) ?? [];
+    const list = optionsByProduct.get(productKey(option)) ?? [];
     list.push({
       months: toNumber(option.save_trm),
       rateType: option.intr_rate_type_nm ?? null,
       baseRate: toNumber(option.intr_rate),
       maxRate: toNumber(option.intr_rate2),
     });
-    optionsByProduct.set(option.fin_prdt_cd, list);
+    optionsByProduct.set(productKey(option), list);
   }
 
   return baseList.map((product) => ({
@@ -109,17 +119,17 @@ function shapeSavingProducts({ baseList, optionList }) {
     specialCondition: product.spcl_cnd ?? null,
     maxLimit: toNumber(product.max_limit),
     disclosedAt: product.dcls_strt_day ?? null,
-    options: (optionsByProduct.get(product.fin_prdt_cd) ?? [])
+    options: (optionsByProduct.get(productKey(product)) ?? [])
       .filter((option) => option.months !== null)
       .sort((a, b) => a.months - b.months),
   }));
 }
 
 /** 대출: 금리유형별 평균·최저·최고 금리를 붙인다. */
-function shapeLoanProducts({ baseList, optionList }) {
+export function shapeLoanProducts({ baseList, optionList }) {
   const optionsByProduct = new Map();
   for (const option of optionList) {
-    const list = optionsByProduct.get(option.fin_prdt_cd) ?? [];
+    const list = optionsByProduct.get(productKey(option)) ?? [];
     list.push({
       rateType: option.lend_rate_type_nm ?? null,
       repayType: option.rpay_type_nm ?? null,
@@ -127,7 +137,7 @@ function shapeLoanProducts({ baseList, optionList }) {
       maxRate: toNumber(option.lend_rate_max),
       averageRate: toNumber(option.lend_rate_avg),
     });
-    optionsByProduct.set(option.fin_prdt_cd, list);
+    optionsByProduct.set(productKey(option), list);
   }
 
   return baseList.map((product) => ({
@@ -135,61 +145,43 @@ function shapeLoanProducts({ baseList, optionList }) {
     name: product.fin_prdt_nm ?? null,
     joinWay: product.join_way ?? null,
     disclosedAt: product.dcls_strt_day ?? null,
-    options: optionsByProduct.get(product.fin_prdt_cd) ?? [],
+    options: optionsByProduct.get(productKey(product)) ?? [],
   }));
 }
 
-// process.exit() 을 쓰지 않는다. fetch 소켓이 아직 열린 상태에서 강제 종료하면
-// Windows 의 libuv 가 assertion 으로 죽으면서 종료코드가 127 로 나온다.
-// exitCode 만 세팅하고 이벤트 루프가 알아서 비워지게 둔다.
-if (VERIFY_ONLY) {
-  try {
-    const result = await callApi('depositProductsSearch', 1);
-    console.log(`인증키 정상. 정기예금 ${result.total_count}건 조회 가능 (${result.max_page_no}페이지)`);
-  } catch (error) {
-    console.error(`인증키 확인 실패: ${error.message}`);
-    process.exitCode = 1;
+// Complete and validate all four responses before replacing any stored snapshot.
+export async function collectSnapshot(load = callApi, now = new Date()) {
+  const files = new Map(), summary = [];
+  for (const dataset of DATASETS) {
+    const raw = await fetchAllPages(dataset.endpoint, load);
+    const isLoan = dataset.key === 'mortgage' || dataset.key === 'rent';
+    const products = isLoan ? shapeLoanProducts(raw) : shapeSavingProducts(raw);
+    if (!products.length || products.some(p => !p.bank || !p.name)) throw new Error(`${dataset.key}: empty or unnamed products`);
+    const usable = products.some(p => p.options.some(o => isLoan ? o.averageRate > 0 : o.months === 12 && (o.baseRate !== null || o.maxRate !== null)));
+    if (!usable) throw new Error(`${dataset.key}: no usable comparison rates`);
+    files.set(`${dataset.key}.json`, {label:dataset.label, source:'finlife.fss.or.kr', products});
+    summary.push({key:dataset.key,label:dataset.label,count:products.length});
   }
-} else {
-
-await mkdir(OUT_DIR, { recursive: true });
-
-const summary = [];
-for (const dataset of DATASETS) {
-  const raw = await fetchAllPages(dataset.endpoint);
-  const isLoan = dataset.key === 'mortgage' || dataset.key === 'rent';
-  const products = isLoan ? shapeLoanProducts(raw) : shapeSavingProducts(raw);
-
-  await writeFile(
-    path.join(OUT_DIR, `${dataset.key}.json`),
-    JSON.stringify({ label: dataset.label, source: 'finlife.fss.or.kr', products }, null, 2),
-    'utf8'
-  );
-  summary.push({ key: dataset.key, label: dataset.label, count: products.length });
-  console.log(`  ${dataset.label}: ${products.length}개 상품`);
+  const fetchedAt = new Intl.DateTimeFormat('sv-SE', {timeZone:'Asia/Seoul'}).format(now);
+  files.set('meta.json', {fetchedAt,finGroup:FIN_GROUP,finGroupLabel:'은행',source:{name:'금융감독원 금융상품통합비교공시',url:'https://finlife.fss.or.kr'},datasets:summary});
+  return files;
 }
 
-// 기준일은 페이지에 반드시 표기한다. 언제 받은 금리인지 안 밝히면
-// 금리 정보는 오히려 신뢰를 깎는다.
-// 한국 이용자에게 보여줄 날짜이므로 KST 로 찍는다. toISOString() 은 UTC 라
-// 한국 새벽에 돌리면 기준일이 하루 전으로 나온다.
-const fetchedAt = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Seoul' }).format(new Date());
-await writeFile(
-  path.join(OUT_DIR, 'meta.json'),
-  JSON.stringify({
-    fetchedAt,
-    finGroup: FIN_GROUP,
-    finGroupLabel: '은행',
-    source: {
-      name: '금융감독원 금융상품통합비교공시',
-      url: 'https://finlife.fss.or.kr',
-    },
-    datasets: summary,
-  }, null, 2),
-  'utf8'
-);
-
-console.log(`\ndata/rates/ 갱신 완료 (기준일 ${fetchedAt})`);
-console.log('다음: node tools/render-rates.mjs 로 정적 HTML 에 반영하세요.');
-
+if (isMain) {
+  try {
+    if (VERIFY_ONLY) {
+      const result = await callApi('depositProductsSearch', 1);
+      console.log(`인증키 정상. 정기예금 ${result.total_count}건 조회 가능`);
+    } else {
+      const files = await collectSnapshot();
+      await mkdir(OUT_DIR, {recursive:true});
+      for (const [name, data] of files) await writeFile(path.join(OUT_DIR,name), JSON.stringify(data,null,2), 'utf8');
+      console.log(`data/rates/ 갱신 완료 (기준일 ${files.get('meta.json').fetchedAt})`);
+      console.log('다음: node tools/render-rates.mjs 로 정적 HTML 에 반영하세요.');
+    }
+  } catch (error) {
+    // Do not log a fetch cause/URL: it can contain the API credential.
+    console.error(`금리 수집 실패: ${error.message.replaceAll(API_KEY, '[redacted]')}`);
+    process.exitCode = 1;
+  }
 }

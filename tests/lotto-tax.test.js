@@ -76,3 +76,10 @@ assert.equal(calculateLottoTax(-100).totalTax, 0);
 assert.equal(calculateLottoTax('').totalTax, 0);
 
 console.log('lotto tax tests: PASS');
+
+// The generator source must not reintroduce the old 2m deduction into explanatory copy.
+const glossary = fs.readFileSync(path.join(root, 'js/glossary.js'), 'utf8').split("'lotto-tax': [")[1].split("'goal-saving': [")[0];
+assert.ok(glossary.includes('전액이 과세 대상'));
+assert.ok(glossary.includes('세금은 55만원'));
+assert.ok(!glossary.includes('50만원에만'));
+assert.ok(!glossary.includes('2억9,800만원'));
