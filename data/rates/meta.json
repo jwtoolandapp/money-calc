@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-10",
+  "fetchedAt": "2026-10-18",
   "finGroup": "020000",
   "finGroupLabel": "은행",
   "source": {
@@ -10,12 +10,12 @@
     {
       "key": "deposit",
       "label": "정기예금",
-      "count": 38
+      "count": 39
     },
     {
       "key": "saving",
       "label": "적금",
-      "count": 58
+      "count": 59
     },
     {
       "key": "mortgage",
