@@ -28,7 +28,7 @@
       deductions: Number(deductionsInput.value) || 0,
       prepaidTax: Number(prepaidInput.value) || 0
     });
-    if (!result) return;
+    if (!result) { window.MoneyCalcResultState.showInvalid(valueNode, summaryNode, detailsNode); return; }
 
     valueNode.textContent = won(result.totalTax);
     // 최고세율과 실효세율을 함께 말해준다. 둘을 혼동하는 것이 이 주제의 핵심 오해다.

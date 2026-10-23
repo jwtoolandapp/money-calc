@@ -25,7 +25,7 @@
       losses: Number(lossesInput.value) || 0,
       fees: Number(feesInput.value) || 0
     });
-    if (!result) return;
+    if (!result) { window.MoneyCalcResultState.showInvalid(valueNode, summaryNode, detailsNode); return; }
 
     valueNode.textContent = won(result.totalTax);
     if (result.netGain <= 0) {

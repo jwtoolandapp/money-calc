@@ -23,7 +23,7 @@
       amount: Number(amountInput.value),
       includesVat: includedInput.checked
     });
-    if (!result) return;
+    if (!result) { window.MoneyCalcResultState.showInvalid(valueNode, summaryNode, detailsNode); return; }
 
     valueNode.textContent = won(result.display.vat);
     summaryNode.textContent = result.includesVat

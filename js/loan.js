@@ -25,6 +25,51 @@
     return allowed.includes(method) ? method : LOAN.METHODS.ANNUITY;
   }
 
+  // Validate raw form values before normalization, shared by screen and print.
+  // Number('') and the calculator's defensive clamping must not invent user input.
+  function validateFormInput(tab, source) {
+    const keys = tab === 'refinance'
+      ? ['principal', 'existingAnnualRate', 'existingRemainingMonths', 'prepaymentFeeRate',
+        'monthsUntilWaiver', 'newAnnualRate', 'newTermMonths', 'setupCost']
+      : ['principal', 'annualRate', 'termMonths', 'graceMonths'];
+    const periods = ['termMonths', 'existingRemainingMonths', 'newTermMonths'];
+    const input = {};
+    const invalid = [];
+    keys.forEach((key) => {
+      const text = String(source[key] == null ? '' : source[key]).trim().replace(/,/g, '');
+      const value = Number(text);
+      input[key] = value;
+      if (!/^\+?(?:\d+(?:\.\d*)?|\.\d+)$/.test(text) || !Number.isFinite(value) || value < ZERO ||
+          ((periods.includes(key) || key === 'graceMonths' || key === 'monthsUntilWaiver') && !Number.isInteger(value)) ||
+          (periods.includes(key) && (value < LOAN.MIN_TERM_MONTHS || value > LOAN.MAX_TERM_MONTHS))) {
+        invalid.push(key);
+      }
+    });
+    if (tab !== 'refinance') {
+      input.method = source.method;
+      if (!Object.values(LOAN.METHODS).includes(source.method)) invalid.push('method');
+    }
+    return { valid: invalid.length === ZERO, invalid, input };
+  }
+
+  function inputErrorMessage(invalid) {
+    const labels = {
+      principal: '원금', annualRate: '연 이자율', existingAnnualRate: '기존 연 이자율',
+      newAnnualRate: '새 연 이자율', prepaymentFeeRate: '중도상환수수료율', setupCost: '인지대·설정비',
+      termMonths: '전체 대출 기간', existingRemainingMonths: '기존 대출 잔여기간', newTermMonths: '새 대출 기간',
+      graceMonths: '거치기간', monthsUntilWaiver: '수수료 면제까지 남은 기간', method: '상환 방식',
+    };
+    if (!invalid || !invalid.length) return '계산 불가: 계산 범위를 벗어난 값이 있는지 확인해 주세요.';
+    return '계산 불가: ' + invalid.map(key => {
+      if (['termMonths', 'existingRemainingMonths', 'newTermMonths'].includes(key)) {
+        return `${labels[key]}은 ${LOAN.MIN_TERM_MONTHS}~${LOAN.MAX_TERM_MONTHS}개월의 정수로 입력해 주세요.`;
+      }
+      if (['graceMonths', 'monthsUntilWaiver'].includes(key)) return `${labels[key]}은 0개월 이상의 정수로 입력해 주세요.`;
+      if (key === 'method') return '상환 방식을 선택해 주세요.';
+      return `${labels[key] || key}은 0 이상의 숫자로 입력해 주세요.`;
+    }).join(' ');
+  }
+
   function annualRateToMonthly(annualRate) {
     return toFiniteNonNegative(annualRate) / LOAN.RATE_DIVISOR / LOAN.MONTHS_PER_YEAR;
   }
@@ -185,6 +230,8 @@
 
   const calculators = global.MoneyCalcCalculators || {};
   calculators.loan = Object.freeze({
+    validateFormInput,
+    inputErrorMessage,
     annualRateToMonthly,
     calculateAnnuityPayment,
     buildRepaymentSchedule,
@@ -226,13 +273,10 @@
       latestShareUrl = common.setQuery(serializeState());
     }
 
-    function constrainTermInputs() {
+    function describeTermLimits() {
       termInputs.forEach((input) => {
         input.max = String(LOAN.MAX_TERM_MONTHS);
         input.title = `최대 ${LOAN.MAX_TERM_MONTHS}개월까지 계산합니다.`;
-        if (common.parseNumber(input.value) > LOAN.MAX_TERM_MONTHS) {
-          input.value = common.formatNumber(LOAN.MAX_TERM_MONTHS, MATH.WON_ROUNDING_DIGITS);
-        }
       });
     }
 
@@ -249,25 +293,46 @@
 
     function repaymentInput() {
       return {
-        principal: common.parseNumber(document.getElementById('principal').value),
-        annualRate: common.parseNumber(document.getElementById('annual-rate').value),
-        termMonths: common.parseNumber(document.getElementById('term-months').value),
-        graceMonths: common.parseNumber(document.getElementById('grace-months').value),
+        principal: document.getElementById('principal').value,
+        annualRate: document.getElementById('annual-rate').value,
+        termMonths: document.getElementById('term-months').value,
+        graceMonths: document.getElementById('grace-months').value,
         method: document.getElementById('repayment-method').value,
       };
     }
 
     function refinanceInput() {
       return {
-        principal: common.parseNumber(document.getElementById('ref-balance').value),
-        existingAnnualRate: common.parseNumber(document.getElementById('ref-old-rate').value),
-        existingRemainingMonths: common.parseNumber(document.getElementById('ref-old-months').value),
-        prepaymentFeeRate: common.parseNumber(document.getElementById('ref-fee-rate').value),
-        monthsUntilWaiver: common.parseNumber(document.getElementById('ref-waiver-months').value),
-        newAnnualRate: common.parseNumber(document.getElementById('ref-new-rate').value),
-        newTermMonths: common.parseNumber(document.getElementById('ref-new-months').value),
-        setupCost: common.parseNumber(document.getElementById('ref-setup-cost').value),
+        principal: document.getElementById('ref-balance').value,
+        existingAnnualRate: document.getElementById('ref-old-rate').value,
+        existingRemainingMonths: document.getElementById('ref-old-months').value,
+        prepaymentFeeRate: document.getElementById('ref-fee-rate').value,
+        monthsUntilWaiver: document.getElementById('ref-waiver-months').value,
+        newAnnualRate: document.getElementById('ref-new-rate').value,
+        newTermMonths: document.getElementById('ref-new-months').value,
+        setupCost: document.getElementById('ref-setup-cost').value,
       };
+    }
+
+    function showInputValidity(tab, valid, invalid) {
+      const form = tab === 'repayment' ? repaymentForm : refinanceForm;
+      let message = document.getElementById(tab + '-input-error');
+      if (!message) {
+        message = document.createElement('p');
+        message.id = tab + '-input-error';
+        message.setAttribute('role', 'alert');
+        form.after(message);
+      }
+      message.textContent = valid ? '' : inputErrorMessage(invalid);
+      common.setHidden(message, valid);
+      common.setHidden(document.getElementById(tab + '-panel').querySelector('.result-card'), !valid);
+      if (tab === 'repayment') {
+        common.setHidden(document.getElementById('schedule-details'), !valid);
+        if (!valid) {
+          document.getElementById('schedule-body').replaceChildren();
+          document.getElementById('schedule-count').textContent = '0';
+        }
+      }
     }
 
     function scheduleRowKind(row) {
@@ -303,7 +368,14 @@
     }
 
     function renderRepayment() {
-      const result = buildRepaymentSchedule(repaymentInput());
+      const checked = validateFormInput('repayment', repaymentInput());
+      showInputValidity('repayment', checked.valid, checked.invalid);
+      if (!checked.valid) return;
+      const result = buildRepaymentSchedule(checked.input);
+      if (![result.monthlyPayment, result.totalPayment, result.totalInterest].every(Number.isFinite)) {
+        showInputValidity('repayment', false);
+        return;
+      }
       const label = document.getElementById('repayment-result-label');
       const summary = document.getElementById('repayment-summary');
 
@@ -333,7 +405,14 @@
     }
 
     function renderRefinance() {
-      const result = calculateRefinance(refinanceInput());
+      const checked = validateFormInput('refinance', refinanceInput());
+      showInputValidity('refinance', checked.valid, checked.invalid);
+      if (!checked.valid) return;
+      const result = calculateRefinance(checked.input);
+      if (![result.savings, result.newTotalCost, result.existingInterest].every(Number.isFinite)) {
+        showInputValidity('refinance', false);
+        return;
+      }
       const conclusion = document.getElementById('refinance-main-result');
       const outcome = result.isSaving ? '이득' : '손해';
       conclusion.textContent = `지금 갈아타면 ${common.formatWon(Math.abs(result.savings))} ${outcome}`;
@@ -350,7 +429,6 @@
     }
 
     function renderAllAndSyncUrl() {
-      constrainTermInputs();
       renderRepayment();
       renderRefinance();
       updateShareUrl();
@@ -361,6 +439,7 @@
     common.restoreForm(refinanceForm, initialParams);
     activateTab(initialParams.get('tab'), false);
     common.setupNumericInputs(document);
+    describeTermLimits();
 
     [repaymentForm, refinanceForm].forEach((form) => {
       form.addEventListener('submit', (event) => event.preventDefault());

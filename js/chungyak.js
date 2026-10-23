@@ -108,6 +108,22 @@
     const scoreStart = hasOwnedBefore
       ? (homelessSince ? laterDate(eligibilityStart, homelessSince) : null)
       : eligibilityStart;
+    // 주택공급에 관한 규칙 별표1 1.가.3): 무주택기간은 만 30세가 되는 날(그 전 혼인 시 혼인신고일)부터 센다.
+    // 기산일이 계산 기준일보다 뒤면(만 30세 미만 미혼 등) 무주택기간이 아직 시작되지 않아 0점이다.
+    // 확인: 2026-10-22, https://www.law.go.kr/LSW//flDownload.do?gubun=&flSeq=144667591&bylClsCd=110201
+    if (!scoreStart || scoreStart.getTime() > asOfDate.getTime()) {
+      return {
+        points: C.MATH.ZERO,
+        completedYears: C.MATH.ZERO,
+        completedMonths: C.MATH.ZERO,
+        startDate: '',
+        notStartedUntil: toIsoDate(scoreStart),
+        reason: 'not-started',
+        valid: true,
+        errors,
+      };
+    }
+
     const months = completedMonthsBetween(scoreStart, asOfDate);
     const completedYears = Math.min(
       rules.MAX_YEARS,
@@ -348,6 +364,8 @@
         ? result.errors[0]
         : result.homeless.reason === 'current-homeowner'
         ? `현재 유주택으로 입력해 무주택기간은 ${SCORE.HOMELESS.CURRENT_HOMEOWNER_POINTS}점으로 처리했습니다.`
+        : result.homeless.reason === 'not-started'
+        ? `만 30세 전이고 혼인신고 전이라 무주택기간이 아직 시작되지 않아 0점입니다. 부양가족 ${result.dependents.countedPeople}명, 통장 ${result.account.completedYears}년 기준입니다.`
         : `무주택 ${result.homeless.completedYears}년, 부양가족 ${result.dependents.countedPeople}명, 통장 ${result.account.completedYears}년 기준입니다.`;
       document.getElementById('score-summary').textContent = summary;
 

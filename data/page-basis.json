@@ -199,15 +199,15 @@
       "references": []
     },
     "brokerage-fee": {
-      "lastReviewed": "2026-07-27",
+      "lastReviewed": "2026-08-06",
       "references": []
     },
     "card-mix": {
-      "lastReviewed": "2026-07-27",
+      "lastReviewed": "2026-08-06",
       "references": []
     },
     "fire": {
-      "lastReviewed": "2026-07-27",
+      "lastReviewed": "2026-08-06",
       "references": []
     },
     "goal-saving": {
@@ -215,7 +215,7 @@
       "references": []
     },
     "inflation-value": {
-      "lastReviewed": "2026-07-27",
+      "lastReviewed": "2026-08-06",
       "references": []
     },
     "jeonse-vs-monthly": {
@@ -223,7 +223,7 @@
       "references": []
     },
     "salary-raise": {
-      "lastReviewed": "2026-07-27",
+      "lastReviewed": "2026-08-06",
       "references": []
     },
     "stock-average": {
@@ -385,6 +385,36 @@
         {
           "authority": "law",
           "title": "최저임금법 제5조(최저임금액) · 제6조(최저임금의 효력) · 시행령 제3조(수습 감액)"
+        }
+      ]
+    },
+    "freelance-tax": {
+      "lastReviewed": "2026-10-22",
+      "references": [
+        {
+          "authority": "law",
+          "title": "소득세법 제129조제1항제3호(원천징수대상 사업소득 3%)"
+        },
+        {
+          "authority": "law",
+          "title": "지방세법 제103조의13(개인지방소득세 특별징수: 소득세의 10%)"
+        }
+      ]
+    },
+    "social-insurance": {
+      "lastReviewed": "2026-10-22",
+      "references": [
+        {
+          "authority": "law",
+          "title": "국민연금법 부칙(법률 제20848호) 제4조(2026년 근로자 부담 4.75%) · 보건복지부 고시 제2026-31호(기준소득월액 하한 41만원·상한 659만원, 2026년 7월~2027년 6월)"
+        },
+        {
+          "authority": "law",
+          "title": "국민건강보험법 시행령 제44조(보험료율 7.19%) · 노인장기요양보험법 시행령 제4조(장기요양보험료율 0.9448%)"
+        },
+        {
+          "authority": "law",
+          "title": "고용보험료징수법 시행령 제12조(실업급여 보험료율 1.8%, 근로자 0.9%)"
         }
       ]
     }

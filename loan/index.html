@@ -20,6 +20,7 @@
   <meta property="og:title" content="대출이자 계산기·전세·주택담보대출·신용대출 대환 비교 | 머니데스크">
   <meta property="og:description" content="상환 방식별 납입 스케줄과 전세·주담대·신용대출 갈아타기 비용을 한 번에 비교하세요.">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/calculation-print.css?v=2026-10-21">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -124,7 +125,7 @@
           <div class="field">
             <label for="principal">대출 원금</label>
             <div class="input-wrap">
-              <input id="principal" name="principal" type="text" value="100,000,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0" aria-describedby="principal-hint">
+              <input id="principal" name="principal" type="text" value="100,000,000" inputmode="numeric" autocomplete="off" data-number data-preserve-raw="true" data-decimals="0" aria-describedby="principal-hint">
               <span class="unit">원</span>
             </div>
             <p id="principal-hint" class="hint">현재 빌리려는 전체 원금</p>
@@ -133,7 +134,7 @@
           <div class="field">
             <label for="annual-rate">연 이자율</label>
             <div class="input-wrap">
-              <input id="annual-rate" name="annualRate" type="text" value="5" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <input id="annual-rate" name="annualRate" type="text" value="5" inputmode="decimal" autocomplete="off" data-number data-preserve-raw="true" data-decimals="3">
               <span class="unit">%</span>
             </div>
           </div>
@@ -141,7 +142,7 @@
           <div class="field">
             <label for="term-months">전체 대출 기간</label>
             <div class="input-wrap">
-              <input id="term-months" name="termMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <input id="term-months" name="termMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-preserve-raw="true" data-decimals="0">
               <span class="unit">개월</span>
             </div>
           </div>
@@ -149,7 +150,7 @@
           <div class="field">
             <label for="grace-months">거치기간</label>
             <div class="input-wrap">
-              <input id="grace-months" name="graceMonths" type="text" value="0" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <input id="grace-months" name="graceMonths" type="text" value="0" inputmode="numeric" autocomplete="off" data-number data-preserve-raw="true" data-decimals="0">
               <span class="unit">개월</span>
             </div>
             <p class="hint">전체 기간에 포함되며, 거치 중에는 이자만 냅니다.</p>
@@ -214,35 +215,35 @@
           <div class="field">
             <label for="ref-balance">현재 남은 원금</label>
             <div class="input-wrap">
-              <input id="ref-balance" name="refBalance" type="text" value="100,000,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <input id="ref-balance" name="refBalance" type="text" value="100,000,000" inputmode="numeric" autocomplete="off" data-number data-preserve-raw="true" data-decimals="0">
               <span class="unit">원</span>
             </div>
           </div>
           <div class="field">
             <label for="ref-old-rate">기존 연 이자율</label>
             <div class="input-wrap">
-              <input id="ref-old-rate" name="refOldRate" type="text" value="5" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <input id="ref-old-rate" name="refOldRate" type="text" value="5" inputmode="decimal" autocomplete="off" data-number data-preserve-raw="true" data-decimals="3">
               <span class="unit">%</span>
             </div>
           </div>
           <div class="field">
             <label for="ref-old-months">기존 대출 잔여기간</label>
             <div class="input-wrap">
-              <input id="ref-old-months" name="refOldMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <input id="ref-old-months" name="refOldMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-preserve-raw="true" data-decimals="0">
               <span class="unit">개월</span>
             </div>
           </div>
           <div class="field">
             <label for="ref-fee-rate">중도상환수수료율</label>
             <div class="input-wrap">
-              <input id="ref-fee-rate" name="refFeeRate" type="text" value="1.2" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <input id="ref-fee-rate" name="refFeeRate" type="text" value="1.2" inputmode="decimal" autocomplete="off" data-number data-preserve-raw="true" data-decimals="3">
               <span class="unit">%</span>
             </div>
           </div>
           <div class="field">
             <label for="ref-waiver-months">수수료 면제까지 남은 기간</label>
             <div class="input-wrap">
-              <input id="ref-waiver-months" name="refWaiverMonths" type="text" value="12" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <input id="ref-waiver-months" name="refWaiverMonths" type="text" value="12" inputmode="numeric" autocomplete="off" data-number data-preserve-raw="true" data-decimals="0">
               <span class="unit">개월</span>
             </div>
             <p class="hint">부과기간보다 길게 입력하면 전체 부과기간으로 제한합니다.</p>
@@ -254,21 +255,21 @@
           <div class="field">
             <label for="ref-new-rate">새 연 이자율</label>
             <div class="input-wrap">
-              <input id="ref-new-rate" name="refNewRate" type="text" value="3.5" inputmode="decimal" autocomplete="off" data-number data-decimals="3">
+              <input id="ref-new-rate" name="refNewRate" type="text" value="3.5" inputmode="decimal" autocomplete="off" data-number data-preserve-raw="true" data-decimals="3">
               <span class="unit">%</span>
             </div>
           </div>
           <div class="field">
             <label for="ref-new-months">새 대출 기간</label>
             <div class="input-wrap">
-              <input id="ref-new-months" name="refNewMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <input id="ref-new-months" name="refNewMonths" type="text" value="36" inputmode="numeric" autocomplete="off" data-number data-preserve-raw="true" data-decimals="0">
               <span class="unit">개월</span>
             </div>
           </div>
           <div class="field">
             <label for="ref-setup-cost">인지대·설정비 등</label>
             <div class="input-wrap">
-              <input id="ref-setup-cost" name="refSetupCost" type="text" value="300,000" inputmode="numeric" autocomplete="off" data-number data-decimals="0">
+              <input id="ref-setup-cost" name="refSetupCost" type="text" value="300,000" inputmode="numeric" autocomplete="off" data-number data-preserve-raw="true" data-decimals="0">
               <span class="unit">원</span>
             </div>
           </div>
@@ -301,7 +302,7 @@
     </div>
     <!-- rates:start (생성물 — tools/render-rates.mjs 로 갱신) -->
     <section class="rates-section" aria-labelledby="rates-heading">
-    <h2 id="rates-heading">은행 대출 공시 금리 참고표</h2><p class="rates-caveat" data-rates-fetched="2026-10-19"><strong>공시 수집일 <time datetime="2026-10-19">2026-10-19</time></strong> · <span data-rates-status>수집 당시의 참고 자료이며 실시간 금리가 아닙니다. 가입 전 금융감독원과 해당 은행의 최신 공시를 확인하세요.</span></p><script defer src="../js/rate-freshness.js?v=2026-10-12"></script><h3>주택담보대출 · 평균금리 낮은 순</h3><div class="rates-table-wrap"><table class="rates-table"><thead><tr><th scope="col">은행</th><th scope="col">상품</th><th scope="col">금리유형</th><th scope="col">최저</th><th scope="col">평균</th></tr></thead><tbody><tr><th scope="row">부산은행</th><td>BNK행복스케치 모기지론</td><td>변동금리</td><td>5.15%</td><td>4.11%</td></tr><tr><th scope="row">부산은행</th><td>BNK행복스케치 모기지론</td><td>변동금리</td><td>5.15%</td><td>4.16%</td></tr><tr><th scope="row">경남은행</th><td>BNK모바일주택담보대출</td><td>변동금리</td><td>4.68%</td><td>4.20%</td></tr><tr><th scope="row">중소기업은행</th><td>IBK주택담보대출</td><td>변동금리</td><td>5.07%</td><td>4.22%</td></tr><tr><th scope="row">부산은행</th><td>BNK357금리안심모기지론</td><td>고정금리</td><td>5.61%</td><td>4.55%</td></tr><tr><th scope="row">주식회사 케이뱅크</th><td>아파트담보대출(구입)</td><td>변동금리</td><td>5.09%</td><td>4.56%</td></tr><tr><th scope="row">한국스탠다드차타드은행</th><td>주택담보대출</td><td>변동금리</td><td>4.80%</td><td>4.57%</td></tr><tr><th scope="row">경남은행</th><td>BNK모바일주택담보대출</td><td>변동금리</td><td>4.88%</td><td>4.57%</td></tr></tbody></table></div><h3>전세자금대출 · 평균금리 낮은 순</h3><div class="rates-table-wrap"><table class="rates-table"><thead><tr><th scope="col">은행</th><th scope="col">상품</th><th scope="col">금리유형</th><th scope="col">최저</th><th scope="col">평균</th></tr></thead><tbody><tr><th scope="row">광주은행</th><td>청년맞춤형 전월세보증금 대출</td><td>변동금리</td><td>3.75%</td><td>3.86%</td></tr><tr><th scope="row">주식회사 카카오뱅크</th><td>HF 전월세보증금 대출</td><td>변동금리</td><td>4.21%</td><td>4.05%</td></tr><tr><th scope="row">국민은행</th><td>KB주택전세자금대출</td><td>변동금리</td><td>4.21%</td><td>4.08%</td></tr><tr><th scope="row">주식회사 케이뱅크</th><td>전월세보증금 대출</td><td>변동금리</td><td>4.36%</td><td>4.13%</td></tr><tr><th scope="row">우리은행</th><td>우리전세론(주택금융보증)</td><td>변동금리</td><td>3.93%</td><td>4.17%</td></tr><tr><th scope="row">우리은행</th><td>우리전세론(서울보증)</td><td>변동금리</td><td>3.89%</td><td>4.17%</td></tr><tr><th scope="row">우리은행</th><td>우리전세론(서울보증)</td><td>변동금리</td><td>3.99%</td><td>4.20%</td></tr><tr><th scope="row">농협은행주식회사</th><td>NH전세대출(주택금융공사)</td><td>고정금리</td><td>4.22%</td><td>4.21%</td></tr></tbody></table></div><p class="rates-caveat">평균금리는 해당 은행이 직전 달에 실제로 취급한 대출의 평균입니다. 개인의 신용점수·담보인정비율(LTV)·상환방식에 따라 실제 적용금리는 달라집니다.</p><p class="rates-source">공시 수집일 2026-10-19 · 출처 <a href="https://finlife.fss.or.kr" rel="nofollow noopener" target="_blank">금융감독원 금융상품통합비교공시</a> (은행 공시 기준)</p>
+    <h2 id="rates-heading">은행 대출 공시 금리 참고표</h2><p class="rates-caveat" data-rates-fetched="2026-10-19"><strong>공시 수집일 <time datetime="2026-10-19">2026-10-19</time></strong> · <span data-rates-status>수집 당시의 참고 자료이며 실시간 금리가 아닙니다. 가입 전 금융감독원과 해당 은행의 최신 공시를 확인하세요.</span></p><script defer src="../js/rate-freshness.js?v=2026-10-12"></script><h3>주택담보대출 · 전월 평균금리 낮은 순</h3><div class="rates-table-wrap"><table class="rates-table"><thead><tr><th scope="col">은행</th><th scope="col">상품</th><th scope="col">금리유형</th><th scope="col">상환방식</th><th scope="col">추가조건</th><th scope="col">공시 최저</th><th scope="col">전월 평균</th></tr></thead><tbody><tr><th scope="row">부산은행</th><td>BNK행복스케치 모기지론</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>5.15%</td><td>4.11%</td></tr><tr><th scope="row">부산은행</th><td>BNK행복스케치 모기지론</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>5.15%</td><td>4.16%</td></tr><tr><th scope="row">경남은행</th><td>BNK모바일주택담보대출</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>4.68%</td><td>4.20%</td></tr><tr><th scope="row">중소기업은행</th><td>IBK주택담보대출</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>5.07%</td><td>4.22%</td></tr><tr><th scope="row">부산은행</th><td>BNK357금리안심모기지론</td><td>고정금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>5.61%</td><td>4.55%</td></tr><tr><th scope="row">주식회사 케이뱅크</th><td>아파트담보대출(구입)</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>5.09%</td><td>4.56%</td></tr><tr><th scope="row">한국스탠다드차타드은행</th><td>주택담보대출</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>4.80%</td><td>4.57%</td></tr><tr><th scope="row">경남은행</th><td>BNK모바일주택담보대출</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>4.88%</td><td>4.57%</td></tr></tbody></table></div><h3>전세자금대출 · 전월 평균금리 낮은 순</h3><div class="rates-table-wrap"><table class="rates-table"><thead><tr><th scope="col">은행</th><th scope="col">상품</th><th scope="col">금리유형</th><th scope="col">상환방식</th><th scope="col">추가조건</th><th scope="col">공시 최저</th><th scope="col">전월 평균</th></tr></thead><tbody><tr><th scope="row">광주은행</th><td>청년맞춤형 전월세보증금 대출</td><td>변동금리</td><td>만기일시상환방식</td><td>저장 자료에 세부조건 없음</td><td>3.75%</td><td>3.86%</td></tr><tr><th scope="row">주식회사 카카오뱅크</th><td>HF 전월세보증금 대출</td><td>변동금리</td><td>만기일시상환방식</td><td>저장 자료에 세부조건 없음</td><td>4.21%</td><td>4.05%</td></tr><tr><th scope="row">국민은행</th><td>KB주택전세자금대출</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>4.21%</td><td>4.08%</td></tr><tr><th scope="row">주식회사 케이뱅크</th><td>전월세보증금 대출</td><td>변동금리</td><td>만기일시상환방식</td><td>저장 자료에 세부조건 없음</td><td>4.36%</td><td>4.13%</td></tr><tr><th scope="row">우리은행</th><td>우리전세론(주택금융보증)</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>3.93%</td><td>4.17%</td></tr><tr><th scope="row">우리은행</th><td>우리전세론(서울보증)</td><td>변동금리</td><td>분할상환방식</td><td>저장 자료에 세부조건 없음</td><td>3.89%</td><td>4.17%</td></tr><tr><th scope="row">우리은행</th><td>우리전세론(서울보증)</td><td>변동금리</td><td>만기일시상환방식</td><td>저장 자료에 세부조건 없음</td><td>3.99%</td><td>4.20%</td></tr><tr><th scope="row">농협은행주식회사</th><td>NH전세대출(주택금융공사)</td><td>고정금리</td><td>만기일시상환방식</td><td>저장 자료에 세부조건 없음</td><td>4.22%</td><td>4.21%</td></tr></tbody></table></div><p class="rates-caveat">평균금리는 해당 은행이 직전 달에 실제로 취급한 대출의 평균입니다. 공시 최저와 전월 평균은 기준이 달라 직접적인 최저·평균 관계로 비교할 수 없습니다. 개인의 신용점수·담보인정비율(LTV)·상환방식에 따라 실제 적용금리는 달라집니다.</p><p class="rates-caveat">조건 확인 필요: 같은 상품에 여러 금리가 있어도 현재 저장 자료에는 이를 구분할 세부조건이 없습니다. 이는 원본 공시에 조건이 없다는 뜻이 아니라 저장 자료만으로 확인할 수 없다는 뜻입니다. 서로 같은 조건이라고 가정하거나 금리를 평균내지 않았습니다. 해당 은행에서 적용 조건을 확인하기 전에는 행별 금리를 직접 비교하지 마세요.</p><p class="rates-source">공시 수집일 2026-10-19 · 출처 <a href="https://finlife.fss.or.kr" rel="nofollow noopener" target="_blank">금융감독원 금융상품통합비교공시</a> (은행 공시 기준)</p>
     </section>
     <!-- rates:end -->
     <!-- glossary:start (생성물 — tools/prerender-glossary.mjs 로 갱신) -->
@@ -382,8 +383,10 @@
   </footer>
 
   <script src="../js/constants-2026.js"></script>
-  <script src="../js/common.js"></script>
-  <script src="../js/loan.js"></script>
+  <script src="../js/common.js?v=2026-10-21-raw"></script>
+  <script src="../js/loan.js?v=2026-10-21-recheck"></script>
+  <script src="../js/calculation-print.js?v=2026-10-21"></script>
+  <script src="../js/loan-print.js?v=2026-10-21-recheck3"></script>
   <script src="../js/glossary.js"></script>
   <script>MoneyCalcGlossary.render('loan');</script>
 <nav data-jw-network="bottom" aria-label="전체 앱"><a href="https://jwapplab.com/">전체 앱 보기</a></nav></body>

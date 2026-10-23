@@ -29,7 +29,7 @@ function boot(options) {
   };
   context.window = context;
   vm.createContext(context);
-  ['js/constants-2026.js', options.logic, options.controller].forEach((file) => vm.runInContext(fs.readFileSync(path.join(ROOT, file), 'utf8'), context, { filename:file }));
+  ['js/constants-2026.js', 'js/result-state.js', options.logic, options.controller].forEach((file) => vm.runInContext(fs.readFileSync(path.join(ROOT, file), 'utf8'), context, { filename:file }));
   return { elements, form, context, getReplacedUrl:() => replacedUrl };
 }
 

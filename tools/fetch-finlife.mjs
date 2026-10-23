@@ -133,6 +133,10 @@ export function shapeLoanProducts({ baseList, optionList }) {
     list.push({
       rateType: option.lend_rate_type_nm ?? null,
       repayType: option.rpay_type_nm ?? null,
+      mortgageType: option.mrtg_type_nm ?? null,
+      mortgageTypeCode: option.mrtg_type ?? null,
+      rateTypeCode: option.lend_rate_type ?? null,
+      repayTypeCode: option.rpay_type ?? null,
       minRate: toNumber(option.lend_rate_min),
       maxRate: toNumber(option.lend_rate_max),
       averageRate: toNumber(option.lend_rate_avg),

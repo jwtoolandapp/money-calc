@@ -99,6 +99,36 @@
     return first + excess;
   }
 
+  // 4대보험 근로자 부담분(연간). 사용자가 금액을 넘기면 그 값을, 없으면 salary-net-pay 와 같은
+  // FOUR_MAJOR_INSURANCE 요율·월 단위 반올림으로 총급여 ÷ 12 를 기준으로 추정한다.
+  function providedAmount(value) {
+    if (value === undefined || value === null || String(value).trim() === '') return null;
+    return nonNegative(value);
+  }
+
+  function annualSocialInsurance(grossSalary, input) {
+    const I = C.FOUR_MAJOR_INSURANCE;
+    const months = MATH.MONTHS_PER_YEAR;
+    const monthly = nonNegative(grossSalary) / months;
+    const pensionBase = monthly > ZERO ? Math.min(I.NATIONAL_PENSION_CEILING, Math.max(I.NATIONAL_PENSION_FLOOR, monthly)) : ZERO;
+    const monthlyHealth = Math.round(monthly * I.HEALTH_INSURANCE_RATE);
+    const estimated = {
+      nationalPension: Math.round(pensionBase * I.NATIONAL_PENSION_RATE) * months,
+      health: (monthlyHealth + Math.round(monthlyHealth * I.LONG_TERM_CARE_RATE_OF_HEALTH)) * months,
+      employment: Math.round(monthly * I.EMPLOYMENT_INSURANCE_RATE) * months,
+    };
+    const source = input || {};
+    const pensionInput = providedAmount(source.nationalPensionPaid);
+    const healthInput = providedAmount(source.healthInsurancePaid);
+    const employmentInput = providedAmount(source.employmentInsurancePaid);
+    return {
+      nationalPension: pensionInput == null ? estimated.nationalPension : pensionInput,
+      health: healthInput == null ? estimated.health : healthInput,
+      employment: employmentInput == null ? estimated.employment : employmentInput,
+      estimated: pensionInput == null || healthInput == null || employmentInput == null,
+    };
+  }
+
   function calculateYearEndTax(input) {
     const grossSalary = nonNegative(input.grossSalary);
     const withheldTax = nonNegative(input.withheldTax);
@@ -114,11 +144,13 @@
       earnedIncome,
       (TAX.TAXPAYER_COUNT + dependentCount) * TAX.PERSONAL_DEDUCTION_PER_PERSON + additionalPersonalDeduction,
     );
+    const insurance = annualSocialInsurance(grossSalary, input);
+    // 연금보험료공제: 인적공제와 합쳐 소득금액을 넘는 부분은 없는 것으로 본다(제51조의3③).
+    const nationalPensionDeduction = Math.min(insurance.nationalPension, Math.max(ZERO, earnedIncome - personalDeduction));
+    const incomeAfterPension = Math.max(ZERO, earnedIncome - personalDeduction - nationalPensionDeduction);
+    // 특별소득공제(건강·장기요양·고용보험료): 표준세액공제를 고르면 받지 않는다.
+    const insuranceDeduction = Math.min(insurance.health + insurance.employment, incomeAfterPension);
     const card = cardDeduction(grossSalary, input.creditCard, input.debitCash, input.traditionalMarket, input.publicTransport, input.culture);
-    const taxableIncome = Math.max(ZERO, earnedIncome - personalDeduction - card);
-    const calculatedTax = incomeTax(taxableIncome);
-
-    const workTaxCredit = earnedTaxCredit(calculatedTax, grossSalary);
     const pension = pensionCredit(grossSalary, input.pensionSavings, input.irp);
     const medicalGeneralEligible = Math.max(
       ZERO,
@@ -137,9 +169,29 @@
       ? Math.min(nonNegative(input.rent), TAX.RENT.PAYMENT_CAP) * rentRate
       : ZERO;
     const donation = donationCredit(nonNegative(input.donation) + nonNegative(input.donationCarryforward));
-    const totalTaxCredits = workTaxCredit + pension.credit + medicalCredit + educationCredit + rentCredit + donation;
-    const appliedTaxCredits = Math.min(calculatedTax, totalTaxCredits);
-    const decidedTax = Math.max(ZERO, calculatedTax - appliedTaxCredits);
+
+    function scenario(useStandard) {
+      const taxable = Math.max(ZERO, incomeAfterPension - (useStandard ? ZERO : insuranceDeduction) - card);
+      const tax = incomeTax(taxable);
+      const work = earnedTaxCredit(tax, grossSalary);
+      const otherCredits = useStandard
+        ? TAX.STANDARD_TAX_CREDIT
+        : medicalCredit + educationCredit + rentCredit + donation;
+      const total = work + pension.credit + otherCredits;
+      const applied = Math.min(tax, total);
+      return { taxable, tax, work, total, applied, decided: Math.max(ZERO, tax - applied) };
+    }
+    const itemized = scenario(false);
+    const standard = scenario(true);
+    // 결정세액이 같으면 실제 신청 항목(항목별 공제)을 유지한다.
+    const useStandard = standard.decided < itemized.decided;
+    const chosen = useStandard ? standard : itemized;
+    const taxableIncome = chosen.taxable;
+    const calculatedTax = chosen.tax;
+    const workTaxCredit = chosen.work;
+    const totalTaxCredits = chosen.total;
+    const appliedTaxCredits = chosen.applied;
+    const decidedTax = chosen.decided;
     const settlement = withheldTax - decidedTax;
     const possibleIrpCredit = Math.min(pension.remaining * pension.rate, decidedTax);
 
@@ -150,6 +202,16 @@
       earnedIncome,
       personalDeduction,
       additionalPersonalDeduction,
+      nationalPensionPaid: insurance.nationalPension,
+      healthInsurancePaid: insurance.health,
+      employmentInsurancePaid: insurance.employment,
+      insuranceEstimated: insurance.estimated,
+      nationalPensionDeduction,
+      insuranceDeduction: useStandard ? ZERO : insuranceDeduction,
+      useStandardTaxCredit: useStandard,
+      standardTaxCredit: useStandard ? TAX.STANDARD_TAX_CREDIT : ZERO,
+      itemizedDecidedTax: itemized.decided,
+      standardDecidedTax: standard.decided,
       cardDeduction: card,
       taxableIncome,
       calculatedTax,
@@ -257,23 +319,32 @@
       resultValue.textContent = MC.formatWon(amount);
       resultValue.classList.toggle('positive', isRefund && amount > ZERO);
       resultValue.classList.toggle('negative', !isRefund);
-      document.getElementById('tax-result-summary').textContent = isRefund
+      document.getElementById('tax-result-summary').textContent = (isRefund
         ? '기납부세액이 간이 결정세액보다 많아 환급으로 예상됩니다.'
-        : '간이 결정세액이 기납부세액보다 많아 추가 납부로 예상됩니다.';
+        : '간이 결정세액이 기납부세액보다 많아 추가 납부로 예상됩니다.')
+        + (result.useStandardTaxCredit
+          ? ' 특별소득·세액공제 대신 표준세액공제(13만원)가 더 유리해 이를 적용했습니다.'
+          : '')
+        + (result.insuranceEstimated ? ' 4대보험료는 총급여 기준 2026년 요율로 추정했습니다.' : '');
       document.getElementById('calculated-tax').textContent = MC.formatWon(result.calculatedTax);
       document.getElementById('decided-tax').textContent = MC.formatWon(result.decidedTax);
       document.getElementById('paid-tax').textContent = MC.formatWon(result.withheldTax);
 
+      const estimatedNote = result.insuranceEstimated ? ' · 요율로 추정' : '';
+      const special = result.useStandardTaxCredit ? ZERO : ONE;
       const breakdown = [
         ['근로소득공제', result.workDeduction, '소득공제'],
         ['인적공제', result.personalDeduction, '소득공제'],
+        ['국민연금보험료 공제', result.nationalPensionDeduction, `소득공제${estimatedNote}`],
+        ['건강·장기요양·고용보험료 공제', result.insuranceDeduction, `특별소득공제${estimatedNote}`],
         ['카드 사용액 공제', result.cardDeduction, '소득공제'],
         ['근로소득 세액공제', result.workTaxCredit, '세액공제'],
         ['연금저축·IRP', result.pensionCredit, '세액공제'],
-        ['의료비', result.medicalCredit, '세액공제'],
-        ['교육비', result.educationCredit, '세액공제'],
-        ['월세', result.rentCredit, '세액공제'],
-        ['기부금', result.donationCredit, '세액공제'],
+        ['의료비', result.medicalCredit * special, '세액공제'],
+        ['교육비', result.educationCredit * special, '세액공제'],
+        ['월세', result.rentCredit * special, '세액공제'],
+        ['기부금', result.donationCredit * special, '세액공제'],
+        ['표준세액공제', result.standardTaxCredit, '세액공제'],
       ];
       document.getElementById('tax-breakdown').innerHTML = breakdown.map(([label, amountValue, type]) => (
         `<div class="breakdown-row"><dt>${label}<small class="microcopy"> · ${type}</small></dt><dd>${MC.formatWon(amountValue)}</dd></div>`

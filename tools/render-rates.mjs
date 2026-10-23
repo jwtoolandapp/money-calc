@@ -66,6 +66,8 @@ function topLoanRows(dataset) {
         bank: product.bank,
         name: product.name,
         rateType: option.rateType,
+        repayType: option.repayType || '공시 없음',
+        detail: option.mortgageType || '저장 자료에 세부조건 없음',
         minRate: option.minRate,
         averageRate: option.averageRate,
       }))
@@ -151,24 +153,28 @@ function buildLoanBlock(meta, mortgage, rent) {
   const section = ['<h2 id="rates-heading">은행 대출 공시 금리 참고표</h2>', freshnessNotice(meta)];
 
   if (mortgageRows.length) {
-    section.push('<h3>주택담보대출 · 평균금리 낮은 순</h3>');
+    section.push('<h3>주택담보대출 · 전월 평균금리 낮은 순</h3>');
     section.push(table(
-      ['은행', '상품', '금리유형', '최저', '평균'],
-      mortgageRows.map((row) => [row.bank, row.name, row.rateType, formatRate(row.minRate), formatRate(row.averageRate)])
+      ['은행', '상품', '금리유형', '상환방식', '추가조건', '공시 최저', '전월 평균'],
+      mortgageRows.map((row) => [row.bank, row.name, row.rateType, row.repayType, row.detail, formatRate(row.minRate), formatRate(row.averageRate)])
     ));
   }
 
   if (rentRows.length) {
-    section.push('<h3>전세자금대출 · 평균금리 낮은 순</h3>');
+    section.push('<h3>전세자금대출 · 전월 평균금리 낮은 순</h3>');
     section.push(table(
-      ['은행', '상품', '금리유형', '최저', '평균'],
-      rentRows.map((row) => [row.bank, row.name, row.rateType, formatRate(row.minRate), formatRate(row.averageRate)])
+      ['은행', '상품', '금리유형', '상환방식', '추가조건', '공시 최저', '전월 평균'],
+      rentRows.map((row) => [row.bank, row.name, row.rateType, row.repayType, row.detail, formatRate(row.minRate), formatRate(row.averageRate)])
     ));
   }
 
   section.push(
     '<p class="rates-caveat">평균금리는 해당 은행이 직전 달에 실제로 취급한 대출의 평균입니다. ' +
-    '개인의 신용점수·담보인정비율(LTV)·상환방식에 따라 실제 적용금리는 달라집니다.</p>'
+    '공시 최저와 전월 평균은 기준이 달라 직접적인 최저·평균 관계로 비교할 수 없습니다. ' +
+    '개인의 신용점수·담보인정비율(LTV)·상환방식에 따라 실제 적용금리는 달라집니다.</p>' +
+    '<p class="rates-caveat">조건 확인 필요: 같은 상품에 여러 금리가 있어도 현재 저장 자료에는 이를 구분할 세부조건이 없습니다. ' +
+    '이는 원본 공시에 조건이 없다는 뜻이 아니라 저장 자료만으로 확인할 수 없다는 뜻입니다. ' +
+    '서로 같은 조건이라고 가정하거나 금리를 평균내지 않았습니다. 해당 은행에서 적용 조건을 확인하기 전에는 행별 금리를 직접 비교하지 마세요.</p>'
   );
   section.push(sourceNote(meta));
 

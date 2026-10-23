@@ -61,10 +61,12 @@ console.log('PASS 정상 구간 플래그 없음');
 assert.equal(calculate({ wage: -1 }), null);
 assert.equal(calculate({ wage: 'abc' }), null);
 assert.equal(calculate({}), null);
-// 보수 0원도 국민연금 하한(41만)이 적용돼 0이 아닌 값이 나온다.
+// 2026-10-22: 보수 0원이면 하한을 적용하지 않는다(salary-net-pay 와 동일). 예전에는 41만 하한이 붙어
+// 보험료 19,475원과 음수 차감 후 금액이 나왔다.
 const zero = calculate({ wage: 0 });
-assert.equal(zero.pensionBase, 410000);
-assert.equal(zero.total, zero.nationalPension); // 건보·요양·고용은 0
+assert.equal(zero.pensionBase, 0);
+assert.equal(zero.total, 0);
+assert.equal(zero.afterInsurance, 0);
 console.log('PASS 잘못된 입력 방어');
 
 console.log('social-insurance tests: PASS');

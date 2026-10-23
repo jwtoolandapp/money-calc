@@ -19,7 +19,7 @@
     }
 
     var result = window.SocialInsurance.calculate({ wage: wageInput.value });
-    if (!result) return;
+    if (!result) { window.MoneyCalcResultState.showInvalid(valueNode, summaryNode, detailsNode); return; }
 
     valueNode.textContent = won(result.total);
     summaryNode.textContent = '월 ' + won(result.wage) + ' 기준 근로자 부담 4대보험료 합계입니다.';

@@ -28,7 +28,7 @@
       price: price,
       priceIncludesVat: vatCheckbox.checked
     });
-    if (!result) return;
+    if (!result) { window.MoneyCalcResultState.showInvalid(valueNode, summaryNode, detailsNode); return; }
 
     valueNode.textContent = won(result.tax);
     summaryNode.textContent = result.vehicleType + ' · 세율 ' +

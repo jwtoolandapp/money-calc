@@ -20,7 +20,7 @@
     // 두 칸이 다 차 있으면 세전 지급액을 우선한다.
     if (hasGross) {
       result = window.FreelanceTax.calculate({ mode: 'gross', gross: grossInput.value });
-      if (!result) return;
+      if (!result) { window.MoneyCalcResultState.showInvalid(valueNode, summaryNode, detailsNode); return; }
       valueNode.textContent = won(result.net);
       summaryNode.textContent = '세전 ' + won(result.gross) + '에서 3.3%(소득세 3% + 지방소득세 0.3%)를 뗀 실수령액입니다.';
       rows = [
@@ -32,7 +32,7 @@
       ];
     } else if (hasNet) {
       result = window.FreelanceTax.calculate({ mode: 'net', net: netInput.value });
-      if (!result) return;
+      if (!result) { window.MoneyCalcResultState.showInvalid(valueNode, summaryNode, detailsNode); return; }
       valueNode.textContent = won(result.gross);
       summaryNode.textContent = '실수령 ' + won(result.net) + '을 받으려면 세전 ' + won(result.gross) + '을 청구해야 합니다.';
       rows = [

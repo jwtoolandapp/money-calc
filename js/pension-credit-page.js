@@ -27,7 +27,7 @@
       pensionSavings: Number(savingsInput.value) || 0,
       irp: Number(irpInput.value) || 0
     });
-    if (!result) return;
+    if (!result) { window.MoneyCalcResultState.showInvalid(valueNode, summaryNode, detailsNode); return; }
 
     valueNode.textContent = won(result.totalCredit);
     summaryNode.textContent = '공제 대상 ' + won(result.eligibleTotal) +

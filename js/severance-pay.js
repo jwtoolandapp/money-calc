@@ -30,7 +30,9 @@
   // 국세청 계산사례의 ①~⑦ 순서: 근속연수공제 → 환산급여 → 환산급여공제 → 과세표준 → 환산산출세액 → 최종 산출세액.
   function calculateRetirementTax(retirementIncome, serviceYears) {
     const income = nonNegative(retirementIncome);
-    const years = Math.max(1, Math.floor(nonNegative(serviceYears)));
+    // 소득세법 제48조①: 근속연수에 1년 미만 기간이 있으면 1년으로 본다(올림). 2026-10-22 원문 확인
+    // https://www.law.go.kr/법령/소득세법/제48조
+    const years = Math.max(1, Math.ceil(nonNegative(serviceYears)));
     const serviceDeduction = Math.min(income, serviceYearDeduction(years));
     const convertedSalary = Math.max(0, income - serviceDeduction) * C.MATH.MONTHS_PER_YEAR / years;
     const convertedDeduction = Math.min(convertedSalary, convertedSalaryDeduction(convertedSalary));
@@ -41,13 +43,24 @@
     return { income, years, serviceDeduction, convertedSalary, convertedDeduction, taxableBase, convertedTax, incomeTax, localIncomeTax, totalTax: incomeTax + localIncomeTax, netAmount: Math.max(0, income - incomeTax - localIncomeTax) };
   }
 
+  function taxServiceYears(start, end) {
+    const endExclusive = new Date(end.getTime() + 86400000);
+    const anniversary = (years) => Date.UTC(start.getUTCFullYear() + years, start.getUTCMonth(), start.getUTCDate());
+    let years = endExclusive.getUTCFullYear() - start.getUTCFullYear();
+    if (anniversary(years) > endExclusive.getTime()) years -= 1;
+    if (anniversary(years) < endExclusive.getTime()) years += 1;
+    return Math.max(1, years);
+  }
+
   function calculate(input) {
     const source = input || {};
     const start = new Date(source.startDate);
     const end = new Date(source.endDate);
     const validDates = Number.isFinite(start.getTime()) && Number.isFinite(end.getTime()) && end >= start;
     const serviceDays = validDates ? Math.floor((end - start) / 86400000) + 1 : 0;
-    const serviceYears = Math.max(1, Math.floor(serviceDays / C.MATH.DAYS_PER_YEAR));
+    // 퇴직소득세용 근속연수: 달력 기준 만 연수 + 1년 미만 끝수는 1년으로 올림(소득세법 제48조①).
+    // 세전 퇴직금(retirementIncome)은 기존대로 재직일수 ÷ 365 비례로 계산한다.
+    const serviceYears = validDates ? taxServiceYears(start, end) : 1;
     const wageDays = Math.max(1, nonNegative(source.wageDays));
     const averageDailyWage = (nonNegative(source.threeMonthPay) + nonNegative(source.annualBonus) * S.BONUS_MONTHLY_RATIO + nonNegative(source.annualLeavePay) * S.BONUS_MONTHLY_RATIO) / wageDays;
     const eligible = serviceDays >= S.MIN_SERVICE_DAYS_FOR_ELIGIBILITY;

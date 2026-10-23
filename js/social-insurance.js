@@ -25,7 +25,10 @@
     if (wage === null || wage < 0) return null;
 
     // 국민연금만 상·하한이 있다. 건강보험·고용보험은 보수월액에 그대로 곱한다.
-    var pensionBase = Math.min(Math.max(wage, C.NATIONAL_PENSION_FLOOR), C.NATIONAL_PENSION_CEILING);
+    // 보수가 0원이면 하한을 적용하지 않고 0원으로 둔다(salary-net-pay 와 같은 처리).
+    var pensionBase = wage > 0
+      ? Math.min(Math.max(wage, C.NATIONAL_PENSION_FLOOR), C.NATIONAL_PENSION_CEILING)
+      : 0;
     var nationalPension = Math.round(pensionBase * C.NATIONAL_PENSION_RATE);
     var healthInsurance = Math.round(wage * C.HEALTH_INSURANCE_RATE);
     var longTermCare = Math.round(healthInsurance * C.LONG_TERM_CARE_RATE_OF_HEALTH);
@@ -36,13 +39,13 @@
       wage: wage,
       pensionBase: pensionBase,
       pensionCapped: wage > C.NATIONAL_PENSION_CEILING,
-      pensionFloored: wage < C.NATIONAL_PENSION_FLOOR,
+      pensionFloored: wage > 0 && wage < C.NATIONAL_PENSION_FLOOR,
       nationalPension: nationalPension,
       healthInsurance: healthInsurance,
       longTermCare: longTermCare,
       employmentInsurance: employmentInsurance,
       total: total,
-      afterInsurance: wage - total,
+      afterInsurance: Math.max(0, wage - total),
     };
   }
 

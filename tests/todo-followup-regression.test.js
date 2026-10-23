@@ -27,7 +27,10 @@ const overThree = calculators.propertyHoldingTax.calculateComprehensiveTax({
 });
 assert.equal(overThree.taxBase, 1500000000);
 assert.equal(overThree.calculatedTax, 15600000);
-assert.equal(overThree.payableTax, 15600000);
+// 2026-10-22: 재산세액공제는 입력 hidden 값이 아니라 시행령 제4조의3 비율식으로 계산한다.
+// 34억×60%×0.4%−63만 = 753만(재산세) × (15억×60%×0.4%) ÷ 753만 = 360만 공제.
+assert.equal(Math.round(overThree.propertyTaxCredit), 3600000);
+assert.equal(Math.round(overThree.payableTax), 12000000);
 
 const single = calculators.propertyHoldingTax.calculateComprehensiveTax({
   comprehensivePrice: 3200000000, ownershipType: 'single', propertyTaxCredit: 0, age: 70, holdingYears: 15,
@@ -36,16 +39,18 @@ assert.equal(single.calculatedTax, 9600000);
 assert.equal(single.elderlyCreditRate, 0.4);
 assert.equal(single.longTermCreditRate, 0.5);
 assert.equal(single.combinedCreditRate, 0.8);
-assert.equal(single.singleHouseCredit, 7680000);
-assert.equal(single.payableTax, 1920000);
+// 1세대1주택 32억: 재산세 공정시장가액비율 45% → 공제 = 20억×60%×45%×0.4% = 216만.
+assert.equal(Math.round(single.propertyTaxCredit), 2160000);
+assert.equal(Math.round(single.singleHouseCredit), 5952000);
+assert.equal(Math.round(single.payableTax), 1488000);
 const firstCreditBrackets = calculators.propertyHoldingTax.calculateComprehensiveTax({
   comprehensivePrice: 3200000000, ownershipType: 'single', propertyTaxCredit: 1000000, age: 60, holdingYears: 5,
 });
-assert.equal(firstCreditBrackets.taxAfterPropertyCredit, 8600000);
+assert.equal(Math.round(firstCreditBrackets.taxAfterPropertyCredit), 7440000); // 입력 propertyTaxCredit 은 무시
 assert.equal(firstCreditBrackets.elderlyCreditRate, 0.2);
 assert.equal(firstCreditBrackets.longTermCreditRate, 0.2);
-assert.equal(firstCreditBrackets.singleHouseCredit, 3440000);
-assert.equal(firstCreditBrackets.payableTax, 5160000);
+assert.equal(Math.round(firstCreditBrackets.singleHouseCredit), 2976000);
+assert.equal(Math.round(firstCreditBrackets.payableTax), 4464000);
 const middleCreditBrackets = calculators.propertyHoldingTax.calculateComprehensiveTax({
   comprehensivePrice: 3200000000, ownershipType: 'single', propertyTaxCredit: 0, age: 65, holdingYears: 10,
 });
@@ -56,7 +61,7 @@ const belowCreditThreshold = calculators.propertyHoldingTax.calculateComprehensi
   comprehensivePrice: 3200000000, ownershipType: 'single', propertyTaxCredit: 0, age: 59, holdingYears: 4,
 });
 assert.equal(belowCreditThreshold.combinedCreditRate, 0);
-assert.equal(belowCreditThreshold.payableTax, 9600000);
+assert.equal(Math.round(belowCreditThreshold.payableTax), 7440000);
 
 const withholding = context.MoneyCalcWithholding;
 assert.equal(withholding.withholdingChildAddon(1), 20830);

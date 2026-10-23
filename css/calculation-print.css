@@ -1,0 +1,16 @@
+#calculation-print-summary { display: none; }
+@media print {
+  html:has(body.printing-calculation), body.printing-calculation { background: #fff !important; }
+  body.printing-calculation > * { display: none !important; }
+  body.printing-calculation > #calculation-print-summary {
+    display: block !important;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: 11pt/1.6 sans-serif;
+    color: #000;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+  }
+}
+

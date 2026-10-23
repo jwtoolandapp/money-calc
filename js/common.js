@@ -48,6 +48,8 @@
   }
 
   function formatNumericInput(input) {
+    // Opt-in calculators validate the original text, including invalid input.
+    if (input.dataset.preserveRaw === 'true') return;
     const decimals = Number.parseInt(input.dataset.decimals || '0', 10);
     const allowNegative = input.dataset.allowNegative === 'true';
     input.value = normalizeNumericText(input.value, Number.isFinite(decimals) ? decimals : 0, allowNegative);
@@ -83,7 +85,8 @@
         if (checkboxNames.has(control.name)) params.set(control.name, control.checked ? '1' : '0');
         return;
       }
-      params.append(control.name, String(control.value).replace(/,/g, ''));
+      params.append(control.name, control.dataset && control.dataset.preserveRaw === 'true'
+        ? String(control.value) : String(control.value).replace(/,/g, ''));
     });
     return params;
   }

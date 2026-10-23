@@ -16,9 +16,13 @@
   function calculatePropertyTax(input) {
     const assessedPrice = nonNegative(input.assessedPrice);
     const houseCount = Math.max(1, Math.floor(nonNegative(input.houseCount) || 1));
-    const special = houseCount === 1 && assessedPrice <= TAX.SINGLE_HOUSE_SPECIAL_PRICE_LIMIT;
+    const singleHouse = houseCount === 1;
+    // 특례세율(지방세법 제111조의2)은 공시가격 9억원 이하 1세대1주택만, 공정시장가액비율 43~45%
+    // (지방세법 시행령 제109조①2 단서, 2026년분)는 9억원 초과 1세대1주택에도 적용된다.
+    // 확인: 2026-10-22, https://www.law.go.kr/법령/지방세법시행령/제109조
+    const special = singleHouse && assessedPrice <= TAX.SINGLE_HOUSE_SPECIAL_PRICE_LIMIT;
     let ratio = TAX.FAIR_MARKET_VALUE_RATIO.STANDARD;
-    if (special) {
+    if (singleHouse) {
       if (assessedPrice <= 300000000) ratio = TAX.FAIR_MARKET_VALUE_RATIO.SPECIAL_LOW;
       else if (assessedPrice <= 600000000) ratio = TAX.FAIR_MARKET_VALUE_RATIO.SPECIAL_MID;
       else ratio = TAX.FAIR_MARKET_VALUE_RATIO.SPECIAL_HIGH;
@@ -38,10 +42,22 @@
     const taxBase = Math.max(ZERO, assessedPrice - deduction) * TAX.COMPREHENSIVE_FAIR_MARKET_VALUE_RATIO;
     const brackets = ownershipType === 'over3' ? TAX.COMPREHENSIVE_TAX_BRACKETS_OVER_3 : TAX.COMPREHENSIVE_TAX_BRACKETS_UNDER_2;
     const calculatedTax = progressiveTax(taxBase, brackets);
-    // 시행령 제4조의3① 정밀식은 주택분 재산세 합계 × [(종부세 과세표준 × 재산세 공정시장가액비율)
-    // × 재산세 표준세율] ÷ 전체 주택 합산 표준세율 재산세 상당액이다. 현재 종부세 입력은 개별 주택별
-    // 공시가격을 받지 않아 분모를 재현할 수 없으므로 재산세 탭에서 계산한 본세를 차감하는 간이화를 유지한다.
-    const propertyTaxCredit = Math.min(calculatedTax, nonNegative(input.propertyTaxCredit));
+    // 재산세액공제(종합부동산세법 시행령 제4조의3①, 2026-10-22 원문 확인
+    // https://www.law.go.kr/법령/종합부동산세법시행령/제4조의3):
+    //   공제액 = 주택분 재산세 부과세액 합계 × [(종부세 과세표준 × 재산세 공정시장가액비율) × 재산세 표준세율]
+    //            ÷ 주택을 합산해 재산세 표준세율로 계산한 재산세 상당액
+    // 분자 표준세율은 0.4%, 분모는 (공시가격 × 재산세 공정시장가액비율 × 표준세율 − 누진공제)로 적는다
+    // (종합부동산세법 시행규칙 별지 제35호서식 작성방법 6·7, 2025.3.21 개정).
+    // 재산세 부과세액은 이 탭에 입력한 공시가격으로 다시 계산한다. 다주택은 주택별 공시가격을 받지 않으므로
+    // 합계 공시가격 하나로 계산한 재산세를 쓰는 간이 추정이며, 재산세 세부담상한·감면은 반영하지 않는다.
+    const property = calculatePropertyTax({ assessedPrice, houseCount: ownershipType === 'single' ? 1 : 2 });
+    const propertyTaxBase = assessedPrice * property.ratio;
+    const standardPropertyTax = progressiveTax(propertyTaxBase, TAX.HOUSE_TAX_BRACKETS_STANDARD);
+    const overlapPropertyTax = taxBase * property.ratio * TAX.PROPERTY_TAX_CREDIT_NUMERATOR_RATE;
+    const rawPropertyTaxCredit = standardPropertyTax > ZERO
+      ? property.houseTax * Math.min(1, overlapPropertyTax / standardPropertyTax)
+      : ZERO;
+    const propertyTaxCredit = Math.min(calculatedTax, rawPropertyTaxCredit);
     const taxAfterPropertyCredit = Math.max(ZERO, calculatedTax - propertyTaxCredit);
     const age = nonNegative(input.age);
     const holdingYears = nonNegative(input.holdingYears);
@@ -59,7 +75,7 @@
     const ruralSpecialTax = payableTax * TAX.COMPREHENSIVE_RURAL_SPECIAL_TAX_RATE;
     const totalPayable = payableTax + ruralSpecialTax;
     return {
-      assessedPrice, ownershipType, deduction, taxBase, calculatedTax, propertyTaxCredit, taxAfterPropertyCredit,
+      assessedPrice, ownershipType, deduction, taxBase, calculatedTax, propertyHouseTax: property.houseTax, propertyTaxCredit, taxAfterPropertyCredit,
       age, holdingYears, elderlyCreditRate, longTermCreditRate, combinedCreditRate, singleHouseCredit, payableTax,
       ruralSpecialTax, totalPayable,
     };
@@ -83,11 +99,10 @@
         const result = calculatePropertyTax({ assessedPrice: value('assessedPrice'), houseCount: value('houseCount') });
         document.getElementById('property-result-label').textContent = '예상 재산세 합계';
         document.getElementById('property-result-value').textContent = U.formatWon(Math.round(result.totalTax));
-        document.getElementById('property-result-summary').textContent = `${result.special ? '1세대1주택 특례' : '표준'} 공정시장가액비율 ${(result.ratio * 100).toFixed(0)}%를 적용했습니다.`;
+        document.getElementById('property-result-summary').textContent = `${result.ratio !== TAX.FAIR_MARKET_VALUE_RATIO.STANDARD ? '1세대1주택 특례' : '표준'} 공정시장가액비율 ${(result.ratio * 100).toFixed(0)}%를 적용했습니다.`;
         setRows([['과세표준',U.formatWon(result.taxBase)],['재산세 본세',U.formatWon(result.houseTax)],['도시지역분',U.formatWon(result.urbanAreaTax)],['지방교육세',U.formatWon(result.localEducationTax)]]);
-        form.elements.propertyTaxCredit.value = U.formatNumber(Math.round(result.houseTax), 0);
       } else {
-        const result = calculateComprehensiveTax({ comprehensivePrice:value('comprehensivePrice'), ownershipType:form.elements.ownershipType.value, propertyTaxCredit:value('propertyTaxCredit'), age:value('age'), holdingYears:value('holdingYears') });
+        const result = calculateComprehensiveTax({ comprehensivePrice:value('comprehensivePrice'), ownershipType:form.elements.ownershipType.value, age:value('age'), holdingYears:value('holdingYears') });
         // 큰 숫자는 실제로 고지되는 금액(종부세 + 농특세)이어야 한다. 종부세만 보여주면
         // 고지서를 받았을 때 20% 더 나온다.
         document.getElementById('property-result-label').textContent = '예상 납부액 (종부세 + 농특세)';
@@ -97,7 +112,7 @@
           : '1세대1주택 고령자·장기보유 세액공제는 적용되지 않는 보유 유형입니다.';
         setRows([
           ['기본공제',U.formatWon(result.deduction)],['과세표준',U.formatWon(result.taxBase)],
-          ['산출세액',U.formatWon(result.calculatedTax)],['재산세액공제(간이)',U.formatWon(result.propertyTaxCredit)],
+          ['산출세액',U.formatWon(result.calculatedTax)],['재산세액공제 (공시가격 기준 재산세 '+U.formatWon(result.propertyHouseTax)+' 중 중복분)',U.formatWon(result.propertyTaxCredit)],
           ['재산세액공제 후 세액',U.formatWon(result.taxAfterPropertyCredit)],
           ['1세대1주택 세액공제',`${U.formatWon(result.singleHouseCredit)} (${U.formatPercent(result.combinedCreditRate * 100, 0)})`],
           ['종합부동산세',U.formatWon(result.payableTax)],

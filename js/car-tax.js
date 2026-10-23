@@ -50,7 +50,9 @@
     var isCommercial = !!input.isCommercial;
     var base = annualBaseTax(cc, isCommercial);
     var discounted = applyAgeDiscount(base, age);
-    var eduRate = Number(C.EDUCATION_TAX_RATE) || 0.3;
+    // 지방교육세 납세의무자는 '비영업용 승용자동차'에 대한 자동차세 납세의무자뿐이다(지방세법 제150조제7호).
+    // 영업용은 지방교육세가 붙지 않는다. 확인: 2026-10-22, https://www.law.go.kr/법령/지방세법/제150조
+    var eduRate = isCommercial ? 0 : (Number(C.EDUCATION_TAX_RATE) || 0.3);
     var educationTax = discounted.annual * eduRate;
 
     return {

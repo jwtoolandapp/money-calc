@@ -34,7 +34,7 @@
 
     var rows = [
       ['자동차세', won(result.annualTax)],
-      ['지방교육세 (30%)', won(result.educationTax)],
+      [result.isCommercial ? '지방교육세 (영업용 비과세)' : '지방교육세 (30%)', won(result.educationTax)],
       ['반기별 납부액', won(result.halfYearTotal)]
     ];
     if (result.discountRate > 0) {
