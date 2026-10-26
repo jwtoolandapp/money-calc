@@ -6,35 +6,51 @@
       "bank": "우리은행",
       "name": "우리전세론(주택금융보증)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
-          "rateType": "고정금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 5.46,
-          "maxRate": 6.16,
-          "averageRate": 5.22
-        },
-        {
-          "rateType": "고정금리",
+          "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 5.46,
-          "maxRate": 6.16,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.04,
+          "maxRate": 4.74,
           "averageRate": null
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 3.93,
-          "maxRate": 4.63,
-          "averageRate": 4.23
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.04,
+          "maxRate": 4.74,
+          "averageRate": 4.29
         },
         {
-          "rateType": "변동금리",
+          "rateType": "고정금리",
           "repayType": "분할상환방식",
-          "minRate": 3.93,
-          "maxRate": 4.63,
-          "averageRate": 4.17
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 5.39,
+          "maxRate": 6.09,
+          "averageRate": null
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.39,
+          "maxRate": 6.09,
+          "averageRate": 5.38
         }
       ]
     },
@@ -42,35 +58,51 @@
       "bank": "우리은행",
       "name": "우리전세론(서울보증)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
-          "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 3.99,
-          "maxRate": 4.69,
-          "averageRate": 4.2
-        },
-        {
-          "rateType": "변동금리",
-          "repayType": "분할상환방식",
-          "minRate": 3.89,
-          "maxRate": 4.59,
-          "averageRate": 4.17
-        },
-        {
           "rateType": "고정금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 5.47,
-          "maxRate": 6.17,
+          "repayType": "분할상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 5.3,
+          "maxRate": 6,
           "averageRate": null
         },
         {
           "rateType": "고정금리",
-          "repayType": "분할상환방식",
-          "minRate": 5.37,
-          "maxRate": 6.07,
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.4,
+          "maxRate": 6.1,
           "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4,
+          "maxRate": 4.7,
+          "averageRate": 4.11
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.1,
+          "maxRate": 4.8,
+          "averageRate": 4.29
         }
       ]
     },
@@ -78,14 +110,18 @@
       "bank": "한국스탠다드차타드은행",
       "name": "전세담보대출",
       "joinWay": "영업점,스마트폰",
-      "disclosedAt": "20260917",
+      "disclosedAt": "20261019",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.84,
-          "maxRate": 5.24,
-          "averageRate": 4.99
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.94,
+          "maxRate": 5.34,
+          "averageRate": 5.15
         }
       ]
     },
@@ -93,14 +129,18 @@
       "bank": "아이엠뱅크",
       "name": "DGB 전세자금대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.21,
-          "maxRate": 5.71,
-          "averageRate": 4.51
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.82,
+          "maxRate": 5.82,
+          "averageRate": 4.87
         }
       ]
     },
@@ -108,13 +148,17 @@
       "bank": "아이엠뱅크",
       "name": "무방문전세자금대출(주택금융공사)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.71,
-          "maxRate": 5.71,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.82,
+          "maxRate": 5.82,
           "averageRate": null
         }
       ]
@@ -123,14 +167,18 @@
       "bank": "아이엠뱅크",
       "name": "DGB POWER 전세보증대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.21,
-          "maxRate": 5.71,
-          "averageRate": 4.65
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.82,
+          "maxRate": 5.82,
+          "averageRate": 5.22
         }
       ]
     },
@@ -138,14 +186,18 @@
       "bank": "아이엠뱅크",
       "name": "무방문전세자금대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.71,
-          "maxRate": 5.71,
-          "averageRate": 5.03
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.82,
+          "maxRate": 5.82,
+          "averageRate": null
         }
       ]
     },
@@ -153,35 +205,51 @@
       "bank": "부산은행",
       "name": "BNK전세안심대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260903",
+      "disclosedAt": "20261006",
       "options": [
         {
           "rateType": "고정금리",
           "repayType": "분할상환방식",
-          "minRate": 5.37,
-          "maxRate": 6.17,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 5.51,
+          "maxRate": 6.31,
           "averageRate": null
         },
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.37,
-          "maxRate": 6.17,
-          "averageRate": 5.55
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.51,
+          "maxRate": 6.31,
+          "averageRate": 5.84
         },
         {
           "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 4.33,
-          "maxRate": 5.13,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.39,
+          "maxRate": 5.19,
           "averageRate": null
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.33,
-          "maxRate": 5.13,
-          "averageRate": 4.34
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.39,
+          "maxRate": 5.19,
+          "averageRate": 4.4
         }
       ]
     },
@@ -189,35 +257,51 @@
       "bank": "부산은행",
       "name": "BNK행복스케치전세자금대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260903",
+      "disclosedAt": "20261006",
       "options": [
         {
-          "rateType": "고정금리",
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.39,
+          "maxRate": 5.19,
+          "averageRate": 4.53
+        },
+        {
+          "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 5.37,
-          "maxRate": 6.17,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.39,
+          "maxRate": 5.19,
           "averageRate": null
         },
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.37,
-          "maxRate": 6.17,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.51,
+          "maxRate": 6.31,
           "averageRate": null
         },
         {
-          "rateType": "변동금리",
+          "rateType": "고정금리",
           "repayType": "분할상환방식",
-          "minRate": 4.33,
-          "maxRate": 5.13,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 5.51,
+          "maxRate": 6.31,
           "averageRate": null
-        },
-        {
-          "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.33,
-          "maxRate": 5.13,
-          "averageRate": 4.37
         }
       ]
     },
@@ -225,35 +309,51 @@
       "bank": "부산은행",
       "name": "BNK프리미엄전세자금대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260903",
+      "disclosedAt": "20261006",
       "options": [
         {
           "rateType": "고정금리",
           "repayType": "분할상환방식",
-          "minRate": 5.47,
-          "maxRate": 6.47,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 5.61,
+          "maxRate": 6.61,
           "averageRate": null
         },
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.47,
-          "maxRate": 6.47,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.61,
+          "maxRate": 6.61,
           "averageRate": null
         },
         {
           "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 4.13,
-          "maxRate": 5.13,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.19,
+          "maxRate": 5.19,
           "averageRate": null
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.13,
-          "maxRate": 5.13,
-          "averageRate": 4.43
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.19,
+          "maxRate": 5.19,
+          "averageRate": 4.42
         }
       ]
     },
@@ -261,14 +361,18 @@
       "bank": "광주은행",
       "name": "청년맞춤형 전월세보증금 대출",
       "joinWay": "영업점",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 3.75,
-          "maxRate": 3.95,
-          "averageRate": 3.86
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.16,
+          "maxRate": 4.36,
+          "averageRate": 3.81
         }
       ]
     },
@@ -276,14 +380,18 @@
       "bank": "제주은행",
       "name": "주택전세자금대출",
       "joinWay": "영업점",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.89,
-          "maxRate": 6.59,
-          "averageRate": 11.73
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 6.23,
+          "maxRate": 6.93,
+          "averageRate": 5.63
         }
       ]
     },
@@ -291,14 +399,18 @@
       "bank": "제주은행",
       "name": "JJB일반전세자금대출",
       "joinWay": "영업점",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.84,
-          "maxRate": 6.54,
-          "averageRate": 5.93
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 6.16,
+          "maxRate": 6.86,
+          "averageRate": null
         }
       ]
     },
@@ -306,13 +418,17 @@
       "bank": "전북은행",
       "name": "BEST전세자금대출Ⅱ",
       "joinWay": "영업점",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.53,
-          "maxRate": 6.33,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.28,
+          "maxRate": 6.08,
           "averageRate": null
         }
       ]
@@ -321,13 +437,17 @@
       "bank": "전북은행",
       "name": "JB전세자금대출",
       "joinWay": "영업점",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.96,
-          "maxRate": 6.46,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.73,
+          "maxRate": 6.23,
           "averageRate": null
         }
       ]
@@ -336,14 +456,18 @@
       "bank": "경남은행",
       "name": "전세자금대출(주택금융공사)",
       "joinWay": "영업점",
-      "disclosedAt": "20260916",
+      "disclosedAt": "20261016",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.45,
-          "maxRate": 5.95,
-          "averageRate": 4.65
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.51,
+          "maxRate": 6.01,
+          "averageRate": 4.88
         }
       ]
     },
@@ -351,13 +475,17 @@
       "bank": "경남은행",
       "name": "모바일전세자금대출\n(주택금융공사)",
       "joinWay": "영업점",
-      "disclosedAt": "20260916",
+      "disclosedAt": "20261016",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.43,
-          "maxRate": 6.03,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.49,
+          "maxRate": 6.09,
           "averageRate": null
         }
       ]
@@ -366,13 +494,17 @@
       "bank": "경남은행",
       "name": "고정금리 전세자금대출(주택금융공사)",
       "joinWay": "영업점",
-      "disclosedAt": "20260916",
+      "disclosedAt": "20261016",
       "options": [
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.33,
-          "maxRate": 5.33,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.25,
+          "maxRate": 5.25,
           "averageRate": null
         }
       ]
@@ -381,14 +513,18 @@
       "bank": "경남은행",
       "name": "모바일전세자금대출(서울보증보험)",
       "joinWay": "영업점",
-      "disclosedAt": "20260916",
+      "disclosedAt": "20261016",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.9,
-          "maxRate": 6.5,
-          "averageRate": 5.09
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.96,
+          "maxRate": 6.56,
+          "averageRate": null
         }
       ]
     },
@@ -396,35 +532,51 @@
       "bank": "중소기업은행",
       "name": "IBK전세대출 (HF)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260916",
+      "disclosedAt": "20261015",
       "options": [
         {
           "rateType": "고정금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 6.07,
-          "maxRate": 6.27,
-          "averageRate": 5.62
+          "repayType": "분할상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 5.73,
+          "maxRate": 6.23,
+          "averageRate": null
         },
         {
           "rateType": "고정금리",
-          "repayType": "분할상환방식",
-          "minRate": 6.07,
-          "maxRate": 6.27,
-          "averageRate": null
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.72,
+          "maxRate": 6.22,
+          "averageRate": 5.81
         },
         {
           "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 4.9,
-          "maxRate": 4.9,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.79,
+          "maxRate": 4.99,
           "averageRate": null
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.9,
-          "maxRate": 4.9,
-          "averageRate": 4.64
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.79,
+          "maxRate": 4.99,
+          "averageRate": 4.78
         }
       ]
     },
@@ -432,34 +584,50 @@
       "bank": "중소기업은행",
       "name": "IBK전세대출 (SGI)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260916",
+      "disclosedAt": "20261015",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.14,
-          "maxRate": 5.14,
-          "averageRate": 4.32
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.03,
+          "maxRate": 5.23,
+          "averageRate": 4.84
         },
         {
-          "rateType": "고정금리",
+          "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 6.24,
-          "maxRate": 6.44,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.95,
+          "maxRate": 5.15,
           "averageRate": null
         },
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 6.31,
-          "maxRate": 6.51,
-          "averageRate": 5.88
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.96,
+          "maxRate": 6.46,
+          "averageRate": 5.93
         },
         {
-          "rateType": "변동금리",
+          "rateType": "고정금리",
           "repayType": "분할상환방식",
-          "minRate": 5.06,
-          "maxRate": 5.06,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 5.89,
+          "maxRate": 6.39,
           "averageRate": null
         }
       ]
@@ -468,21 +636,29 @@
       "bank": "중소기업은행",
       "name": "IBK전세대출 (HUG)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260916",
+      "disclosedAt": "20261015",
       "options": [
-        {
-          "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.88,
-          "maxRate": 4.88,
-          "averageRate": 4.23
-        },
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 6.06,
-          "maxRate": 6.26,
-          "averageRate": 5.67
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.71,
+          "maxRate": 6.21,
+          "averageRate": 5.9
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.78,
+          "maxRate": 4.98,
+          "averageRate": 4.59
         }
       ]
     },
@@ -490,21 +666,29 @@
       "bank": "국민은행",
       "name": "KB주택전세자금대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.21,
-          "maxRate": 5.61,
-          "averageRate": 4.39
+          "repayType": "분할상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.41,
+          "maxRate": 5.81,
+          "averageRate": 4.41
         },
         {
           "rateType": "변동금리",
-          "repayType": "분할상환방식",
-          "minRate": 4.21,
-          "maxRate": 5.61,
-          "averageRate": 4.08
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.3,
+          "maxRate": 5.7,
+          "averageRate": 4.58
         }
       ]
     },
@@ -512,21 +696,29 @@
       "bank": "국민은행",
       "name": "KB플러스전세자금대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 4.22,
-          "maxRate": 5.62,
-          "averageRate": 4.68
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.41,
+          "maxRate": 5.81,
+          "averageRate": null
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.22,
-          "maxRate": 5.62,
-          "averageRate": 4.38
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.3,
+          "maxRate": 5.7,
+          "averageRate": 4.58
         }
       ]
     },
@@ -534,35 +726,51 @@
       "bank": "신한은행",
       "name": "신한전세대출(주택금융공사)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260918",
+      "disclosedAt": "20261019",
       "options": [
         {
-          "rateType": "고정금리",
-          "repayType": "분할상환방식",
-          "minRate": 4.73,
-          "maxRate": 5.93,
-          "averageRate": null
-        },
-        {
-          "rateType": "고정금리",
+          "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.73,
-          "maxRate": 5.93,
-          "averageRate": null
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.49,
+          "maxRate": 5.69,
+          "averageRate": 4.76
         },
         {
           "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 4.41,
-          "maxRate": 5.61,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.52,
+          "maxRate": 5.72,
+          "averageRate": 5.25
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 4.74,
+          "maxRate": 5.94,
           "averageRate": null
         },
         {
-          "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.36,
-          "maxRate": 5.56,
-          "averageRate": 4.55
+          "rateType": "고정금리",
+          "repayType": "분할상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 4.74,
+          "maxRate": 5.94,
+          "averageRate": null
         }
       ]
     },
@@ -570,35 +778,51 @@
       "bank": "신한은행",
       "name": "신한전세대출(서울보증)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260918",
+      "disclosedAt": "20261019",
       "options": [
         {
           "rateType": "고정금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.73,
-          "maxRate": 5.63,
-          "averageRate": null
-        },
-        {
-          "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 4.5,
-          "maxRate": 5.4,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 4.74,
+          "maxRate": 5.64,
           "averageRate": null
-        },
-        {
-          "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.5,
-          "maxRate": 5.4,
-          "averageRate": 4.53
         },
         {
           "rateType": "고정금리",
-          "repayType": "분할상환방식",
-          "minRate": 4.73,
-          "maxRate": 5.63,
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 4.74,
+          "maxRate": 5.64,
           "averageRate": null
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.6,
+          "maxRate": 5.5,
+          "averageRate": 4.79
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.5,
+          "maxRate": 5.4,
+          "averageRate": 4.89
         }
       ]
     },
@@ -606,21 +830,29 @@
       "bank": "농협은행주식회사",
       "name": "NH전세대출(서울보증보험)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.22,
-          "maxRate": 6.82,
-          "averageRate": 4.96
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.19,
+          "maxRate": 6.79,
+          "averageRate": 5.28
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 3.69,
-          "maxRate": 6.39,
-          "averageRate": 4.5
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.65,
+          "maxRate": 6.55,
+          "averageRate": 4.61
         }
       ]
     },
@@ -628,35 +860,51 @@
       "bank": "농협은행주식회사",
       "name": "NH전세대출(주택금융공사)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.55,
+          "maxRate": 6.55,
+          "averageRate": 4.74
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "분할상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.55,
+          "maxRate": 6.55,
+          "averageRate": 4.53
+        },
+        {
+          "rateType": "고정금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.09,
+          "maxRate": 6.79,
+          "averageRate": 4.65
+        },
+        {
           "rateType": "고정금리",
           "repayType": "분할상환방식",
-          "minRate": 4.22,
-          "maxRate": 6.82,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "D",
+          "minRate": 5.09,
+          "maxRate": 6.79,
           "averageRate": null
-        },
-        {
-          "rateType": "고정금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.22,
-          "maxRate": 6.82,
-          "averageRate": 4.21
-        },
-        {
-          "rateType": "변동금리",
-          "repayType": "분할상환방식",
-          "minRate": 3.69,
-          "maxRate": 6.39,
-          "averageRate": 4.38
-        },
-        {
-          "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 3.69,
-          "maxRate": 6.39,
-          "averageRate": 4.5
         }
       ]
     },
@@ -664,21 +912,29 @@
       "bank": "농협은행주식회사",
       "name": "NH전세대출(주택도시보증공사)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.24,
-          "maxRate": 6.84,
-          "averageRate": null
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.09,
+          "maxRate": 6.79,
+          "averageRate": 5.31
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 3.7,
-          "maxRate": 6.4,
-          "averageRate": 4.48
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.55,
+          "maxRate": 6.55,
+          "averageRate": 4.65
         }
       ]
     },
@@ -686,21 +942,29 @@
       "bank": "주식회사 하나은행",
       "name": "주택신보위탁발행보증서담보대출",
       "joinWay": "영업점",
-      "disclosedAt": "20260921",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "분할상환방식",
-          "minRate": 4.64,
-          "maxRate": 6.04,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 4.77,
+          "maxRate": 6.17,
           "averageRate": null
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.64,
-          "maxRate": 6.04,
-          "averageRate": 4.34
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.77,
+          "maxRate": 6.17,
+          "averageRate": 4.66
         }
       ]
     },
@@ -708,21 +972,29 @@
       "bank": "주식회사 하나은행",
       "name": "우량주택전세론",
       "joinWay": "영업점",
-      "disclosedAt": "20260921",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.95,
-          "maxRate": 6.25,
-          "averageRate": 4.58
+          "repayType": "분할상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "D",
+          "minRate": 5.08,
+          "maxRate": 6.38,
+          "averageRate": 4.82
         },
         {
           "rateType": "변동금리",
-          "repayType": "분할상환방식",
-          "minRate": 4.95,
-          "maxRate": 6.25,
-          "averageRate": 4.62
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.08,
+          "maxRate": 6.38,
+          "averageRate": 4.81
         }
       ]
     },
@@ -730,14 +1002,18 @@
       "bank": "주식회사 하나은행",
       "name": "하나전세금안심대출",
       "joinWay": "영업점",
-      "disclosedAt": "20260921",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.94,
-          "maxRate": 6.24,
-          "averageRate": 4.39
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.07,
+          "maxRate": 6.37,
+          "averageRate": 4.69
         }
       ]
     },
@@ -745,14 +1021,18 @@
       "bank": "주식회사 케이뱅크",
       "name": "전월세보증금 대출",
       "joinWay": "스마트폰",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.36,
-          "maxRate": 4.36,
-          "averageRate": 4.13
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.62,
+          "maxRate": 4.62,
+          "averageRate": 4.27
         }
       ]
     },
@@ -760,14 +1040,18 @@
       "bank": "주식회사 케이뱅크",
       "name": "고정금리 전월세보증금 대출",
       "joinWay": "스마트폰",
-      "disclosedAt": "20260920",
+      "disclosedAt": "20261020",
       "options": [
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.82,
-          "maxRate": 5.12,
-          "averageRate": 4.46
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 4.87,
+          "maxRate": 5.17,
+          "averageRate": 4.83
         }
       ]
     },
@@ -775,13 +1059,17 @@
       "bank": "수협은행",
       "name": "공공주택임차보증금담보대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260918",
+      "disclosedAt": "20261019",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.16,
-          "maxRate": 6.36,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.25,
+          "maxRate": 6.45,
           "averageRate": null
         }
       ]
@@ -790,14 +1078,18 @@
       "bank": "수협은행",
       "name": "Sh전세보증대출(주택금융공사)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260918",
+      "disclosedAt": "20261019",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.13,
-          "maxRate": 6.33,
-          "averageRate": 4.48
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.26,
+          "maxRate": 6.46,
+          "averageRate": 5.07
         }
       ]
     },
@@ -805,14 +1097,18 @@
       "bank": "수협은행",
       "name": "Sh전세보증대출(서울보증보험)",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260918",
+      "disclosedAt": "20261019",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.11,
-          "maxRate": 6.31,
-          "averageRate": 4.7
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.24,
+          "maxRate": 6.44,
+          "averageRate": 5.1
         }
       ]
     },
@@ -820,13 +1116,17 @@
       "bank": "수협은행",
       "name": "Sh전세금안심대출",
       "joinWay": "영업점,모집인",
-      "disclosedAt": "20260918",
+      "disclosedAt": "20261019",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.18,
-          "maxRate": 6.38,
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 5.29,
+          "maxRate": 6.49,
           "averageRate": null
         }
       ]
@@ -835,21 +1135,29 @@
       "bank": "주식회사 카카오뱅크",
       "name": "HF 전월세보증금 대출",
       "joinWay": "스마트폰",
-      "disclosedAt": "20260917",
+      "disclosedAt": "20261019",
       "options": [
-        {
-          "rateType": "변동금리",
-          "repayType": "만기일시상환방식",
-          "minRate": 4.21,
-          "maxRate": 4.41,
-          "averageRate": 4.05
-        },
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.21,
-          "maxRate": 5.41,
-          "averageRate": 4.88
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.12,
+          "maxRate": 5.32,
+          "averageRate": 5.29
+        },
+        {
+          "rateType": "변동금리",
+          "repayType": "만기일시상환방식",
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.47,
+          "maxRate": 4.67,
+          "averageRate": 4.33
         }
       ]
     },
@@ -857,21 +1165,29 @@
       "bank": "주식회사 카카오뱅크",
       "name": "SGI 전월세보증금 대출",
       "joinWay": "스마트폰",
-      "disclosedAt": "20260917",
+      "disclosedAt": "20261019",
       "options": [
         {
           "rateType": "고정금리",
           "repayType": "만기일시상환방식",
-          "minRate": 5.41,
-          "maxRate": 5.61,
-          "averageRate": 5.04
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "F",
+          "repayTypeCode": "S",
+          "minRate": 5.32,
+          "maxRate": 5.52,
+          "averageRate": 5.68
         },
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.41,
-          "maxRate": 4.61,
-          "averageRate": 4.23
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.68,
+          "maxRate": 4.88,
+          "averageRate": 4.52
         }
       ]
     },
@@ -879,14 +1195,18 @@
       "bank": "토스뱅크 주식회사",
       "name": "전월세보증금대출 플러스",
       "joinWay": "스마트폰",
-      "disclosedAt": "20260917",
+      "disclosedAt": "20261016",
       "options": [
         {
           "rateType": "변동금리",
           "repayType": "만기일시상환방식",
-          "minRate": 4.36,
-          "maxRate": 4.36,
-          "averageRate": 4.21
+          "mortgageType": null,
+          "mortgageTypeCode": null,
+          "rateTypeCode": "C",
+          "repayTypeCode": "S",
+          "minRate": 4.7,
+          "maxRate": 4.7,
+          "averageRate": 4.4
         }
       ]
     }
