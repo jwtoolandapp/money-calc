@@ -82,3 +82,9 @@ jobs:
           git add data/rates savings/index.html loan/index.html
           git commit -m "chore: 은행 금리 갱신 ($(node -p "require('./data/rates/meta.json').fetchedAt"))"
           git push
+
+      - name: 갱신 실패 안내
+        if: failure()
+        run: |
+          echo "::error::금리 갱신에 실패했습니다. 실패 단계와 운영 수집일을 확인하세요. 자동 재수집이나 강제 push는 하지 않습니다."
+          echo "금리 갱신 실패. 운영 데이터가 최신인지 별도 확인이 필요합니다. 실행 로그의 실패 단계를 확인하세요." >> "$GITHUB_STEP_SUMMARY"

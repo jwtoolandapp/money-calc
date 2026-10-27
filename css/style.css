@@ -1241,6 +1241,8 @@ a.calculator-card:focus-visible {
 }
 
 .rates-caveat {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
   margin: 14px 0 0;
   padding: 12px 14px;
   border-radius: var(--radius-sm);
@@ -1251,6 +1253,8 @@ a.calculator-card:focus-visible {
 }
 
 .rates-source {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
   margin: 10px 0 0;
   font-size: 0.85rem;
   color: var(--navy-500);

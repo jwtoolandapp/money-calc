@@ -1,0 +1,22 @@
+name: 금리 갱신 상태 감지
+on:
+  schedule:
+    # Daily 12:20 KST; independent of the weekly collection job.
+    - cron: '20 3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 운영 데이터와 예약 실행 읽기 전용 확인
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/check-rate-health.js

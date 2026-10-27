@@ -110,7 +110,7 @@ function sourceNote(meta) {
 }
 
 function freshnessNotice(meta) {
-  return `<p class="rates-caveat" data-rates-fetched="${escapeHtml(meta.fetchedAt)}"><strong>공시 수집일 <time datetime="${escapeHtml(meta.fetchedAt)}">${escapeHtml(meta.fetchedAt)}</time></strong> · <span data-rates-status>수집 당시의 참고 자료이며 실시간 금리가 아닙니다. 가입 전 금융감독원과 해당 은행의 최신 공시를 확인하세요.</span></p><script defer src="../js/rate-freshness.js?v=2026-10-12"></script>`;
+  return `<p class="rates-caveat" data-rates-fetched="${escapeHtml(meta.fetchedAt)}"><strong>공시 수집일 <time datetime="${escapeHtml(meta.fetchedAt)}">${escapeHtml(meta.fetchedAt)}</time></strong> · <span data-rates-status>수집 당시의 참고 자료이며 실시간 금리가 아닙니다. 가입 전 금융감독원과 해당 은행의 최신 공시를 확인하세요.</span></p><script defer src="../js/rate-freshness.js?v=2026-10-27"></script>`;
 }
 
 function buildSavingsBlock(meta, deposit, saving) {
