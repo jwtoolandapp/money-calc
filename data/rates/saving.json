@@ -536,7 +536,7 @@
       "joinWay": "인터넷,스마트폰",
       "specialCondition": "①오픈뱅킹서비스 가입 0.10%(만기까지 유지)\n②당행 입출금통장에서 자동이체시 입금건별 0.10%\n③이 상품 신규시 금리우대쿠폰을 등록할 경우 0.30%\n④마케팅동의 0.20%",
       "maxLimit": 5000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261026",
       "options": [
         {
           "months": 6,
@@ -564,7 +564,7 @@
       "joinWay": "영업점,인터넷,스마트폰,기타",
       "specialCondition": "①ESG 실천 우대금리 1.00%\n②신규고객 우대금리 1.00%\n- 당행 1년 이내예적금(청약포함)신규해지 이력미보유\n③마케팅동의우대금리 0.50%",
       "maxLimit": 1000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261026",
       "options": [
         {
           "months": 1,
@@ -604,7 +604,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "①주거래우대 0.5%\n②공과금 자동이체 0.4~0.6%\n③신규고객 0.2%\n④주택청약종합저축 보유 0.1%\n⑤ 전자명함을 통한 신규 시 0.2%",
       "maxLimit": 999999999,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261026",
       "options": [
         {
           "months": 12,
@@ -632,7 +632,7 @@
       "joinWay": "인터넷,스마트폰,기타",
       "specialCondition": "①마케팅동의 0.25%\n②목돈마련 축하이율 0.50~1.50%",
       "maxLimit": 100000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261026",
       "options": [
         {
           "months": 3,
@@ -770,31 +770,31 @@
       "joinWay": "영업점,인터넷",
       "specialCondition": "해당없음",
       "maxLimit": null,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261026",
       "options": [
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.05,
-          "maxRate": 3.05
+          "baseRate": 3.06,
+          "maxRate": 3.06
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.6,
-          "maxRate": 3.6
+          "baseRate": 3.64,
+          "maxRate": 3.64
         },
         {
           "months": 24,
           "rateType": "단리",
-          "baseRate": 3.63,
-          "maxRate": 3.63
+          "baseRate": 3.65,
+          "maxRate": 3.65
         },
         {
           "months": 36,
           "rateType": "단리",
-          "baseRate": 3.75,
-          "maxRate": 3.75
+          "baseRate": 3.72,
+          "maxRate": 3.72
         }
       ]
     },
@@ -804,43 +804,43 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "해당없음",
       "maxLimit": 5000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261026",
       "options": [
         {
           "months": 1,
           "rateType": "단리",
-          "baseRate": 3.05,
-          "maxRate": 3.05
+          "baseRate": 3.06,
+          "maxRate": 3.06
         },
         {
           "months": 3,
           "rateType": "단리",
-          "baseRate": 3.05,
-          "maxRate": 3.05
+          "baseRate": 3.06,
+          "maxRate": 3.06
         },
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.35,
-          "maxRate": 3.35
+          "baseRate": 3.36,
+          "maxRate": 3.36
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.8,
-          "maxRate": 3.8
+          "baseRate": 3.84,
+          "maxRate": 3.84
         },
         {
           "months": 24,
           "rateType": "단리",
-          "baseRate": 3.73,
-          "maxRate": 3.73
+          "baseRate": 3.75,
+          "maxRate": 3.75
         },
         {
           "months": 36,
           "rateType": "단리",
-          "baseRate": 3.85,
-          "maxRate": 3.85
+          "baseRate": 3.82,
+          "maxRate": 3.82
         }
       ]
     },
@@ -996,7 +996,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "1. 자동이체 입금횟수 우대금리 : 최고 0.5%p\n - 5회이상 : 0.2%p, 10회이상 : 0.3%p, 15회이상 0.5%p\n2. 목표금액 달성 축하금리  : 0.5%p\n3. MZ세대(만 19~34세)) 우대금리 : 0.5%p\n4. 직전 1년간 당행 예적금(청약포함) 미보유 고객 : 0.2%p",
       "maxLimit": 1550000,
-      "disclosedAt": "20261022",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 1,
@@ -1024,7 +1024,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "1. 급여실적 : 1.0%p (①/② 중복 적용 불가)\n ① 급여이체 실적 : 1.0%p\n ② 개인사업자 계좌 실적 :1.0%p\n2. 비대면 채널 이체 실적 : 0.3%p\n3. 마케팅 동의 : 0.2%p\n4. 농업계고 및 청년농부사관학교 졸업자 : 2.0%p",
       "maxLimit": 500000,
-      "disclosedAt": "20261022",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 6,
@@ -1052,7 +1052,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "※ 우대금리 최대한도 : 1.0%p(연%, 세전)\n1. 온실가스 줄이기 실천서약서 동의 : 0.1%p\n2. 통장미발급 : 0.3%p\n3. 손하나로인증 서비스 등록 : 0.2%p\n4. 대중교통이용 : 0.2%p\n5. NH내가Green초록세상예금 동시 보유 : 0.2%p",
       "maxLimit": 500000,
-      "disclosedAt": "20261022",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 12,
@@ -1080,7 +1080,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "1. 고향사랑기부금을 건당 5만원이상 납부한 가입자 우대 : 0.5%p\n\n2-1. 만 65세 이상 고령자 우대 : 0.1%p\n2-2. 만 19~34세 MZ고객 우대 : 0.3%p",
       "maxLimit": 500000,
-      "disclosedAt": "20261022",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 12,
@@ -1108,13 +1108,13 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "1. 급여입금실적 보유 고객 중\n - 가입기간 중 3개월 이상 급여이체시 : 0.3%p\n - 주택청약종합저축 또는 펀드가입 : 0.2%p\n - NH채움카드 결제실적 1백만원 이상 : 0.2%p\n2. 인터넷(스마트)뱅킹 또는 올원뱅크로 가입 : 0.1%p",
       "maxLimit": 3000000,
-      "disclosedAt": "20261022",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 12,
           "rateType": "복리",
-          "baseRate": 3.26,
-          "maxRate": 4.06
+          "baseRate": 3.28,
+          "maxRate": 4.08
         },
         {
           "months": 24,
@@ -1366,27 +1366,27 @@
       "bank": "수협은행",
       "name": "Sh해양플라스틱Zero!적금\n(정액적립식)",
       "joinWay": "영업점,인터넷,스마트폰",
-      "specialCondition": "* 최대우대금리:0.5%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 봉사활동 또는 상품홍보 : 0.2% (만기시) \n3. 입출금통장 최초신규 : 0.2% (만기시)\n4. 자동이체 출금실적 : 0.2% (만기시)\n - 수협신용카드 / 당행 펀드 / 수협체크카드",
+      "specialCondition": "* 최대우대금리:0.6%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 해양환경 퀴즈 미션 : 0.2% (만기시) \n3. 입출금통장 최초신규 : 0.3% (만기시)\n4. 자동이체 출금실적 : 0.3% (만기시)\n - 수협신용카드 / 당행 펀드 / 수협체크카드",
       "maxLimit": 1000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 12,
           "rateType": "단리",
           "baseRate": 3.5,
-          "maxRate": 4
+          "maxRate": 4.1
         },
         {
           "months": 24,
           "rateType": "단리",
           "baseRate": 3,
-          "maxRate": 3.5
+          "maxRate": 3.6
         },
         {
           "months": 36,
           "rateType": "단리",
           "baseRate": 3.3,
-          "maxRate": 3.8
+          "maxRate": 3.9
         }
       ]
     },
@@ -1396,7 +1396,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "*최대우대금리  :0.9%\n1. 마케팅동의 : 0.1% (신규시)\n2. 자동이체 납입 : 0.8% (만기시)",
       "maxLimit": 1000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 6,
@@ -1418,7 +1418,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "*최대우대금리:0.7%\n-첫거래고객:0.3%\n-카드거래:최대0.3%\n-복수거래:0.1%\n-요구불거래:최대0.2%\n-인터넷뱅킹고객:0.1%\n-자동이체실적:0.1%",
       "maxLimit": 1000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 12,
@@ -1444,27 +1444,27 @@
       "bank": "수협은행",
       "name": "Sh해양플라스틱Zero!적금\n(자유적립식)",
       "joinWay": "영업점,인터넷,스마트폰",
-      "specialCondition": "* 최대우대금리:0.5%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 봉사활동 또는 상품홍보 : 0.2% (만기시) \n3. 입출금통장 최초신규 : 0.2% (만기시)\n4. 자동이체 출금실적 : 0.2% (만기시)\n - 수협신용카드 / 당행 펀드 / 수협체크카드",
+      "specialCondition": "* 최대우대금리:0.6%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 해양환경 퀴즈미션 : 0.2% (만기시) \n3. 입출금통장 최초신규 : 0.3% (만기시)\n4. 자동이체 출금실적 : 0.3% (만기시)\n - 수협신용카드 / 당행 펀드 / 수협체크카드",
       "maxLimit": 200000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 12,
           "rateType": "단리",
           "baseRate": 3.65,
-          "maxRate": 4.15
+          "maxRate": 4.25
         },
         {
           "months": 24,
           "rateType": "단리",
           "baseRate": 2.85,
-          "maxRate": 3.35
+          "maxRate": 3.45
         },
         {
           "months": 36,
           "rateType": "단리",
           "baseRate": 2.85,
-          "maxRate": 3.35
+          "maxRate": 3.45
         }
       ]
     },
@@ -1474,7 +1474,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "*최대우대금리 : 0.9%\n1. 마케팅동의 : 0.1% (신규시)\n2. 자동이체 납입 : 0.8% (만기시)",
       "maxLimit": 1000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 6,
@@ -1496,31 +1496,31 @@
       "joinWay": "스마트폰",
       "specialCondition": "자동이체시 우대금리 제공 : 연 0.20%p\n - 제공조건 : 전체 계약월수의 1/2이상을 자동이체로 납입하고 만기 해지하는 경우\n - 유의사항 : 만기 자동연장된 원리금은 우대금리를 제공하지 않음",
       "maxLimit": null,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.6,
-          "maxRate": 3.8
+          "baseRate": 3.7,
+          "maxRate": 3.9
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.75,
-          "maxRate": 3.95
+          "baseRate": 3.85,
+          "maxRate": 4.05
         },
         {
           "months": 24,
           "rateType": "단리",
-          "baseRate": 3.1,
-          "maxRate": 3.3
+          "baseRate": 3.2,
+          "maxRate": 3.4
         },
         {
           "months": 36,
           "rateType": "단리",
-          "baseRate": 3.1,
-          "maxRate": 3.3
+          "baseRate": 3.2,
+          "maxRate": 3.4
         }
       ]
     },
@@ -1530,7 +1530,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "자동이체 연속 성공 우대금리 제공 : 최고 연 3.00%p\n- 제공조건\n① 7주차까지 자동이체 납입을 연속 성공하고 만기해지 하는 경우 연 1.00%p 제공\n② 26주차까지 자동이체 납입을 연속 성공하고 만기해지 하는 경우 연 2.00%p 추가 제공\n- 유의사항 : 자동이체 실패한 주차를 빈자리채우기 하여도 성공으로 인정되지 않음",
       "maxLimit": null,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 6,
@@ -1546,7 +1546,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "매일/보너스 우대금리 제공 : 최고 연 5.50%p\n- 제공조건\n① 매일 우대금리 : 매 입금 시 마다 연 0.10%p 제공(최대 연 3.10%p)\n② 보너스 우대금리 : 누적하여 5/10/15/20/25/31회 입금 시 해당 우대금리 제공(최대 연 2.40%p)\n- 유의사항 : 만기 해지하는 경우에만 제공",
       "maxLimit": null,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 1,
@@ -1562,7 +1562,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "자동이체시 우대금리 제공 : 연 4.00%p\n - 제공조건 : 전체 계약월수의 1/2이상을 자동이체로 납입하고 만기 해지하는 경우\n - 유의사항 : 만기 자동연장된 원리금은 우대금리를 제공하지 않음",
       "maxLimit": null,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 12,
@@ -1578,7 +1578,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "매월저축/목표금액 우대금리 제공 : 최고 연 2.00%p\n- 제공조건\n① 매월저축 우대금리 : 만기 전월까지 매월 1회 이상 납입하는 경우 연 1.00%p 제공\n② 목표금액 우대금리 : 만기일에 목표금액 이상으로 잔액을 유지한느 경우 연 1.00%p 제공\n- 유의사항 : 만기 해지하는 경우에만 제공",
       "maxLimit": null,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 3,
@@ -1606,7 +1606,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "· 만기 해지 시 : 연 2.50% 제공",
       "maxLimit": 300000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261027",
       "options": [
         {
           "months": 6,
@@ -1622,25 +1622,25 @@
       "joinWay": "스마트폰",
       "specialCondition": "· 전체 계약월수 중 1/2 이상에 해당하는 개월 수 동안 자동이체를 성공한 경우 : 연 0.50% 제공",
       "maxLimit": 3000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261027",
       "options": [
         {
           "months": 3,
           "rateType": "단리",
-          "baseRate": 1.3,
-          "maxRate": 1.8
+          "baseRate": 2.6,
+          "maxRate": 3.1
         },
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 1.8,
-          "maxRate": 2.3
+          "baseRate": 2.9,
+          "maxRate": 3.4
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 2.5,
-          "maxRate": 3
+          "baseRate": 3.25,
+          "maxRate": 3.75
         },
         {
           "months": 24,
@@ -1662,7 +1662,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "· 전체 계약월수 중 1/2 이상에 해당하는 개월 수 동안 자동이체를 성공한 경우 : 연 2.50% 제공",
       "maxLimit": 200000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261027",
       "options": [
         {
           "months": 12,
@@ -1678,7 +1678,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "· 저금 성공 일수에 따라 우대금리를 차등 지급\n- 3일 저금 성공 시 : 연 2.0%\n- 7일 저금 성공 시 : 연 3.0%\n- 14일 저금 성공 시 : 연 5.0%\n- 21일 저금 성공 시 : 연 7.0%\n- 31일 저금 성공 시 : 연 9.0%",
       "maxLimit": 5000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261027",
       "options": [
         {
           "months": 1,

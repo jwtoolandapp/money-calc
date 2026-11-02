@@ -269,20 +269,20 @@
         {
           "months": 12,
           "rateType": "복리",
-          "baseRate": 3.35,
-          "maxRate": 3.55
+          "baseRate": 3.33,
+          "maxRate": 3.53
         },
         {
           "months": 24,
           "rateType": "복리",
-          "baseRate": 3.13,
-          "maxRate": 3.33
+          "baseRate": 3.1,
+          "maxRate": 3.3
         },
         {
           "months": 36,
           "rateType": "복리",
-          "baseRate": 2.98,
-          "maxRate": 3.18
+          "baseRate": 2.93,
+          "maxRate": 3.13
         }
       ]
     },
@@ -303,32 +303,32 @@
         {
           "months": 3,
           "rateType": "단리",
-          "baseRate": 2.68,
-          "maxRate": 2.78
+          "baseRate": 2.7,
+          "maxRate": 2.8
         },
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.03,
-          "maxRate": 3.13
+          "baseRate": 3.06,
+          "maxRate": 3.16
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.25,
-          "maxRate": 3.45
+          "baseRate": 3.23,
+          "maxRate": 3.43
         },
         {
           "months": 24,
           "rateType": "단리",
-          "baseRate": 3.03,
-          "maxRate": 3.23
+          "baseRate": 3,
+          "maxRate": 3.2
         },
         {
           "months": 36,
           "rateType": "단리",
-          "baseRate": 2.88,
-          "maxRate": 3.08
+          "baseRate": 2.83,
+          "maxRate": 3.03
         }
       ]
     },
@@ -343,8 +343,8 @@
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.25,
-          "maxRate": 3.75
+          "baseRate": 3.23,
+          "maxRate": 3.73
         }
       ]
     },
@@ -716,31 +716,31 @@
       "joinWay": "인터넷,스마트폰",
       "specialCondition": "없음",
       "maxLimit": null,
-      "disclosedAt": "20261023",
+      "disclosedAt": "20261030",
       "options": [
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.43,
-          "maxRate": 3.43
+          "baseRate": 3.46,
+          "maxRate": 3.46
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.55,
-          "maxRate": 3.55
+          "baseRate": 3.54,
+          "maxRate": 3.54
         },
         {
           "months": 24,
           "rateType": "단리",
-          "baseRate": 3.42,
-          "maxRate": 3.42
+          "baseRate": 3.37,
+          "maxRate": 3.37
         },
         {
           "months": 36,
           "rateType": "단리",
-          "baseRate": 3.39,
-          "maxRate": 3.39
+          "baseRate": 3.3,
+          "maxRate": 3.3
         }
       ]
     },
@@ -750,25 +750,25 @@
       "joinWay": "영업점,스마트폰",
       "specialCondition": "없음",
       "maxLimit": 300000000,
-      "disclosedAt": "20261023",
+      "disclosedAt": "20261030",
       "options": [
         {
           "months": 1,
           "rateType": "단리",
-          "baseRate": 2.78,
-          "maxRate": 2.78
+          "baseRate": 2.79,
+          "maxRate": 2.79
         },
         {
           "months": 3,
           "rateType": "단리",
-          "baseRate": 3.07,
-          "maxRate": 3.07
+          "baseRate": 3.1,
+          "maxRate": 3.1
         },
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.48,
-          "maxRate": 3.48
+          "baseRate": 3.51,
+          "maxRate": 3.51
         },
         {
           "months": 12,
@@ -830,7 +830,7 @@
       "joinWay": "인터넷,스마트폰",
       "specialCondition": "해당무",
       "maxLimit": null,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261026",
       "options": [
         {
           "months": 1,
@@ -842,7 +842,7 @@
           "months": 3,
           "rateType": "단리",
           "baseRate": 2.25,
-          "maxRate": 2.8
+          "maxRate": 3.1
         },
         {
           "months": 6,
@@ -1204,21 +1204,21 @@
       "bank": "수협은행",
       "name": "Sh해양플라스틱Zero!예금\n(만기일시지급식)",
       "joinWay": "영업점,인터넷,스마트폰",
-      "specialCondition": "* 최대우대금리:0.35%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 봉사활동 또는 상품홍보 : 0.15% (만기시) \n3. 입출금통장 최초신규 : 0.1% (만기시)\n4. 자동이체 출금실적 : 0.1% (만기시)\n - 수협신용카드 / 당행 펀드 또는 적금 / 수협체크카드",
+      "specialCondition": "* 최대우대금리:0.45%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 해양환경퀴즈미션 : 0.15% (만기시) \n3. 입출금통장 최초신규 : 0.2% (만기시)\n4. 자동이체 출금실적 : 0.2% (만기시)\n - 수협신용카드 / 당행 펀드 또는 적금 / 수협체크카드",
       "maxLimit": 500000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 6,
           "rateType": "단리",
           "baseRate": 3.3,
-          "maxRate": 3.65
+          "maxRate": 3.75
         },
         {
           "months": 12,
           "rateType": "단리",
           "baseRate": 3.46,
-          "maxRate": 3.81
+          "maxRate": 3.91
         }
       ]
     },
@@ -1228,25 +1228,25 @@
       "joinWay": "인터넷,스마트폰",
       "specialCondition": "없음",
       "maxLimit": 1000000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 3,
           "rateType": "단리",
-          "baseRate": 3.5,
-          "maxRate": 3.5
+          "baseRate": 3.6,
+          "maxRate": 3.6
         },
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.65,
-          "maxRate": 3.65
+          "baseRate": 3.75,
+          "maxRate": 3.75
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.81,
-          "maxRate": 3.81
+          "baseRate": 3.91,
+          "maxRate": 3.91
         }
       ]
     },
@@ -1256,13 +1256,13 @@
       "joinWay": "인터넷,스마트폰",
       "specialCondition": "* 최대우대금리:1.05%\n1. 첫거래우대 : 1.0% (신규시) \n  - 최근 1년간 수협은행 예적금 활동계좌 미보유 고객포함\n2. 마케팅전체동의 : 0.05%(신규시) \n3. 스마트폰뱅킹의 상품알리기 : 0.80%(만기시)",
       "maxLimit": 30000000,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 2.86,
-          "maxRate": 3.91
+          "baseRate": 2.96,
+          "maxRate": 4.01
         }
       ]
     },
@@ -1272,43 +1272,43 @@
       "joinWay": "스마트폰",
       "specialCondition": "※복잡한 우대조건 없이 가입가능한 정기예금",
       "maxLimit": null,
-      "disclosedAt": "20261020",
+      "disclosedAt": "20261029",
       "options": [
         {
           "months": 1,
           "rateType": "단리",
-          "baseRate": 3,
-          "maxRate": 3
+          "baseRate": 3.1,
+          "maxRate": 3.1
         },
         {
           "months": 3,
-          "rateType": "단리",
-          "baseRate": 3.4,
-          "maxRate": 3.4
-        },
-        {
-          "months": 6,
           "rateType": "단리",
           "baseRate": 3.5,
           "maxRate": 3.5
         },
         {
+          "months": 6,
+          "rateType": "단리",
+          "baseRate": 3.6,
+          "maxRate": 3.6
+        },
+        {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.7,
-          "maxRate": 3.7
+          "baseRate": 3.8,
+          "maxRate": 3.8
         },
         {
           "months": 24,
           "rateType": "단리",
-          "baseRate": 3.1,
-          "maxRate": 3.1
+          "baseRate": 3.2,
+          "maxRate": 3.2
         },
         {
           "months": 36,
           "rateType": "단리",
-          "baseRate": 3.1,
-          "maxRate": 3.1
+          "baseRate": 3.2,
+          "maxRate": 3.2
         }
       ]
     },
