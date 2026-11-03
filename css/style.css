@@ -71,6 +71,9 @@ html {
 }
 
 body {
+  /* 한글은 단어 단위로 줄을 바꾼다. 너무 긴 단어만 예외로 끊어 화면 밖으로 넘치지 않게 한다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
   margin: 0;
   background-color: var(--page-bg);
   background-image: repeating-linear-gradient(
