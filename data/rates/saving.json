@@ -770,31 +770,31 @@
       "joinWay": "영업점,인터넷",
       "specialCondition": "해당없음",
       "maxLimit": null,
-      "disclosedAt": "20261026",
+      "disclosedAt": "20261102",
       "options": [
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.06,
-          "maxRate": 3.06
+          "baseRate": 3.07,
+          "maxRate": 3.07
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.64,
-          "maxRate": 3.64
+          "baseRate": 3.68,
+          "maxRate": 3.68
         },
         {
           "months": 24,
           "rateType": "단리",
-          "baseRate": 3.65,
-          "maxRate": 3.65
+          "baseRate": 3.63,
+          "maxRate": 3.63
         },
         {
           "months": 36,
           "rateType": "단리",
-          "baseRate": 3.72,
-          "maxRate": 3.72
+          "baseRate": 3.68,
+          "maxRate": 3.68
         }
       ]
     },
@@ -804,7 +804,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "해당없음",
       "maxLimit": 5000000,
-      "disclosedAt": "20261026",
+      "disclosedAt": "20261102",
       "options": [
         {
           "months": 1,
@@ -821,26 +821,26 @@
         {
           "months": 6,
           "rateType": "단리",
-          "baseRate": 3.36,
-          "maxRate": 3.36
+          "baseRate": 3.37,
+          "maxRate": 3.37
         },
         {
           "months": 12,
           "rateType": "단리",
-          "baseRate": 3.84,
-          "maxRate": 3.84
+          "baseRate": 3.88,
+          "maxRate": 3.88
         },
         {
           "months": 24,
           "rateType": "단리",
-          "baseRate": 3.75,
-          "maxRate": 3.75
+          "baseRate": 3.73,
+          "maxRate": 3.73
         },
         {
           "months": 36,
           "rateType": "단리",
-          "baseRate": 3.82,
-          "maxRate": 3.82
+          "baseRate": 3.78,
+          "maxRate": 3.78
         }
       ]
     },
@@ -996,7 +996,7 @@
       "joinWay": "스마트폰",
       "specialCondition": "1. 자동이체 입금횟수 우대금리 : 최고 0.5%p\n - 5회이상 : 0.2%p, 10회이상 : 0.3%p, 15회이상 0.5%p\n2. 목표금액 달성 축하금리  : 0.5%p\n3. MZ세대(만 19~34세)) 우대금리 : 0.5%p\n4. 직전 1년간 당행 예적금(청약포함) 미보유 고객 : 0.2%p",
       "maxLimit": 1550000,
-      "disclosedAt": "20261029",
+      "disclosedAt": "20261103",
       "options": [
         {
           "months": 1,
@@ -1024,7 +1024,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "1. 급여실적 : 1.0%p (①/② 중복 적용 불가)\n ① 급여이체 실적 : 1.0%p\n ② 개인사업자 계좌 실적 :1.0%p\n2. 비대면 채널 이체 실적 : 0.3%p\n3. 마케팅 동의 : 0.2%p\n4. 농업계고 및 청년농부사관학교 졸업자 : 2.0%p",
       "maxLimit": 500000,
-      "disclosedAt": "20261029",
+      "disclosedAt": "20261103",
       "options": [
         {
           "months": 6,
@@ -1052,7 +1052,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "※ 우대금리 최대한도 : 1.0%p(연%, 세전)\n1. 온실가스 줄이기 실천서약서 동의 : 0.1%p\n2. 통장미발급 : 0.3%p\n3. 손하나로인증 서비스 등록 : 0.2%p\n4. 대중교통이용 : 0.2%p\n5. NH내가Green초록세상예금 동시 보유 : 0.2%p",
       "maxLimit": 500000,
-      "disclosedAt": "20261029",
+      "disclosedAt": "20261103",
       "options": [
         {
           "months": 12,
@@ -1080,7 +1080,7 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "1. 고향사랑기부금을 건당 5만원이상 납부한 가입자 우대 : 0.5%p\n\n2-1. 만 65세 이상 고령자 우대 : 0.1%p\n2-2. 만 19~34세 MZ고객 우대 : 0.3%p",
       "maxLimit": 500000,
-      "disclosedAt": "20261029",
+      "disclosedAt": "20261103",
       "options": [
         {
           "months": 12,
@@ -1108,13 +1108,13 @@
       "joinWay": "영업점,인터넷,스마트폰",
       "specialCondition": "1. 급여입금실적 보유 고객 중\n - 가입기간 중 3개월 이상 급여이체시 : 0.3%p\n - 주택청약종합저축 또는 펀드가입 : 0.2%p\n - NH채움카드 결제실적 1백만원 이상 : 0.2%p\n2. 인터넷(스마트)뱅킹 또는 올원뱅크로 가입 : 0.1%p",
       "maxLimit": 3000000,
-      "disclosedAt": "20261029",
+      "disclosedAt": "20261103",
       "options": [
         {
           "months": 12,
           "rateType": "복리",
-          "baseRate": 3.28,
-          "maxRate": 4.08
+          "baseRate": 3.38,
+          "maxRate": 4.18
         },
         {
           "months": 24,
