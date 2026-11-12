@@ -49,6 +49,10 @@
     "mohw": {
       "name": "보건복지부",
       "url": "https://www.mohw.go.kr"
+    },
+    "kepco": {
+      "name": "한국전력공사 한전ON",
+      "url": "https://online.kepco.co.kr"
     }
   },
   "pages": {
@@ -415,6 +419,15 @@
         {
           "authority": "law",
           "title": "고용보험료징수법 시행령 제12조(실업급여 보험료율 1.8%, 근로자 0.9%)"
+        }
+      ]
+    },
+    "electricity-bill": {
+      "lastReviewed": "2026-11-13",
+      "references": [
+        {
+          "authority": "kepco",
+          "title": "주택용 전력(저압·고압) 전기요금표와 청구금액 계산 방식(부가가치세 10%·전력산업기반기금 2.7%)"
         }
       ]
     }
