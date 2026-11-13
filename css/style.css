@@ -462,6 +462,7 @@ select.control:focus {
 }
 
 .result-row,
+.result-grid > div:not([class]),
 .breakdown-row {
   display: flex;
   align-items: baseline;
@@ -472,12 +473,14 @@ select.control:focus {
 }
 
 .result-row dt,
+.result-grid > div:not([class]) dt,
 .breakdown-row dt {
   color: var(--navy-700);
   font-size: 14px;
 }
 
 .result-row dd,
+.result-grid > div:not([class]) dd,
 .breakdown-row dd {
   margin: 0;
   color: var(--navy-950);
