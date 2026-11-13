@@ -1320,3 +1320,124 @@ a.calculator-card:focus-visible {
   font-size: 14px;
   line-height: 1.7;
 }
+
+/* 전기요금 계산기: 가전 여러 개 */
+#appliance-list {
+  display: grid;
+  gap: 12px;
+}
+.appliance-row {
+  padding: 14px 14px 16px;
+  border: 1px solid var(--navy-200);
+  border-radius: var(--radius-md);
+  background: var(--navy-100);
+}
+.appliance-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 32px;
+  margin-bottom: 10px;
+}
+.appliance-row-head h3 {
+  margin: 0;
+  color: var(--navy-950);
+  font-size: 15px;
+  font-weight: 850;
+}
+.appliance-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.appliance-fields .field:first-child {
+  grid-column: 1 / -1;
+}
+@media (min-width: 640px) {
+  .appliance-fields {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+  .appliance-fields .field:first-child {
+    grid-column: auto;
+  }
+}
+
+/* 전기요금 계산기: 결과 */
+.result-callout {
+  margin: 18px 0 0;
+  padding: 14px 15px;
+  border: 1px solid var(--warning-border);
+  border-radius: var(--radius-md);
+  background: var(--warning-bg);
+}
+.result-callout strong {
+  display: block;
+  color: var(--brand-bold);
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 850;
+  line-height: 1.3;
+}
+.result-callout span {
+  display: block;
+  margin-top: 3px;
+  color: var(--navy-700);
+  font-size: 14px;
+}
+.result-subhead {
+  margin: 22px 0 0;
+  color: var(--navy-950);
+  font-size: 15px;
+  font-weight: 850;
+}
+.result-subhead + .result-grid {
+  margin-top: 8px;
+}
+.result-row.is-sum dt,
+.result-row.is-sum dd {
+  color: var(--navy-950);
+  font-size: 16px;
+  font-weight: 850;
+}
+.result-note {
+  margin: 8px 0 0;
+  color: var(--navy-500);
+  font-size: 13px;
+}
+.appliance-share {
+  display: grid;
+  gap: 12px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.appliance-share-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+.appliance-share-top b {
+  color: var(--navy-950);
+  font-variant-numeric: tabular-nums;
+  font-weight: 850;
+}
+.appliance-share-top span {
+  color: var(--navy-700);
+}
+.appliance-share-bar {
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: var(--navy-100);
+  overflow: hidden;
+}
+.appliance-share-bar i {
+  display: block;
+  height: 100%;
+  min-width: 4px;
+  border-radius: 999px;
+  background: var(--brand);
+}
