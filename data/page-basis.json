@@ -53,6 +53,10 @@
     "kepco": {
       "name": "한국전력공사 한전ON",
       "url": "https://online.kepco.co.kr"
+    },
+    "bok": {
+      "name": "한국은행",
+      "url": "https://www.bok.or.kr"
     }
   },
   "pages": {
@@ -428,6 +432,19 @@
         {
           "authority": "kepco",
           "title": "주택용 전력(저압·고압) 전기요금표와 청구금액 계산 방식(부가가치세 10%·전력산업기반기금 2.7%)"
+        }
+      ]
+    },
+    "rent-conversion": {
+      "lastReviewed": "2026-11-14",
+      "references": [
+        {
+          "authority": "law",
+          "title": "주택임대차보호법 제7조의2(월차임 전환 시 산정률의 제한)·같은 법 시행령 제9조"
+        },
+        {
+          "authority": "bok",
+          "title": "한국은행 기준금리(2026-10-22 금융통화위원회 결정 연 3.00%)"
         }
       ]
     }

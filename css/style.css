@@ -1444,3 +1444,10 @@ a.calculator-card:focus-visible {
   border-radius: 999px;
   background: var(--brand);
 }
+
+/* 입력 칸 사이 간격: 묶음 없이 칸을 바로 나열한 폼 */
+form.panel > .field + .field,
+form.panel > .field + h2,
+form.panel > .button-row {
+  margin-top: 16px;
+}
