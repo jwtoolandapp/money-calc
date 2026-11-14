@@ -69,8 +69,11 @@
     const raw = tax <= config.FIRST_TAX_THRESHOLD
       ? tax * config.FIRST_RATE
       : config.EXCESS_BASE + (tax - config.FIRST_TAX_THRESHOLD) * config.EXCESS_RATE;
-    const capBracket = findBracket(nonNegative(grossSalary), config.SALARY_CAP_BRACKETS, 'salaryUpTo');
-    return Math.min(raw, capBracket.cap, tax);
+    const salary = nonNegative(grossSalary);
+    const capBracket = findBracket(salary, config.SALARY_CAP_BRACKETS, 'salaryUpTo');
+    // 한도는 총급여가 늘수록 줄어드는 점감식이다(구간 하한 floor 까지).
+    const cap = Math.max(capBracket.floor, capBracket.cap - Math.max(ZERO, salary - capBracket.from) * capBracket.rate);
+    return Math.min(raw, cap, tax);
   }
 
   function pensionCredit(grossSalary, pensionSavings, irp) {

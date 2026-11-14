@@ -22,7 +22,9 @@
     if (amountInput.value.trim() === '') {
       valueNode.textContent = '—'; summaryNode.textContent = monthly ? '산입 대상 월 임금을 입력하세요.' : '시급을 입력하세요.'; detailsNode.innerHTML = ''; return;
     }
-    var result = window.MinimumWage.calculate({ mode: mode, amount: Number(amountInput.value), weeklyScheduledHours: Number(scheduledInput.value), weeklyPaidHours: Number(paidInput.value) });
+    // 시간 칸을 비우면 0시간으로 계산돼 시급이 부풀려진다. 비었으면 칸의 기본값을 쓴다.
+    function hoursOrDefault(input) { var text = input.value.trim(); return Number(text === '' ? (input.defaultValue || input.placeholder || 0) : text); }
+    var result = window.MinimumWage.calculate({ mode: mode, amount: Number(amountInput.value), weeklyScheduledHours: hoursOrDefault(scheduledInput), weeklyPaidHours: hoursOrDefault(paidInput) });
     if (!result) { valueNode.textContent = '—'; summaryNode.textContent = '입력값을 확인해 주세요.'; detailsNode.innerHTML = ''; return; }
     valueNode.textContent = result.meetsMinimum ? '최저임금 충족' : '최저임금 미달';
     summaryNode.textContent = result.meetsMinimum ? result.year + '년 최저시급 ' + won(result.minimumHourly) + ' 이상입니다.' :

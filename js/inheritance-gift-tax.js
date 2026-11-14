@@ -27,15 +27,31 @@
   function init(){
     const form=document.getElementById('inheritance-gift-form');if(!form)return;let mode='inheritance';const buttons=Array.from(document.querySelectorAll('[data-tax-mode]')),panels=Array.from(form.querySelectorAll('[data-tax-panel]')),agesMount=document.getElementById('minor-age-fields');
     const initialParams=U.queryParams();if(initialParams.get('mode')==='gift')mode='gift';
-    function syncAgeFields(count,preserve){const old=preserve?Array.from(agesMount.querySelectorAll('input')).map((x)=>x.value):[];agesMount.innerHTML='';for(let i=0;i<count;i+=1){const wrap=document.createElement('div');wrap.className='field';wrap.innerHTML=`<label for="minor-age-${i}">미성년 자녀 ${i+1} 만 나이</label><div class="input-wrap"><input id="minor-age-${i}" name="minorAge${i}" class="control" type="number" min="0" max="18" step="1" value="${old[i]||initialParams.get(`minorAge${i}`)||0}"><span class="unit">세</span></div>`;agesMount.appendChild(wrap);}}
-    U.restoreForm(form);syncAgeFields(Math.floor(U.parseNumber(form.elements.minorCount.value)),false);U.setupNumericInputs(form);
+    function syncAgeFields(count,preserve){const old=preserve?Array.from(agesMount.querySelectorAll('input')).map((x)=>x.value):[];agesMount.textContent='';
+      // 미성년 자녀 수는 자녀 수 이하, 최대 MAX_MINOR_FIELDS명까지만 칸을 만든다(큰 수를 넣어 화면이 멈추는 것을 막는다).
+      const limit=Math.max(0,Math.min(MAX_MINOR_FIELDS,Math.floor(Number(count))||0));
+      for(let i=0;i<limit;i+=1){
+        // 주소의 minorAge 값을 innerHTML 로 넣으면 마크업이 그대로 삽입된다. 요소를 직접 만들고 값은 숫자만 받는다.
+        const raw=String(old[i]||initialParams.get(`minorAge${i}`)||'');
+        const wrap=document.createElement('div');wrap.className='field';
+        const label=document.createElement('label');label.htmlFor=`minor-age-${i}`;label.textContent=`미성년 자녀 ${i+1} 만 나이`;
+        const box=document.createElement('div');box.className='input-wrap';
+        const input=document.createElement('input');input.id=`minor-age-${i}`;input.name=`minorAge${i}`;input.className='control';input.type='number';input.min='0';input.max='18';input.step='1';input.value=/^\d{1,2}$/.test(raw)?raw:'0';
+        const unit=document.createElement('span');unit.className='unit';unit.textContent='세';
+        box.appendChild(input);box.appendChild(unit);wrap.appendChild(label);wrap.appendChild(box);agesMount.appendChild(wrap);
+      }}
+    const MAX_MINOR_FIELDS=10;
+    // 미성년 자녀 수는 자녀 수를 넘을 수 없다.
+    const minorLimit=()=>Math.min(MAX_MINOR_FIELDS,Math.floor(U.parseNumber(form.elements.childCount.value))||0);
+    const clampMinor=()=>{const typed=Math.floor(U.parseNumber(form.elements.minorCount.value))||0;const allowed=Math.max(0,Math.min(minorLimit(),typed));if(typed!==allowed)form.elements.minorCount.value=String(allowed);return allowed;};
+    U.restoreForm(form);syncAgeFields(clampMinor(),false);U.setupNumericInputs(form);
     const value=(name)=>form.elements[name]?U.parseNumber(form.elements[name].value):ZERO;
     const rows=(items)=>{document.getElementById('inheritance-result-details').innerHTML=items.map(([a,b])=>`<div class="result-row"><dt>${a}</dt><dd>${b}</dd></div>`).join('');};
     function render(){buttons.forEach((b)=>b.setAttribute('aria-pressed',b.dataset.taxMode===mode?'true':'false'));panels.forEach((p)=>U.setHidden(p,p.dataset.taxPanel!==mode));let result;
       if(mode==='inheritance'){const minorAges=Array.from(agesMount.querySelectorAll('input')).map((x)=>U.parseNumber(x.value));result=calculateInheritance({estate:value('estate'),spouse:form.elements.spouse.checked,childCount:value('childCount'),minorAges,elderlyCount:value('elderlyCount')});document.getElementById('inheritance-result-label').textContent='예상 상속세';document.getElementById('inheritance-result-value').textContent=U.formatWon(result.payableTax);document.getElementById('inheritance-result-summary').textContent=`일괄공제와 기초·인적공제 중 ${result.selectedGeneralDeduction===TAX.INHERITANCE.LUMP_SUM_DEDUCTION?'일괄공제':'기초·인적공제'}가 적용됐습니다.`;rows([['자녀공제',U.formatWon(result.childDeduction)],['미성년자공제',U.formatWon(result.minorDeduction)],['배우자공제',U.formatWon(result.spouseDeduction)],['과세표준',U.formatWon(result.taxableBase)],['신고세액공제',U.formatWon(result.reportCredit)]]);
       }else{result=calculateGift({gift:value('gift'),relationship:form.elements.relationship.value,extra:form.elements.extra.checked,hasPriorGift:form.elements.hasPriorGift.checked});document.getElementById('inheritance-result-label').textContent='예상 증여세';document.getElementById('inheritance-result-value').textContent=U.formatWon(result.payableTax);document.getElementById('inheritance-result-summary').textContent=result.hasPriorGift?'최근 10년 내 동일인 증여분 합산은 계산에 미반영했습니다.':'관계별 공제와 신고세액공제 3%를 적용했습니다.';rows([['관계별 공제',U.formatWon(result.relationDeduction)],['혼인·출산 추가공제',U.formatWon(result.extra)],['과세표준',U.formatWon(result.taxableBase)],['신고세액공제',U.formatWon(result.reportCredit)]]);}
       const q=U.formToParams(form);q.set('mode',mode);U.setQuery(q);return result;}
-    form.elements.minorCount.addEventListener('input',()=>{syncAgeFields(Math.floor(value('minorCount')),true);render();});buttons.forEach((b)=>b.addEventListener('click',()=>{mode=b.dataset.taxMode;render();}));form.addEventListener('input',render);form.addEventListener('change',render);U.bindCopyLink(document.getElementById('copy-inheritance-link'),()=>global.location.href);render();
+    form.elements.minorCount.addEventListener('input',()=>{syncAgeFields(clampMinor(),true);render();});form.elements.childCount.addEventListener('input',()=>{syncAgeFields(clampMinor(),true);});buttons.forEach((b)=>b.addEventListener('click',()=>{mode=b.dataset.taxMode;render();}));form.addEventListener('input',render);form.addEventListener('change',render);U.bindCopyLink(document.getElementById('copy-inheritance-link'),()=>global.location.href);render();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })(window);

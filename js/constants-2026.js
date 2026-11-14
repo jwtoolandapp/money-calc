@@ -156,11 +156,18 @@
         FIRST_RATE: 0.55,
         EXCESS_RATE: 0.3,
         EXCESS_BASE: 715000,
+        // 한도는 구간 고정값이 아니라 점감식이다(소득세법 제59조제2항).
+        //   3,300만 이하 74만 / 3,300만 초과~7,000만: 74만 − (총급여 − 3,300만) × 0.8%, 최소 66만
+        //   7,000만 초과~1억2,000만: 66만 − (총급여 − 7,000만) × 1/2, 최소 50만
+        //   1억2,000만 초과: 50만 − (총급여 − 1억2,000만) × 1/2, 최소 20만
+        // 확인(2026-11-15): 국세청 근로소득 세액공제 안내 https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7875
+        //   (1억2,000만 초과 구간은 국세청 목록에 식이 따로 없어 조문 해설로 확인 — 법제처 원문 대조는 다음 점검 때).
+        // 예전에는 구간마다 고정 한도를 써서 총급여 3,300만원 바로 위에서 세액이 8만원 뛰었다.
         SALARY_CAP_BRACKETS: [
-          { salaryUpTo: 33000000, cap: 740000 },
-          { salaryUpTo: 70000000, cap: 660000 },
-          { salaryUpTo: 120000000, cap: 500000 },
-          { salaryUpTo: null, cap: 200000 },
+          { salaryUpTo: 33000000, cap: 740000, from: 0, rate: 0, floor: 740000 },
+          { salaryUpTo: 70000000, cap: 740000, from: 33000000, rate: 0.008, floor: 660000 },
+          { salaryUpTo: 120000000, cap: 660000, from: 70000000, rate: 0.5, floor: 500000 },
+          { salaryUpTo: null, cap: 500000, from: 120000000, rate: 0.5, floor: 200000 },
         ],
       },
 
@@ -675,6 +682,11 @@
       DEFAULT_WEEKLY_SCHEDULED_HOURS: 40,
       DEFAULT_WEEKLY_PAID_HOURS: 8,
       MONTHLY_HOURS_ROUNDING: 'nearest-integer',
+      // 2027년 적용 최저임금: 시간급 10,700원(3.7% 인상), 월 환산액 2,236,300원(209시간).
+      // 2026-08-05 고용노동부 결정·고시. 확인(2026-11-15): 서울노동권익센터 공지(고용노동부 고시 안내)
+      //   https://www.seoullabor.or.kr/portal/bbs/selectBbs.do?bbs_code=A1006&bbs_seq=2381 및 주요 보도.
+      // 2027-01-01 이 되면 YEAR·HOURLY 를 이 값으로 올리고 이 블록을 다음 해 값으로 바꾼다.
+      NEXT: { YEAR: 2027, HOURLY: 10700, MONTHLY_209H: 10700 * 209 },
     },
 
     /*

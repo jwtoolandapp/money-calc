@@ -1,7 +1,7 @@
 {
   "name": "머니데스크",
   "short_name": "머니데스크",
-  "description": "생활 금융 계산기 11종을 한곳에서.",
+  "description": "생활 금융 계산기 43종을 한곳에서.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#e7e5df",

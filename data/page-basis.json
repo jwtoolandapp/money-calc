@@ -136,11 +136,15 @@
       ]
     },
     "year-end-tax": {
-      "lastReviewed": "2026-08-09",
+      "lastReviewed": "2026-11-15",
       "references": [
         {
           "authority": "nts",
           "title": "연말정산 소득·세액공제 기준"
+        },
+        {
+          "authority": "nts",
+          "title": "근로소득 세액공제 한도(총급여별 점감, 소득세법 제59조)"
         }
       ]
     },
@@ -384,11 +388,15 @@
       ]
     },
     "minimum-wage": {
-      "lastReviewed": "2026-08-13",
+      "lastReviewed": "2026-11-15",
       "references": [
         {
           "authority": "minimumwage",
           "title": "2026년 최저임금 고시(시간급 10,320원)"
+        },
+        {
+          "authority": "minimumwage",
+          "title": "2027년 적용 최저임금 고시(시간급 10,700원, 2026-08-05)"
         },
         {
           "authority": "law",
@@ -445,6 +453,19 @@
         {
           "authority": "bok",
           "title": "한국은행 기준금리(2026-10-22 금융통화위원회 결정 연 3.00%)"
+        }
+      ]
+    },
+    "monthly-rent-credit": {
+      "lastReviewed": "2026-11-15",
+      "references": [
+        {
+          "authority": "law",
+          "title": "조세특례제한법 제95조의2(월세액에 대한 세액공제)"
+        },
+        {
+          "authority": "nts",
+          "title": "연말정산 월세액 세액공제 기준(총급여 8,000만원 이하, 공제율 17%·15%, 한도 연 1,000만원 — 2026-07-27 상수 검증)"
         }
       ]
     }

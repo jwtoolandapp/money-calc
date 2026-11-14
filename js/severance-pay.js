@@ -61,11 +61,13 @@
     // 퇴직소득세용 근속연수: 달력 기준 만 연수 + 1년 미만 끝수는 1년으로 올림(소득세법 제48조①).
     // 세전 퇴직금(retirementIncome)은 기존대로 재직일수 ÷ 365 비례로 계산한다.
     const serviceYears = validDates ? taxServiceYears(start, end) : 1;
-    const wageDays = Math.max(1, nonNegative(source.wageDays));
-    const averageDailyWage = (nonNegative(source.threeMonthPay) + nonNegative(source.annualBonus) * S.BONUS_MONTHLY_RATIO + nonNegative(source.annualLeavePay) * S.BONUS_MONTHLY_RATIO) / wageDays;
+    // 산정기간 일수가 비었거나 0이면 평균임금을 구할 수 없다. 예전에는 1일로 나눠 퇴직금이 수십억으로 나왔다.
+    const wageDays = nonNegative(source.wageDays);
+    const missingWageDays = !(wageDays > 0);
+    const averageDailyWage = missingWageDays ? 0 : (nonNegative(source.threeMonthPay) + nonNegative(source.annualBonus) * S.BONUS_MONTHLY_RATIO + nonNegative(source.annualLeavePay) * S.BONUS_MONTHLY_RATIO) / wageDays;
     const eligible = serviceDays >= S.MIN_SERVICE_DAYS_FOR_ELIGIBILITY;
     const retirementIncome = eligible ? averageDailyWage * S.AVERAGE_WAGE_DAYS * (serviceDays / C.MATH.DAYS_PER_YEAR) : 0;
-    return { serviceDays, serviceYears, averageDailyWage, eligible, retirementIncome, tax: calculateRetirementTax(retirementIncome, serviceYears) };
+    return { serviceDays, serviceYears, averageDailyWage, eligible, missingWageDays, retirementIncome, tax: calculateRetirementTax(retirementIncome, serviceYears) };
   }
 
   global.MoneyCalcCalculators = global.MoneyCalcCalculators || {};
@@ -79,6 +81,13 @@
     U.restoreForm(form);
     function render() {
       const result = calculate(Object.fromEntries(new FormData(form).entries()));
+      if (result.missingWageDays) {
+        document.getElementById('severance-result-value').textContent = '—';
+        document.getElementById('severance-result-summary').textContent = '퇴직 전 3개월의 일수(보통 89~92일)를 입력하세요. 평균임금을 구하는 데 필요합니다.';
+        document.getElementById('severance-result-details').innerHTML = '';
+        U.setQuery(U.formToParams(form));
+        return result;
+      }
       document.getElementById('severance-result-value').textContent = U.formatWon(result.tax.netAmount);
       document.getElementById('severance-result-summary').textContent = result.eligible ? `세전 퇴직금 ${U.formatWon(result.retirementIncome)}의 세후 예상액입니다.` : '계속근로기간 1년 미만은 법정 퇴직금 대상이 아닙니다.';
       document.getElementById('severance-result-details').innerHTML = [

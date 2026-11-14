@@ -66,6 +66,8 @@
   function applianceKwh(watts, hoursPerDay, days) {
     var w = Number(watts); var h = Number(hoursPerDay); var d = Number(days);
     if (!(w > 0) || !(h > 0) || !(d > 0)) return 0;
+    // 하루는 24시간, 한 달은 31일을 넘을 수 없다. 넘게 넣으면 상한으로 계산한다.
+    h = Math.min(h, 24); d = Math.min(d, 31);
     return w * h * d / 1000;
   }
 

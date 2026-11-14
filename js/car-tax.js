@@ -43,13 +43,16 @@
 
   function calculate(input) {
     var cc = Number(input.displacementCc);
-    var age = Number(input.ageYears);
+    // 차령은 만 연수다. 3.7년을 넣어도 3년으로 본다.
+    var age = Math.floor(Number(input.ageYears));
     if (!Number.isFinite(cc) || cc <= 0) return null;
     if (!Number.isFinite(age) || age < 0) return null;
 
     var isCommercial = !!input.isCommercial;
     var base = annualBaseTax(cc, isCommercial);
-    var discounted = applyAgeDiscount(base, age);
+    // 차령 경감은 '비영업용 승용자동차'에만 적용된다(지방세법 제127조제1항제2호, constants-2026.js 의 CAR_TAX 주석).
+    // 영업용에도 경감을 적용해 2,000cc·10년이 22,800원(정상 38,000원)으로 나오던 문제를 고쳤다.
+    var discounted = isCommercial ? { annual: base, discountRate: 0, cappedAge: age } : applyAgeDiscount(base, age);
     // 지방교육세 납세의무자는 '비영업용 승용자동차'에 대한 자동차세 납세의무자뿐이다(지방세법 제150조제7호).
     // 영업용은 지방교육세가 붙지 않는다. 확인: 2026-10-22, https://www.law.go.kr/법령/지방세법/제150조
     var eduRate = isCommercial ? 0 : (Number(C.EDUCATION_TAX_RATE) || 0.3);
