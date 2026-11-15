@@ -94,6 +94,17 @@
     };
   }
 
+  // 자녀세액공제(소득세법 제59조의2). 인원은 2026년 과세기간 기준 9세 이상 자녀·손자녀 수.
+  function childTaxCredit(childCount, birthOrder) {
+    const config = TAX.CHILD_TAX_CREDIT;
+    const count = Math.min(Math.floor(nonNegative(childCount)), 20);
+    const base = count <= ZERO ? ZERO
+      : count === ONE ? config.ONE
+        : config.TWO + (count - 2) * config.PER_ADDITIONAL_AFTER_TWO;
+    const birth = Object.prototype.hasOwnProperty.call(config.BIRTH, birthOrder) ? config.BIRTH[birthOrder] : ZERO;
+    return base + birth;
+  }
+
   function donationCredit(donation) {
     const amount = nonNegative(donation);
     const config = TAX.DONATION;
@@ -172,6 +183,7 @@
       ? Math.min(nonNegative(input.rent), TAX.RENT.PAYMENT_CAP) * rentRate
       : ZERO;
     const donation = donationCredit(nonNegative(input.donation) + nonNegative(input.donationCarryforward));
+    const childCredit = childTaxCredit(input.childCreditCount, input.childBirthOrder);
 
     function scenario(useStandard) {
       const taxable = Math.max(ZERO, incomeAfterPension - (useStandard ? ZERO : insuranceDeduction) - card);
@@ -180,7 +192,7 @@
       const otherCredits = useStandard
         ? TAX.STANDARD_TAX_CREDIT
         : medicalCredit + educationCredit + rentCredit + donation;
-      const total = work + pension.credit + otherCredits;
+      const total = work + pension.credit + childCredit + otherCredits;
       const applied = Math.min(tax, total);
       return { taxable, tax, work, total, applied, decided: Math.max(ZERO, tax - applied) };
     }
@@ -224,6 +236,7 @@
       educationCredit,
       rentCredit,
       donationCredit: donation,
+      childTaxCredit: childCredit,
       totalTaxCredits,
       appliedTaxCredits,
       decidedTax,
@@ -241,6 +254,7 @@
     earnedTaxCredit,
     pensionCredit,
     donationCredit,
+    childTaxCredit,
     calculate: calculateYearEndTax,
   });
 
@@ -294,6 +308,8 @@
         culture: value('culture'),
         elderly70Count: value('elderly70Count'),
         disabledCount: value('disabledCount'),
+        childCreditCount: value('childCreditCount'),
+        childBirthOrder: form.elements.childBirthOrder ? form.elements.childBirthOrder.value : '',
         singleWomanHead: form.elements.singleWomanHead && form.elements.singleWomanHead.checked,
         singleParent: form.elements.singleParent && form.elements.singleParent.checked,
         medical: value('medical'),
@@ -343,6 +359,7 @@
         ['카드 사용액 공제', result.cardDeduction, '소득공제'],
         ['근로소득 세액공제', result.workTaxCredit, '세액공제'],
         ['연금저축·IRP', result.pensionCredit, '세액공제'],
+        ['자녀', result.childTaxCredit, '세액공제'],
         ['의료비', result.medicalCredit * special, '세액공제'],
         ['교육비', result.educationCredit * special, '세액공제'],
         ['월세', result.rentCredit * special, '세액공제'],

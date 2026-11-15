@@ -145,6 +145,10 @@
         {
           "authority": "nts",
           "title": "근로소득 세액공제 한도(총급여별 점감, 소득세법 제59조)"
+        },
+        {
+          "authority": "law",
+          "title": "소득세법 제59조의2(자녀세액공제, 2026년 귀속 9세 이상)"
         }
       ]
     },
@@ -243,11 +247,15 @@
       "references": []
     },
     "unemployment-benefit": {
-      "lastReviewed": "2026-08-11",
+      "lastReviewed": "2026-11-15",
       "references": [
         {
           "authority": "law",
           "title": "고용보험법·시행령(구직급여 지급액과 소정급여일수)"
+        },
+        {
+          "authority": "law",
+          "title": "고용보험법 제40조(피보험 단위기간 180일)·제45조·제46조(하한액은 1일 소정근로시간 기준)"
         },
         {
           "authority": "minimumwage",

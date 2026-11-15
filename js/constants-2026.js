@@ -230,6 +230,18 @@
       MEDICAL_PREMATURE_RATE: 0.2,
       EDUCATION_CAP_PRESCHOOL_TO_HIGH: 3000000,
       EDUCATION_CAP_COLLEGE: 9000000,
+      // 확인(2026-11-15): 소득세법 제59조의2(법제처 원문, 법률 제21548호 2026-04-21 개정 반영).
+      //   ① 기본공제대상 자녀·손자녀 1명 25만원 / 2명 55만원 / 3명 이상 55만원 + 2명 초과 1명당 40만원.
+      //   연령 기준은 본문 13세 이상이지만 부칙 제2조로 2026년 과세기간분은 9세 이상(2027년 10세, 2028년 11세…).
+      //   ③ 출산·입양 신고한 공제대상자녀: 첫째 30만원 / 둘째 50만원 / 셋째 이상 70만원.
+      //   표준세액공제를 골라도 자녀세액공제는 따로 받는다(특별세액공제가 아니다).
+      CHILD_TAX_CREDIT: {
+        MIN_AGE_2026: 9,
+        ONE: 250000,
+        TWO: 550000,
+        PER_ADDITIONAL_AFTER_TWO: 400000,
+        BIRTH: { first: 300000, second: 500000, third: 700000 },
+      },
       ADDITIONAL_DEDUCTIONS: {
         ELDERLY_70_UP: 1000000,
         DISABLED: 2000000,
@@ -748,6 +760,13 @@
       BASE_WAGE_CAP: 113500,
       MINIMUM_WAGE_HOURLY_2026: MINIMUM_WAGE_HOURLY_2026, // TODO: 연도 갱신 시 반드시 재확인
       STANDARD_DAILY_HOURS: 8,
+      // 확인(2026-11-15, 법제처 원문): 고용보험법 제45조④ 최저기초일액 = 이직 전 1일 소정근로시간 × 시간급 최저임금,
+      //   제46조①2호 최저구직급여일액 = 최저기초일액 × 80%. 소정근로시간 산정은 시행규칙 제91조의2
+      //   (주 단위: (주 소정근로시간 + 유급휴일 시간) ÷ 48 × 8). 법정근로시간이 1일 8시간이라 8시간을 넘지 않는다.
+      //   "4시간 미만은 4시간으로 본다"는 안내는 법령 본문에서 찾지 못해 넣지 않았다(미확인).
+      // 제40조①1호: 기준기간(이직일 이전 18개월) 동안 피보험 단위기간 합산 180일 이상이어야 수급 자격이 있다.
+      MIN_INSURED_UNIT_DAYS: 180,
+      MIN_INSURED_MONTHS_POSSIBLE: 6,
       MIN_BENEFIT_RATE_OF_MIN_WAGE: 0.8,
       WAITING_PERIOD_DAYS: 7,
       ELIGIBLE_DAYS_TABLE: [
